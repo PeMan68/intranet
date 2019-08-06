@@ -2,7 +2,7 @@
 
 @section('title','Home')
 
-@section('header','Demolager')
+@section('header','Intranet')
 
 @section('content')
 	
