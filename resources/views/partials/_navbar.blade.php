@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
   <a class="navbar-brand" href="#">Intranet</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@
           <a class="dropdown-item" href="http://172.16.0.161">Reserved Area</a>
           <a class="dropdown-item" href="http://172.16.0.183/projects/si5/wiki">Dokumentation SIGIP mm</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="https://po.unifaun.se/ext.po.se.posten">Posten Adresslappar</a>
+          <a class="dropdown-item" href="./posten">Posten Adresslappar</a>
         </div>
       </li>
 
