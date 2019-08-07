@@ -15,8 +15,10 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->integer('areaId');
-			$table->integer('proposedPrioId');
+			$table->integer('area_id')->unsigned();
+			$table->foreign('area_id')->references('id')->on('areas');
+			$table->integer('prio_id')->unsigned();
+			$table->foreign('prio_id')->references('id')->on('priorities');
 			$table->string('task');
             $table->timestamps();
         });
