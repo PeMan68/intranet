@@ -15,5 +15,9 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/tasks', function () {
+    return view('tasks');
+});
+
 Route::get('/posten', 'PagesController@posten');
 

@@ -14,16 +14,16 @@ class TasksTableSeeder extends Seeder
         DB::table('tasks')->insert([
 				'created_at' => now(),
 				'updated_at' => now(),
-				'areaId' => 2,
-				'proposedPrioId' => 1,
-				'task' => 'Mjukstart',
+				'area_Id' => 2,
+				'prio_id' => 1,
+				'name' => 'Mjukstart',
 			]);
 		DB::table('tasks')->insert([
 				'created_at' => now(),
 				'updated_at' => now(),
-				'areaId' => 1,
-				'proposedPrioId' => 3,
-				'task' => 'Fel Pris',
+				'area_Id' => 1,
+				'prio_id' => 3,
+				'name' => 'Fel Pris',
 			]);
     }
 }
