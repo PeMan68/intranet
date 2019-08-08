@@ -5,7 +5,12 @@
 @section('header','Tasks i databasen')
 
 @section('content')
-	<?php
+	@php
 	use App\Helpers\Helper;
-	update_responsibilites();?>
+	echo '<h2>Lägg till tasks</h2><br>';
+	add_responsibilites();
+	echo '<h2>Ta bort tasks</h2><br>';
+	delete_responsibilites();
+	
+	@endphp
 @endsection
