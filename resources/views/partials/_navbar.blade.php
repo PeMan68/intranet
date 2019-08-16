@@ -16,8 +16,8 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 			<a class="dropdown-item" href="http://172.16.0.2:10099/INTRANET/SFA/">SFA</a>
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="http://172.16.0.2:10099/INTRANET/SFA/">SFA Sök kund</a>
-			<a class="dropdown-item" href="http://172.16.0.2:10099/INTRANET/SFA/">SFA Sök Offert</a>
+			<a class="dropdown-item" href="http://172.16.0.2:10099/INTRANET/SFA/CONTM/index">SFA Sök kund</a>
+			<a class="dropdown-item" href="http://172.16.0.2:10099/INTRANET/SFA/Offers/index">SFA Sök Offert</a>
 		</div>
 	</li>
      <li class="nav-item dropdown">

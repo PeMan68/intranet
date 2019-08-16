@@ -11,12 +11,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< HEAD
         $this->call([
         AreaTableSeeder::class,
-	PrioritiesTableSeeder::class,
-	TasksTableSeeder::class,
-	UsersTableSeeder::class,
-	RolesTableSeeder::class,
-	]);
+		PrioritiesTableSeeder::class,
+		TasksTableSeeder::class,
+		UsersTableSeeder::class,
+		]);
+=======
+        // $this->call(UsersTableSeeder::class);
+        $this->call(RolesTableSeeder::class);
+>>>>>>> newadminpanel
     }
 }

@@ -10,13 +10,7 @@
   </head>
   <body>
 	@include('partials._navbar')
-	<div class="container">
-		<div class="row">
-			<h1>@yield('header')</h1>
-		</div>
-		<div class="row">
 			@yield('content')
-		</div>
 		@include('partials._scripts')
 		@yield('scripts')
   </body>
