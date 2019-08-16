@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Area;
 
 class AreaTableSeeder extends Seeder
 {
@@ -11,39 +12,28 @@ class AreaTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('areas')->insert([
-            'created_at' => now(),
-            'updated_at' => now(),
+        // Delete all records
+		Area::truncate();
+		
+		Area::create([
             'area' => 'Kundsupport',
         ]);
-        DB::table('areas')->insert([
-            'created_at' => now(),
-            'updated_at' => now(),
+        Area::create([
             'area' => 'Teknisk support',
         ]);
-        DB::table('areas')->insert([
-            'created_at' => now(),
-            'updated_at' => now(),
+        Area::create([
             'area' => 'Ekonomi',
         ]);
-        DB::table('areas')->insert([
-            'created_at' => now(),
-            'updated_at' => now(),
+        Area::create([
             'area' => 'Reklamation',
         ]);
-        DB::table('areas')->insert([
-            'created_at' => now(),
-            'updated_at' => now(),
+        Area::create([
             'area' => 'Marknadsföring',
         ]);
-        DB::table('areas')->insert([
-            'created_at' => now(),
-            'updated_at' => now(),
+        Area::create([
             'area' => 'Administration',
         ]);
-        DB::table('areas')->insert([
-            'created_at' => now(),
-            'updated_at' => now(),
+        Area::create([
             'area' => 'Personligt',
         ]);
     }
