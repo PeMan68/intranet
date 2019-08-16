@@ -79,7 +79,7 @@ class UserController extends Controller
 		
 		if($user){
 			$user->roles()->detach();
-			$user->delete;
+			$user->destroy($id);
 			return redirect()->route('admin.users.index')->with('success', 'Användaren raderad.');
 		}
 			
