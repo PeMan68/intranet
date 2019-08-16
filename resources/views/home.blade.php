@@ -1,13 +1,23 @@
-@extends('layouts.basic')
-
-@section('title','Home')
+@extends('layouts.app')
 
 @section('content')
-<div class="jumbotron">
-  <h1 class="display-4">Nytt Intranet</h1>
-  <p class="lead">På grund av krash av gamla intranet-servern kommer ett nytt intranet byggas.</p>
-  <hr class="my-4">
-  <p>Som ett första steg finns denna startsida med några användbara länkar uppdelat på olika menyer.</p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Dashboard</div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    You are logged in!
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-	
 @endsection
