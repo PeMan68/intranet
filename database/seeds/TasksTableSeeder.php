@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Task;
 
 class TasksTableSeeder extends Seeder
 {
@@ -11,16 +12,14 @@ class TasksTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tasks')->insert([
-				'created_at' => now(),
-				'updated_at' => now(),
+		Task::truncate();
+		
+		Task::create([
 				'area_Id' => 2,
 				'prio_id' => 1,
 				'name' => 'Mjukstart',
 			]);
-		DB::table('tasks')->insert([
-				'created_at' => now(),
-				'updated_at' => now(),
+		Task::create([
 				'area_Id' => 1,
 				'prio_id' => 3,
 				'name' => 'Fel Pris',
