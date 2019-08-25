@@ -15,74 +15,26 @@
 								<th scope="col">
 									Namn
 								</th>
-								<th scope="col">
-									1/1
+								@for ($i = 1; $i < 21; $i++)
+								<th scope="col" class="text-center">
+								{{ $i }}/1
 								</th>
-								<th scope="col">
-									1/1
-								</th>
-								<th scope="col">
-									1/1
-								</th>
-								<th scope="col">
-									1/1
-								</th>
-								<th scope="col">
-									1/1
-								</th>
-								<th scope="col">
-									1/1
-								</th>
-								<th scope="col">
-									1/1
-								</th>
-								<th scope="col">
-									1/1
-								</th>
-								<th scope="col">
-									1/1
-								</th>
-								<th scope="col">
-									1/1
-								</th>
+								@endfor
 							</tr>
 						</thead>
 						<tbody>
+							@foreach($users as $user)
 							<tr>
 								<td class="table-dark">
-									Namn
+								{{ $user->name }}
 								</td>
-								<td class="table-success">
-									Sem
-								</td>
-								<td class="table-success">
-									Sem
-								</td>
-								<td class="table-success">
-									Sem
-								</td>
-								<td class="table-success">
-									Sem
-								</td>
-								<td class="table-success">
-									Sem
-								</td>
-								<td class="table-success">
-									Sem
-								</td>
-								<td class="table-success">
-									Sem
-								</td>
+								@for ($i = 1; $i < 21; $i++)
 								<td>
-									&nbsp;
+									<img src="images/green.png" class="img-fluid invisible" alt="semester" title="beskrivning">
 								</td>
-								<td>
-									&nbsp;
-								</td>
-								<td>
-									&nbsp;
-								</td>
+								@endfor
 							</tr>
+							@endforeach
 						</tbody>
 					</table>
                 </div>
