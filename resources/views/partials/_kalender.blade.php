@@ -26,7 +26,7 @@
 							@foreach($users as $user)
 							<tr>
 								<td class="table-dark">
-								{{ $user->name }}
+									{{ $user->name }}
 								</td>
 								@for ($i = 1; $i < 21; $i++)
 								<td>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
@@ -25,6 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-		return view('home')->with('users', User::all());
+		//return view('home')->with('users', DB::table('users')->orderBy('name', 'asc')->get());
+		return view('home')->with('users', User::all()->sortBy('roles'));
     }
 }
