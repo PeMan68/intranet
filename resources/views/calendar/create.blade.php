@@ -1,0 +1,70 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Lägg till händelse</div>
+
+                <div class="card-body">
+					@if ($errors->any())
+						<div class="alert alert-danger">
+							<ul>
+								@foreach ($errors->all() as $error)
+									<li>{{ $error }}</li>
+								@endforeach
+							</ul>
+						</div>
+					@endif
+
+                    <form method="POST" action="{{ route('calendar.store') }}">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="category" class="col-md-4 col-form-label text-md-right">Typ</label>
+
+                            <div class="col-md-6">
+                                <input id="calendarcategory_id" type="text" class="form-control" name="calendarcategory_id">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="description" class="col-md-4 col-form-label text-md-right">Beskrivning</label>
+
+                            <div class="col-md-6">
+                                <input id="description" type="text" class="form-control" name="description">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="start" class="col-md-4 col-form-label text-md-right">Startdatum</label>
+
+                            <div class="col-md-6">
+                                <input id="start" type="text" class="form-control" name="start">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="stop" class="col-md-4 col-form-label text-md-right">Stoppdatum</label>
+
+                            <div class="col-md-6">
+                                <input id="stop" type="text" class="form-control" name="stop">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Spara
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

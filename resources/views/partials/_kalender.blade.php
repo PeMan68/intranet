@@ -6,7 +6,7 @@
                 <div class="card-header">Kalender</div>
 
                 <div class="card-body">
-				<button>Lägg till</button>
+				<a href="calendar/create"><button>Lägg till</button></a>
 				<button>Framåt</button>
 				<button>Bakåt</button>
 					<table class="table table-sm table-bordered">

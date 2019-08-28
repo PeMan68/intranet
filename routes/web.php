@@ -11,16 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
 Route::get('/posten', 'PagesController@posten');
 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/admin', function(){
 	return 'you are admin';
@@ -34,4 +31,6 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 });
 
 Route::get('/admin/impersonate/destroy', 'Admin\ImpersonateController@destroy')->name('admin.impersonate.destroy');
+
+Route::resource('/calendar','CalendarController');
 
