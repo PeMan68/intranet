@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\CalendarCategory;
 
 class CalendarEntry extends Model
 {
@@ -15,8 +16,9 @@ class CalendarEntry extends Model
 	 *
      * @return void
      */
+
     public function calendarCategory(){
-		return $this->belongsTo(App\CalendarCategory);
+		return $this->belongsTo('\App\CalendarCategory','calendarcategory_id');
 	}
 	
 	/**
@@ -27,6 +29,6 @@ class CalendarEntry extends Model
      * @return void
      */
 	public function user(){
-		return $this->belongsTo(App\User);
+		return $this->belongsTo('App\User','user_id');
 	}
 }

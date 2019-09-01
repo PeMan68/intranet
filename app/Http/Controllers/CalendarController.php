@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CalendarEntry;
+use App\CalendarCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,7 @@ class CalendarController extends Controller
      */
     public function create()
     {
-        return view('calendar.create');
+        return view('calendar.create')->with('categories', CalendarCategory::all());
     }
 
     /**
@@ -45,6 +46,7 @@ class CalendarController extends Controller
 		]);
 		$validatedData['user_id'] = Auth::User()->id;
 		$calendarEntry = CalendarEntry::create($validatedData);
+		return redirect('/home');
     }
 
     /**

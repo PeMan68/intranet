@@ -15,11 +15,11 @@
 								<th scope="col">
 									Namn
 								</th>
-								@for ($i = 1; $i < 21; $i++)
+								@foreach($dates as $date)
 								<th scope="col" class="text-center">
-								{{ $i }}/1
+								{{ date('j/n',$date) }}
 								</th>
-								@endfor
+								@endforeach
 							</tr>
 						</thead>
 						<tbody>
@@ -28,9 +28,10 @@
 								<td class="table-dark">
 									{{ $user->name }}
 								</td>
-								@for ($i = 1; $i < 21; $i++)
+								@for ($a=0; $a<=$period; $a++)
 								<td>
-									<img src="images/green.png" class="img-fluid invisible" alt="semester" title="beskrivning">
+								{{ $a. ':' . $loop->index }}
+									<img src="{{ $activities[$a][$loop->index][0][2] }}" class="img-fluid @if ($activities[$a][$loop->index][0][0]===0) invisible @endif" title="{{ $activities[$a][$loop->index][0][0] }}">
 								</td>
 								@endfor
 							</tr>

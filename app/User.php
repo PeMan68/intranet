@@ -51,7 +51,7 @@ class User extends Authenticatable
 	}
 
 	public function calendarEntry() {
-		return $this->hasMany(App\CalendarEntry);
+		return $this->hasMany('App\CalendarEntry');
 	}
 
 }

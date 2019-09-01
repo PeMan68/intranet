@@ -1,5 +1,14 @@
 @extends('layouts.app')
 
+@section('scripts')
+<script>
+	$('#calendarcategory_id').on('change',function(){
+    var description = $(this).children('option:selected').data('name');
+    $('#description').description;
+	});
+</script>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -25,7 +34,11 @@
                             <label for="category" class="col-md-4 col-form-label text-md-right">Typ</label>
 
                             <div class="col-md-6">
-                                <input id="calendarcategory_id" type="text" class="form-control" name="calendarcategory_id">
+								<select class="form-control" id="calendarcategory_id" name="calendarcategory_id">
+									@foreach ($categories as $category)
+										<option value="{{ $category->id }}">{{ $category->name }}</option>
+									@endforeach
+								</select>
                             </div>
                         </div>
 
