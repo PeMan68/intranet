@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Priority;
 
 class PrioritiesTableSeeder extends Seeder
 {
@@ -11,45 +12,33 @@ class PrioritiesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('priorities')->insert([
-            'created_at' => now(),
-            'updated_at' => now(),
+        Priority::truncate();
+		
+		Priority::create([
             'hours' => 1,
             'description' => '1 Timme',
         ]);
-        DB::table('priorities')->insert([
-            'created_at' => now(),
-            'updated_at' => now(),
+        Priority::create([
             'hours' => 4,
             'description' => '4 Timmar',
         ]);
-        DB::table('priorities')->insert([
-            'created_at' => now(),
-            'updated_at' => now(),
+        Priority::create([
             'hours' => 24,
             'description' => '1 Dag',
         ]);
-        DB::table('priorities')->insert([
-            'created_at' => now(),
-            'updated_at' => now(),
+        Priority::create([
             'hours' => 48,
             'description' => '2 Dagar',
         ]);
-        DB::table('priorities')->insert([
-            'created_at' => now(),
-            'updated_at' => now(),
+        Priority::create([
             'hours' => 168,
             'description' => '1 Vecka',
         ]);
-        DB::table('priorities')->insert([
-            'created_at' => now(),
-            'updated_at' => now(),
+        Priority::create([
             'hours' => 336,
             'description' => '2 Veckor',
         ]);
-        DB::table('priorities')->insert([
-            'created_at' => now(),
-            'updated_at' => now(),
+        Priority::create([
             'hours' => 720,
             'description' => '1 Månad',
         ]);
