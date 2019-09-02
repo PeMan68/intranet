@@ -16,7 +16,13 @@
 		</p>
 		<p>
 			<div class="alert alert-info">
-				OBS! Utskrifterna funkar ej med Firefox efter Firefox uppdaterats nyligen. Använd Internet Explorer för utskrift av adresslapp.
+				<p>2019-09-02</p>
+				<p>OBS! Utskrifterna funkar ej med Firefox efter Firefox uppdaterats nyligen. 
+				<ul>
+					<li>Använd Internet Explorer för utskrift av adresslapp.</li>
+					<li>Använd 32-bitars java för Internet Explorer.</li>
+				</ul>
+				</p>
 			</div>
 		</p>
 	</div>
