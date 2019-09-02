@@ -14,10 +14,10 @@
           Marknad
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-			<a class="dropdown-item" href="http://172.16.0.2:10099/INTRANET/SFA/">SFA</a>
+			<a class="dropdown-item" target="_blank" href="http://172.16.0.2:10099/INTRANET/SFA/">SFA</a>
 			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="http://172.16.0.2:10099/INTRANET/SFA/">SFA Sök kund</a>
-			<a class="dropdown-item" href="http://172.16.0.2:10099/INTRANET/SFA/">SFA Sök Offert</a>
+			<a class="dropdown-item" target="_blank" href="http://172.16.0.2:10099/INTRANET/SFA/CONTM/index">SFA Sök kund</a>
+			<a class="dropdown-item" target="_blank" href="http://172.16.0.2:10099/INTRANET/SFA/Offers/index">SFA Sök Offert</a>
 		</div>
 	</li>
      <li class="nav-item dropdown">
@@ -25,12 +25,12 @@
           Adminstration
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href=" http://172.16.0.184/qweb ">QUARTA</a>
-          <a class="dropdown-item" href="http://194.243.72.228">GESTREQ</a>
-          <a class="dropdown-item" href="http://172.16.0.161">Reserved Area</a>
-          <a class="dropdown-item" href="http://172.16.0.183/projects/si5/wiki">Dokumentation SIGIP mm</a>
+          <a class="dropdown-item" target="_blank" href=" http://172.16.0.184/qweb ">QUARTA</a>
+          <a class="dropdown-item" target="_blank" href="http://194.243.72.228">GESTREQ</a>
+          <a class="dropdown-item" target="_blank" href="http://172.16.0.161">Reserved Area</a>
+          <a class="dropdown-item" target="_blank" href="http://172.16.0.183/projects/si5/wiki">Dokumentation SIGIP mm</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="./posten">Posten Adresslappar</a>
+          <a class="dropdown-item" target="_blank" href="./posten">Posten Adresslappar</a>
         </div>
       </li>
 
@@ -39,9 +39,9 @@
           Teknisk Support
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="http://productselection.net">Product Selection</a>
-          <a class="dropdown-item" href="http://gavazzi.se">Nya Gavazzi.se</a>
-          <a class="dropdown-item" href="http://support-carlogavazzi.se">Gamla supportsidan</a>
+          <a class="dropdown-item" target="_blank" href="http://productselection.net">Product Selection</a>
+          <a class="dropdown-item" target="_blank" href="http://gavazzi.se">Nya Gavazzi.se</a>
+          <a class="dropdown-item" target="_blank" href="http://support-carlogavazzi.se">Gamla supportsidan</a>
         </div>
       </li>
     </ul>
