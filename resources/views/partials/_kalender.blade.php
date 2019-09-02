@@ -15,11 +15,11 @@
 								<th scope="col">
 									Namn
 								</th>
-								@foreach($dates as $date)
+								@for ($date=$start; $date<=$stop; $date=strtotime('+1 day', $date))
 								<th scope="col" class="text-center">
 								{{ date('j/n',$date) }}
 								</th>
-								@endforeach
+								@endfor
 							</tr>
 						</thead>
 						<tbody>
@@ -28,10 +28,15 @@
 								<td class="table-dark">
 									{{ $user->name }}
 								</td>
-								@for ($a=0; $a<=$period; $a++)
+								@for ($date=$start; $date<=$stop; $date=strtotime('+1 day', $date))
 								<td>
-								{{ $a. ':' . $loop->index }}
-									<img src="{{ $activities[$a][$loop->index][0][2] }}" class="img-fluid @if ($activities[$a][$loop->index][0][0]===0) invisible @endif" title="{{ $activities[$a][$loop->index][0][0] }}">
+									@foreach($activities as $activity)
+										@if($activity->start <= date('Y-m-d',$date) And $activity->stop >= date('Y-m-d', $date) And $user->id == $activity->user_id)
+											<img src="{{ $activity->calendarCategory->img_url }}" class="img-fluid" title="{{ $activity->description }}">
+										@else
+										
+										@endif
+									@endforeach
 								</td>
 								@endfor
 							</tr>

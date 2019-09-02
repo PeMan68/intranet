@@ -27,47 +27,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-		$activeusers = User::all()->sortBy('roles');
-		$date = strtotime('-7 days');
-		$date2 = $date;
 		$period = 20;
-		$strdate = array();
-		$activities = array();
-		for ($i=0; $i<=$period; $i++) {
-			$date2 = strtotime('+1 day', $date2);
-			$strdate[$i] = $date2;
-			$u = 0;
-			foreach ($activeusers as $user){
-						$entries = CalendarEntry::where('start','<=', date('Y-m-d', $date2))
-						->where('stop', '>=', date('Y-m-d', $date2))
-						->where('user_id', $user->id)
-						->get();
-
-				if (count($entries)>0) {
-					$a=0;
-					foreach ($entries as $entry) {
-						$activities[$i][$u][$a][0] = $entry->id;
-						$activities[$i][$u][$a][1] = $entry->user_id;
-						$activities[$i][$u][$a][2] = $entry->calendarCategory->url_image;
-						$activities[$i][$u][$a][3] = $entry->description;
-						$a++;
-					};
-				} else {
-					// set id=0 to indicate an empty day
-					$activities[$i][$u][0][0] = 0;					
-					$activities[$i][$u][0][1] = 0;					
-					$activities[$i][$u][0][2] = '';					
-					$activities[$i][$u][0][3] = '';					
-				};
-				$u++;
-			};
-		};
-		//dd($activities);
+		$activeusers = User::all()->sortBy('roles');
+		$datestart = strtotime('-7 days');
+		$datestop = strtotime('+'.$period.' days', $datestart);
+		$entries = CalendarEntry::where('start','<=', date('Y-m-d', $datestop))
+			->where('stop', '>=', date('Y-m-d', $datestart))
+			->get();
 		$data = [
 				'users' => $activeusers,
-				'dates' => $strdate, 
-				'period' => $period,
-				'activities' => $activities,
+				'start' => $datestart,
+				'stop' => $datestop,
+				'activities' => $entries,
 				];
 		return view('home',$data);
     }
