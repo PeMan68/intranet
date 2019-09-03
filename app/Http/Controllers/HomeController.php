@@ -27,9 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-		$period = 20;
+		$period = 14;
 		$activeusers = User::all()->sortBy('roles');
-		$datestart = strtotime('-7 days');
+		$datestart = strtotime('-2 days');
 		$datestop = strtotime('+'.$period.' days', $datestart);
 		$entries = CalendarEntry::where('start','<=', date('Y-m-d', $datestop))
 			->where('stop', '>=', date('Y-m-d', $datestart))

@@ -29,10 +29,10 @@
 									{{ $user->name }}
 								</td>
 								@for ($date=$start; $date<=$stop; $date=strtotime('+1 day', $date))
-								<td>
+								<td class="p-0">
 									@foreach($activities as $activity)
 										@if($activity->start <= date('Y-m-d',$date) And $activity->stop >= date('Y-m-d', $date) And $user->id == $activity->user_id)
-											<img src="{{ $activity->calendarCategory->img_url }}" class="img-fluid" title="{{ $activity->description }}">
+											<img src="{{ $activity->calendarCategory->url_image }}" class="img-fluid" title="{{ $activity->description }}">
 										@else
 										
 										@endif
