@@ -33,7 +33,7 @@ class HomeController extends Controller
 		$datestop = strtotime('+'.$period.' days', $datestart);
 		$entries = CalendarEntry::where('start','<=', date('Y-m-d', $datestop))
 			->where('stop', '>=', date('Y-m-d', $datestart))
-			->get();
+			->get()->sortBy('start');
 		$data = [
 				'users' => $activeusers,
 				'start' => $datestart,

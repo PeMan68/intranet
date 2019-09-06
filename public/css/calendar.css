@@ -1,0 +1,35 @@
+:root {
+	--x:14;
+}
+
+.calendar {
+	display: grid;
+	grid-template-columns: auto repeat(var(--x), minmax(20px,80px));
+}
+
+.calendar-item {
+	border: thin solid lightgrey;
+}
+
+.calendar-item .dates {
+	text-align: center;
+	font-size: 0.8em;
+}
+
+.calendar-item .sunday {
+	color: red;
+}
+
+.calendar-item .names {
+	text-align: left;
+	margin: 0px 10px 0px 2px;
+	text-decoration: none;
+	font-size: 0.8em;
+}
+
+.activity {
+	margin: 3px 1px;
+	text-decoration: none;
+	color: black;
+	font-size: 0.75em;
+}
