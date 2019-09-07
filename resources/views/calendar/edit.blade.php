@@ -14,7 +14,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Lägg till händelse</div>
+                <div class="card-header">Ändra händelse</div>
 
                 <div class="card-body">
 					@if ($errors->any())
@@ -26,9 +26,9 @@
 							</ul>
 						</div>
 					@endif
-
-                    <form method="POST" action="{{ route('calendar.store') }}">
+                    <form method="POST" action="{{ route('calendar.update',$entry->id) }}">
                         @csrf
+						@method('PUT')
 
                         <div class="form-group row">
                             <label for="category" class="col-md-4 col-form-label text-md-right">Vem</label>
@@ -36,18 +36,19 @@
                             <div class="col-md-6">
 								<select class="form-control" id="user_id" name="user_id">
 									@foreach ($users as $user)
-										<option value="{{ $user->id }}" @if ($user->id == Auth::user()->id) selected @endif>{{ $user->name }}</option>
+										<option value="{{ $user->id }}" @if ($user->id==$entry->user_id) selected @endif>{{ $user->name }}</option>
 									@endforeach
 								</select>
                             </div>
                         </div>
-                        <div class="form-group row">
+
+                       <div class="form-group row">
                             <label for="category" class="col-md-4 col-form-label text-md-right">Typ</label>
 
                             <div class="col-md-6">
 								<select class="form-control" id="calendarcategory_id" name="calendarcategory_id">
 									@foreach ($categories as $category)
-										<option value="{{ $category->id }}">{{ $category->name }}</option>
+										<option value="{{ $category->id }}" @if ($category->id==$entry->calendarcategory_id) selected @endif>{{ $category->name }}</option>
 									@endforeach
 								</select>
                             </div>
@@ -57,7 +58,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">Beskrivning</label>
 
                             <div class="col-md-6">
-                                <input id="description" type="text" class="form-control" name="description">
+                                <input id="description" type="text" class="form-control" name="description" value="{{ $entry->description }}">
                             </div>
                         </div>
 
@@ -65,7 +66,7 @@
                             <label for="start" class="col-md-4 col-form-label text-md-right">Startdatum</label>
 
                             <div class="col-md-6">
-                                <input id="start" type="text" class="form-control" name="start">
+                                <input id="start" type="text" class="form-control" name="start" value="{{ $entry->start }}">
                             </div>
                         </div>
 
@@ -73,7 +74,7 @@
                             <label for="stop" class="col-md-4 col-form-label text-md-right">Stoppdatum</label>
 
                             <div class="col-md-6">
-                                <input id="stop" type="text" class="form-control" name="stop">
+                                <input id="stop" type="text" class="form-control" name="stop" value="{{ $entry->stop }}">
                             </div>
                         </div>
 
@@ -86,7 +87,10 @@
 								<button class="btn btn-secondary" type="submit" name="reset" value="reset">
 									Avbryt
 								</button>                            
-                            </div>
+								<button class="btn btn-danger" type="submit" name="delete" value="delete">
+									Radera
+								</button>                            
+							</div>
                         </div>
                     </form>
                 </div>

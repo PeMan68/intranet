@@ -40,27 +40,27 @@
 										@if ($activity->start <= date('Y-m-d',$date) And $activity->stop >= date('Y-m-d', $date) And $user->id == $activity->user_id)
 											@switch ($activity->calendarcategory_id)
 												@case(1)
-													<a href="#" data-toggle="tooltip" title="{{$activity->description }}">
+													<a href="{{ route('calendar.edit',$activity->id) }}" data-toggle="tooltip" title="{{$activity->description }}">
 														<div class="activity text-truncate" style="background-color: lightskyblue;">{{ $activity->description }}</div>
 													</a>
 													@break
 												@case(2)
-													<a href="#" data-toggle="tooltip" title="{{$activity->description }}">
+													<a href="{{ route('calendar.edit',$activity->id) }}" data-toggle="tooltip" title="{{$activity->description }}">
 														<div class="activity text-truncate" style="background-color: green;">{{ $activity->description }}</div>
 													</a>
 													@break
 												@case(3)
-													<a href="#" data-toggle="tooltip" title="{{$activity->description }}">
+													<a href="{{ route('calendar.edit',$activity->id) }}" data-toggle="tooltip" title="{{$activity->description }}">
 														<div class="activity text-truncate" style="background-color: lightgreen;">{{ $activity->description }}</div>
 													</a>
 													@break
 												@case(4)
-													<a href="#" data-toggle="tooltip" title="{{$activity->description }}">
+													<a href="{{ route('calendar.edit',$activity->id) }}" data-toggle="tooltip" title="{{$activity->description }}">
 														<div class="activity text-truncate" style="background-color: orange;">{{ $activity->description }}</div>
 													</a>
 													@break
 												@case(5)
-													<a href="#" data-toggle="tooltip" title="{{$activity->description }}">
+													<a href="{{ route('calendar.edit',$activity->id) }}" data-toggle="tooltip" title="{{$activity->description }}">
 														<div class="activity" style="background-color: yellow;">{{ $activity->description }}</div>
 													</a>
 													@break

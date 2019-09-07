@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CalendarEntry;
 use App\CalendarCategory;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +27,7 @@ class CalendarController extends Controller
      */
     public function create()
     {
-        return view('calendar.create')->with('categories', CalendarCategory::all());
+        return view('calendar.create')->with(['categories' => CalendarCategory::all(), 'users' => User::all()]);
     }
 
     /**
@@ -37,14 +38,16 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->has('reset')) {
+			return redirect('/home');
+		}
         $validatedData = $request->validate([
-			'calendarcategory_id' => 'between:1,4',
 			'description' => 'required|max:255',
 			'start' => 'required|date',
-			'stop' => 'required|date|after:start',
-			'calendarcategory_id' => '',
+			'stop' => 'required|date|after_or_equal:start',
 		]);
-		$validatedData['user_id'] = Auth::User()->id;
+		$validatedData['user_id'] = $request->user_id;
+		$validatedData['calendarcategory_id'] = $request->calendarcategory_id;
 		$calendarEntry = CalendarEntry::create($validatedData);
 		return redirect('/home');
     }
@@ -52,10 +55,10 @@ class CalendarController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\CalendarEntry  $calendarEntry
+     * @param  \App\CalendarEntry  $calendar
      * @return \Illuminate\Http\Response
      */
-    public function show(CalendarEntry $calendarEntry)
+    public function show(CalendarEntry $calendar)
     {
         //
     }
@@ -63,34 +66,59 @@ class CalendarController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\CalendarEntry  $calendarEntry
+     * @param  \App\CalendarEntry  $calendar
      * @return \Illuminate\Http\Response
      */
-    public function edit(CalendarEntry $calendarEntry)
+    public function edit(CalendarEntry $calendar)
     {
-        //
+		$categories = CalendarCategory::all();
+		$users = User::all();
+		$data = [
+			'categories' => $categories,
+			'users' => $users,
+			'entry' => $calendar,
+			];
+        return view('calendar.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CalendarEntry  $calendarEntry
+     * @param  \App\CalendarEntry  $calendar
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CalendarEntry $calendarEntry)
+    public function update(Request $request, CalendarEntry $calendar)
     {
-        //
+        if ($request->has('delete')) {
+			$entry = CalendarEntry::find($calendar->id);
+			$entry->delete();
+			return redirect('/home');
+		}
+        if ($request->has('reset')) {
+			return redirect('/home');
+		}
+		
+		$validatedData = $request->validate([
+			'description' => 'required|max:255',
+			'start' => 'required|date',
+			'stop' => 'required|date|after_or_equal:start',
+		]);
+		$validatedData['user_id'] = $request->user_id;
+		$validatedData['calendarcategory_id'] = $request->calendarcategory_id;
+		
+		CalendarEntry::whereId($calendar->id)->update($validatedData);
+		return redirect('/home');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CalendarEntry  $calendarEntry
+     * @param  \App\CalendarEntry  $calendar
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CalendarEntry $calendarEntry)
+    public function destroy(CalendarEntry $calendar)
     {
-        //
-    }
+		//
+	}
 }
