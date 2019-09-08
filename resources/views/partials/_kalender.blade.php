@@ -5,11 +5,11 @@
             <div class="card">
                 <div class="card-header">
 					<div class="btn-group" role="group">
-					<a href="calendar/create" class="btn btn-sm btn-outline-secondary"><i class="material-icons">first_page</i></a>
-					<a href="calendar/create" class="btn btn-sm btn-outline-secondary"><i class="material-icons">chevron_left</i></a>
-					<a href="calendar/create" class="btn btn-sm btn-outline-secondary"><i class="material-icons">calendar_today</i></a>
-					<a href="calendar/create" class="btn btn-sm btn-outline-secondary"><i class="material-icons">chevron_right</i></a>
-					<a href="calendar/create" class="btn btn-sm btn-outline-secondary"><i class="material-icons">last_page</i></a>
+					<a href="{{ route('home', ['datePage' => strtotime('-28 days', $start)]) }}" class="btn btn-sm btn-outline-secondary"><i class="material-icons">first_page</i></a>
+					<a href="{{ route('home', ['datePage' => strtotime('-7 days', $start)]) }}" class="btn btn-sm btn-outline-secondary"><i class="material-icons">chevron_left</i></a>
+					<a href="{{ route('home', ['dateOffset' => 'today']) }}" class="btn btn-sm btn-outline-secondary"><i class="material-icons">calendar_today</i></a>
+					<a href="{{ route('home', ['datePage' => strtotime('+7 days', $start)]) }}" class="btn btn-sm btn-outline-secondary"><i class="material-icons">chevron_right</i></a>
+					<a href="{{ route('home', ['datePage' => strtotime('+28 days', $start)]) }}" class="btn btn-sm btn-outline-secondary"><i class="material-icons">last_page</i></a>
 					</div>
 					<a href="calendar/create" class="btn btn-outline-secondary">Lägg till</a>
 				</div>

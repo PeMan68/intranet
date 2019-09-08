@@ -25,18 +25,23 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request )
     {
 		$period = 14;
+		if ($request->has('datePage')) {
+			$dateStart = $request->datePage;
+		} else {
+			$dateStart = strtotime('-2 days');
+		}
+			
 		$activeusers = User::all()->sortBy('roles');
-		$datestart = strtotime('-2 days');
-		$datestop = strtotime('+'.$period.' days', $datestart);
+		$datestop = strtotime('+'.$period.' days', $dateStart);
 		$entries = CalendarEntry::where('start','<=', date('Y-m-d', $datestop))
-			->where('stop', '>=', date('Y-m-d', $datestart))
+			->where('stop', '>=', date('Y-m-d', $dateStart))
 			->get()->sortBy('start');
 		$data = [
 				'users' => $activeusers,
-				'start' => $datestart,
+				'start' => $dateStart,
 				'stop' => $datestop,
 				'activities' => $entries,
 				];
