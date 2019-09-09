@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
 			$table->boolean('active')->default('1');
 			$table->boolean('calendar')->default('1');
             $table->string('name');
+            $table->string('surname');
             $table->string('email')->unique();
 			$table->json('responsibilities')->default('{}');
             $table->timestamp('email_verified_at')->nullable();

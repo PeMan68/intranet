@@ -31,7 +31,7 @@
 						@method('PUT')
 
                         <div class="form-group row">
-                            <label for="category" class="col-md-4 col-form-label text-md-right">Vem</label>
+                            <label for="user_id" class="col-md-4 col-form-label text-md-right">Vem</label>
 
                             <div class="col-md-6">
 								<select class="form-control" id="user_id" name="user_id">

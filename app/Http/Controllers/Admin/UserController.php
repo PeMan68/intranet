@@ -38,9 +38,6 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        if(Auth::user()->id == $id){
-			return redirect()->route('admin.users.index')->with('warning', 'Det är inte tillåtet att ändra sig själv.');
-		}
 
 		return view('admin.users.edit')->with(['user' => User::find($id), 'roles' => Role::all()]);
     }
@@ -57,8 +54,10 @@ class UserController extends Controller
         if(Auth::user()->id == $id){
 			return redirect()->route('admin.users.index')->with('warning', 'Det är inte tillåtet att ändra sig själv.');
 		}
-		
 		$user = User::find($id);
+		$user->active = $request->has('active');
+		$user->calendar = $request->has('calendar');
+		$user->save();
 		$user->roles()->sync($request->roles);
 		return redirect()->route('admin.users.index')->with('success', 'Användaren uppdaterad.');
     }

@@ -27,7 +27,7 @@ class CalendarController extends Controller
      */
     public function create()
     {
-        return view('calendar.create')->with(['categories' => CalendarCategory::all(), 'users' => User::all()]);
+        return view('calendar.create')->with(['categories' => CalendarCategory::all(), 'users' => User::where('calendar',1)->get()]);
     }
 
     /**
