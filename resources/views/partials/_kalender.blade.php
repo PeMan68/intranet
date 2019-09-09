@@ -18,7 +18,7 @@
 					@for ($date=$start; $date<=$stop; $date=strtotime('+1 day', $date))
 						<div class="calendar-item"> 
 							@if ($date<>$start)
-								@if (date('w', $date)==1)
+								@if (date('w', $date)==0)
 									<div class="dates sunday">
 								@else
 									<div class="dates">
