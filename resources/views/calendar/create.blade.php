@@ -57,7 +57,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">Beskrivning</label>
 
                             <div class="col-md-6">
-                                <input id="description" type="text" class="form-control" name="description">
+                                <input id="description" type="text" class="form-control" name="description" value="{{ old('description') }}">
                             </div>
                         </div>
 
@@ -65,7 +65,7 @@
                             <label for="start" class="col-md-4 col-form-label text-md-right">Startdatum</label>
 
                             <div class="col-md-6">
-                                <input id="start" type="text" class="form-control" name="start">
+                                <input id="start" type="text" class="form-control" name="start" value="{{ old('start') }}">
                             </div>
                         </div>
 
@@ -73,7 +73,7 @@
                             <label for="stop" class="col-md-4 col-form-label text-md-right">Stoppdatum</label>
 
                             <div class="col-md-6">
-                                <input id="stop" type="text" class="form-control" name="stop">
+                                <input id="stop" type="text" class="form-control" name="stop" value="{{ old('stop') }}">
                             </div>
                         </div>
 

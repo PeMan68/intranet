@@ -34,7 +34,7 @@
 						@for ($date=$start; $date<=$stop; $date=strtotime('+1 day', $date))
 							<div class="calendar-item"> 
 								@if ($date==$start)
-									<div class="names">{{ $user->name }}</div>
+									<div class="names">{{ $user->name }} {{ $user->surname[0] }}</div>
 								@else
 									@foreach ($activities as $activity)
 										@if ($activity->start <= date('Y-m-d',$date) And $activity->stop >= date('Y-m-d', $date) And $user->id == $activity->user_id)
