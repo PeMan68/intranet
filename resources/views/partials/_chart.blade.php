@@ -3,11 +3,9 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
-					<div class="card-body">
+					<div class="card-body" style="height:200px;">
 						{!! $chart->container() !!}
 					</div>					
-				</div>
 			</div>
 		</div>
 	</div>
