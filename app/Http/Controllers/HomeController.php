@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use App\CalendarEntry;
+use App\Helpers\Helper;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,7 @@ class HomeController extends Controller
      */
     public function index(Request $request )
     {
+		$chart = load_chart_data();
 		$period = 14;
 		if ($request->has('datePage')) {
 			$dateStart = $request->datePage;
@@ -46,6 +48,7 @@ class HomeController extends Controller
 				'start' => $dateStart,
 				'stop' => $datestop,
 				'activities' => $entries,
+				'chart' => $chart,
 				];
 		return view('home',$data);
     }

@@ -1,4 +1,5 @@
 <?php
+use App\Charts\BookBillBudPrev;
 
  
 if (!function_exists('add_responsibilites')) {
@@ -82,4 +83,43 @@ if (!function_exists('delete_responsibilites')) {
 			
 		}
     }
+}
+
+if (!function_exists('load_chart_data')){
+    /**
+     * Load data to chart
+     *
+     * @param array  $chart
+     * @return array $chart
+     *
+     */
+	function load_chart_data()
+    {
+        $chart = new BookBillBudPrev;
+		$chart->labels(['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 
+						'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec']);
+		
+		$Billing = array();
+		for ($i=0; $i<12; $i++){
+			array_push($Billing,  rand(5000, 7000));
+		}
+		$chart->dataset('Billing', 'bar', $Billing)->options(['backgroundColor' => '#6F6']);
+		$Booking = array();
+		for ($i=0; $i<12; $i++){
+			array_push($Booking,  rand(5000, 7000));
+		}
+		$chart->dataset('Booking', 'bar', $Booking)->options(['backgroundColor' => '#FB6']);
+		$Budget = array();
+		for ($i=0; $i<12; $i++){
+			array_push($Budget,  rand(5000, 7000));
+		}
+		$chart->dataset('Budget', 'bar', $Budget)->options(['backgroundColor' => '#FF6']);
+		$Previous = array();
+		for ($i=0; $i<12; $i++){
+			array_push($Previous,  rand(5000, 7000));
+		}
+		$chart->dataset('Föregående', 'bar', $Previous)->options(['backgroundColor' => '#6BF']);
+		return $chart;
+    }
+
 }

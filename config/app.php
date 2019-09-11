@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'se',
 
     /*
     |--------------------------------------------------------------------------
@@ -177,7 +177,7 @@ return [
         App\Providers\TelescopeServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 		App\Providers\BladeExtrasServiceProvider::class,
-
+		Themsaid\Langman\LangmanServiceProvider::class,
     ],
 
     /*
