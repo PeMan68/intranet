@@ -1,5 +1,7 @@
 <?php
 use App\Charts\BookBillBudPrev;
+use App\User;
+use App\CalendarEntry;
 
  
 if (!function_exists('add_responsibilites')) {
@@ -122,4 +124,37 @@ if (!function_exists('load_chart_data')){
 		return $chart;
     }
 
+}
+
+if (!function_exists('load_calendar_data')){
+    /**
+     * Load data to calendar
+     *
+     * @param int $period
+     * @return array $data
+     *
+     */
+	function load_calendar_data($request, $chart, $period = 14){
+		if ($request->has('datePage')) {
+			$dateStart = $request->datePage;
+		} else {
+			$dateStart = strtotime('-2 days');
+		}
+			
+		$activeusers = User::where('active',1)
+						->where('calendar',1)
+						->get()->sortBy('roles');
+		$datestop = strtotime('+'.$period.' days', $dateStart);
+		$entries = CalendarEntry::where('start','<=', date('Y-m-d', $datestop))
+			->where('stop', '>=', date('Y-m-d', $dateStart))
+			->get()->sortBy('start');
+		$data = [
+				'users' => $activeusers,
+				'start' => $dateStart,
+				'stop' => $datestop,
+				'activities' => $entries,
+				'chart' => $chart,
+				];
+		return $data;
+	}
 }
