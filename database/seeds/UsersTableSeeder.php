@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
 			'calendar' => 0,
 			'password' => bcrypt('admin'),
 			'remember_token' => Str::random(10),
-			'responsibilities' => '{}',
+			'responsibilities' => '',
         ]);
 		
 		$sale = User::create([
@@ -39,7 +39,7 @@ class UsersTableSeeder extends Seeder
 			'email' => 'sale@sale.com',
 			'password' => bcrypt('sale'),
 			'remember_token' => Str::random(10),
-			'responsibilities' => '{}',
+			'responsibilities' => '',
         ]);
 		
 		$support = User::create([
@@ -50,7 +50,7 @@ class UsersTableSeeder extends Seeder
 			'email' => 'support@support.com',
 			'password' => bcrypt('support'),
 			'remember_token' => Str::random(10),
-			'responsibilities' => '{}',
+			'responsibilities' => '',
         ]);
 		
 		$user = User::create([
@@ -61,7 +61,7 @@ class UsersTableSeeder extends Seeder
 			'email' => 'user@user.com',
 			'password' => bcrypt('user'),
 			'remember_token' => Str::random(10),
-			'responsibilities' => '{}',
+			'responsibilities' => '',
         ]);
 		
 		$admin->roles()->attach($adminRole);
