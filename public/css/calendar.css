@@ -2,6 +2,14 @@
 	--x:14;
 }
 
+body {
+	background-color: #CCD6E0;
+}
+
+.card {
+	background-color: #EFEFEFA8;
+}
+
 .calendar {
 	display: grid;
 	grid-template-columns: auto repeat(var(--x), minmax(20px,80px));
@@ -13,11 +21,11 @@
 
 .calendar-item-sunday {
 	border: thin solid lightgrey;
-	background-color: #FFDDDD;
+	background-color: #FDD0D0;
 }
 .calendar-item-saturday {
 	border: thin solid lightgrey;
-	background-color: #E8E8E8;
+	background-color: #E0E0E0;
 }
 
 .calendar-item,.calendar-item-sunday,.calendar-item-saturday, .dates {
