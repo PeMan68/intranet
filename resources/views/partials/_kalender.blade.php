@@ -16,26 +16,38 @@
                 <div class="card-body">
 				<div class="calendar">
 					@for ($date=$start; $date<=$stop; $date=strtotime('+1 day', $date))
-						<div class="calendar-item"> 
 							@if ($date<>$start)
 								@if (date('w', $date)==0)
+									<div class="calendar-item-sunday"> 
 									<div class="dates sunday">
+								@elseif (date('w', $date)==6)
+									<div class="calendar-item-saturday"> 
+									<div class="dates">
 								@else
+									<div class="calendar-item"> 
 									<div class="dates">
 								@endif
 								{{ date('j/n',$date) }}
 								</div>
 							@else
+								<div class="calendar-item">
 								<div>&nbsp;</div>
 							@endif
 						</div>
 					@endfor
 					@foreach ($users as $user)
 						@for ($date=$start; $date<=$stop; $date=strtotime('+1 day', $date))
-							<div class="calendar-item"> 
 								@if ($date==$start)
+									<div class="calendar-item"> 
 									<div class="names">{{ $user->name }} {{ $user->surname[0] }}</div>
 								@else
+									@if (date('w', $date)==0)
+										<div class="calendar-item-sunday"> 
+									@elseif (date('w', $date)==6)
+										<div class="calendar-item-saturday"> 
+									@else
+										<div class="calendar-item"> 
+									@endif
 									@foreach ($activities as $activity)
 										@if ($activity->start <= date('Y-m-d',$date) And $activity->stop >= date('Y-m-d', $date) And $user->id == $activity->user_id)
 											@switch ($activity->calendarcategory_id)
