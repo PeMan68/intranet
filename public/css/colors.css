@@ -1,0 +1,62 @@
+:root {
+	/* Autumn */
+	--color-bg-dark: 96,60,20;
+	--color-bg-light: 95,84,38;
+	--color-text: #FFFFFF;
+	--color-info: #4BABFB;
+	--color-ledig: #439B00;
+	--color-prel: #88FF88;
+	--color-sjuk: #F3BC2E;
+	--color-resa: #D45B12;
+
+	/* Neutral */
+	--color-bg-navbar: #E72335;
+	--color-bg-dark: 206,222,231;
+	--color-bg-light: 255,255,255;
+	--color-text: #222222;
+	--color-info: #4bc7ff;
+	--color-ledig: #40b53f;
+	--color-prel: #88FF88;
+	--color-sjuk: #ebf700;
+	--color-resa: #ffa137;
+	
+}
+
+body {
+	background: linear-gradient(rgb(var(--color-bg-light)),rgb(var(--color-bg-dark))) fixed;
+}
+
+.card {
+	--color-bg: #EFEFEF80;
+	background-color: var(--color-bg);
+}
+.card-header {
+	background-color: rgba(var(--color-bg-dark),1);
+}
+.card-body {
+	background-color: rgb(var(--color-bg-light));
+}
+
+.navbar-bg {
+	background-color: rgb(var(--color-bg-dark));
+}
+
+.bg-activity-info {
+	background-color: var(--color-info);
+}
+
+.bg-activity-ledig {
+	background-color: var(--color-ledig);
+}
+
+.bg-activity-prel {
+	background-color: var(--color-prel);
+}
+
+.bg-activity-sjuk {
+	background-color: var(--color-sjuk);
+}
+
+.bg-activity-resa {
+	background-color: var(--color-resa);
+}
