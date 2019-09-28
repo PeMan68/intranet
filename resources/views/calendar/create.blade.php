@@ -1,10 +1,59 @@
 @extends('layouts.app')
 
-@section('scripts')
+@section('stylesheets')
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+@endsection
+
+@section('scriptsHead')
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+@endsection
+
+@section('scriptsBody')
 <script>
-	$('#calendarcategory_id').on('change',function(){
+$('input[name="daterange"]').daterangepicker({
+    "showWeekNumbers": true,
+    "locale": {
+        "format": "YYYY-MM-DD",
+        "separator": " till ",
+        "applyLabel": "Välj",
+        "cancelLabel": "Avbryt",
+        "fromLabel": "Från",
+        "toLabel": "Till",
+        "customRangeLabel": "Custom",
+        "weekLabel": "V",
+        "daysOfWeek": [
+            "Sön",
+            "Mån",
+            "Tis",
+            "Ons",
+            "Tor",
+            "Fre",
+            "Lör"
+        ],
+        "monthNames": [
+            "Januari",
+            "Februari",
+            "Mars",
+            "April",
+            "Maj",
+            "Juni",
+            "Juli",
+            "Augusti",
+            "September",
+            "Oktober",
+            "November",
+            "December"
+        ],
+        "firstDay": 1
+    },
+});
+</script>
+<script>
+	document.getElementById('calendarcategory_id').on('change',function(){
     var description = $(this).children('option:selected').data('name');
-    $('#description').description;
+    document.getElementById('description').value=description;
 	});
 </script>
 @endsection
@@ -62,18 +111,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="start" class="col-md-4 col-form-label text-md-right">Startdatum</label>
+                            <label for="start" class="col-md-4 col-form-label text-md-right">Tidsperiod</label>
 
                             <div class="col-md-6">
-                                <input id="start" type="text" class="form-control" name="start" value="{{ old('start') }}">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="stop" class="col-md-4 col-form-label text-md-right">Stoppdatum</label>
-
-                            <div class="col-md-6">
-                                <input id="stop" type="text" class="form-control" name="stop" value="{{ old('stop') }}">
+                                <input id="start" type="text" class="form-control" name="daterange" value="{{ old('daterange') }}">
                             </div>
                         </div>
 

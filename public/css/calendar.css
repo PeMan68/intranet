@@ -1,40 +1,42 @@
-:root {
-	--x:14;
-}
-
-body {
-	background-color: #CCD6E0;
-}
-
-.card {
-	background-color: #EFEFEFA8;
-}
-
 .calendar {
+	--x: 14;
 	display: grid;
 	grid-template-columns: auto repeat(var(--x), minmax(20px,80px));
+	background-color: #FFFFFF20;
+}
+
+.calendar-item, .calendar-item-weekend, .calendar-item-today,
+	.calendar-header, .calendar-header-weekend , .calendar-header-today{
+	border: thin solid #06060660;
+	color: var(--color-text);
+	font-size: 0.9em;
+	text-align: center;
+
+}
+
+
+.calendar-header {
+	background-color: rgba(var(--color-bg-dark),0.7);
+}
+
+.calendar-header-weekend {
+	background-color: rgba(var(--color-bg-dark),1);
+}
+
+.calendar-header-today {
+	background-color: rgba(255,255,255,0.2);
 }
 
 .calendar-item {
-	border: thin solid lightgrey;
+	background-color: rgba(var(--color-bg-dark),0.2);
 }
 
-.calendar-item-sunday {
-	border: thin solid lightgrey;
-	background-color: #FDD0D0;
-}
-.calendar-item-saturday {
-	border: thin solid lightgrey;
-	background-color: #E0E0E0;
+.calendar-item-weekend {
+	background-color: rgba(var(--color-bg-dark),0.6);
 }
 
-.calendar-item,.calendar-item-sunday,.calendar-item-saturday, .dates {
-	text-align: center;
-	font-size: 0.9em;
-}
-
-.calendar-item-sunday .sunday {
-	color: red;
+.calendar-item-today {
+	background-color: rgba(255,255,255,0.3);
 }
 
 .calendar-item .names {
