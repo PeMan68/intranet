@@ -115,7 +115,7 @@ $('input[name="daterange"]').daterangepicker({
                             <label for="start" class="col-md-4 col-form-label text-md-right">Tidsperiod</label>
 
                             <div class="col-md-6">
-                                <input id="start" type="text" class="form-control" name="daterange" value="{{ $entry->start }}">
+                                <input id="start" type="text" class="form-control" name="daterange" value="{{ $entry->start }} till {{ $entry->stop }}">
                             </div>
                         </div>
 
