@@ -10,8 +10,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <script src="{{ asset('js/app.js') }}"></script>
+	@yield('scriptsHead')
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -21,6 +21,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/calendar.css') }}" rel="stylesheet">
     <link href="{{ asset('css/colors.css') }}" rel="stylesheet">
+	@yield('stylesheets')
 </head>
 <body>
     <div id="app">
@@ -33,6 +34,6 @@
         </main>
     </div>
 	@include('partials._scripts')
-	@yield('scripts')
+	@yield('scriptsBody')
 </body>
 </html>
