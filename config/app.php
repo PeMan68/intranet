@@ -174,7 +174,6 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\TelescopeServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 		App\Providers\BladeExtrasServiceProvider::class,
 		Themsaid\Langman\LangmanServiceProvider::class,
@@ -230,6 +229,28 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 		'Helper' => App\Helpers\Helper::class,
 
+    ],
+	'debug_blacklist' => [
+        '_ENV' => [
+            'APP_KEY',
+            'DB_PASSWORD',
+            'REDIS_PASSWORD',
+            'MAIL_PASSWORD',
+            'PUSHER_APP_KEY',
+            'PUSHER_APP_SECRET',
+        ],
+        '_SERVER' => [
+            'APP_KEY',
+            'DB_PASSWORD',
+            'REDIS_PASSWORD',
+            'MAIL_PASSWORD',
+            'PUSHER_APP_KEY',
+            'PUSHER_APP_SECRET',
+        ],
+        '_POST' => [
+            'password',
+			'password_confirmation',
+        ],
     ],
 
 ];
