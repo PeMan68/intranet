@@ -98,29 +98,24 @@ if (!function_exists('load_chart_data')){
 	function load_chart_data()
     {
         $chart = new BookBillBudPrev;
-		$chart->labels(['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 
-						'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec']);
-		
-		$Billing = array();
-		for ($i=0; $i<12; $i++){
-			array_push($Billing,  rand(5000, 7000));
-		}
-		$chart->dataset('Billing', 'bar', $Billing)->options(['backgroundColor' => '#6F6']);
-		$Booking = array();
-		for ($i=0; $i<12; $i++){
-			array_push($Booking,  rand(5000, 7000));
-		}
-		$chart->dataset('Booking', 'bar', $Booking)->options(['backgroundColor' => '#FB6']);
-		$Budget = array();
-		for ($i=0; $i<12; $i++){
-			array_push($Budget,  rand(5000, 7000));
-		}
-		$chart->dataset('Budget', 'bar', $Budget)->options(['backgroundColor' => '#FF6']);
-		$Previous = array();
-		for ($i=0; $i<12; $i++){
-			array_push($Previous,  rand(5000, 7000));
-		}
-		$chart->dataset('Föregående', 'bar', $Previous)->options(['backgroundColor' => '#6BF']);
+		$chart->labels([ 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 
+						'Okt', 'Nov', 'Dec','Jan', 'Feb', 'Mar']);
+
+		$file = config('imports.path_booking') . '/' . config('imports.file_booking');
+		$csv = explode(",", file_get_contents($file));
+		$chart->dataset('Booking', 'bar', $csv)->options(['backgroundColor' => '#7CBB00']);
+
+		$file = config('imports.path_billing') . '/' . config('imports.file_billing');
+		$csv = explode(",", file_get_contents($file));
+		$chart->dataset('Billing', 'bar', $csv)->options(['backgroundColor' => '#00A1F1']);
+
+		$file = config('imports.path_budget') . '/' . config('imports.file_budget');
+		$csv = explode(",", file_get_contents($file));
+		$chart->dataset('Budget', 'bar', $csv)->options(['backgroundColor' => '#F65314']);
+
+		$file = config('imports.path_prevBilling') . '/' . config('imports.file_prevBilling');
+		$csv = explode(",", file_get_contents($file));
+		$chart->dataset('Föregående', 'bar', $csv)->options(['backgroundColor' => '#FFBB00']);
 		return $chart;
     }
 
