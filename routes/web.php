@@ -34,3 +34,5 @@ Route::get('/admin/impersonate/destroy', 'Admin\ImpersonateController@destroy')-
 
 Route::resource('/calendar','CalendarController');
 
+Route::resource('visitors','VisitorsController');
+
