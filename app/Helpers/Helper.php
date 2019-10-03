@@ -1,4 +1,7 @@
 <?php
+use App\Charts\BookBillBudPrev;
+use App\User;
+use App\CalendarEntry;
 
  
 if (!function_exists('add_responsibilites')) {
@@ -82,4 +85,71 @@ if (!function_exists('delete_responsibilites')) {
 			
 		}
     }
+}
+
+if (!function_exists('load_chart_data')){
+    /**
+     * Load data to chart
+     *
+     * @param array  $chart
+     * @return array $chart
+     *
+     */
+	function load_chart_data()
+    {
+        $chart = new BookBillBudPrev;
+		$chart->labels([ 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 
+						'Okt', 'Nov', 'Dec','Jan', 'Feb', 'Mar']);
+		$file = config('imports.path_prevBilling') . '/' . config('imports.file_prevBilling');
+		$csv = explode(",", file_get_contents($file));
+		$chart->dataset('Föregående', 'bar', $csv)->options(['backgroundColor' => '#FFBB00']);
+
+		$file = config('imports.path_budget') . '/' . config('imports.file_budget');
+		$csv = explode(",", file_get_contents($file));
+		$chart->dataset('Budget', 'bar', $csv)->options(['backgroundColor' => '#F65314']);
+
+		$file = config('imports.path_booking') . '/' . config('imports.file_booking');
+		$csv = explode(",", file_get_contents($file));
+		$chart->dataset('Booking', 'bar', $csv)->options(['backgroundColor' => '#7CBB00']);
+
+		$file = config('imports.path_billing') . '/' . config('imports.file_billing');
+		$csv = explode(",", file_get_contents($file));
+		$chart->dataset('Billing', 'bar', $csv)->options(['backgroundColor' => '#00A1F1']);
+
+		return $chart;
+    }
+
+}
+
+if (!function_exists('load_calendar_data')){
+    /**
+     * Load data to calendar
+     *
+     * @param int $period
+     * @return array $data
+     *
+     */
+	function load_calendar_data($request, $chart, $period = 14){
+		if ($request->has('datePage')) {
+			$dateStart = $request->datePage;
+		} else {
+			$dateStart = strtotime('-2 days');
+		}
+			
+		$activeusers = User::where('active',1)
+						->where('calendar',1)
+						->get()->sortBy('roles');
+		$datestop = strtotime('+'.$period.' days', $dateStart);
+		$entries = CalendarEntry::where('start','<=', date('Y-m-d', $datestop))
+			->where('stop', '>=', date('Y-m-d', $dateStart))
+			->get()->sortBy('start');
+		$data = [
+				'users' => $activeusers,
+				'start' => $dateStart,
+				'stop' => $datestop,
+				'activities' => $entries,
+				'chart' => $chart,
+				];
+		return $data;
+	}
 }
