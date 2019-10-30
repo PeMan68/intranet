@@ -8,7 +8,6 @@
           <thead class="thead-dark">
             <tr>
               <th scope="col">#</th>
-              <th scope="col">ID</th>
               <th scope="col">Skapad</th>
               <th scope="col">Kund</th>
               <th scope="col">Namn</th>

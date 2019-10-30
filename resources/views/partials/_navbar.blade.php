@@ -39,9 +39,19 @@
 							Teknisk Support
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="http://productselection.net">Product Selection</a>
-							<a class="dropdown-item" href="http://gavazzi.se">Nya Gavazzi.se</a>
-							<a class="dropdown-item" href="http://support-carlogavazzi.se">Gamla supportsidan</a>
+								<a class="dropdown-item" href="http://productselection.net">Product Selection</a>
+								<a class="dropdown-item" href="http://gavazzi.se">Nya Gavazzi.se</a>
+								<a class="dropdown-item" href="http://support-carlogavazzi.se">Gamla supportsidan</a>
+							</div>
+						</li>	
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Ärenden
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="{{ url('/issues/') }}">Visa alla</a>
+								<a class="dropdown-item" href="{{ url('/issues/create/') }}">Nytt ärende</a>
 							</div>
 						</li>	
 

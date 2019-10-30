@@ -25,7 +25,7 @@ class IssuesController extends Controller
      */
     public function create()
     {
-        //
+        return view('issues.create');
     }
 
     /**
@@ -36,7 +36,14 @@ class IssuesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      //Validate
+        $validatedData = $request->validate([
+            'customer' => 'required',
+            'description' => 'required',
+        ]);
+        
+        $issue = Issue::create($validatedData);
+        return redirect('/issues/'.$issue->id);
     }
 
     /**
@@ -47,7 +54,7 @@ class IssuesController extends Controller
      */
     public function show(Issue $issue)
     {
-        //
+        return view('issues.show',compact('issue',$issue));
     }
 
     /**
@@ -58,7 +65,7 @@ class IssuesController extends Controller
      */
     public function edit(Issue $issue)
     {
-        //
+        return view('issues.edit',compact('issue', $issue));
     }
 
     /**
@@ -70,7 +77,7 @@ class IssuesController extends Controller
      */
     public function update(Request $request, Issue $issue)
     {
-        //
+		Issue::whereId($issue->id)->update(['customer' => $request->customer,'description' => $request->description]);
     }
 
     /**

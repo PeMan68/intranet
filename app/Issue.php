@@ -12,7 +12,6 @@ class Issue extends Model
      * @var array
      */
     protected $fillable = [
-        'task', 
 		'userCreate',
 		'userCurrent', 
 		'description',
