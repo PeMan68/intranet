@@ -22,16 +22,13 @@
 						@foreach($tasks as $task)
 						<tr>
 							<td>{{ $task->name}}</td>
-							<td>{{ implode(', ', $task->area()->get()->pluck('name')) }}</td>
-							<td>{{ implode(', ', $task->priority()->get()->pluck('name')) }}</td>
+							<td>{{ $task->area->area }}</td>
+							<td>{{ $task->priority->description }}</td>
 							<td>
-								<a href="{{ route('admin.users.edit', $user->id) }}" class="float-left">
+								<a href="{{ route('admin.tasks.edit', $task->id) }}" class="float-left">
 									<button type="button" class="btn btn-sm">Ändra</button>
 								</a>
-								<a href="{{ route('admin.impersonate', $user->id) }}" class="float-left">
-									<button type="button" class="btn btn-sm">Agera som</button>
-								</a>
-								<form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="float-left">
+								<form action="{{ route('admin.tasks.destroy', $task->id) }}" method="POST" class="float-left">
 									@csrf
 									{{ method_field('DELETE') }}
 									<button type="submit" class="btn btn-danger btn-sm">Radera</button>

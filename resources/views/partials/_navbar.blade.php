@@ -79,6 +79,7 @@
 									@impersonate
 										<a class="nav-link" href="{{ route('admin.impersonate.destroy')}}">Återgå</a>
 									@else
+									<a class="nav-link" href="{{ url('/admin/tasks/')}}">Hantera ärenden</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

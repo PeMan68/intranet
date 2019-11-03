@@ -9,10 +9,10 @@ use App\Priority;
 class Task extends Model
 {
 	public function area(){
-		return $this->hasOne('App\Area');
+		return $this->BelongsTo('App\Area');
 	}
 
 	public function priority(){
-		return $this->hasOne('App\Priority');
+		return $this->BelongsTo('App\Priority','prio_id');
 	}
 }
