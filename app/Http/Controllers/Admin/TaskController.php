@@ -17,12 +17,21 @@ class TaskController extends Controller
 	
 	public function create()
 	{
-		return view('admin.tasks.create');
+		$priorities = Priority::all();
+		$areas = Area::all();
+		$data = [
+			'priorities' => $priorities,
+			'areas' => $areas,
+			];
+		return view('admin.tasks.create', $data);
 	}
 
     public function store(Request $request)
     {
-      //Validate
+        if ($request->has('reset')) {
+			return redirect('admin/tasks');
+		}
+		//Validate
         $validatedData = $request->validate([
             'name' => 'required',
             'area_id' => 'required',
@@ -71,6 +80,14 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
+        if ($request->has('delete')) {
+			$entry = Task::find($task->id);
+			$entry->delete();
+			return redirect('admin/tasks');
+		}
+        if ($request->has('reset')) {
+			return redirect('admin/tasks');
+		}
 		Task::whereId($task->id)->update(['name' => $request->name,'area_id' => $request->area_id,'prio_id' => $request->prio_id]);
         return redirect('admin/tasks/');
 		
