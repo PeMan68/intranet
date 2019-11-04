@@ -5,12 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Lista besökare
-                    <a href="{{ route('visitors.create') }}">
-						<button type="submit" class="btn btn-primary">
-							Registrera ny besökare
-						</button>
-                    </a>
+                <div class="card-header justify-content-between">
+						<span>Lista besökare</span>
+							<a class="btn btn-outline-primary" href="{{ route('visitors.create') }}">
+									Registrera ny besökare
+							</a>
+					
 				</div>
                 <div class="card-body">
 					@foreach ($visitors as $visitor)
