@@ -51,8 +51,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(Auth::user()->id == $id){
+       if(Auth::user()->id == $id){
 			return redirect()->route('admin.users.index')->with('warning', 'Det är inte tillåtet att ändra sig själv.');
+		}
+		if ($request->has('delete')) {
+			$entry = User::find($id);
+			$entry->delete();
+			return redirect('admin/users');
+		}
+        if ($request->has('reset')) {
+			return redirect('admin/users');
 		}
 		$user = User::find($id);
 		$user->active = $request->has('active');

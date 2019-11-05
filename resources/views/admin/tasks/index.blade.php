@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-header h3">Hantera ärendekategorier <a class="btn btn-outline-primary float-right" href="{{ route('admin.tasks.create') }}">Skapa ny</a></div>
                 <div class="card-body">

@@ -36,6 +36,9 @@ class IssuesController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->has('reset')) {
+			return redirect('issues');
+		}
       //Validate
         $validatedData = $request->validate([
             'customer' => 'required',

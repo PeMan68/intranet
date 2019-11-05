@@ -63,7 +63,7 @@ $('input[name="daterange"]').daterangepicker({
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Lägg till händelse</div>
+                <div class="card-header h3">Lägg till händelse</div>
 
                 <div class="card-body">
 					@if ($errors->any())
