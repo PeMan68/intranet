@@ -19,6 +19,11 @@ class PagesController extends Controller
 
 	public function reception()
 	{
-		return view('/reception', ['visitors' => Visitor::All()]);
+		 $visitors = Visitor::where([
+			['start','<=',date('Y-m-d')],
+			['stop','>=',date('Y-m-d')],
+			])->get();
+
+		return view('/reception', ['visitors' => $visitors]);
 	}
 }

@@ -16,6 +16,7 @@ class VisitorsController extends Controller
      */
     public function index()
     {
+		
         $visitors = Visitor::all();
 		return view('visitors.index',compact('visitors'));
     }
