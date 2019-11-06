@@ -12,6 +12,7 @@
 */
 
 Route::get('/posten', 'PagesController@posten');
+Route::get('/reception', 'PagesController@reception');
 
 
 Auth::routes();
@@ -33,4 +34,8 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 Route::get('/admin/impersonate/destroy', 'Admin\ImpersonateController@destroy')->name('admin.impersonate.destroy');
 
 Route::resource('/calendar','CalendarController');
+
+Route::resource('/visitors','VisitorsController');
+
+
 
