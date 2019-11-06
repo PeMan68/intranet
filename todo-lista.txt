@@ -1,0 +1,7 @@
+feat-welcomeGuests
+	Läggtill/Visa/Editera/Radera 
+		Namn och företag
+		Tidsperiod (dagar)
+	View som visas på receptionsskärm
+	Visa besökare på intranetkalendern för personalen
+		Lägg till namn och företag på användare allmänt.
