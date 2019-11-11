@@ -21,6 +21,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/calendar.css') }}" rel="stylesheet">
     <link href="{{ asset('css/colors.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/extras.css') }}" rel="stylesheet">
 	@yield('stylesheets')
 </head>
 <body>

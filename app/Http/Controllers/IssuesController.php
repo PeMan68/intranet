@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Issue;
+use App\Area;
+use App\Task;
 use Illuminate\Http\Request;
 
 class IssuesController extends Controller
@@ -25,7 +27,9 @@ class IssuesController extends Controller
      */
     public function create()
     {
-        return view('issues.create');
+        $areas = Area::all();
+        $tasks = Task::all();
+		return view('issues.create')->with(['areas' => $areas, 'tasks' => $tasks]);
     }
 
     /**
@@ -80,6 +84,21 @@ class IssuesController extends Controller
      */
     public function update(Request $request, Issue $issue)
     {
+        if ($request->has('reset')) {
+			return redirect('issues');
+		}
+        if ($request->has('delete')) {
+			$entry = Issue::find($issue->id);
+			$entry->delete();
+			return redirect('issues');
+		}
+		
+		//Validate
+        $validatedData = $request->validate([
+            'customer' => 'required',
+            'description' => 'required',
+        ]);
+		
 		Issue::whereId($issue->id)->update(['customer' => $request->customer,'description' => $request->description]);
     }
 

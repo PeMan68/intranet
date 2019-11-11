@@ -1,39 +1,37 @@
 @extends('layouts.app')
 
+@section('scriptsBody')
+<script>
+$(document).ready(function($) {
+    $(".table-row").click(function() {
+        window.document.location = $(this).data("href");
+    });
+});
+</script>
+@endsection
+
 @section('content')
         @if (Session::has('message'))
             <div class="alert alert-info">{{ Session::get('message') }}</div>
         @endif
-        <table class="table">
+        <table class="table table-hover">
           <thead class="thead-dark">
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Skapad</th>
-              <th scope="col">Kund</th>
-              <th scope="col">Namn</th>
-              <th scope="col">Beskrivning</th>
+              <th>#</th>
+              <th>Skapad</th>
+              <th>Kund</th>
+              <th>Namn</th>
+              <th>Beskrivning</th>
             </tr>
           </thead>
           <tbody>
             @foreach($issues as $issue)
-            <tr>
-              <th scope="row">{{$issue->id}}</th>
-              <td><a href="/issues/{{$issue->id}}">{{$issue->timeInit}}</a></td>
+            <tr class="table-row" data-href="{{ URL::to('issues/' . $issue->id . '/edit') }}">
+              <td>{{$issue->id}}</th>
+              <td>{{$issue->timeInit}}</td>
               <td>{{$issue->customer}}</td>
               <td>{{$issue->customerName}}</td>
-              <td>{{$issue->description}}</td>
-              <td>
-              <div class="btn-group" role="group" aria-label="Basic example">
-                  <a href="{{ URL::to('issues/' . $issue->id . '/edit') }}">
-                  	<button type="button" class="btn btn-warning">Edit</button>
-                  </a>&nbsp;
-                  <form action="{{url('issues', [$issue->id])}}" method="POST">
-    					<input type="hidden" name="_method" value="DELETE">
-   						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-   						<input type="submit" class="btn btn-danger" value="Delete"/>
-   				  </form>
-              </div>
-			</td>
+              <td class="d-inline-block text-truncate stretched-link" style="max-width: 200px;">{{$issue->description}}</td>
             </tr>
             @endforeach
           </tbody>

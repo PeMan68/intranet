@@ -32,6 +32,6 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 
 Route::get('/admin/impersonate/destroy', 'Admin\ImpersonateController@destroy')->name('admin.impersonate.destroy');
 
-Route::resource('/calendar','CalendarController');
-Route::resource('/issues','IssuesController');
+Route::resource('/calendar','CalendarController')->middleware('auth');
+Route::resource('/issues','IssuesController')->middleware('auth');
 

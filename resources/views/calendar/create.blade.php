@@ -66,15 +66,6 @@ $('input[name="daterange"]').daterangepicker({
                 <div class="card-header h3">Lägg till händelse</div>
 
                 <div class="card-body">
-					@if ($errors->any())
-						<div class="alert alert-danger">
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
 
                     <form method="POST" action="{{ route('calendar.store') }}">
                         @csrf
