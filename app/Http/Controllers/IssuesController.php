@@ -7,6 +7,7 @@ use App\Area;
 use App\Task;
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreIssue;
 
 class IssuesController extends Controller
 {
@@ -40,19 +41,13 @@ class IssuesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreIssue $request)
     {
         if ($request->has('reset')) {
 			return redirect('issues');
 		}
       //Validate
-        $validatedData = $request->validate([
-            'task' => 'required',
-			'description' => 'required',
-			'person' => 'required',
-			'phone' => 'required',
-			'email' => 'required',
-        ]);
+        $validatedData = $request->validated();
         
         $issue = Issue::create($validatedData);
         return redirect('/issues/'.$issue->id);
