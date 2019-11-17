@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Issue;
 use App\Area;
 use App\Task;
+use App\User;
 use Illuminate\Http\Request;
 
 class IssuesController extends Controller
@@ -29,7 +30,8 @@ class IssuesController extends Controller
     {
         $areas = Area::all();
         $tasks = Task::all();
-		return view('issues.create')->with(['areas' => $areas, 'tasks' => $tasks]);
+		$users = User::where('active', 1)->get();
+		return view('issues.create')->with(['areas' => $areas, 'tasks' => $tasks, 'users' => $users]);
     }
 
     /**
@@ -45,8 +47,11 @@ class IssuesController extends Controller
 		}
       //Validate
         $validatedData = $request->validate([
-            'customer' => 'required',
-            'description' => 'required',
+            'task' => 'required',
+			'description' => 'required',
+			'person' => 'required',
+			'phone' => 'required',
+			'email' => 'required',
         ]);
         
         $issue = Issue::create($validatedData);
@@ -95,11 +100,14 @@ class IssuesController extends Controller
 		
 		//Validate
         $validatedData = $request->validate([
-            'customer' => 'required',
-            'description' => 'required',
+            'task' => 'required',
+			'description' => 'required',
+			'person' => 'required',
+			'phone' => 'required',
+			'email' => 'required',
         ]);
-		
-		Issue::whereId($issue->id)->update(['customer' => $request->customer,'description' => $request->description]);
+ 		
+		Issue::whereId($issue->id)->update($validatedData);
     }
 
     /**

@@ -16,6 +16,7 @@ class CreateIssuesTables extends Migration
         Schema::create('issues', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('task')->nullable();
+			$table->integer('task_id')->nullable();
             $table->string('userCreate')->nullable();
             $table->string('userCurrent')->nullable();
             $table->string('customer')->nullable();

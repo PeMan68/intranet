@@ -16,8 +16,6 @@ class Issue extends Model
 		'userCurrent', 
 		'description',
         'task',
-		'userCreate',
-		'userCurrent',
 		'customer',
 		'customerNumber',
         'customerName',
@@ -36,4 +34,9 @@ class Issue extends Model
 		'timeEstimatedcallback',
 		'timeCustomercallback'
     ];
+	
+	public function timeLogs()
+	{
+		return $this->hasMany('App\TimeLog');
+	}
 }
