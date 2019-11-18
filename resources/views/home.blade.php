@@ -13,6 +13,11 @@
 			@include('partials._kalender')
 		</div>
 	</div>
+	<div class="row">
+		<div class="col pb-3">
+			@include('partials._visitors')
+		</div>
+	</div>
 </div>
 
 @endsection

@@ -82,11 +82,19 @@
                                </div>
                             </li>
                         @endguest
-						@hasrole('admin')
-							<li class="nav-item">
+						<li class="nav-item dropdown">
+							<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+								Hantera <span class="caret"></span>
+							</a>
+
+							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="{{ route('visitors.index') }}">Besökare</a>
+							@hasrole('admin')
 								<a class="nav-link" href="{{ route('admin.users.index')}}">Hantera användare</a>
-							</li>
-						@endhasrole
+							@endhasrole
+                              </div>
+                            </li>
+
                     </ul>
                 </div>
             </div>
