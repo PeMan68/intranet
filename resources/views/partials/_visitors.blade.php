@@ -2,18 +2,21 @@
 @if (count($visitors) > 0)
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-xs-12">
             <div class="card">
                 <div class="card-header">
-					Dagens besök i Karlstad
+					Veckans besök i Karlstad
 				</div>
                 <div class="card-body">
-					<dl class="row">
+					<table class="table table-borderless">
 					@foreach ($visitors as $visitor)
-						<dt class="col-sm-4">{{ $visitor->name }}</dt>
-						<dd class="col-sm-8">{{ $visitor->company }}</dd>
+						<tr>
+							<td>{{ $visitor->start }} {{ ($visitor->start <> $visitor->stop) ? ' - ' . $visitor->stop :''}}</td>
+							<td>{{ $visitor->name }}</td>
+							<td>{{ $visitor->company }}</td>
+						<tr>
 					@endforeach
-					</dl>
+					</table>
 				</div>
 			</div>
 		</div>

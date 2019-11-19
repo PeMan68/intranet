@@ -28,9 +28,11 @@ class HomeController extends Controller
     {
 		$chart = load_chart_data();
 		$data = load_calendar_data($request, $chart, 14);
+		$day1ofweek = strtotime("this week");
+		$day5ofweek = strtotime("+4 days", $day1ofweek);
 		$visitors = Visitor::where([
-			['start','<=',date('Y-m-d')],
-			['stop','>=',date('Y-m-d')],
+			['start','>=',date("Y-m-d", $day1ofweek)],
+			['stop','<=',date("Y-m-d", $day5ofweek)],
 			])->get();
 			$data['visitors'] = $visitors;
 		return view('home',$data);
