@@ -14,7 +14,7 @@
 					<a href="calendar/create" class="btn btn-outline-secondary">Lägg till</a>
 				</div>
                 <div class="card-body">
-				<div class="calendar">
+					<div class="calendar">
 					@for ($date=$start; $date<=$stop; $date=strtotime('+1 day', $date))
 							@if ($date<>$start)
 								@if (date('Ymd')==date('Ymd',$date))
@@ -37,13 +37,13 @@
 									<div class="calendar-item"> 
 									<div class="names">{{ $user->name }} {{ $user->surname[0] }}</div>
 								@else
-								@if (date('Ymd')==date('Ymd',$date))
-									<div class="calendar-item-today"> 
-								@elseif (date('w', $date)==0 or date('w', $date)==6)
-									<div class="calendar-item-weekend"> 
-								@else
-									<div class="calendar-item"> 
-								@endif
+									@if (date('Ymd')==date('Ymd',$date))
+										<div class="calendar-item-today"> 
+									@elseif (date('w', $date)==0 or date('w', $date)==6)
+										<div class="calendar-item-weekend"> 
+									@else
+										<div class="calendar-item"> 
+									@endif
 									@foreach ($activities as $activity)
 										@if ($activity->start <= date('Y-m-d',$date) And $activity->stop >= date('Y-m-d', $date) And $user->id == $activity->user_id)
 											@switch ($activity->calendarcategory_id)
@@ -84,5 +84,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 
