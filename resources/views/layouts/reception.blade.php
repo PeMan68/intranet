@@ -23,7 +23,7 @@
     <link href="{{ asset('css/colors.css') }}" rel="stylesheet">
 	@yield('stylesheets')
 </head>
-<body style="background: linear-gradient(#C0D2F4,#1155D3) fixed;">
+<body style="background: linear-gradient(#C0D2F4,#1f567c) fixed;">
     <div id="app">
 
 
