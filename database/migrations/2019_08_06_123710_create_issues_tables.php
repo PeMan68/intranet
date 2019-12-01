@@ -15,10 +15,10 @@ class CreateIssuesTables extends Migration
     {
         Schema::create('issues', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('task')->nullable();
+            $table->integer('taskPersonal_id')->nullable();
 			$table->integer('task_id')->nullable();
-            $table->string('userCreate')->nullable();
-            $table->string('userCurrent')->nullable();
+            $table->integer('userCreate_id')->nullable();
+            $table->integer('userCurrent_id')->nullable();
             $table->string('customer')->nullable();
             $table->string('customerNumber')->nullable();
             $table->string('customerName')->nullable();
@@ -27,9 +27,8 @@ class CreateIssuesTables extends Migration
 			$table->boolean('paused')->nullable();
 			$table->boolean('waitingForReply')->nullable();
 			$table->boolean('vip')->nullable();
-			$table->integer('prio')->nullable();
-			$table->integer('nextIssueID')->nullable();
-			$table->integer('previousIssueID')->nullable();
+			$table->integer('nextIssue_id')->nullable();
+			$table->integer('previousIssue_id')->nullable();
             $table->text('description')->nullable();
             $table->text('descriptionInternal')->nullable();
             $table->timestamps();

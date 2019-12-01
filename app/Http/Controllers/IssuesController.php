@@ -6,8 +6,12 @@ use App\Issue;
 use App\Area;
 use App\Task;
 use App\User;
+use App\Priority;
+use App\IssueComment;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreIssue;
+use App\Http\Requests\UpdateIssue;
+use Illuminate\Support\Facades\Auth;
 
 class IssuesController extends Controller
 {
@@ -32,7 +36,9 @@ class IssuesController extends Controller
         $areas = Area::all();
         $tasks = Task::all();
 		$users = User::where('active', 1)->get();
-		return view('issues.create')->with(['areas' => $areas, 'tasks' => $tasks, 'users' => $users]);
+		$initTime=date('Y-m-d H:i:s');
+
+		return view('issues.create')->with(['areas' => $areas, 'tasks' => $tasks, 'users' => $users, 'timeInit' => $initTime]);
     }
 
     /**
@@ -43,14 +49,19 @@ class IssuesController extends Controller
      */
     public function store(StoreIssue $request)
     {
-        if ($request->has('reset')) {
-			return redirect('issues');
-		}
-      //Validate
         $validatedData = $request->validated();
-        
+		$validatedData['userCreate_id'] = Auth::id();
+		$validatedData['timeInit'] = $request->timeInit;
+		$prio = Task::find($request->task_id)->prio_id;
+		$hours = Priority::find($prio)->hours;
+		$validatedData['timeEstimatedcallback'] = date('Y-m-d H:i', strtotime(sprintf("+%d hours", $hours)));
         $issue = Issue::create($validatedData);
-        return redirect('/issues/'.$issue->id);
+        if ($request->has('save')) {
+			return redirect('/issues');
+		}
+        if ($request->has('saveOpen')) {
+			return redirect('/issues/'.$issue->id);
+		}
     }
 
     /**
@@ -61,7 +72,11 @@ class IssuesController extends Controller
      */
     public function show(Issue $issue)
     {
-        return view('issues.show',compact('issue',$issue));
+		$Comments = IssueComment::where('issue_id',$issue->id)->get();
+ 		return view('issues.show')->with([
+			'issue' => $issue, 
+			'comments' => $Comments,
+			]);
     }
 
     /**
@@ -72,7 +87,12 @@ class IssuesController extends Controller
      */
     public function edit(Issue $issue)
     {
-        return view('issues.edit',compact('issue', $issue));
+        $areas = Area::all();
+        $tasks = Task::all();
+		$users = User::where('active', 1)->get();
+		$timelog = New TimeLog;
+		$timelog->checkout();
+        return view('issues.edit')->with(['issue' => $issue, 'areas' => $areas, 'tasks' => $tasks, 'users' => $users]);
     }
 
     /**
@@ -82,27 +102,19 @@ class IssuesController extends Controller
      * @param  \App\Issue  $issue
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Issue $issue)
+    public function update(UpdateIssue $request, Issue $issue)
     {
         if ($request->has('reset')) {
 			return redirect('issues');
 		}
-        if ($request->has('delete')) {
-			$entry = Issue::find($issue->id);
-			$entry->delete();
-			return redirect('issues');
-		}
 		
 		//Validate
-        $validatedData = $request->validate([
-            'task' => 'required',
-			'description' => 'required',
-			'person' => 'required',
-			'phone' => 'required',
-			'email' => 'required',
-        ]);
+        $validatedData = $request->validated();
  		
 		Issue::whereId($issue->id)->update($validatedData);
+        if ($request->has('save')) {
+			return redirect('/issues');
+		}
     }
 
     /**

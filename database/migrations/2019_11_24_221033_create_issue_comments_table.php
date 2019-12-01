@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTimeLogsTable extends Migration
+class CreateIssueCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateTimeLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('time_logs', function (Blueprint $table) {
+        Schema::create('issue_comments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-			$table->date('checkout');
-			$table->date('checkin');
-			$table->text('description');
-			$table->bigInteger('user_id')->nullable();
-			$table->bigInteger('issue_id')->nullable();
-
+			$table->integer('issue_id');
+			$table->integer('user_id');
+			$table->text('comment_internal');
+			$table->text('comment_external');
         });
     }
 
@@ -32,6 +30,6 @@ class CreateTimeLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('time_logs');
+        Schema::dropIfExists('issue_comments');
     }
 }

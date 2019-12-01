@@ -56,8 +56,12 @@ class User extends Authenticatable
 		return $this->hasMany('App\CalendarEntry');
 	}
 
-	public function timeLogs() {
-		return $this->hasMany('App\TimeLog');
+	public function issueComments() {
+		return $this->hasMany('App\IssueComment');
+	}
+
+	public function issues() {
+		return $this->hasMany('App\Issue');
 	}
 
 }

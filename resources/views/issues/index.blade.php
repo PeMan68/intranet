@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.issues')
 
 @section('scriptsBody')
 <script>
@@ -11,29 +11,50 @@ $(document).ready(function($) {
 @endsection
 
 @section('content')
-        @if (Session::has('message'))
-            <div class="alert alert-info">{{ Session::get('message') }}</div>
-        @endif
-        <table class="table table-hover">
-          <thead class="thead-dark">
-            <tr>
-              <th>#</th>
-              <th>Skapad</th>
-              <th>Kund</th>
-              <th>Namn</th>
-              <th>Beskrivning</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach($issues as $issue)
-            <tr class="table-row" data-href="{{ URL::to('issues/' . $issue->id . '/edit') }}">
-              <td>{{$issue->id}}</th>
-              <td>{{$issue->timeInit}}</td>
-              <td>{{$issue->customer}}</td>
-              <td>{{$issue->customerName}}</td>
-              <td class="d-inline-block text-truncate stretched-link" style="max-width: 200px;">{{$issue->description}}</td>
-            </tr>
-            @endforeach
-          </tbody>
-        </table>
+<div class="card">
+	<div class="card-header">
+		<div class="row">
+		<div class="col-6">	
+		<h3>Mina ärenden</h3>
+	</div>
+		<div class="col-6">	
+				<form class="form-inline float-right">
+					<div class="input-group">
+					<input type=text class="form-control" placeholder="Sök...">
+						<div class="input-group-append">
+						<span class="input-group-text"><i class="material-icons">search</i></span>
+					</div>		
+					</div>		
+				</form>
+	</div>
+	</div>
+	</div>
+
+	<div class="card-body">
+		<table class="table table-sm table-hover">
+			<thead class="thead-light">
+				<tr>
+					<th>#</th>
+					<th>Skapad</th>
+					<th>Område</th>
+					<th>Kund</th>
+					<th>Namn</th>
+					<th>Beskrivning</th>
+				</tr>
+			</thead>
+			<tbody>
+			@foreach($issues as $issue)
+				<tr class="table-row" data-href="{{ URL::to('issues/' . $issue->id) }}">
+					<td>{{$issue->id}}</td>
+					<td>{{date('Y-m-d H:i',strtotime($issue->created_at))}}</td>
+					<td>{{$issue->task->name}}</td>
+					<td>{{$issue->customer}}</td>
+					<td>{{$issue->customerName}}</td>
+					<td class="d-inline-block text-truncate stretched-link" style="max-width: 300px;" data-toggle="tooltip" title="{{$issue->description }}">{{$issue->description}}</td>
+				</tr>
+			@endforeach
+			</tbody>
+		</table>
+	</div>
+</div>
 @endsection

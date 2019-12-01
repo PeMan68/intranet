@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreIssue extends FormRequest
+class UpdateIssue extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,7 @@ class StoreIssue extends FormRequest
      */
     public function rules()
     {
-		return [
+        return [
             'taskPersonal_id' => 'required',
             'task_id' => 'required',
 			'customerName' => 'required',
@@ -31,12 +31,11 @@ class StoreIssue extends FormRequest
 			'description' => 'required',
 			'customer' => 'nullable',
 			'customerNumber' => 'nullable',
-			'customerMail' => 'nullable|email',
+			'customerMail' => 'nullable|email:rfc',
 			'vip' => 'nullable',
 			'descriptionInternal' => 'nullable',
-			'urgent' => 'nullable',
 			'vip' => 'nullable',
-			'prio' => 'nullable',
+			'waitingForReply' => 'nullable',
         ];
     }
 
@@ -53,7 +52,6 @@ class StoreIssue extends FormRequest
 			'customerName.required' => 'Kontaktperson är obligatorisk',
 			'customerTel.required' => 'Telefonnummer är obligatoriskt',
 			'taskPersonal_id.required' => 'Fyll i om ärendet är personligt eller ej',
-			'customerMail.email' => 'Email-adressen är ogiltig',
 		];
 	}
 }

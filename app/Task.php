@@ -8,9 +8,11 @@ use App\Priority;
 
 class Task extends Model
 {
-    protected $fillable = [
+	protected $fillable = [
+		'area_id', 
+		'prio_id',
 		'name',
-		];
+	];
 
 	public function area(){
 		return $this->BelongsTo('App\Area');

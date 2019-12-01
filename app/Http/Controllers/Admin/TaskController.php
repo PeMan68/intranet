@@ -37,7 +37,6 @@ class TaskController extends Controller
             'area_id' => 'required',
             'prio_id' => 'required',
         ]);
-        
         $task = Task::create($validatedData);
         return redirect('admin/tasks/');
     }
