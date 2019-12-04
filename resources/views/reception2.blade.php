@@ -1,12 +1,12 @@
-@extends('layouts.reception')
+@extends('layouts.reception2')
 
 @section('content')
 	<div class="row">
 	
 		<div class="col-md-4" style="background-color:#d1f0f2;">
 		@if (count($visitors) > 0)
-		<p class="h2 text-center mt-5">Idag gästas vi av</p>
-				<dl class="row h4" style="color:#000000;">
+		<p class="h1 text-center mt-5">Idag gästas vi av</p>
+				<dl class="row h3" style="color:#000000;">
 				@foreach ($visitors as $visitor)
 					<dt class="col-sm-2"></dt>
 					<dt class="col-sm-4">{{ $visitor->name }}</dt>
