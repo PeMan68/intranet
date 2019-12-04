@@ -29,5 +29,18 @@ class PagesController extends Controller
 			])->get();
 
 		return view('/reception', ['visitors' => $visitors]);
+	}	
+	
+	public function reception2()
+	{
+		if (!Auth::check()){
+			Auth::loginUsingId(4, true);
+		}
+		$visitors = Visitor::where([
+			['start','<=',date('Y-m-d')],
+			['stop','>=',date('Y-m-d')],
+			])->get();
+
+		return view('/reception2', ['visitors' => $visitors]);
 	}
 }

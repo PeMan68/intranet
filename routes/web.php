@@ -13,6 +13,7 @@
 
 Route::get('/posten', 'PagesController@posten');
 Route::get('/reception', 'PagesController@reception');
+Route::get('/reception2', 'PagesController@reception2');
 
 
 Auth::routes();
