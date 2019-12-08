@@ -55,6 +55,7 @@ class IssuesController extends Controller
 		$prio = Task::find($request->task_id)->prio_id;
 		$hours = Priority::find($prio)->hours;
 		$validatedData['timeEstimatedcallback'] = date('Y-m-d H:i', strtotime(sprintf("+%d hours", $hours)));
+		$validatedData['vip'] = $request->has('vip');
         $issue = Issue::create($validatedData);
         if ($request->has('save')) {
 			return redirect('/issues');
@@ -72,10 +73,27 @@ class IssuesController extends Controller
      */
     public function show(Issue $issue)
     {
-		$Comments = IssueComment::where('issue_id',$issue->id)->get();
+		$Comments = IssueComment::
+			where('issue_id',$issue->id)
+			->hasComments()
+			->get();
+		
+		$new_comment = new IssueComment;
+		$new_comment->issue_id = $issue->id;
+		$new_comment->user_id = Auth::id();
+		$new_comment->checkout = date('Y-m-d H:i',strtotime(now()));
+		$new_comment->Save();
+		
+        $areas = Area::all();
+        $tasks = Task::all();
+		$users = User::where('active', 1)->get();
  		return view('issues.show')->with([
 			'issue' => $issue, 
 			'comments' => $Comments,
+			'areas' => $areas, 
+			'tasks' => $tasks, 
+			'users' => $users,
+			'new_comment' => $new_comment,
 			]);
     }
 
@@ -90,8 +108,8 @@ class IssuesController extends Controller
         $areas = Area::all();
         $tasks = Task::all();
 		$users = User::where('active', 1)->get();
-		$timelog = New TimeLog;
-		$timelog->checkout();
+		//$timelog = New TimeLog;
+		//$timelog->checkout();
         return view('issues.edit')->with(['issue' => $issue, 'areas' => $areas, 'tasks' => $tasks, 'users' => $users]);
     }
 
@@ -110,10 +128,10 @@ class IssuesController extends Controller
 		
 		//Validate
         $validatedData = $request->validated();
- 		
+		$validatedData['vip'] = $request->has('vip');
 		Issue::whereId($issue->id)->update($validatedData);
         if ($request->has('save')) {
-			return redirect('/issues');
+			return redirect('/issues/'.$issue->id);
 		}
     }
 

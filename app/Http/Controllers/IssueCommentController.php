@@ -37,14 +37,16 @@ class IssueCommentController extends Controller
     {
         //
 		
-		$comment = new IssueComment;
+/* 		$comment = new IssueComment;
 		$comment->issues = $request->issue_id;
 		$comment->users = $request->user_id;
-		$comment->public = $request->public;
 		$comment->comment_internal = $request->comment_internal;
 		$comment->comment_external = $request->comment_external;
+		$comment->checkout = now();
 		$comment->Save();
-    }
+		return redirect('/issues/'.$issue->id);
+ */	
+	}
 
     /**
      * Display the specified resource.
@@ -75,10 +77,16 @@ class IssueCommentController extends Controller
      * @param  \App\IssueComment  $issueComment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, IssueComment $issueComment)
+    public function update(Request $request, IssueComment $issuecomment)
     {
-        //
-    }
+		IssueComment::find($issuecomment->id)->update([
+			'checkin' => date('Y-m-d H:i',strtotime(now())),
+			'comment_internal' => $request->comment_internal,
+			'comment_external' => $request->comment_external,
+		]);
+		return redirect('/issues/'.$issuecomment->issue_id);
+		
+   }
 
     /**
      * Remove the specified resource from storage.

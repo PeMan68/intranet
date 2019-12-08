@@ -12,7 +12,7 @@ class IssueComment extends Model
      * @var array
      */
     protected $fillable = [
-        'issue_id', 'user_id', 'comment_internal', 'comment_external', 
+        'issue_id', 'user_id', 'comment_internal', 'comment_external', 'checkin', 'checkout'
     ];
 
     //
@@ -22,5 +22,17 @@ class IssueComment extends Model
     //
 	public function users() {
 		return $this->belongsTo('App\User');
+	}
+	/**
+     * Scope a query exclude models without any comment.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+	public function scopeHasComments($query)
+	{
+		return $query
+			->where('comment_internal', '<>', '')
+			->OrWhere('comment_external', '<>', '');
 	}
 }

@@ -32,7 +32,6 @@ class StoreIssue extends FormRequest
 			'customer' => 'nullable',
 			'customerNumber' => 'nullable',
 			'customerMail' => 'nullable|email',
-			'vip' => 'nullable',
 			'descriptionInternal' => 'nullable',
 			'urgent' => 'nullable',
 			'vip' => 'nullable',

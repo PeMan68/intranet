@@ -34,7 +34,6 @@ class UpdateIssue extends FormRequest
 			'customerMail' => 'nullable|email:rfc',
 			'vip' => 'nullable',
 			'descriptionInternal' => 'nullable',
-			'vip' => 'nullable',
 			'waitingForReply' => 'nullable',
         ];
     }
@@ -52,6 +51,7 @@ class UpdateIssue extends FormRequest
 			'customerName.required' => 'Kontaktperson är obligatorisk',
 			'customerTel.required' => 'Telefonnummer är obligatoriskt',
 			'taskPersonal_id.required' => 'Fyll i om ärendet är personligt eller ej',
+			'customerMail.email' => 'Email-adressen är ogiltig',
 		];
 	}
 }

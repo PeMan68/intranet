@@ -16,10 +16,12 @@ class CreateIssueCommentsTable extends Migration
         Schema::create('issue_comments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+			$table->dateTime('checkout');
+			$table->dateTime('checkin')->nullable();
 			$table->integer('issue_id');
 			$table->integer('user_id');
-			$table->text('comment_internal');
-			$table->text('comment_external');
+			$table->text('comment_internal')->nullable();
+			$table->text('comment_external')->nullable();
         });
     }
 

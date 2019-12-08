@@ -34,4 +34,5 @@ Route::get('/admin/impersonate/destroy', 'Admin\ImpersonateController@destroy')-
 
 Route::resource('/calendar','CalendarController')->middleware('auth');
 Route::resource('/issues','IssuesController')->middleware('auth');
+Route::resource('/issuecomments','IssueCommentController')->middleware('auth');
 
