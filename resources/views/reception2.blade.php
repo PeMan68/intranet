@@ -19,9 +19,18 @@
 			<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-interval="10000">
 			  <div class="carousel-inner">
 				@foreach ($files as $image)
-				<div class="carousel-item {{ ($loop->first) ? 'active' : ''}}">
-					<img src="{{ $image }}" class="d-block w-100" alt="...">
+				@if ($loop->first)
+					
+				<div class="carousel-item active">
+					<img src="{{ asset('storage') . '/' . $image }}" class="d-block w-100" alt="...">
 				</div>
+				@else
+				<div class="carousel-item">
+					<img src="{{ asset('storage') . '/' . $image }}" class="d-block w-100" alt="...">
+				</div>
+					
+				@endif
+				
 				@endforeach
 			  </div>
 			</div>		

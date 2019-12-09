@@ -38,9 +38,7 @@ class ImageController extends Controller
 		$request->validate([
 			'image' => 'required|image|max:2048',
 			]);
-		$image = $request->file('image');
-        $new_name = rand() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('images/reception'), $new_name);
+		$image = $request->file('image')->store('public/reception');
 		return view('admin.images.create');
    }
 
