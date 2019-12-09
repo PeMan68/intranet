@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use App\Visitor;
 use App\User;
 
@@ -29,5 +31,29 @@ class PagesController extends Controller
 			])->get();
 
 		return view('/reception', ['visitors' => $visitors]);
+	}	
+	
+	public function reception2()
+	{
+		if (!Auth::check()){
+			Auth::loginUsingId(4, true);
+		}
+		$visitors = Visitor::where([
+			['start','<=',date('Y-m-d')],
+			['stop','>=',date('Y-m-d')],
+			])->get();
+		
+		$files = Storage::files('public/reception');
+		$f=array();
+		// trim the path to images
+		foreach ($files as $file)
+		{
+			array_push($f, Str::after($file, 'public/'));
+		}
+		
+		return view('/reception2', [
+			'visitors' => $visitors,
+			'files' => $f,
+			]);
 	}
 }
