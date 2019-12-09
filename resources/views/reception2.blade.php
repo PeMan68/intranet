@@ -18,15 +18,11 @@
 		<div class="col-md-8 p-0">
 			<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-interval="10000">
 			  <div class="carousel-inner">
-				<div class="carousel-item active">
-					<img src="images/Skärm_Sida_1.jpg" class="d-block w-100" alt="...">
+				@foreach ($files as $image)
+				<div class="carousel-item {{ ($loop->first) ? 'active' : ''}}">
+					<img src="{{ $image }}" class="d-block w-100" alt="...">
 				</div>
-				<div class="carousel-item">
-				  <img src="images/Skärm_Sida_2.jpg" class="d-block w-100" alt="...">
-				</div>
-				<div class="carousel-item">
-				  <img src="images/Skärm_Sida_3.jpg" class="d-block w-100" alt="...">
-				</div>
+				@endforeach
 			  </div>
 			</div>		
 		

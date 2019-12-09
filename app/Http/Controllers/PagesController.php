@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Visitor;
 use App\User;
 
@@ -41,6 +42,11 @@ class PagesController extends Controller
 			['stop','>=',date('Y-m-d')],
 			])->get();
 
-		return view('/reception2', ['visitors' => $visitors]);
+		$files = Storage::files(public_path('images/reception'));
+
+		return view('/reception2', [
+			'visitors' => $visitors,
+			'files' => $files,
+			]);
 	}
 }
