@@ -28,6 +28,7 @@ Route::get('/admin', function(){
 
 Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->name('admin.')->group(function(){
 	Route::resource('/users', 'UserController', ['except' => ['show', 'store']]);
+	Route::resource('/images', 'ImageController');
 	Route::get('/impersonate/user/{id}', 'ImpersonateController@index')->name('impersonate');
 	Route::get('/tasks','TaskController@index')->name('tasks');
 });

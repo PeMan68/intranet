@@ -90,7 +90,8 @@
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="{{ route('visitors.index') }}">Besökare</a>
 							@hasrole('admin')
-								<a class="nav-link" href="{{ route('admin.users.index')}}">Hantera användare</a>
+								<a class="dropdown-item" href="{{ route('admin.users.index')}}">Hantera användare</a>
+								<a class="dropdown-item" href="{{ route('admin.images.create')}}">Lägg till fil till receptionsskärm</a>
 							@endhasrole
                               </div>
                             </li>
