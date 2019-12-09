@@ -3,7 +3,7 @@
 @section('content')
 	<div class="row">
 	
-		<div class="col-md-4" style="background-color:#d1f0f2;">
+		<div class="col-md-4" style="background-color:#d1f0f2; border-right: 10px solid white;">
 		@if (count($visitors) > 0)
 		<p class="h1 text-center mt-5">Idag gästas vi av</p>
 				<dl class="row h3" style="color:#000000;">
@@ -38,27 +38,9 @@
 		</div>
 	</div>
 	<div class="fixed-bottom">
-		<table>
-		<tr><td>
-</td><td>		<a class="weatherwidget-io" href="https://forecast7.com/sv/59d4013d51/karlstad/" 
-			data-label_1="KARLSTAD" 
-			data-label_2="Väder" 
-			data-theme="original" 
-			data-forecast=3>
-			KARLSTAD Väder
-		</a>
-</td></tr>
-</table>
+		<a class="weatherwidget-io" href="https://forecast7.com/sv/59d4013d51/karlstad/" data-label_1="KARLSTAD" data-label_2="VÄDER" data-icons="Climacons Animated" data-days="3" data-theme="pure" >KARLSTAD VÄDER</a>
 		<script>
-			!function(d,s,id){
-				var js,fjs=d.getElementsByTagName(s)[0];
-				if(!d.getElementById(id)){
-					js=d.createElement(s);
-					js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';
-					fjs.parentNode.insertBefore(js,fjs);
-				}
-			}
-			(document,'script','weatherwidget-io-js');
+		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
 		</script>
 	</div>
 @endsection
