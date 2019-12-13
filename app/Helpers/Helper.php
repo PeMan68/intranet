@@ -1,6 +1,8 @@
 <?php
 use App\Charts\BookBillBudPrev;
 use App\User;
+use App\Issue;
+use App\IssueComment;
 use App\CalendarEntry;
 
  
@@ -85,6 +87,49 @@ if (!function_exists('delete_responsibilites')) {
 			
 		}
     }
+}
+
+if (!function_exists('check_out_issue')){
+    /**
+     * Check out issue 
+     *
+     * @param array  $issue
+     * @param array  $new_comment
+     * @return array $new_comment
+     *
+     */	
+	function check_out_issue($issue)
+	{
+		Issue::whereId($issue->id)
+			->update(['userCurrent_id' => Auth::user()->id]);
+
+		$new_comment = new IssueComment;
+		$new_comment->issue_id = $issue->id;
+		$new_comment->user_id = Auth::id();
+		$new_comment->checkout = date('Y-m-d H:i',strtotime(now()));
+		$new_comment->Save();
+		
+		return $new_comment;
+	}
+}
+
+if (!function_exists('check_in_issues')){
+    /**
+     * Check in all issues currently open by active user
+	 * Close timelog for current user/comment
+     *
+     * @return void
+     *
+     */	
+	function check_in_issues()
+	{
+		Issue::where('userCurrent_id', Auth::user()->id)
+			->update(['userCurrent_id' => null]);
+			
+		IssueComment::where('user_id', Auth::user()->id)
+			->where('checkin', null)
+			->update(['checkin' => date('Y-m-d H:i',strtotime(now()))]);
+	}
 }
 
 if (!function_exists('load_chart_data')){

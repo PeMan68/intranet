@@ -36,16 +36,6 @@ class IssueCommentController extends Controller
     public function store(Request $request)
     {
         //
-		
-/* 		$comment = new IssueComment;
-		$comment->issues = $request->issue_id;
-		$comment->users = $request->user_id;
-		$comment->comment_internal = $request->comment_internal;
-		$comment->comment_external = $request->comment_external;
-		$comment->checkout = now();
-		$comment->Save();
-		return redirect('/issues/'.$issue->id);
- */	
 	}
 
     /**

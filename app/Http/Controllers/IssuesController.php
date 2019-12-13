@@ -22,7 +22,8 @@ class IssuesController extends Controller
      */
     public function index()
     {
-        $issues = Issue::all();
+		check_in_issues();
+		$issues = Issue::all();
 		return view('issues.index',compact('issues',$issues));
     }
 
@@ -33,6 +34,7 @@ class IssuesController extends Controller
      */
     public function create()
     {
+		check_in_issues();
         $areas = Area::all();
         $tasks = Task::all();
 		$users = User::where('active', 1)->get();
@@ -77,17 +79,15 @@ class IssuesController extends Controller
 			where('issue_id',$issue->id)
 			->hasComments()
 			->get();
-		
-		$new_comment = new IssueComment;
-		$new_comment->issue_id = $issue->id;
-		$new_comment->user_id = Auth::id();
-		$new_comment->checkout = date('Y-m-d H:i',strtotime(now()));
-		$new_comment->Save();
-		
+				
         $areas = Area::all();
         $tasks = Task::all();
 		$users = User::where('active', 1)->get();
- 		return view('issues.show')->with([
+ 		
+		check_in_issues();
+		$new_comment = check_out_issue($issue);
+		
+		return view('issues.show')->with([
 			'issue' => $issue, 
 			'comments' => $Comments,
 			'areas' => $areas, 
@@ -105,12 +105,11 @@ class IssuesController extends Controller
      */
     public function edit(Issue $issue)
     {
-        $areas = Area::all();
+        dd('edit.issuesController');
+		$areas = Area::all();
         $tasks = Task::all();
 		$users = User::where('active', 1)->get();
-		//$timelog = New TimeLog;
-		//$timelog->checkout();
-        return view('issues.edit')->with(['issue' => $issue, 'areas' => $areas, 'tasks' => $tasks, 'users' => $users]);
+       return view('issues.edit')->with(['issue' => $issue, 'areas' => $areas, 'tasks' => $tasks, 'users' => $users]);
     }
 
     /**
