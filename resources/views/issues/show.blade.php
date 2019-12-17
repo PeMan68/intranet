@@ -87,9 +87,6 @@
 			<td> {{$comment->comment_internal}} </td>
 			<td> {{$comment->comment_external}} </td>
 			<td>
-				<button type="submit" class="btn btn-primary mr-2" name="edit">
-					Ändra  kommentar
-				</button>
 			</td>
 			</form>
 		</tr>
