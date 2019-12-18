@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreIssue;
 use App\Http\Requests\UpdateIssue;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\IssueCreated;
+use Illuminate\Support\Facades\Mail;
 
 class IssuesController extends Controller
 {
@@ -59,12 +61,14 @@ class IssuesController extends Controller
 		$validatedData['timeEstimatedcallback'] = date('Y-m-d H:i', strtotime(sprintf("+%d hours", $hours)));
 		$validatedData['vip'] = $request->has('vip');
         $issue = Issue::create($validatedData);
+		Mail::to('per.manholm@gmail.com')->send(new issueCreated($issue));
         if ($request->has('save')) {
 			return redirect('/issues');
 		}
         if ($request->has('saveOpen')) {
 			return redirect('/issues/'.$issue->id);
 		}
+		
     }
 
     /**
