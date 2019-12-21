@@ -1,12 +1,25 @@
 @extends('layouts.issues')
 
+@section('scriptsHead')
+<script>
+$(document).ready(function(){
+	$('#buttons').hide();
+
+
+	$("#issueheader").change(function(){
+		$('#buttons').show();
+	});
+});
+</script>
+@endsection
+
 @section('content')
 <div class="card">
 	<div class="card-header h3">Ärende #{{ $issue->id }}
 	</div>
 
 	<div class="card-body">
-		<form action="{{ url('issues', [$issue->id]) }}" method="post">
+		<form action="{{ url('issues', [$issue->id]) }}" method="post" id="issueheader">
 			@method('PUT')
 			@csrf
 			<div class="row">
@@ -61,13 +74,13 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-6" id="buttons">
 					<button type="submit" class="btn btn-primary mr-2" name="save">
-						Spara
+						Spara ändringarna
 					</button>
-					<a class="btn btn-secondary mr-2" href="/issues">
-						Avbryt
-					</a>
+					<button type="submit" class="btn btn-secondary mr-2" name="cancel">
+						Ångra ändringarna
+					</button>
 
 				</div>
 			</div>

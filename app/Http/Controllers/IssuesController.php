@@ -125,8 +125,8 @@ class IssuesController extends Controller
      */
     public function update(UpdateIssue $request, Issue $issue)
     {
-        if ($request->has('reset')) {
-			return redirect('issues');
+        if ($request->has('cancel')) {
+			return redirect('/issues/'.$issue->id);
 		}
 		
 		//Validate
