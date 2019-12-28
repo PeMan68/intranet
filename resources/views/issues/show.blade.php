@@ -88,7 +88,8 @@ $(document).ready(function(){
 	</div>
 	<table class="table table-sm mt-4">
 		<thead>
-			<th>Händelselogg</th>
+			<th>När</th>
+			<th>Intern kommentar</th>
 			<th>Kommentar skickad till kund</th>
 		</thead>
 	@if($comments->count())
@@ -97,8 +98,11 @@ $(document).ready(function(){
 			<form action="{{ route('issuecomments.update', $comment->id) }}" method="post">
 			@method('PUT')
 			@csrf
-			<td> {{$comment->comment_internal}} </td>
-			<td> {{$comment->comment_external}} </td>
+			<td> {{ date('Y-m-d H:i', strtotime($comment->checkin)) }}
+			<br>
+			{{ $comment->user->name . ' ' . $comment->user->surname }} </td>
+			<td> {{ $comment->comment_internal }} </td>
+			<td> {{ $comment->comment_external }} </td>
 			<td>
 			</td>
 			</form>
@@ -109,6 +113,8 @@ $(document).ready(function(){
 			@method('PUT')
 			@csrf
 		<tr>
+			<td>
+			</td>
 			<td>
 				<textarea class="form-control" id="comment_internal" name="comment_internal" rows="3">{{ old('comment_internal') }}</textarea>
 			</td>	

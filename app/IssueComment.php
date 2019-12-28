@@ -16,11 +16,11 @@ class IssueComment extends Model
     ];
 
     //
-	public function issues() {
+	public function issue() {
 		return $this->belongsTo('App\Issue');
 	}
     //
-	public function users() {
+	public function user() {
 		return $this->belongsTo('App\User');
 	}
 	/**

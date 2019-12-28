@@ -123,15 +123,40 @@ if (!function_exists('check_in_issues')){
      */	
 	function check_in_issues()
 	{
+		// Set null to all issues where current user is active
 		Issue::where('userCurrent_id', Auth::user()->id)
 			->update(['userCurrent_id' => null]);
+		
+		// Find all open comments for active user and close them
+		$openIssues = IssueComment::where('user_id', Auth::user()->id)
+			->where('checkin', null)->get();
+		//dd($openIssues);
+		foreach ($openIssues as $i){
+			$i->update(['checkin' => check_in_time($i->checkout)]);
+			}
 			
-		IssueComment::where('user_id', Auth::user()->id)
-			->where('checkin', null)
-			->update(['checkin' => date('Y-m-d H:i',strtotime(now()))]);
 	}
 }
 
+if (!function_exists('check_in_time')){
+    /**
+     * If checkout is today, return now
+	 * If checkout is before today, return checkout
+     *
+     * @return DateTime
+     *
+     */	
+	function check_in_time($checkout)
+	{
+		if (date('Y-m-d', strtotime($checkout)) == date('Y-m-d', strtotime(now()))){
+			return date('Y-m-d H:i', strtotime(now()));
+		} else {
+			return date('Y-m-d H:i', strtotime($checkout));
+		}
+			
+	}
+}
+	
 if (!function_exists('load_chart_data')){
     /**
      * Load data to chart

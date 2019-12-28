@@ -55,6 +55,7 @@ $(document).ready(function($) {
 			@endforeach
 			</tbody>
 		</table>
+		{{ $issues->links() }}
 	</div>
 </div>
 @endsection

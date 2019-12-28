@@ -25,7 +25,7 @@ class IssuesController extends Controller
     public function index()
     {
 		check_in_issues();
-		$issues = Issue::all();
+		$issues = Issue::paginate(20);
 		return view('issues.index',compact('issues',$issues));
     }
 

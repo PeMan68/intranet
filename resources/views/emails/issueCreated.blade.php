@@ -20,10 +20,6 @@
 				<td>{{ date('Y-m-d H:i', strtotime($issue->created_at)) }}</td>
 			</tr>
 			<tr>
-				<td>Svar förväntas senast: </td>
-				<td>{{ date('Y-m-d H:i', strtotime($issue->timeEstimatedcallback)) }}</td>
-			</tr>
-			<tr>
 				<td>Skapat av: </td>
 				<td>{{ $issue->userCreate->name . ' ' . 
 					$issue->userCreate->surname }}</td>
@@ -57,6 +53,10 @@
 		Intern kommentar:<br>
 		{{ $issue->descriptionInternal }}
 		</div>
+		<div>
+			Öppna <a href="{{ url('/issues/'.$issue->id) }}">ärende</a>
+		</div>
+		
     </div>
 </body>
 </html>
