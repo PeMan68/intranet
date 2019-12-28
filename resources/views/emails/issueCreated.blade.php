@@ -7,6 +7,29 @@
 </head>
 <body>
     <div>
+		<div>
+			Nytt ärende
+		</div>
+		<table>
+			<tr>
+				<td>Typ: </td>
+				<td>{{ $issue->task->name }}</td>
+			</tr>
+			<tr>
+				<td>Skapat: </td>
+				<td>{{ date('Y-m-d H:i', strtotime($issue->created_at)) }}</td>
+			</tr>
+			<tr>
+				<td>Svar förväntas senast: </td>
+				<td>{{ date('Y-m-d H:i', strtotime($issue->timeEstimatedcallback)) }}</td>
+			</tr>
+			<tr>
+				<td>Skapat av: </td>
+				<td>{{ $issue->userCreate->name . ' ' . 
+					$issue->userCreate->surname }}</td>
+			</tr>
+		<table>
+		<hr>
 		<table>
 			<tr>
 				<td>Kund:</td><td>{{ $issue->customer }}</td>

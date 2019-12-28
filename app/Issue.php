@@ -35,11 +35,11 @@ class Issue extends Model
     ];
 	
 	public function userCreate() {
-		return $this->belongsTo('App\User','id','userCreate_id');
+		return $this->belongsTo('App\User','userCreate_id');
 	}
 
 	public function userCurrent() {
-		return $this->belongsTo('App\User','id','userCurrent_id');
+		return $this->belongsTo('App\User','userCurrent_id');
 	}
 
 	public function issueComments()	{
