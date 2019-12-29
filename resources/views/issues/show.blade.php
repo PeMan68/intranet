@@ -25,7 +25,13 @@ $(document).ready(function(){
 			<div class="row">
 				<div class="col-md-6">
 					<table style="width: 100%;">
-						<tr><td style="width: 30%;"><strong>Ärende skapat:</strong></td><td> {{ date('Y-m-d H:i', strtotime($issue->created_at)) }}</td></tr>
+						<tr><td style="width: 30%;"><strong>Ärende skapat:</strong></td>
+						<td> 
+						{{ date('Y-m-d H:i', strtotime($issue->created_at)) }}
+						av
+						{{ $issue->userCreate->name}}
+						{{ $issue->userCreate->surname}}
+						</td></tr>
 						<tr><td><strong>Kundnr:</strong></td>
 							<td><input type="text" value="{{ old('customerNumber', $issue->customerNumber) }}" class="form-control" id="customerNumber" name="customerNumber"></td></tr>
 						<tr><td><strong>Kund:</strong></td>
@@ -86,13 +92,13 @@ $(document).ready(function(){
 			</div>
 		</form>
 	</div>
-	<table class="table table-sm mt-4">
+	<table class="table table-sm table-bordered mt-4">
+	@if($comments->count())
 		<thead>
 			<th>När</th>
-			<th>Intern kommentar</th>
-			<th>Kommentar skickad till kund</th>
+			<th>Anteckning</th>
+			<th>Meddelanden till kund</th>
 		</thead>
-	@if($comments->count())
 	@foreach($comments as $comment)
 		<tr>
 			<form action="{{ route('issuecomments.update', $comment->id) }}" method="post">
@@ -103,8 +109,6 @@ $(document).ready(function(){
 			{{ $comment->user->name . ' ' . $comment->user->surname }} </td>
 			<td> {{ $comment->comment_internal }} </td>
 			<td> {{ $comment->comment_external }} </td>
-			<td>
-			</td>
 			</form>
 		</tr>
 	@endforeach
@@ -117,10 +121,16 @@ $(document).ready(function(){
 			</td>
 			<td>
 				<textarea class="form-control" id="comment_internal" name="comment_internal" rows="3">{{ old('comment_internal') }}</textarea>
+				<small class="text-muted">Intern anteckning</small>
 			</td>	
 			<td>
 				<textarea class="form-control" id="comment_external" name="comment_external" rows="3">{{ old('comment_external') }}</textarea>
+				<small class="text-muted">Detta skickas till angiven e-postadress</small>
 			</td>	
+		</tr>
+		<tr>
+			<td>
+			</td>
 			<td>
 				<button type="submit" class="btn btn-primary mr-2" name="save">
 					Spara  kommentar
