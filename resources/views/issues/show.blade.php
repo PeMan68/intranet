@@ -44,15 +44,17 @@ $(document).ready(function(){
 							<td><input type="text" value="{{ $issue->customerMail }}" class="form-control" id="customerMail" name="customerMail"></td></tr>
 						<tr><td><strong>Område:</strong></td>
 							<td><select class="form-control" id="task_id" name="task_id">
+									<option value="-">---</option>
+								
 								@foreach ($tasks as $task)
 									<option value="{{ $task->id }}" @if ($task->id == $issue->task_id) selected @endif>{{ $task->name }}</option>
 								@endforeach
 							</select></td></tr>
 						<tr><td><strong>Personligt eller grupp:</strong></td>
 							<td><select class="form-control" id="taskPersonal_id" name="taskPersonal_id">
-								<option value="0">Gruppärende</option>
+								<option value="0" {{ old('taskPersonal_id') == '0' ? 'selected' : ''}} >Gruppärende</option>
 								@foreach ($users as $user)
-									<option value="{{ $user->id }}" @if ($user->id == $issue->taskPersonal_id) selected @endif>{{ $user->name }} {{ $user->surname }}</option>
+									<option value="{{ $user->id }}" @if (!old() && $user->id == $issue->taskPersonal_id) selected @endif>{{ $user->name }} {{ $user->surname }}</option>
 								@endforeach
 							</select></td></tr>
 					</table>
@@ -62,17 +64,13 @@ $(document).ready(function(){
 						<tr><td style="width: 30%;"><strong>Ärendebeskrivning:</strong></td>
 							<td> <textarea class="form-control" id="description" name="description" rows="8">{{ old('description', $issue->description) }}</textarea></td></tr>
 						<tr><td><strong>Intern kommentar:</strong></td>
-							<td> <textarea class="form-control" id="descriptionInternal" name="descriptionInternal" rows="5">{{ $issue->descriptionInternal }}</textarea></td></tr>
+							<td> <textarea class="form-control" id="descriptionInternal" name="descriptionInternal" rows="5">{{ old('descriptionInternal', $issue->descriptionInternal) }}</textarea></td></tr>
 					</table>	
 				</div>
 			</div>
 				
 			<div class="row">
 				<div class="col-md-6">
-					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="follow" name="follow" value="1" {{ $issue->follow == "1" ? 'checked' : ''}}>
-						<label for="follow" class="font-weight-bold">Jag vill följa detta ärende</label>
-					</div>
 					<div class="form-check">
 						<input type="checkbox" class="form-check-input" id="vip" name="vip" value="1" {{ $issue->vip == "1" ? 'checked' : ''}}>
 						<label for="vip" class="font-weight-bold">VIP-kund</label>
@@ -92,10 +90,11 @@ $(document).ready(function(){
 			</div>
 		</form>
 	</div>
-	<table class="table table-sm table-bordered mt-4">
+	<strong>Händelselogg</strong>
+	<table class="table table-sm table-bordered">
 	@if($comments->count())
 		<thead>
-			<th>När</th>
+			<th>Tidpunkt</th>
 			<th>Anteckning</th>
 			<th>Meddelanden till kund</th>
 		</thead>

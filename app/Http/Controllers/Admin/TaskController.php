@@ -79,7 +79,6 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-		dd($task);
         if ($request->has('delete')) {
 			$entry = Task::find($task->id);
 			$entry->delete();

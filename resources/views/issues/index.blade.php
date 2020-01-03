@@ -37,6 +37,7 @@ $(document).ready(function($) {
 					<th>#</th>
 					<th>Skapad</th>
 					<th>Område</th>
+					<th>Level</th>
 					<th>Kund</th>
 					<th>Namn</th>
 					<th>Beskrivning</th>
@@ -47,7 +48,8 @@ $(document).ready(function($) {
 				<tr class="table-row" data-href="{{ URL::to('issues/' . $issue->id) }}">
 					<td>{{$issue->id}}</td>
 					<td>{{date('Y-m-d H:i',strtotime($issue->created_at))}}</td>
-					<td>{{$issue->task->name}}</td>
+					<td>{{$issue->task->name ?? '#saknas'}}</td>
+					<td></td>
 					<td>{{$issue->customer}}</td>
 					<td>{{$issue->customerName}}</td>
 					<td class="d-inline-block text-truncate stretched-link" style="max-width: 300px;" data-toggle="tooltip" title="{{$issue->description }}">{{$issue->description}}</td>

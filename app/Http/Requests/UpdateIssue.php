@@ -25,7 +25,7 @@ class UpdateIssue extends FormRequest
     {
         return [
             'taskPersonal_id' => 'required',
-            'task_id' => 'required',
+            'task_id' => 'required|alpha_num',
 			'customerName' => 'required',
 			'customerTel' => 'required',
 			'description' => 'required',
@@ -47,6 +47,7 @@ class UpdateIssue extends FormRequest
 	{
 		return [
 			'task_id.required' => 'Välj område',
+			'task_id.alpha_num' => 'Välj område',
 			'description.required' => 'Formell beskrivning är obligatorisk',
 			'customerName.required' => 'Kontaktperson är obligatorisk',
 			'customerTel.required' => 'Telefonnummer är obligatoriskt',

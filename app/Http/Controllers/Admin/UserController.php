@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Role;
+use App\Task;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -39,7 +40,11 @@ class UserController extends Controller
     public function edit($id)
     {
 
-		return view('admin.users.edit')->with(['user' => User::find($id), 'roles' => Role::all()]);
+		return view('admin.users.edit')->with([
+			'user' => User::find($id), 
+			'roles' => Role::all(),
+			'tasks' => Task::all()->sortBy('area_id'),	
+			]);
     }
 
     /**
@@ -51,9 +56,9 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-       if(Auth::user()->id == $id){
-			return redirect()->route('admin.users.index')->with('warning', 'Det är inte tillåtet att ändra sig själv.');
-		}
+       // if(Auth::user()->id == $id){
+			// return redirect()->route('admin.users.index')->with('warning', 'Det är inte tillåtet att ändra sig själv.');
+		// }
 		if ($request->has('delete')) {
 			$entry = User::find($id);
 			$entry->delete();
@@ -66,7 +71,22 @@ class UserController extends Controller
 		$user->active = $request->has('active');
 		$user->calendar = $request->has('calendar');
 		$user->save();
+		
+		//update roles and tasks responsibility
 		$user->roles()->sync($request->roles);
+		$tasks = $request->tasks;
+		
+		//syncs all tasks to user
+		$user->tasks()->sync($tasks);
+		
+		//loop through each task and assign level
+		$levels = $request->levels;
+		foreach ($tasks as $task){
+			//dd($levels);
+			$level=$levels[$task];
+			$user->tasks()->updateExistingPivot($task, ['level' => $level]);
+		}
+
 		return redirect()->route('admin.users.index')->with('success', 'Användaren uppdaterad.');
     }
 
@@ -86,6 +106,7 @@ class UserController extends Controller
 		
 		if($user){
 			$user->roles()->detach();
+			$user->tasks()->detach();
 			$user->destroy($id);
 			return redirect()->route('admin.users.index')->with('success', 'Användaren raderad.');
 		}

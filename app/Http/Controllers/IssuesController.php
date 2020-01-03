@@ -25,7 +25,16 @@ class IssuesController extends Controller
     public function index()
     {
 		check_in_issues();
-		$issues = Issue::paginate(20);
+		
+		// cleanup task_user table for current user
+		$tasks = Task::all();
+		Auth::user()->tasks()->sync($tasks);
+
+		// list open issues
+		// sort by level, timeEstimated Callback
+		$issues = Issue::whereNull('timeClosed')
+					->orderBy('timeEstimatedCallback')
+					->paginate(20);
 		return view('issues.index',compact('issues',$issues));
     }
 

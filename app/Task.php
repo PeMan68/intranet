@@ -21,4 +21,8 @@ class Task extends Model
 	public function priority(){
 		return $this->BelongsTo('App\Priority','prio_id');
 	}
+	
+	public function users(){
+		return $this->belongsToMany('App\User');
+	}
 }
