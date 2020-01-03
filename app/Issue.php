@@ -12,13 +12,10 @@ class Issue extends Model
      * @var array
      */
     protected $fillable = [
-        'task', 
-		'userCreate',
-		'userCurrent', 
-		'description',
-        'task',
-		'userCreate',
-		'userCurrent',
+        'taskPersonal_id',
+        'task_id',
+		'userCreate_id',
+		'userCurrent_id', 
 		'customer',
 		'customerNumber',
         'customerName',
@@ -27,9 +24,8 @@ class Issue extends Model
 		'paused',
 		'waitingForReply',
 		'vip',
-		'prio',
-		'nextIssueID',
-		'previousIssueID',
+		'nextIssue_id',
+		'previousIssue_id',
 		'description',
 		'descriptionInternal',
 		'timeClosed',
@@ -37,4 +33,20 @@ class Issue extends Model
 		'timeEstimatedcallback',
 		'timeCustomercallback'
     ];
+	
+	public function userCreate() {
+		return $this->belongsTo('App\User','userCreate_id');
+	}
+
+	public function userCurrent() {
+		return $this->belongsTo('App\User','userCurrent_id');
+	}
+
+	public function issueComments()	{
+		return $this->hasMany('App\IssueComment');
+	}
+	
+	public function task() {
+		return $this->belongsTo('App\Task');
+	}
 }

@@ -29,10 +29,23 @@
 	@include('partials._navbar')
 
 
-		<main class="py-4 container">
-			@include('partials.alerts')
-            @yield('content')
-        </main>
+        <main class="container-fluid">
+			<div class="row">
+				<div class="col-md-2 bg-dark">
+					<nav class="nav flex-column">
+						<a class="nav-link" href="{{ url('/issues/create/') }}">Nytt ärende</a>
+						<a class="nav-link" href="{{ url('/issues/') }}">Mina ärenden</a>
+					</nav>
+				</div>
+				<div class="col-md-10 p-3">
+					@include('partials.alerts')
+					@if (Session::has('message'))
+					<div class="alert alert-info">{{ Session::get('message') }}</div>
+					@endif
+					@yield('content')
+				</div>
+			</div>        
+		</main>
     </div>
 	@include('partials._scripts')
 	@yield('scriptsBody')

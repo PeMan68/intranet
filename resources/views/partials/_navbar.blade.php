@@ -1,5 +1,5 @@
         <nav class="navbar navbar-expand-md navbar-light shadow-sm navbar-bg">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -39,11 +39,22 @@
 							Teknisk Support
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="http://productselection.net">Product Selection</a>
-							<a class="dropdown-item" href="http://gavazzi.se">Nya Gavazzi.se</a>
-							<a class="dropdown-item" href="http://support-carlogavazzi.se">Gamla supportsidan</a>
+								<a class="dropdown-item" href="http://productselection.net">Product Selection</a>
+								<a class="dropdown-item" href="http://gavazzi.se">Nya Gavazzi.se</a>
+								<a class="dropdown-item" href="http://support-carlogavazzi.se">Gamla supportsidan</a>
 							</div>
 						</li>	
+						@hasrole('admin')
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Ärenden
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="{{ url('/issues/') }}">Visa alla</a>
+								<a class="dropdown-item" href="{{ url('/issues/create/') }}">Nytt ärende</a>
+							</div>
+						</li>
+						@endhasrole						
 
                     </ul>
 
@@ -67,9 +78,15 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 									@impersonate
-										<a class="nav-link" href="{{ route('admin.impersonate.destroy')}}">Återgå</a>
+										<a class="dropdown-item" href="{{ route('admin.impersonate.destroy')}}">Återgå</a>
 									@else
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+									@hasrole('admin')
+										<a class="dropdown-item" href="{{ url('/admin/tasks/')}}">Hantera ärenden</a>
+                                    @endhasrole
+									@hasrole('superadmin')
+										<a class="dropdown-item" href="{{ route('admin.users.index')}}">Hantera användare</a>
+                                    @endhasrole
+									<a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         Logga ut

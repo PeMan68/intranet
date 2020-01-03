@@ -12,4 +12,5 @@ class Priority extends Model
      * @var string
      */
     protected $table = 'priorities';
+	
 }

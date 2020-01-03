@@ -52,8 +52,30 @@ class User extends Authenticatable
 		return null !== $this->roles()->where('name', $role)->first();
 	}
 
+	public function tasks(){
+		return $this->belongsToMany('App\Task')
+			->withPivot('level')
+			->withTimestamps();
+	}
+	
+	public function hasAnyTasks($tasks){
+		return null !== $this->tasks()->whereIn('name', $tasks)->first();
+	}
+
+	public function hasAnyTask($task){
+		return null !== $this->tasks()->where('name', $task)->first();
+	}
+
 	public function calendarEntry() {
 		return $this->hasMany('App\CalendarEntry');
+	}
+
+	public function issueComments() {
+		return $this->hasMany('App\IssueComment');
+	}
+
+	public function issues() {
+		return $this->hasMany('App\Issue');
 	}
 
 }
