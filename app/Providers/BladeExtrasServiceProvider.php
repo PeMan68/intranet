@@ -37,6 +37,17 @@ class BladeExtrasServiceProvider extends ServiceProvider
 			return false;
 		});
 		
+		Blade::if('hasroles', function($expression){
+			
+			if(Auth::user()){
+				if(Auth::user()->hasAnyRoles($expression)){
+					return true;
+				}
+			}
+			
+			return false;
+		});
+		
 		Blade::if('impersonate', function(){
 			if(session()->get('impersonate')){
 				return true;
