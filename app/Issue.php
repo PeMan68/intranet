@@ -49,4 +49,19 @@ class Issue extends Model
 	public function task() {
 		return $this->belongsTo('App\Task');
 	}
+	
+	public function scopeFilter($query, $filter)
+	{
+		if (isset($filter)){
+			$query->where('customer', 'LIKE', '%' . $filter . '%')
+					->orWhere('customerNumber', 'LIKE', '%' . $filter . '%')
+					->orWhere('customerMail', 'LIKE', '%' . $filter . '%')
+					->orWhere('customerTel', 'LIKE', '%' . $filter . '%')
+					->orWhere('customerName', 'LIKE', '%' . $filter . '%')
+					->orWhere('description', 'LIKE', '%' . $filter . '%')
+					->orWhere('descriptionInternal', 'LIKE', '%' . $filter . '%')
+			;
+		}
+		return $query;
+	}
 }

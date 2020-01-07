@@ -18,12 +18,14 @@ $(document).ready(function($) {
 		<h3>Mina ärenden</h3>
 	</div>
 		<div class="col-6">	
-				<form class="form-inline float-right">
+				<form class="form-inline float-right" method="POST" action="issues">
+					@method('GET')
+					@csrf
 					<div class="input-group">
-					<input type=text class="form-control" placeholder="Sök...">
-						<div class="input-group-append">
+						<div class="input-group-prepend">
 						<span class="input-group-text"><i class="material-icons">search</i></span>
-					</div>		
+						</div>		
+						<input type=text class="form-control" name="search" placeholder="Sök...">
 					</div>		
 				</form>
 	</div>
@@ -37,7 +39,6 @@ $(document).ready(function($) {
 					<th>#</th>
 					<th>Skapad</th>
 					<th>Område</th>
-					<th>Level</th>
 					<th>Kund</th>
 					<th>Namn</th>
 					<th>Beskrivning</th>
@@ -49,7 +50,6 @@ $(document).ready(function($) {
 					<td>{{$issue->id}}</td>
 					<td>{{date('Y-m-d H:i',strtotime($issue->created_at))}}</td>
 					<td>{{$issue->task->name ?? '#saknas'}}</td>
-					<td></td>
 					<td>{{$issue->customer}}</td>
 					<td>{{$issue->customerName}}</td>
 					<td class="d-inline-block text-truncate stretched-link" style="max-width: 300px;" data-toggle="tooltip" title="{{$issue->description }}">{{$issue->description}}</td>

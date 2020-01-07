@@ -22,17 +22,19 @@ class IssuesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 		check_in_issues();
 		
 		// cleanup task_user table for current user
 		$tasks = Task::all();
 		Auth::user()->tasks()->sync($tasks);
-
+		
+		$filters = $request->search;
 		// list open issues
 		// sort by level, timeEstimated Callback
-		$issues = Issue::whereNull('timeClosed')
+		$issues = Issue::filter($filters)
+					->whereNull('timeClosed')
 					->orderBy('timeEstimatedCallback')
 					->paginate(20);
 		return view('issues.index',compact('issues',$issues));
