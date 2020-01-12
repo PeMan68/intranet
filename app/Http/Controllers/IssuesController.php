@@ -37,7 +37,7 @@ class IssuesController extends Controller
 					->whereNull('timeClosed')
 					->orderBy('timeEstimatedCallback')
 					->paginate(20);
-		return view('issues.index',compact('issues',$issues));
+		return view('issues.index',compact('issues',$issues),['filter' => $filters]);
     }
 
     /**

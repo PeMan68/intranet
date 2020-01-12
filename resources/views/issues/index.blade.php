@@ -16,7 +16,7 @@ $(document).ready(function($) {
 		<div class="row">
 		<div class="col-6">	
 		<h3>Mina ärenden</h3>
-	</div>
+		</div>
 		<div class="col-6">	
 				<form class="form-inline float-right" method="POST" action="issues">
 					@method('GET')
@@ -25,7 +25,7 @@ $(document).ready(function($) {
 						<div class="input-group-prepend">
 						<span class="input-group-text"><i class="material-icons">search</i></span>
 						</div>		
-						<input type=text class="form-control" name="search" placeholder="Sök...">
+						<input type=text class="form-control" name="search" placeholder="Sök..." value="{{$filter}}">
 					</div>		
 				</form>
 	</div>
