@@ -101,6 +101,7 @@
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="{{ route('visitors.index') }}">Besökare</a>
 							@hasrole('superadmin')
+								<a class="dropdown-item" href="{{ url('/admin/settings/')}}">Inställningar</a>
 								<a class="dropdown-item" href="{{ url('/admin/tasks/')}}">Hantera ärenden</a>
 								<a class="dropdown-item" href="{{ route('admin.users.index')}}">Hantera användare</a>
 								<a class="dropdown-item" href="{{ route('admin.images.create')}}">Lägg till fil till receptionsskärm</a>
