@@ -37,7 +37,6 @@ $(document).ready(function($) {
 			<thead class="thead-light">
 				<tr>
 					<th>#</th>
-					<th>Skapad</th>
 					@hasrole ('superadmin')
 					<th>Level</th>
 					@endhasrole
@@ -51,10 +50,9 @@ $(document).ready(function($) {
 			<tbody>
 			@foreach($issues as $issue)
 				<tr class="table-row" data-href="{{ URL::to('issues/' . $issue->id) }}">
-					<td>{{$issue->id}}</td>
-					<td>{{date('Y-m-d H:i',strtotime($issue->created_at))}}</td>
+					<td>{{$issue->ticketNumber}}</td>
 					@hasrole('superadmin')
-					<td>{{$issue->calculated_prio }}</td>
+					<td>{{ (int)$issue->calculated_prio }}</td>
 					@endhasrole
 					<td>{{$issue->task->name ?? '#saknas'}}</td>
 					<td class="text-right"> 

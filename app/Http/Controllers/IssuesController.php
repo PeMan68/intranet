@@ -77,6 +77,7 @@ class IssuesController extends Controller
 		}
 		$validatedData['timeEstimatedcallback'] = date('Y-m-d H:i', strtotime(sprintf("+%d hours", $hours)));
 		$validatedData['vip'] = $request->has('vip');
+		$validatedData['ticketNumber'] = Auth::id() . '-' . date('mdHi');
         $issue = Issue::create($validatedData);
 		Mail::to('per.manholm@gmail.com')->send(new issueCreated($issue));
         if ($request->has('save')) {

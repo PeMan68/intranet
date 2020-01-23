@@ -33,6 +33,7 @@ class Issue extends Model
 		'timeEstimatedcallback',
 		'timeCustomercallback',
 		'prio',
+		'ticketNumber',
     ];
 	
 	public function userCreate() {

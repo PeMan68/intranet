@@ -15,7 +15,7 @@ $(document).ready(function(){
 
 @section('content')
 <div class="card">
-	<div class="card-header h3">Ärende #{{ $issue->id }}
+	<div class="card-header h3">Ärende {{ $issue->ticketNumber }}
 	</div>
 
 	<div class="card-body">
