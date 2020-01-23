@@ -40,6 +40,7 @@ $(document).ready(function($) {
 					<th>Skapad</th>
 					<th>Level</th>
 					<th>Område</th>
+					<th></th>
 					<th>Kund</th>
 					<th>Namn</th>
 					<th>Beskrivning</th>
@@ -49,9 +50,13 @@ $(document).ready(function($) {
 			@foreach($issues as $issue)
 				<tr class="table-row" data-href="{{ URL::to('issues/' . $issue->id) }}">
 					<td>{{$issue->id}}</td>
-					<td>{{$issue->calculated_prio }}</td>
 					<td>{{date('Y-m-d H:i',strtotime($issue->created_at))}}</td>
+					<td>{{$issue->calculated_prio }}</td>
 					<td>{{$issue->task->name ?? '#saknas'}}</td>
+					<td class="text-right"> 
+						@if ($issue->prio == "3") <i class="material-icons" data-toggle="tooltip" title="Hög prio">grade</i> @endif 
+						@if ($issue->vip == "1") <i class="material-icons" data-toggle="tooltip" title="VIP">favorite</i> @endif 
+					</td>
 					<td>{{$issue->customer}}</td>
 					<td>{{$issue->customerName}}</td>
 					<td class="d-inline-block text-truncate stretched-link" style="max-width: 300px;" data-toggle="tooltip" title="{{$issue->description }}">{{$issue->description}}</td>
