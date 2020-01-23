@@ -126,11 +126,7 @@ class IssuesController extends Controller
      */
     public function edit(Issue $issue)
     {
-        dd('edit.issuesController');
-		$areas = Area::all();
-        $tasks = Task::all();
-		$users = User::where('active', 1)->get();
-       return view('issues.edit')->with(['issue' => $issue, 'areas' => $areas, 'tasks' => $tasks, 'users' => $users]);
+		//
     }
 
     /**

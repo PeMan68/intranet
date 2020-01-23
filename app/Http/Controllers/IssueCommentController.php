@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\IssueComment;
+use App\Issue;
 use Illuminate\Http\Request;
 
 class IssueCommentController extends Controller
@@ -74,6 +75,14 @@ class IssueCommentController extends Controller
 			'comment_internal' => $request->comment_internal,
 			'comment_external' => $request->comment_external,
 		]);
+        if ($request->has('saveAndClose')) {
+			$validatedData['timeClosed'] = date('Y-m-d H:i:s');
+			Issue::whereId($issuecomment->issue_id)->update([
+			'timeClosed' => date('Y-m-d H:i')
+			]);
+			return redirect('/issues');
+			
+		}
 		return redirect('/issues/'.$issuecomment->issue_id);
 		
    }

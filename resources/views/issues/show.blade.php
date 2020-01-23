@@ -134,6 +134,9 @@ $(document).ready(function(){
 				<button type="submit" class="btn btn-primary mr-2" name="save">
 					Spara  kommentar
 				</button>
+				<button type="submit" class="btn btn-success mr-2" name="saveAndClose">
+					Spara  och avsluta ärende
+				</button>
 			</td>
 		</tr>
 		</form>
