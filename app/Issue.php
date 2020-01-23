@@ -81,6 +81,12 @@ class Issue extends Model
 		if ($this->taskPersonal_id == Auth::id()) {
 			$prio *=2;
 		}
+		if ($this->waitingForReply) {
+			$prio /=10;
+		}
+		if ($this->paused) {
+			$prio /=10;
+		}
 		$hours = (strtotime($this->timeEstimatedcallback)-strtotime(date('Y-m-d H:i:s'))) / 3600;
 		if (abs($hours) == $hours) {
 			//future

@@ -56,9 +56,21 @@ $(document).ready(function($) {
 					@endhasrole
 					<td>{{$issue->task->name ?? '#saknas'}}</td>
 					<td class="text-right"> 
-						@if ($issue->prio == "2") <i class="material-icons" data-toggle="tooltip" title="Hög prio">grade</i> @endif 
-						@if ($issue->vip == "1") <i class="material-icons" data-toggle="tooltip" title="VIP">favorite</i> @endif 
-						@if ($issue->taskPersonal_id == Auth::id()) <i class="material-icons" data-toggle="tooltip" title="Personligt ärende">face</i> @endif 
+						@if ($issue->prio == "2") 
+							<i class="material-icons" data-toggle="tooltip" title="Hög prio">grade</i> 
+						@endif 
+						@if ($issue->vip == "1") 
+							<i class="material-icons" data-toggle="tooltip" title="VIP">favorite</i> 
+						@endif 
+						@if ($issue->taskPersonal_id == Auth::id()) 
+							<i class="material-icons" data-toggle="tooltip" title="Personligt ärende">face</i> 
+						@endif 
+						@if ($issue->waitingForReply == "1") 
+							<i class="material-icons" data-toggle="tooltip" title="Väntar på svar">snooze</i> 
+						@endif 
+						@if ($issue->paused == "1") 
+							<i class="material-icons" data-toggle="tooltip" title="Pausat ärende">pause_circle_filled</i> 
+						@endif 
 					</td>
 					<td>{{$issue->customer}}</td>
 					<td>{{$issue->customerName}}</td>
