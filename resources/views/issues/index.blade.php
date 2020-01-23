@@ -38,6 +38,7 @@ $(document).ready(function($) {
 				<tr>
 					<th>#</th>
 					<th>Skapad</th>
+					<th>Level</th>
 					<th>Område</th>
 					<th>Kund</th>
 					<th>Namn</th>
@@ -48,6 +49,7 @@ $(document).ready(function($) {
 			@foreach($issues as $issue)
 				<tr class="table-row" data-href="{{ URL::to('issues/' . $issue->id) }}">
 					<td>{{$issue->id}}</td>
+					<td>{{$issue->calculated_prio }}</td>
 					<td>{{date('Y-m-d H:i',strtotime($issue->created_at))}}</td>
 					<td>{{$issue->task->name ?? '#saknas'}}</td>
 					<td>{{$issue->customer}}</td>
@@ -57,7 +59,6 @@ $(document).ready(function($) {
 			@endforeach
 			</tbody>
 		</table>
-		{{ $issues->links() }}
 	</div>
 </div>
 @endsection

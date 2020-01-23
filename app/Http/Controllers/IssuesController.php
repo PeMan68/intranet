@@ -35,8 +35,9 @@ class IssuesController extends Controller
 		// sort by level, timeEstimated Callback
 		$issues = Issue::filter($filters)
 					->whereNull('timeClosed')
-					->orderBy('timeEstimatedCallback')
-					->paginate(20);
+					->get()
+					->sortBy('calculated_prio')
+					;
 		return view('issues.index',compact('issues',$issues),['filter' => $filters]);
     }
 
@@ -64,11 +65,16 @@ class IssuesController extends Controller
      */
     public function store(StoreIssue $request)
     {
-        $validatedData = $request->validated();
+		$validatedData = $request->validated();
 		$validatedData['userCreate_id'] = Auth::id();
 		$validatedData['timeInit'] = $request->timeInit;
-		$prio = Task::find($request->task_id)->prio_id;
-		$hours = Priority::find($prio)->hours;
+		if ($request->has('urgent')) {
+			$hours = 0;
+		} else {
+			// get $hours according to priority-table for this task
+			$prio = Task::find($request->task_id)->prio_id;
+			$hours = Priority::find($prio)->hours;
+		}
 		$validatedData['timeEstimatedcallback'] = date('Y-m-d H:i', strtotime(sprintf("+%d hours", $hours)));
 		$validatedData['vip'] = $request->has('vip');
         $issue = Issue::create($validatedData);

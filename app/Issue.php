@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Issue extends Model
@@ -31,7 +31,8 @@ class Issue extends Model
 		'timeClosed',
 		'timeInit',
 		'timeEstimatedcallback',
-		'timeCustomercallback'
+		'timeCustomercallback',
+		'prio',
     ];
 	
 	public function userCreate() {
@@ -63,5 +64,26 @@ class Issue extends Model
 			;
 		}
 		return $query;
+	}
+	
+	public function getCalculatedPrioAttribute()
+	{
+		$level = 0;
+		if (!is_null(Auth::user()->tasks()->find($this->task_id)))
+		{
+			$level = Auth::user()->tasks()->find($this->task_id)->pivot->level;
+		}
+		$prio = ($level +1) * $this->prio;
+		if ($this->vip) {
+			$prio *= 4; 
+		}
+		$hours = (strtotime($this->timeEstimatedcallback)-strtotime(date('Y-m-d H:i:s'))) / 3600;
+		if (abs($hours) == $hours) {
+			//future
+			$prio /= $hours;
+		} else {
+			$prio *= $hours;
+		}
+		return $prio;
 	}
 }
