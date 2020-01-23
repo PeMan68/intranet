@@ -71,9 +71,17 @@ $(document).ready(function(){
 				
 			<div class="row">
 				<div class="col-md-6">
-					<div class="form-check">
+					<div class="form-check form-check-inline">
 						<input type="checkbox" class="form-check-input" id="vip" name="vip" value="1" {{ $issue->vip == "1" ? 'checked' : ''}}>
-						<label for="vip" class="font-weight-bold">VIP-kund</label>
+						<label for="vip" class="font-weight-bold m-0">VIP-kund</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input type="radio" class="form-check-input" id="prio1" name="prio" value="1" {{ $issue->prio == "1" ? 'checked' : ''}}>
+						<label for="prio1" class="font-weight-bold m-0">Prioritet Normal</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input type="radio" class="form-check-input" id="prio2" name="prio" value="2" {{ $issue->prio == "2" ? 'checked' : ''}}>
+						<label for="prio2" class="font-weight-bold m-0">Prioritet Hög</label>
 					</div>
 				</div>
 			</div>
@@ -91,12 +99,12 @@ $(document).ready(function(){
 		</form>
 	</div>
 	<strong>Händelselogg</strong>
-	<table class="table table-sm table-bordered">
+	<table class="table-responsive table-sm table-bordered">
 	@if($comments->count())
 		<thead>
-			<th>Tidpunkt</th>
-			<th>Anteckning</th>
-			<th>Meddelanden till kund</th>
+			<th width="20%">Tidpunkt</th>
+			<th width="40%">Anteckning</th>
+			<th width="40%">Meddelanden till kund</th>
 		</thead>
 	@foreach($comments as $comment)
 		<tr>
@@ -124,7 +132,7 @@ $(document).ready(function(){
 			</td>	
 			<td>
 				<textarea class="form-control" id="comment_external" name="comment_external" rows="3">{{ old('comment_external') }}</textarea>
-				<small class="text-muted">Detta skickas till angiven e-postadress</small>
+				<small class="text-muted">(Detta fält kommer skickas till kunds e-postadress i kommande version)</small>
 			</td>	
 		</tr>
 		<tr>

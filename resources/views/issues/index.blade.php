@@ -56,7 +56,7 @@ $(document).ready(function($) {
 					@endhasrole
 					<td>{{$issue->task->name ?? '#saknas'}}</td>
 					<td class="text-right"> 
-						@if ($issue->prio == "3") <i class="material-icons" data-toggle="tooltip" title="Hög prio">grade</i> @endif 
+						@if ($issue->prio == "2") <i class="material-icons" data-toggle="tooltip" title="Hög prio">grade</i> @endif 
 						@if ($issue->vip == "1") <i class="material-icons" data-toggle="tooltip" title="VIP">favorite</i> @endif 
 					</td>
 					<td>{{$issue->customer}}</td>
