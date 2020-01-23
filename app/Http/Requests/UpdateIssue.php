@@ -26,8 +26,8 @@ class UpdateIssue extends FormRequest
         return [
             'taskPersonal_id' => 'required',
             'task_id' => 'required|alpha_num',
-			'customerName' => 'required',
-			'customerTel' => 'required',
+			'customerName' => 'nullable',
+			'customerTel' => 'nullable',
 			'description' => 'required',
 			'customer' => 'nullable',
 			'customerNumber' => 'nullable',
