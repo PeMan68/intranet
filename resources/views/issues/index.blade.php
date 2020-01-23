@@ -38,7 +38,9 @@ $(document).ready(function($) {
 				<tr>
 					<th>#</th>
 					<th>Skapad</th>
+					@hasrole ('superadmin')
 					<th>Level</th>
+					@endhasrole
 					<th>Område</th>
 					<th></th>
 					<th>Kund</th>
@@ -51,7 +53,9 @@ $(document).ready(function($) {
 				<tr class="table-row" data-href="{{ URL::to('issues/' . $issue->id) }}">
 					<td>{{$issue->id}}</td>
 					<td>{{date('Y-m-d H:i',strtotime($issue->created_at))}}</td>
+					@hasrole('superadmin')
 					<td>{{$issue->calculated_prio }}</td>
+					@endhasrole
 					<td>{{$issue->task->name ?? '#saknas'}}</td>
 					<td class="text-right"> 
 						@if ($issue->prio == "3") <i class="material-icons" data-toggle="tooltip" title="Hög prio">grade</i> @endif 
