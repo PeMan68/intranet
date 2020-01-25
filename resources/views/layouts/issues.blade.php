@@ -30,11 +30,10 @@
 
 
         <main class="container-fluid">
-			<div class="row">
+			<div class="row h-100">
 				<div class="col-md-2 bg-dark">
-					<nav class="nav flex-column">
-						<a class="nav-link" href="{{ url('/issues/create/') }}">Nytt ärende</a>
-						<a class="nav-link" href="{{ url('/issues/') }}">Mina ärenden</a>
+					<nav class="nav flex-column" >
+						@yield('nav-left')
 					</nav>
 				</div>
 				<div class="col-md-10 p-3">
