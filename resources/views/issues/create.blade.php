@@ -1,5 +1,10 @@
 @extends('layouts.issues')
 
+@section('nav-left')
+	<a class="nav-link" href="{{ url('/issues/create/') }}">Nytt ärende</a>
+	<a class="nav-link" href="{{ url('/issues/') }}">Mina ärenden</a>
+@endsection
+
 @section('content')
 <div class="card">
 	<div class="card-header h3">Nytt ärende</div>
@@ -37,11 +42,11 @@
 
 							<div class="font-weight-bold">Påverka prioritet</div>
 							<div class="form-check">
-								<input type="radio" class="form-check-input" id="issuePrio1" name="prio" value="1" {{ old('prio') == "1" ? 'checked' : '' }}>
+								<input type="radio" class="form-check-input" id="issuePrio1" name="prio" value="1" {{ old('prio') == "1" ? 'checked' : !old() ? 'checked' : '' }}>
 								<label for="issuePrio1">Normal prioritet</label>
 							</div>
 							<div class="form-check">
-								<input type="radio" class="form-check-input" id="issuePrio2" name="prio" value="2" {{ old('prio') == "2" ? 'checked' : !old() ? 'checked' : '' }}>
+								<input type="radio" class="form-check-input" id="issuePrio2" name="prio" value="2" {{ old('prio') == "2" ? 'checked' : '' }}>
 								<label for="issuePrio2">Hög prioritet</label>
 							</div>
 							<div class="form-check pt-4">

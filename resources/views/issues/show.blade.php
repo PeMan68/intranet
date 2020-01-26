@@ -1,5 +1,10 @@
 @extends('layouts.issues')
 
+@section('nav-left')
+	<a class="nav-link" href="{{ url('/issues/create/') }}">Nytt ärende</a>
+	<a class="nav-link" href="{{ url('/issues/') }}">Mina ärenden</a>
+@endsection
+
 @section('scriptsHead')
 <script>
 $(document).ready(function(){

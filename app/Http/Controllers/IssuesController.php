@@ -77,7 +77,8 @@ class IssuesController extends Controller
 		}
 		$validatedData['timeEstimatedcallback'] = date('Y-m-d H:i', strtotime(sprintf("+%d hours", $hours)));
 		$validatedData['vip'] = $request->has('vip');
-		$validatedData['ticketNumber'] = Auth::id() . '-' . date('mdHi');
+		//build ticketnumber, S+year+number of issues currentyear.
+		$validatedData['ticketNumber'] = 'S-' . date('y') . sprintf('%02d',Issue::whereYear('created_at', date('Y'))->count() +1);
         $issue = Issue::create($validatedData);
 		Mail::to('per.manholm@gmail.com')->send(new issueCreated($issue));
         if ($request->has('save')) {
@@ -142,7 +143,6 @@ class IssuesController extends Controller
         if ($request->has('cancel')) {
 			return redirect('/issues/'.$issue->id);
 		}
-		
 		//Validate
         $validatedData = $request->validated();
 		$validatedData['vip'] = $request->has('vip');

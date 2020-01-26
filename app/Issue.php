@@ -36,6 +36,11 @@ class Issue extends Model
 		'ticketNumber',
     ];
 	
+	public function namePersonalTask(){
+		if($this->taskPersonal_id<>0) {
+			return $this->belongsTo('App\User','taskPersonal_id');
+		}
+	}
 	public function userCreate() {
 		return $this->belongsTo('App\User','userCreate_id');
 	}

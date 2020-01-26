@@ -33,6 +33,7 @@ class UpdateIssue extends FormRequest
 			'customerNumber' => 'nullable',
 			'customerMail' => 'nullable|email:rfc',
 			'vip' => 'nullable',
+			'prio' => 'nullable',
 			'descriptionInternal' => 'nullable',
 			'waitingForReply' => 'nullable',
         ];

@@ -67,8 +67,8 @@ $(document).ready(function($) {
 						@if ($issue->vip == "1") 
 							<i class="material-icons" data-toggle="tooltip" title="VIP">favorite</i> 
 						@endif 
-						@if ($issue->taskPersonal_id == Auth::id()) 
-							<i class="material-icons" data-toggle="tooltip" title="Personligt ärende">face</i> 
+						@if ($issue->taskPersonal_id <> 0) 
+							<i class="material-icons" data-toggle="tooltip" title="Personligt ärende för {{ $issue->namePersonalTask->name }} {{ $issue->namePersonalTask->surname }}">face</i> 
 						@endif 
 						@if ($issue->waitingForReply == "1") 
 							<i class="material-icons" data-toggle="tooltip" title="Väntar på svar">snooze</i> 
