@@ -27,7 +27,7 @@ class StoreIssue extends FormRequest
             'taskPersonal_id' => 'required',
             'task_id' => 'required',
 			'customerName' => 'nullable',
-			'customerTel' => 'nullable',
+			'customerTel' => 'required_with:customerName',
 			'description' => 'required',
 			'customer' => 'nullable',
 			'customerNumber' => 'nullable',
@@ -50,7 +50,7 @@ class StoreIssue extends FormRequest
 			'task_id.required' => 'Välj område',
 			'description.required' => 'Formell beskrivning är obligatorisk',
 			'customerName.required' => 'Kontaktperson är obligatorisk',
-			'customerTel.required' => 'Telefonnummer är obligatoriskt',
+			'customerTel.required_with' => 'Ange telefonnummer till  kontaktpersonen',
 			'taskPersonal_id.required' => 'Fyll i om ärendet är personligt eller ej',
 			'customerMail.email' => 'Email-adressen är ogiltig',
 		];

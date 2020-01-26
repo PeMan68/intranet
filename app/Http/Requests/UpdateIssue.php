@@ -25,13 +25,14 @@ class UpdateIssue extends FormRequest
     {
         return [
             'taskPersonal_id' => 'required',
-            'task_id' => 'required|alpha_num',
+            'task_id' => 'required',
 			'customerName' => 'nullable',
-			'customerTel' => 'nullable',
+			'customerTel' => 'required_with:customerName',
 			'description' => 'required',
 			'customer' => 'nullable',
 			'customerNumber' => 'nullable',
 			'customerMail' => 'nullable|email:rfc',
+			'descriptionInternal' => 'nullable',
 			'vip' => 'nullable',
 			'prio' => 'nullable',
 			'descriptionInternal' => 'nullable',
@@ -51,7 +52,7 @@ class UpdateIssue extends FormRequest
 			'task_id.alpha_num' => 'Välj område',
 			'description.required' => 'Formell beskrivning är obligatorisk',
 			'customerName.required' => 'Kontaktperson är obligatorisk',
-			'customerTel.required' => 'Telefonnummer är obligatoriskt',
+			'customerTel.required_with' => 'Ange telefonnummer till kontaktpersonen',
 			'taskPersonal_id.required' => 'Fyll i om ärendet är personligt eller ej',
 			'customerMail.email' => 'Email-adressen är ogiltig',
 		];
