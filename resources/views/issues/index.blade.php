@@ -19,8 +19,12 @@ $(document).ready(function($) {
 <div class="card">
 	<div class="card-header">
 		<div class="row">
-		<div class="col-6">	
-		<h3>Mina ärenden</h3>
+		<div class="col-6">
+		@if (isset($filter))		
+			<h3>Alla ärenden, sökning "{{ $filter }}"</h3>
+		@else	
+			<h3>Mina ärenden, sorterade efter prioritet</h3>
+		@endif
 		</div>
 		<div class="col-6">	
 				<form class="form-inline float-right" method="POST" action="issues">
@@ -55,7 +59,7 @@ $(document).ready(function($) {
 			<tbody>
 			@foreach($issues as $issue)
 				<tr class="table-row" data-href="{{ URL::to('issues/' . $issue->id) }}">
-					<td>{{$issue->ticketNumber}}</td>
+					<td data-toggle="tooltip" title="Skapat {{ $issue->timeInit }}">{{$issue->ticketNumber}}</td>
 					@hasrole('superadmin')
 					<td>{{ (int)$issue->calculated_prio }}</td>
 					@endhasrole

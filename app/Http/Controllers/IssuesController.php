@@ -31,6 +31,14 @@ class IssuesController extends Controller
 		Auth::user()->tasks()->sync($tasks);
 		
 		$filters = $request->search;
+		if (isset($filters)) { 
+		// list all issues matching $filter
+		// 
+		$issues = Issue::filter($filters)
+					->get()
+					;
+			
+		} else {
 		// list open issues
 		// sort by level, timeEstimated Callback
 		$issues = Issue::filter($filters)
@@ -38,6 +46,7 @@ class IssuesController extends Controller
 					->get()
 					->sortBy('calculated_prio')
 					;
+		}
 		return view('issues.index',compact('issues',$issues),['filter' => $filters]);
     }
 
