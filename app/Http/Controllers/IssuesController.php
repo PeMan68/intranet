@@ -87,9 +87,17 @@ class IssuesController extends Controller
 		$validatedData['timeEstimatedcallback'] = date('Y-m-d H:i', strtotime(sprintf("+%d hours", $hours)));
 		$validatedData['vip'] = $request->has('vip');
 		//build ticketnumber, S+year+number of issues currentyear.
-		$validatedData['ticketNumber'] = 'S-' . date('y') . sprintf('%02d',Issue::whereYear('created_at', date('Y'))->count() +1);
+		$validatedData['ticketNumber'] = 'S-' . date('y') . sprintf('%03d',Issue::whereYear('created_at', date('Y'))->count() +1);
         $issue = Issue::create($validatedData);
-		Mail::to('per.manholm@gmail.com')->send(new issueCreated($issue));
+		$task = Task::find($request->task_id);
+		//dd($task);
+		foreach ($task->users as $user) {
+			if ($user->pivot->level == 3){
+				Mail::to($user->email)->send(new issueCreated($issue));
+				
+			}
+		}
+		
         if ($request->has('save')) {
 			return redirect('/issues');
 		}

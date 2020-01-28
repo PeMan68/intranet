@@ -3,24 +3,24 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+	
 </head>
 <body>
-    <div>
-		<div>
-			Nytt ärende
-		</div>
+	<span style='font-size: 0.8em; font-family: Verdana,Arial,sans-serif'>
+		<p>
+			<a href="{{ url('/issues/'.$issue->id) }}">Öppna ärende</a>
+		</p>
 		<table>
 			<tr>
-				<td>Typ: </td>
+				<td><b>Typ:</b> </td>
 				<td>{{ $issue->task->name }}</td>
 			</tr>
 			<tr>
-				<td>Skapat: </td>
+				<td><b>Skapat:</b> </td>
 				<td>{{ date('Y-m-d H:i', strtotime($issue->created_at)) }}</td>
 			</tr>
 			<tr>
-				<td>Skapat av: </td>
+				<td><b>Skapat av:</b> </td>
 				<td>{{ $issue->userCreate->name . ' ' . 
 					$issue->userCreate->surname }}</td>
 			</tr>
@@ -28,35 +28,32 @@
 		<hr>
 		<table>
 			<tr>
-				<td>Kund:</td><td>{{ $issue->customer }}</td>
+				<td><b>Kund:</b></td><td>{{ $issue->customer }}</td>
 			</tr>
 			<tr>
-				<td>Kundnummer:</td><td>{{ $issue->customerNumber }}</td>
+				<td><b>Kundnummer:</b></td><td>{{ $issue->customerNumber }}</td>
 			</tr>
 			<tr>
-				<td>Namn:</td><td>{{ $issue->customerName }}</td>
+				<td><b>Namn:</b></td><td>{{ $issue->customerName }}</td>
 			</tr>
 			<tr>
-				<td>Telefon:</td><td>{{ $issue->customerTel }}</td>
+				<td><b>Telefon:</b></td><td>{{ $issue->customerTel }}</td>
 			</tr>
 			<tr>
-				<td>Mail:</td><td>{{ $issue->customerMail }}</td>
+				<td><b>Mail:</b></td><td>{{ $issue->customerMail }}</td>
 			</tr>
 		</table>
 		<hr>
-		<div>
-		Ärende:<br>
+		<p>
+		<b>Ärende:</b><br>
 		{{ $issue->description }}
 		<br>
-		</div>
-		<div>
-		Intern kommentar:<br>
+		</p>
+		<p>
+		<b>Intern kommentar:</b><br>
 		{{ $issue->descriptionInternal }}
-		</div>
-		<div>
-			Öppna <a href="{{ url('/issues/'.$issue->id) }}">ärende</a>
-		</div>
+		</p>
 		
-    </div>
+    </span>
 </body>
 </html>
