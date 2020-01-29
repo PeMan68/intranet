@@ -75,6 +75,8 @@ class IssueCommentController extends Controller
 			'comment_internal' => $request->comment_internal,
 			'comment_external' => $request->comment_external,
 		]);
+		//Send mail to Staff who has commented earlier
+		
         if ($request->has('saveAndClose')) {
 			$validatedData['timeClosed'] = date('Y-m-d H:i:s');
 			Issue::whereId($issuecomment->issue_id)->update([
