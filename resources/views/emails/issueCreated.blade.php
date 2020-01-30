@@ -24,9 +24,7 @@
 				<td>{{ $issue->userCreate->name . ' ' . 
 					$issue->userCreate->surname }}</td>
 			</tr>
-		<table>
-		<hr>
-		<table>
+			<tr><td>&nbsp;</td></tr>
 			<tr>
 				<td><b>Kund:</b></td><td>{{ $issue->customer }}</td>
 			</tr>
@@ -43,15 +41,14 @@
 				<td><b>Mail:</b></td><td>{{ $issue->customerMail }}</td>
 			</tr>
 		</table>
-		<hr>
 		<p>
-		<b>Ärende:</b><br>
-		{{ $issue->description }}
+		<b>Ärendebeskrivning:</b><br>
+		{!! nl2br(e($issue->description)) !!}
 		<br>
 		</p>
 		<p>
-		<b>Intern kommentar:</b><br>
-		{{ $issue->descriptionInternal }}
+		<b>Intern anteckning:</b><br>
+		{!! nl2br(e($issue->descriptionInternal)) !!}
 		</p>
 		
     </span>

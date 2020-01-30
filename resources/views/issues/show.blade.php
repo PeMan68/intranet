@@ -119,8 +119,8 @@ $(document).ready(function(){
 			<td> {{ date('Y-m-d H:i', strtotime($comment->checkin)) }}
 			<br>
 			{{ $comment->user->name . ' ' . $comment->user->surname }} </td>
-			<td> {{ $comment->comment_internal }} </td>
-			<td> {{ $comment->comment_external }} </td>
+			<td> {!! nl2br(e($comment->comment_internal)) !!} </td>
+			<td> {!! nl2br(e($comment->comment_external)) !!} </td>
 			</form>
 		</tr>
 	@endforeach

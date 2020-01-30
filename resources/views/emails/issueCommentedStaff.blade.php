@@ -24,9 +24,7 @@
 				<td>{{ $issue->userCreate->name . ' ' . 
 					$issue->userCreate->surname }}</td>
 			</tr>
-		<table>
-		<hr>
-		<table>
+			<tr><td>&nbsp;</td></tr>
 			<tr>
 				<td><b>Kund:</b></td><td>{{ $issue->customer }}</td>
 			</tr>
@@ -43,44 +41,32 @@
 				<td><b>Mail:</b></td><td>{{ $issue->customerMail }}</td>
 			</tr>
 		</table>
-		<hr>
 		<p>
-		<b>Ärende:</b><br>
-		{{ $issue->description }}
+		<b>Ärendebeskrivning:</b><br>
+		{!! nl2br(e($issue->description)) !!}
 		<br>
 		</p>
 		<p>
-		<b>Intern kommentar:</b><br>
-		{{ $issue->descriptionInternal }}
+		<b>Intern anteckning:</b><br>
+		{!! nl2br(e($issue->descriptionInternal)) !!}
 		</p>
-		<hr>
-		<table>
-			<tr>
-				<td><b>Kund:</b></td><td>{{ $issue->customer }}</td>
-			</tr>
-			<tr>
-				<td><b>Kundnummer:</b></td><td>{{ $issue->customerNumber }}</td>
-			</tr>
-			<tr>
-				<td><b>Namn:</b></td><td>{{ $issue->customerName }}</td>
-			</tr>
-			<tr>
-				<td><b>Telefon:</b></td><td>{{ $issue->customerTel }}</td>
-			</tr>
-			<tr>
-				<td><b>Mail:</b></td><td>{{ $issue->customerMail }}</td>
-			</tr>
-		</table>
-	@foreach($comments as $comment)
-		<tr>
-			<td> {{ date('Y-m-d H:i', strtotime($comment->checkin)) }}
-			<br>
-			{{ $comment->user->name . ' ' . $comment->user->surname }} </td>
-			<td> {{ $comment->comment_internal }} </td>
-			<td> {{ $comment->comment_external }} </td>
-			</form>
-		</tr>
-	@endforeach
+		<b>Händelselogg</b>
+		@foreach($issue->issueComments as $comment)
+			@if (isset($comment->comment_internal))
+			<hr>
+				{{ date('Y-m-d H:i', strtotime($comment->checkin))  
+				.' '. $comment->user->name . ' ' . $comment->user->surname }} 
+				<i>(Intern kommentar)</i><br>
+				{!! nl2br(e($comment->comment_internal)) !!}
+			@endif
+			@if (isset($comment->comment_external))
+			<hr>
+				{{ date('Y-m-d H:i', strtotime($comment->checkin))  
+				.' '. $comment->user->name . ' ' . $comment->user->surname }} 
+				<i>(Meddelande skickat till kund)</i><br>
+				{!! nl2br(e($comment->comment_external)) !!} 
+			@endif
+		@endforeach
 		
     </span>
 </body>

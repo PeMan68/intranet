@@ -24,10 +24,10 @@ class IssueCommentedStaff extends Mailable
      *
      * @return void
      */
-    public function __construct(Issue $issue, IssueComment $comment)
+    public function __construct(Issue $issue)
     {
         $this->issue = $issue;
-		$this->comment = $comment;
+		//$this->comments = $comment;
     }
 
     /**
@@ -37,7 +37,7 @@ class IssueCommentedStaff extends Mailable
      */
     public function build()
     {
-        return $this->subject('Ny kommentar i ärende du föler')
+        return $this->subject('Ny kommentar i ett ärende du följer')
 					->view('emails.issueCommentedStaff');
     }
 }
