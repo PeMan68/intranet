@@ -76,7 +76,7 @@ class IssueCommentController extends Controller
 			'comment_internal' => $request->comment_internal,
 			'comment_external' => $request->comment_external,
 		]);
-		//Send mail to Staff who is following
+		//Send mail to staff who is following
 		event(new NewIssueComment($issuecomment));
         if ($request->has('saveAndClose')) {
 			$validatedData['timeClosed'] = date('Y-m-d H:i:s');

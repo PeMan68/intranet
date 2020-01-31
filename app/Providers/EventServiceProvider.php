@@ -21,6 +21,10 @@ class EventServiceProvider extends ServiceProvider
 		'App\Events\NewIssueComment' => [
 			'App\Listeners\SendEmailToSubscribers',
 		],
+		'App\Events\NewIssue' => [
+			'App\Listeners\SendEmailToResponsible',
+			'App\Listeners\SendEmailToCustomer',
+		],
     ];
 
     /**

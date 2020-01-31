@@ -14,6 +14,7 @@ use App\Http\Requests\UpdateIssue;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\IssueCreated;
 use Illuminate\Support\Facades\Mail;
+use App\Events\NewIssue;
 
 class IssuesController extends Controller
 {
@@ -90,13 +91,14 @@ class IssuesController extends Controller
 		$validatedData['ticketNumber'] = 'S-' . date('y') . sprintf('%03d',Issue::whereYear('created_at', date('Y'))->count() +1);
         $issue = Issue::create($validatedData);
 		$task = Task::find($request->task_id);
-		//dd($task);
-		foreach ($task->users as $user) {
-			if ($user->pivot->level == 3){
-				Mail::to($user->email)->send(new issueCreated($issue));
+		//Send mail to responsible staff
+		event(new NewIssue($issue));
+		// foreach ($task->users as $user) {
+			// if ($user->pivot->level == 3){
+				// Mail::to($user->email)->send(new issueCreated($issue));
 				
-			}
-		}
+			// }
+		// }
 		
         if ($request->has('save')) {
 			return redirect('/issues');
