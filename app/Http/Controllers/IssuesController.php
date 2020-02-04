@@ -90,6 +90,9 @@ class IssuesController extends Controller
 		//build ticketnumber, S+year+number of issues currentyear.
 		$validatedData['ticketNumber'] = 'S-' . date('y') . sprintf('%03d',Issue::whereYear('created_at', date('Y'))->count() +1);
         $issue = Issue::create($validatedData);
+		if ($request->has('follow')) {
+			$issue->followers()->attach(Auth::id());
+		}
 		$task = Task::find($request->task_id);
 		//Send mail to responsible staff
 		event(new NewIssue($issue));
@@ -181,4 +184,18 @@ class IssuesController extends Controller
     {
         //
     }
+	
+	public function follow($id)
+	{
+		$issue = Issue::find($id);
+		$issue->followers()->attach(Auth::id());
+		return redirect()->back()->with('success', 'Du följer nu ärendet.');
+	}
+	
+	public function unfollow($id)
+	{
+		$issue = Issue::find($id);
+		$issue->followers()->detach(Auth::id());
+		return redirect()->back()->with('success', 'Du följer inte längre ärendet.');
+	}
 }

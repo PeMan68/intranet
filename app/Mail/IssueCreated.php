@@ -27,6 +27,8 @@ class IssueCreated extends Mailable
     public function __construct(Issue $issue)
     {
         $this->issue = $issue;
+		$this->ticketNumber = $issue->ticketNumber;
+		$this->customer = $issue->customer;
     }
 
     /**
@@ -36,7 +38,7 @@ class IssueCreated extends Mailable
      */
     public function build()
     {
-        return $this->subject('Nytt ärende för dig')
+        return $this->subject('Nytt ärende '.$this->ticketNumber.' för dig')
 					->view('emails.issueCreated');
     }
 }

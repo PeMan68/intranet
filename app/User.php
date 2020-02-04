@@ -82,7 +82,13 @@ class User extends Authenticatable
 	}
 
 	public function issues() {
-		return $this->hasMany('App\Issue');
+		return $this->hasMany('App\Issue','userCreate_id');
 	}
+
+	public function followingIssues() {
+		return $this->belongsToMany('App\Issue')
+			->withTimestamps();
+	}
+	
 
 }

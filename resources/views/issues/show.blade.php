@@ -91,6 +91,16 @@ $(document).ready(function(){
 				</div>
 			</div>
 			<div class="row">
+				<div class="col-md-6">
+					<div class="form-check form-check-inline">
+						<a href="{{ route('issues.follow', $issue->id) }}">Följ ärende</a>
+					</div>
+					<div class="form-check form-check-inline">
+						<a href="{{ route('issues.unfollow', $issue->id) }}">Följ inte ärende</a>
+					</div>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-md-6" id="buttons">
 					<button type="submit" class="btn btn-primary mr-2" name="save">
 						Spara ändringarna

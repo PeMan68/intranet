@@ -27,6 +27,8 @@ class IssueCommentedStaff extends Mailable
     public function __construct(Issue $issue)
     {
         $this->issue = $issue;
+		$this->ticketNumber = $issue->ticketNumber;
+		$this->customer = $issue->customer;
 		//$this->comments = $comment;
     }
 
@@ -37,7 +39,7 @@ class IssueCommentedStaff extends Mailable
      */
     public function build()
     {
-        return $this->subject('Ny kommentar i ett ärende du följer')
+        return $this->subject('Ny kommentar i ärende '.$this->ticketNumber.', '.$this->customer)
 					->view('emails.issueCommentedStaff');
     }
 }

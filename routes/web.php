@@ -41,5 +41,6 @@ Route::resource('/issuecomments','IssueCommentController')->middleware('auth');
 
 Route::resource('/visitors','VisitorsController');
 
-
+Route::get('/issues/{id}/follow','IssuesController@follow')->name('issues.follow')->middleware('auth');
+Route::get('/issues/{id}/unfollow','IssuesController@unfollow')->name('issues.unfollow')->middleware('auth');
 
