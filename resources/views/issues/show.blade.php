@@ -92,11 +92,18 @@ $(document).ready(function(){
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<div class="form-check form-check-inline">
-						<a href="{{ route('issues.follow', $issue->id) }}">Följ ärende</a>
+					<div>
+						Följare:
+						@foreach ($followers as $user)
+							{{ $user->name }}
+						@endforeach
 					</div>
-					<div class="form-check form-check-inline">
-						<a href="{{ route('issues.unfollow', $issue->id) }}">Följ inte ärende</a>
+					<div>
+						@if ($follow)
+							<a href="{{ route('issues.unfollow', $issue->id) }}">Sluta följa ärende</a>
+						@else
+							<a href="{{ route('issues.follow', $issue->id) }}">Följ ärende</a>
+						@endif
 					</div>
 				</div>
 			</div>

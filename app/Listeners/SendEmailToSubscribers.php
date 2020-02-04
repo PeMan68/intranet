@@ -34,7 +34,6 @@ class SendEmailToSubscribers
 		$issue = Issue::find($issueID);
 		// Mail to all followers
 		$followers = $issue->followers;
-		//Nedan linje funkar, behöver filtrera ut följare
 		foreach ($followers as $user) {
 			Mail::to($user->email)->send(new issueCommentedStaff($issue));
 		}

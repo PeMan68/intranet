@@ -104,10 +104,10 @@ class IssuesController extends Controller
 		// }
 		
         if ($request->has('save')) {
-			return redirect('/issues');
+			return redirect('/issues')->with('success','Nytt ärende skapat: '.$validatedData['ticketNumber']);
 		}
         if ($request->has('saveOpen')) {
-			return redirect('/issues/'.$issue->id);
+			return redirect('/issues/'.$issue->id)->with('success','Nytt ärende '.$validatedData['ticketNumber']);
 		}
 		
     }
@@ -128,7 +128,14 @@ class IssuesController extends Controller
         $areas = Area::all();
         $tasks = Task::all();
 		$users = User::where('active', 1)->get();
- 		
+		$followers = $issue->followers;
+		$follow = 0;
+		foreach ($followers as $follower) {
+			if ($follower->id == Auth::id()) {
+				$follow = 1;
+			}		
+		}
+
 		check_in_issues();
 		$new_comment = check_out_issue($issue);
 		
@@ -138,6 +145,8 @@ class IssuesController extends Controller
 			'areas' => $areas, 
 			'tasks' => $tasks, 
 			'users' => $users,
+			'followers' => $followers,
+			'follow' => $follow,
 			'new_comment' => $new_comment,
 			]);
     }
