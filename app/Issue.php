@@ -57,6 +57,11 @@ class Issue extends Model
 		return $this->belongsTo('App\Task');
 	}
 	
+	public function followers() {
+		return $this->belongsToMany('App\User')
+			->withTimestamps();
+	}
+	
 	public function scopeFilter($query, $filter)
 	{
 		if (isset($filter)){

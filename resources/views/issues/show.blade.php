@@ -91,6 +91,23 @@ $(document).ready(function(){
 				</div>
 			</div>
 			<div class="row">
+				<div class="col-md-6">
+					<div>
+						Följare:
+						@foreach ($followers as $user)
+							{{ $user->name }}
+						@endforeach
+					</div>
+					<div>
+						@if ($follow)
+							<a href="{{ route('issues.unfollow', $issue->id) }}">Sluta följa ärende</a>
+						@else
+							<a href="{{ route('issues.follow', $issue->id) }}">Följ ärende</a>
+						@endif
+					</div>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-md-6" id="buttons">
 					<button type="submit" class="btn btn-primary mr-2" name="save">
 						Spara ändringarna
@@ -119,8 +136,8 @@ $(document).ready(function(){
 			<td> {{ date('Y-m-d H:i', strtotime($comment->checkin)) }}
 			<br>
 			{{ $comment->user->name . ' ' . $comment->user->surname }} </td>
-			<td> {{ $comment->comment_internal }} </td>
-			<td> {{ $comment->comment_external }} </td>
+			<td> {!! nl2br(e($comment->comment_internal)) !!} </td>
+			<td> {!! nl2br(e($comment->comment_external)) !!} </td>
 			</form>
 		</tr>
 	@endforeach

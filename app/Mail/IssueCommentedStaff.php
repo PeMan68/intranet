@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class IssueCreated extends Mailable
+class IssueCommentedStaff extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,6 +29,7 @@ class IssueCreated extends Mailable
         $this->issue = $issue;
 		$this->ticketNumber = $issue->ticketNumber;
 		$this->customer = $issue->customer;
+		//$this->comments = $comment;
     }
 
     /**
@@ -38,7 +39,7 @@ class IssueCreated extends Mailable
      */
     public function build()
     {
-        return $this->subject('Nytt ärende '.$this->ticketNumber.' för dig')
-					->view('emails.issueCreated');
+        return $this->subject('Ny kommentar i ärende '.$this->ticketNumber.', '.$this->customer)
+					->view('emails.issueCommentedStaff');
     }
 }

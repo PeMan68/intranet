@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\IssueComment;
 use App\Issue;
 use Illuminate\Http\Request;
+use App\Events\NewIssueComment;
 
 class IssueCommentController extends Controller
 {
@@ -75,6 +76,8 @@ class IssueCommentController extends Controller
 			'comment_internal' => $request->comment_internal,
 			'comment_external' => $request->comment_external,
 		]);
+		//Send mail to staff who is following
+		event(new NewIssueComment($issuecomment));
         if ($request->has('saveAndClose')) {
 			$validatedData['timeClosed'] = date('Y-m-d H:i:s');
 			Issue::whereId($issuecomment->issue_id)->update([

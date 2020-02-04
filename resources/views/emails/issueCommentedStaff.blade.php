@@ -50,6 +50,23 @@
 		<b>Intern anteckning:</b><br>
 		{!! nl2br(e($issue->descriptionInternal)) !!}
 		</p>
+		<b>Händelselogg</b>
+		@foreach($issue->issueComments as $comment)
+			@if (isset($comment->comment_internal))
+			<hr>
+				{{ date('Y-m-d H:i', strtotime($comment->checkin))  
+				.' '. $comment->user->name . ' ' . $comment->user->surname }} 
+				<i>(Intern kommentar)</i><br>
+				{!! nl2br(e($comment->comment_internal)) !!}
+			@endif
+			@if (isset($comment->comment_external))
+			<hr>
+				{{ date('Y-m-d H:i', strtotime($comment->checkin))  
+				.' '. $comment->user->name . ' ' . $comment->user->surname }} 
+				<i>(Meddelande skickat till kund)</i><br>
+				{!! nl2br(e($comment->comment_external)) !!} 
+			@endif
+		@endforeach
 		
     </span>
 </body>

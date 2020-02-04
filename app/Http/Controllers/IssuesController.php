@@ -14,6 +14,7 @@ use App\Http\Requests\UpdateIssue;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\IssueCreated;
 use Illuminate\Support\Facades\Mail;
+use App\Events\NewIssue;
 
 class IssuesController extends Controller
 {
@@ -87,14 +88,26 @@ class IssuesController extends Controller
 		$validatedData['timeEstimatedcallback'] = date('Y-m-d H:i', strtotime(sprintf("+%d hours", $hours)));
 		$validatedData['vip'] = $request->has('vip');
 		//build ticketnumber, S+year+number of issues currentyear.
-		$validatedData['ticketNumber'] = 'S-' . date('y') . sprintf('%02d',Issue::whereYear('created_at', date('Y'))->count() +1);
+		$validatedData['ticketNumber'] = 'S-' . date('y') . sprintf('%03d',Issue::whereYear('created_at', date('Y'))->count() +1);
         $issue = Issue::create($validatedData);
-		Mail::to('per.manholm@gmail.com')->send(new issueCreated($issue));
+		if ($request->has('follow')) {
+			$issue->followers()->attach(Auth::id());
+		}
+		$task = Task::find($request->task_id);
+		//Send mail to responsible staff
+		event(new NewIssue($issue));
+		// foreach ($task->users as $user) {
+			// if ($user->pivot->level == 3){
+				// Mail::to($user->email)->send(new issueCreated($issue));
+				
+			// }
+		// }
+		
         if ($request->has('save')) {
-			return redirect('/issues');
+			return redirect('/issues')->with('success','Nytt ärende skapat: '.$validatedData['ticketNumber']);
 		}
         if ($request->has('saveOpen')) {
-			return redirect('/issues/'.$issue->id);
+			return redirect('/issues/'.$issue->id)->with('success','Nytt ärende '.$validatedData['ticketNumber']);
 		}
 		
     }
@@ -115,7 +128,14 @@ class IssuesController extends Controller
         $areas = Area::all();
         $tasks = Task::all();
 		$users = User::where('active', 1)->get();
- 		
+		$followers = $issue->followers;
+		$follow = 0;
+		foreach ($followers as $follower) {
+			if ($follower->id == Auth::id()) {
+				$follow = 1;
+			}		
+		}
+
 		check_in_issues();
 		$new_comment = check_out_issue($issue);
 		
@@ -125,6 +145,8 @@ class IssuesController extends Controller
 			'areas' => $areas, 
 			'tasks' => $tasks, 
 			'users' => $users,
+			'followers' => $followers,
+			'follow' => $follow,
 			'new_comment' => $new_comment,
 			]);
     }
@@ -171,4 +193,18 @@ class IssuesController extends Controller
     {
         //
     }
+	
+	public function follow($id)
+	{
+		$issue = Issue::find($id);
+		$issue->followers()->attach(Auth::id());
+		return redirect()->back()->with('success', 'Du följer nu ärendet.');
+	}
+	
+	public function unfollow($id)
+	{
+		$issue = Issue::find($id);
+		$issue->followers()->detach(Auth::id());
+		return redirect()->back()->with('success', 'Du följer inte längre ärendet.');
+	}
 }

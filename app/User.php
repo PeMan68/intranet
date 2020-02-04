@@ -58,6 +58,13 @@ class User extends Authenticatable
 			->withTimestamps();
 	}
 	
+	public function tasksHighestPriority(){
+		return $this->belongsToMany('App\Task')
+			->wherePivot('level','3')
+			->withPivot('level');
+	
+	}
+	
 	public function hasAnyTasks($tasks){
 		return null !== $this->tasks()->whereIn('name', $tasks)->first();
 	}
@@ -75,7 +82,13 @@ class User extends Authenticatable
 	}
 
 	public function issues() {
-		return $this->hasMany('App\Issue');
+		return $this->hasMany('App\Issue','userCreate_id');
 	}
+
+	public function followingIssues() {
+		return $this->belongsToMany('App\Issue')
+			->withTimestamps();
+	}
+	
 
 }
