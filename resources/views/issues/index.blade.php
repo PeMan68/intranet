@@ -25,6 +25,7 @@ $(document).ready(function($) {
 		@else	
 			<h3>Mina ärenden, sorterade efter prioritet</h3>
 		@endif
+		<small>Sidan uppdaterad {{ date('y-m-d H:i') }}</small>
 		</div>
 		<div class="col-6">	
 				<form class="form-inline float-right" method="POST" action="issues">
