@@ -9,6 +9,7 @@ use App\Issue;
 use App\IssueComment;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\IssueCommentedStaff;
+use Illuminate\Support\Facades\Auth;
 
 class SendEmailToSubscribers
 {
@@ -35,7 +36,10 @@ class SendEmailToSubscribers
 		// Mail to all followers
 		$followers = $issue->followers;
 		foreach ($followers as $user) {
-			Mail::to($user->email)->send(new issueCommentedStaff($issue));
+			//dd($user->id.' inloggad:'.Auth::id());
+			if ($user->id <> Auth::id()) {
+				Mail::to($user->email)->send(new issueCommentedStaff($issue));
+			}
 		}
     }
 }

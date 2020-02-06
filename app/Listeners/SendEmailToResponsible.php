@@ -10,6 +10,7 @@ use App\User;
 use App\Task;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\IssueCreated;
+use Illuminate\Support\Facades\Auth;
 
 class SendEmailToResponsible
 {
@@ -39,7 +40,6 @@ class SendEmailToResponsible
 		foreach ($task->users as $user) {
 			if ($user->pivot->level == 3){
 				Mail::to($user->email)->send(new issueCreated($issue));
-				
 			}
 		}
     }
