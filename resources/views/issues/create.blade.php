@@ -31,12 +31,10 @@
 								<input type="radio" class="form-check-input" id="taskPersonal_id" name="taskPersonal_id" value="0" {{ old('taskPersonal_id') == "0" ? 'checked' : !old() ? 'checked' : '' }}>
 								<label for="taskPersonal_id">Gruppärende</label>
 							</div>
-						@foreach ($users as $user)
 							<div class="form-check">
 								<input type="radio" class="form-check-input" id="taskPersonal_id" name="taskPersonal_id" value="{{ $user->id }}" {{ old('taskPersonal_id') == $user->id ? 'checked' : '' }}>
 								<label for="taskPersonal_id">{{ $user->name }} {{ $user->surname }}</label>
 							</div>
-						@endforeach
 						</div>
 						<div class="col-md-4">
 
