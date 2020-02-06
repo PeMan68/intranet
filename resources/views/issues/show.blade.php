@@ -145,6 +145,7 @@ $(document).ready(function(){
 		<form action="{{ route('issuecomments.update', $new_comment->id) }}" method="post">
 			@method('PUT')
 			@csrf
+			<input type="hidden" name="follow" value="{{$follow}}">
 		<tr>
 			<td>
 			</td>
