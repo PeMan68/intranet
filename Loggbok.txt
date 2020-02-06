@@ -1,0 +1,53 @@
+BRANCH          (<PARENT)
+_Avdelning inom branch
+ + Att göra
+   Detaljerad beskrivning
+---------------------------------------------------------------------
+
+feat-issues     (<develop)
+_To-Do
+	Uppdatera Edit Issue så alla fält visas och kan ändra det som ska kunna uppdateras. 
+
+	.Ta bort tabell timeLog, ersätts med Issuecomment
+	.Skapa tabell Issuecomment, BelongsTo user,issue
+	.Lägg till comment_internal till Issuecomment
+	.Lägg till comment_external till Issuecomment
+	.Ta bort description från Issuecomment
+	.Ta bort boolean(public) från Issuecomment
+	Skapa tabell IssueFollower (vilka följer ärendet)-länk till user
+	
+	Visa Issue. Visa issue info som header. Knapp editera issue-info.
+	Alla har möjlighet att lägga till följare. Följare och admin kan ta bort följare.
+	Under header visa kommenterna, IssueComment. Möjligt att editera kommentaren
+
+_Done
+ .Form Create issue klart
+ .Spara till Databas efter Create Form
+
+_Important Notes
+   Ändrat tabell Issue 
+   Manuellt jobb för databasen:
+    * Ta bort tabell Issue från DB om den finns
+	* Ta bort migration "create_issues" från tabell migrations
+	* Kör migration: "php artisan migrate"
+   Ta bort tabell TimLog (IssueComment ersätter)
+   Manuellt jobb för databasen:
+    * Ta bort tabell TimLog från DB om den finns
+	* Ta bort migration "create_time_logs" från tabell migrations
+	* Kör migration: "php artisan migrate"
+	
+_Fixes
+   
+   
+---------------------------------------------------------------------
+
+	
+---------------------------------------------------------------------
+	
+ HÄNDELSE
+
+ny layout för issues.
+	Sparar samtliga fält till DB, även extra som usercreate, timeinit osv...KLart!
+	Skapat ny table Issuecomments. Ska visas vid show. Ska kunna editeras i show-läge. Skapas i checkout-läge.
+	
+	

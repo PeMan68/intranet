@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTasksTable extends Migration
+class AddPrioToIssuesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateTasksTable extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
-            $table->bigIncrements('id');
-			$table->integer('area_id')->unsigned();
-			$table->integer('prio_id')->unsigned();
-			$table->string('name');
-            $table->timestamps();
+        Schema::table('issues', function (Blueprint $table) {
+			$table->integer('prio')->unsigned();
         });
     }
 
@@ -29,6 +25,8 @@ class CreateTasksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasks');
-	}
+        Schema::table('issues', function (Blueprint $table) {
+            $table->dropColumn('prio');
+        });
+    }
 }
