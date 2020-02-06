@@ -6,6 +6,7 @@ use App\IssueComment;
 use App\Issue;
 use Illuminate\Http\Request;
 use App\Events\NewIssueComment;
+use Illuminate\Support\Facades\Auth;
 
 class IssueCommentController extends Controller
 {
@@ -78,6 +79,11 @@ class IssueCommentController extends Controller
 		]);
 		//Send mail to staff who is following
 		event(new NewIssueComment($issuecomment));
+		//Add commenter as follower if not already
+		if (!$request->follow) {
+			$issue = Issue::find($issuecomment->issue_id);
+			$issue->followers()->attach(Auth::id());
+		}
         if ($request->has('saveAndClose')) {
 			$validatedData['timeClosed'] = date('Y-m-d H:i:s');
 			Issue::whereId($issuecomment->issue_id)->update([
