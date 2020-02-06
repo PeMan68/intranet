@@ -208,7 +208,11 @@ if (!function_exists('load_calendar_data')){
 			
 		$activeusers = User::where('active',1)
 						->where('calendar',1)
-						->get()->sortBy('roles');
+						->get()->sortBy(function($u) {
+							return [$u->surname, $u->roles];
+						});
+						
+						
 		$datestop = strtotime('+'.$period.' days', $dateStart);
 		$entries = CalendarEntry::where('start','<=', date('Y-m-d', $datestop))
 			->where('stop', '>=', date('Y-m-d', $dateStart))
