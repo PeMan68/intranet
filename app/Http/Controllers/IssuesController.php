@@ -61,10 +61,10 @@ class IssuesController extends Controller
 		check_in_issues();
         $areas = Area::all();
         $tasks = Task::all();
-		$users = User::where('active', 1)->get();
+		$user = Auth::user();
 		$initTime=date('Y-m-d H:i:s');
 
-		return view('issues.create')->with(['areas' => $areas, 'tasks' => $tasks, 'users' => $users, 'timeInit' => $initTime]);
+		return view('issues.create')->with(['areas' => $areas, 'tasks' => $tasks, 'user' => $user, 'timeInit' => $initTime]);
     }
 
     /**
