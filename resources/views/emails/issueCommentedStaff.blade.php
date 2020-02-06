@@ -67,7 +67,8 @@
 				{!! nl2br(e($comment->comment_external)) !!} 
 			@endif
 		@endforeach
-		
+		<p>&nbsp;</p>
+
     </span>
 </body>
 </html>
