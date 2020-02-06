@@ -50,7 +50,7 @@
 		<b>Intern anteckning:</b><br>
 		{!! nl2br(e($issue->descriptionInternal)) !!}
 		</p>
-		
+		<p>&nbsp;</p>
     </span>
 </body>
 </html>
