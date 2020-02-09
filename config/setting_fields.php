@@ -15,7 +15,25 @@ return [
                 'rules' => 'required|min:2|max:50', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => 'Intranet' // default value if you want
-            ]
+            ],
+            [
+                'type' => 'checkbox', // input fields type
+                'data' => 'boolean', // data type, string, int, boolean
+                'name' => 'enable_issues', // unique name for field
+                'label' => 'Aktivera Ärenden för användare', // you know what label it is
+                'rules' => '', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 0 // default value if you want
+            ],
+            [
+                'type' => 'checkbox', // input fields type
+                'data' => 'boolean', // data type, string, int, boolean
+                'name' => 'enable_produkter', // unique name for field
+                'label' => 'Aktivera Produkter för användare', // you know what label it is
+                'rules' => '', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 0 // default value if you want
+            ],
         ]
     ],
     'email' => [
