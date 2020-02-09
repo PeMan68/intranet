@@ -225,7 +225,13 @@ if (!function_exists('load_calendar_data')){
 }
 
 if (! function_exists('setting')) {
-
+    /**
+     * Get value for key from database
+     *
+     * @param string $key
+     * @return array $key
+     *
+     */
     function setting($key, $default = null)
     {
         if (is_null($key)) {
