@@ -51,6 +51,9 @@
 								@csrf
 							</form>
 							@endimpersonate
+							@hasrole('superadmin')
+								<a class="dropdown-item" href="{{ url('/admin/settings/')}}">Inställningar</a>
+							@endhasrole
 					   </div>
 					</li>
 				@endguest
@@ -58,5 +61,4 @@
 		</div>
 	</div>
 </nav>
-
 

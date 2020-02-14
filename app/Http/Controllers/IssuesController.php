@@ -41,7 +41,7 @@ class IssuesController extends Controller
 			
 		} else {
 		// list open issues
-		// sort by level, timeEstimated Callback
+		// sort by calculated_prio
 		$issues = Issue::filter($filters)
 					->whereNull('timeClosed')
 					->get()
@@ -128,6 +128,7 @@ class IssuesController extends Controller
         $areas = Area::all();
         $tasks = Task::all();
 		$users = User::where('active', 1)->get();
+		$auth_user = Auth::user();
 		$followers = $issue->followers;
 		$follow = 0;
 		foreach ($followers as $follower) {
@@ -145,6 +146,7 @@ class IssuesController extends Controller
 			'areas' => $areas, 
 			'tasks' => $tasks, 
 			'users' => $users,
+			'auth_user' => $auth_user,
 			'followers' => $followers,
 			'follow' => $follow,
 			'new_comment' => $new_comment,

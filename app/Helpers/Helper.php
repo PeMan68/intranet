@@ -209,7 +209,7 @@ if (!function_exists('load_calendar_data')){
 		$activeusers = User::where('active',1)
 						->where('calendar',1)
 						->get()->sortBy(function($u) {
-							return [$u->roles];
+							return [$u->role,];
 						});
 						
 						
@@ -226,4 +226,28 @@ if (!function_exists('load_calendar_data')){
 				];
 		return $data;
 	}
+}
+
+if (! function_exists('setting')) {
+    /**
+     * Get value for key from database
+     *
+     * @param string $key
+     * @return array $key
+     *
+     */
+    function setting($key, $default = null)
+    {
+        if (is_null($key)) {
+            return new \App\Setting();
+        }
+
+        if (is_array($key)) {
+            return \App\Setting::set($key[0], $key[1]);
+        }
+
+        $value = \App\Setting::get($key);
+
+        return is_null($value) ? value($default) : $value;
+    }
 }

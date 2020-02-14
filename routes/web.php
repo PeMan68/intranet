@@ -31,6 +31,8 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 	Route::resource('/images', 'ImageController');
 	Route::get('/impersonate/user/{id}', 'ImpersonateController@index')->name('impersonate');
 	Route::resource('/tasks','TaskController');
+    Route::get('/settings', 'SettingController@index')->name('settings');
+    Route::post('/settings', 'SettingController@store')->name('settings.store');
 });
 
 Route::get('/admin/impersonate/destroy', 'Admin\ImpersonateController@destroy')->name('admin.impersonate.destroy');
