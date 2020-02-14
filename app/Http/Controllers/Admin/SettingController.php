@@ -17,7 +17,6 @@ class SettingController extends Controller
 	{
 		$rules = Setting::getValidationRules();
 		$data = $this->validate($request, $rules);
-
 		$validSettings = array_keys($rules);
 
 		foreach ($data as $key => $val) {

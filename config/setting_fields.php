@@ -21,7 +21,7 @@ return [
                 'data' => 'boolean', // data type, string, int, boolean
                 'name' => 'enable_issues', // unique name for field
                 'label' => 'Aktivera Ärenden för användare', // you know what label it is
-                'rules' => '', // validation rule of laravel
+                'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => 0 // default value if you want
             ],
@@ -30,7 +30,7 @@ return [
                 'data' => 'boolean', // data type, string, int, boolean
                 'name' => 'enable_produkter', // unique name for field
                 'label' => 'Aktivera Produkter för användare', // you know what label it is
-                'rules' => '', // validation rule of laravel
+                'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => 0 // default value if you want
             ],
