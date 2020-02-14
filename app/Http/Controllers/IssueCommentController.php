@@ -6,6 +6,7 @@ use App\IssueComment;
 use App\Issue;
 use Illuminate\Http\Request;
 use App\Events\NewIssueComment;
+use App\Events\IssueOpenedFirstTime;
 use Illuminate\Support\Facades\Auth;
 
 class IssueCommentController extends Controller
@@ -77,6 +78,12 @@ class IssueCommentController extends Controller
 			'comment_internal' => $request->comment_internal,
 			'comment_external' => $request->comment_external,
 		]);
+		//Send mail to creator if this is first comment
+		if (IssueComment::where('issue_id', $issuecomment->issue_id)
+				->count() == 1) {
+			event(new IssueOpenedFirstTime($issuecomment));
+		}
+			event(new IssueOpenedFirstTime($issuecomment));
 		//Send mail to staff who is following
 		event(new NewIssueComment($issuecomment));
 		//Add commenter as follower if not already
