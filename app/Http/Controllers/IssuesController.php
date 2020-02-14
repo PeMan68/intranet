@@ -41,7 +41,7 @@ class IssuesController extends Controller
 			
 		} else {
 		// list open issues
-		// sort by level, timeEstimated Callback
+		// sort by calculated_prio
 		$issues = Issue::filter($filters)
 					->whereNull('timeClosed')
 					->get()
