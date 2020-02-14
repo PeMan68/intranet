@@ -25,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
 			'App\Listeners\SendEmailToResponsible',
 			'App\Listeners\SendEmailToCustomer',
 		],
+		'App\Events\IssueOpenedFirstTime' => [
+			'App\Listeners\SendEmailToCreator',
+		],
     ];
 
     /**

@@ -58,9 +58,7 @@ $(document).ready(function(){
 						<tr><td><strong>Personligt eller grupp:</strong></td>
 							<td><select class="form-control" id="taskPersonal_id" name="taskPersonal_id">
 								<option value="0" {{ old('taskPersonal_id') == '0' ? 'selected' : ''}} >Gruppärende</option>
-								@foreach ($users as $user)
-									<option value="{{ $user->id }}" @if (!old() && $user->id == $issue->taskPersonal_id) selected @endif>{{ $user->name }} {{ $user->surname }}</option>
-								@endforeach
+									<option value="{{ $auth_user->id }}" @if (!old() && $auth_user->id == $issue->taskPersonal_id) selected @endif>{{ $auth_user->name }} {{ $auth_user->surname }}</option>
 							</select></td></tr>
 					</table>
 				</div>
