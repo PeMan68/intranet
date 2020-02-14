@@ -50,6 +50,8 @@ $(document).ready(function($) {
 					@hasrole ('superadmin')
 					<th>Level</th>
 					@endhasrole
+					<th>Skapat</th>
+					<th>Senast</th>
 					<th>Område</th>
 					<th></th>
 					<th>Kund</th>
@@ -60,10 +62,12 @@ $(document).ready(function($) {
 			<tbody>
 			@foreach($issues as $issue)
 				<tr class="table-row" data-href="{{ URL::to('issues/' . $issue->id) }}">
-					<td data-toggle="tooltip" title="Skapat {{ $issue->timeInit }}">{{$issue->ticketNumber}}</td>
+					<td>{{$issue->ticketNumber}}</td>
 					@hasrole('superadmin')
 					<td>{{ (int)$issue->calculated_prio }}</td>
 					@endhasrole
+					<td data-toggle="tooltip" title="Skapat {{ $issue->timeInit }}">{{date('y-m-d',strtotime($issue->timeInit))}}</td>
+					<td data-toggle="tooltip" title="Senast uppdaterad {{ $issue->updated_at }}">{{date('y-m-d',strtotime($issue->updated_at))}}</td>
 					<td>{{$issue->task->name ?? '#saknas'}}</td>
 					<td class="text-right"> 
 						@if ($issue->prio == "2") 
