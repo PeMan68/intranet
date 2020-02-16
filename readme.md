@@ -1,3 +1,3 @@
-# Issues
+# Intranet
 
 2.1
