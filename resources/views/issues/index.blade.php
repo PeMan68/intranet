@@ -67,7 +67,10 @@ $(document).ready(function($) {
 					<td>{{ (int)$issue->calculated_prio }}</td>
 					@endhasrole
 					<td data-toggle="tooltip" title="Skapat {{ $issue->timeInit }}">{{date('y-m-d',strtotime($issue->timeInit))}}</td>
-					<td data-toggle="tooltip" title="Senast uppdaterad {{ $issue->updated_at }}">{{date('y-m-d',strtotime($issue->updated_at))}}</td>
+					<td data-toggle="tooltip" title="Senast uppdaterad {{ $issue->updated_at }}">{{date_diff
+					($issue->updated_at,
+					now())->format('%Dd:%Hh')
+					}}</td>
 					<td>{{$issue->task->name ?? '#saknas'}}</td>
 					<td class="text-right"> 
 						@if ($issue->prio == "2") 
