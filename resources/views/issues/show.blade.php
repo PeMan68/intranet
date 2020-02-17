@@ -65,10 +65,22 @@ $(document).ready(function(){
 				<div class="col-md-6">
 					<table style="width: 100%;">
 						<tr><td style="width: 30%;"><strong>Ärendebeskrivning:</strong></td>
-							<td> <textarea class="form-control" id="description" name="description" rows="8">{{ old('description', $issue->description) }}</textarea></td></tr>
+							<td> <textarea class="form-control" id="description" name="description" rows="7">{{ old('description', $issue->description) }}</textarea></td></tr>
 						<tr><td><strong>Intern kommentar:</strong></td>
 							<td> <textarea class="form-control" id="descriptionInternal" name="descriptionInternal" rows="5">{{ old('descriptionInternal', $issue->descriptionInternal) }}</textarea></td></tr>
 					</table>	
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div>
+						@if (is_null($issue->timeCustomercallback))
+							<a class="btn btn-success m-1" href="{{ route('issues.contacted', $issue->id) }}">Klicka här för att bekräfta att kund är kontaktad</a>
+						@else
+							Kund kontaktad: {{ date('Y-m-d H:i', strtotime($issue->timeCustomercallback)) }}
+							<a class="btn btn-secondary m-1" href="{{ route('issues.uncontacted', $issue->id) }}">Ångra kund kontaktad</a>
+						@endif
+					</div>
 				</div>
 			</div>
 				
@@ -89,8 +101,19 @@ $(document).ready(function(){
 				</div>
 			</div>
 			<div class="row">
+				<div class="col-md-6" id="buttons">
+					<button type="submit" class="btn btn-primary m-2" name="save">
+						Spara ändringarna
+					</button>
+					<button type="submit" class="btn btn-secondary m-2" name="cancel">
+						Ångra ändringarna
+					</button>
+
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-md-6">
-					<div>
+					<div class="m-2">
 						Följare:
 						@foreach ($followers as $user)
 							<span class="badge badge-pill m-1 font-weight-light shadow bg-info" data-toggle="tooltip" title="{{ $user->name.' '.$user->surname }}">{{ $user->initials() }}</span>
@@ -98,22 +121,11 @@ $(document).ready(function(){
 					</div>
 					<div>
 						@if ($follow)
-							<a class="btn btn-info btn-sm mb-2" href="{{ route('issues.unfollow', $issue->id) }}" role="button">Sluta följa ärende</a>
+							<a class="btn btn-info btn-sm" href="{{ route('issues.unfollow', $issue->id) }}">Sluta följa ärende</a>
 						@else
-							<a class="btn btn-primary btn-sm mb-2" href="{{ route('issues.follow', $issue->id) }}">Följ ärende</a>
+							<a class="btn btn-primary btn-sm" href="{{ route('issues.follow', $issue->id) }}">Följ ärende</a>
 						@endif
 					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6" id="buttons">
-					<button type="submit" class="btn btn-primary mr-2" name="save">
-						Spara ändringarna
-					</button>
-					<button type="submit" class="btn btn-secondary mr-2" name="cancel">
-						Ångra ändringarna
-					</button>
-
 				</div>
 			</div>
 		</form>

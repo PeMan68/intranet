@@ -200,13 +200,28 @@ class IssuesController extends Controller
 	{
 		$issue = Issue::find($id);
 		$issue->followers()->attach(Auth::id());
-		return redirect()->back()->with('success', 'Du följer nu ärendet.');
+		return redirect()->back();
 	}
 	
 	public function unfollow($id)
 	{
 		$issue = Issue::find($id);
 		$issue->followers()->detach(Auth::id());
-		return redirect()->back()->with('success', 'Du följer inte längre ärendet.');
+		return redirect()->back();
 	}
+	
+	public function contacted($id)
+	{ 
+		$issue = Issue::find($id);
+		Issue::whereId($id)->update(['timeCustomercallback' => date('Y-m-d H:i',strtotime(now()))]);
+		return redirect()->back();
+	}
+	
+	public function uncontacted($id)
+	{
+		$issue = Issue::find($id);
+		Issue::whereId($id)->update(['timeCustomercallback' => null]);
+		return redirect()->back();
+	}
+	
 }
