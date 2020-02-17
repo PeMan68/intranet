@@ -6,10 +6,9 @@
 		<div class="col-md-4" style="background-color:#d1f0f2; border-right: 10px solid white;">
 		@if (count($visitors) > 0)
 		<p class="h1 text-center mt-5">Idag gästas vi av</p>
-				<dl class="row h3" style="color:#000000;">
+				<dl class="row h4" style="color:#000000;">
 				@foreach ($visitors as $visitor)
-					<dt class="col-sm-2"></dt>
-					<dt class="col-sm-4">{{ $visitor->name }}</dt>
+					<dt class="col-sm-6">{{ $visitor->name }}</dt>
 					<dd class="col-sm-6">{{ $visitor->company }}</dd>
 				@endforeach
 			</dl>
