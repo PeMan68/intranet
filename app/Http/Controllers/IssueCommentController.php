@@ -83,7 +83,6 @@ class IssueCommentController extends Controller
 				->count() == 1) {
 			event(new IssueOpenedFirstTime($issuecomment));
 		}
-			event(new IssueOpenedFirstTime($issuecomment));
 		//Send mail to staff who is following
 		event(new NewIssueComment($issuecomment));
 		//Add commenter as follower if not already
