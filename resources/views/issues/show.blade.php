@@ -93,14 +93,14 @@ $(document).ready(function(){
 					<div>
 						Följare:
 						@foreach ($followers as $user)
-							{{ $user->name }}
+							<span class="badge badge-pill m-1 font-weight-light shadow bg-info" data-toggle="tooltip" title="{{ $user->name.' '.$user->surname }}">{{ $user->initials() }}</span>
 						@endforeach
 					</div>
 					<div>
 						@if ($follow)
-							<a href="{{ route('issues.unfollow', $issue->id) }}">Sluta följa ärende</a>
+							<a class="btn btn-info btn-sm mb-2" href="{{ route('issues.unfollow', $issue->id) }}" role="button">Sluta följa ärende</a>
 						@else
-							<a href="{{ route('issues.follow', $issue->id) }}">Följ ärende</a>
+							<a class="btn btn-primary btn-sm mb-2" href="{{ route('issues.follow', $issue->id) }}">Följ ärende</a>
 						@endif
 					</div>
 				</div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Role;
+use App\Department;
 use App\Task;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,6 +44,7 @@ class UserController extends Controller
 		return view('admin.users.edit')->with([
 			'user' => User::find($id), 
 			'roles' => Role::all(),
+			'departments' => Department::all(),
 			'tasks' => Task::all()->sortBy('area_id'),	
 			]);
     }
@@ -72,8 +74,9 @@ class UserController extends Controller
 		$user->calendar = $request->has('calendar');
 		$user->save();
 		
-		//update roles and tasks responsibility
+		//update roles, departments and tasks responsibility
 		$user->roles()->sync($request->roles);
+		$user->departments()->sync($request->departments);
 		$tasks = $request->tasks;
 		
 		//syncs all tasks to user
@@ -106,6 +109,7 @@ class UserController extends Controller
 		
 		if($user){
 			$user->roles()->detach();
+			$user->departments()->detach();
 			$user->tasks()->detach();
 			$user->destroy($id);
 			return redirect()->route('admin.users.index')->with('success', 'Användaren raderad.');
