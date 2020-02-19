@@ -91,17 +91,18 @@ $(document).ready(function(){
 			<div class="row">
 				<div class="col-md-6">
 					<div>
-						Följare:
 						@foreach ($followers as $user)
 							<span class="badge badge-pill m-1 font-weight-light shadow bg-info" data-toggle="tooltip" title="{{ $user->name.' '.$user->surname }}">{{ $user->initials() }}</span>
 						@endforeach
+						@if ($follow)
+							<a class="btn btn-primary btn-sm m-2" href="{{ route('issues.unfollow', $issue->id) }}" role="button">Sluta följa ärende</a>
+						@else
+							<a class="btn btn-primary btn-sm m-2" href="{{ route('issues.follow', $issue->id) }}">
+								Följ ärende<i class="material-icons white md-18 ml-1" data-toggle="tooltip" title="Följ ärendet för att få mail när det händer något">help</i>
+							</a>
+						@endif
 					</div>
 					<div>
-						@if ($follow)
-							<a class="btn btn-info btn-sm mb-2" href="{{ route('issues.unfollow', $issue->id) }}" role="button">Sluta följa ärende</a>
-						@else
-							<a class="btn btn-primary btn-sm mb-2" href="{{ route('issues.follow', $issue->id) }}">Följ ärende</a>
-						@endif
 					</div>
 				</div>
 			</div>
