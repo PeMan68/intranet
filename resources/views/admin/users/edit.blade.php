@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.issues')
 
 @section('content')
             <div class="card">
@@ -7,7 +7,18 @@
 						<form action="{{ route('admin.users.update', ['user' => $user->id]) }}" method="POST">
 							@csrf
 							@method('PUT')
-							<p class="font-weight-bold h5">Ange roller för användaren</p>
+							<p class="font-weight-bold h5">Ange avdelning för användaren</p>
+							<div class="form-group row">
+								@foreach($departments as $department)
+									<div class="form-check">
+										<input id="departments" type="checkbox" name="departments[]" value="{{ $department->id }}"
+											{{ $user->hasAnyDepartment($department->name)?'checked':'' }}>
+										<label>{{ $department->name }}</label>
+									</div>
+								@endforeach
+							</div>
+							<hr>
+							<p class="font-weight-bold h5">Ange roll för användaren</p>
 							<div class="form-group row">
 								@foreach($roles as $role)
 									<div class="form-check">

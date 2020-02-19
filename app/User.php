@@ -40,6 +40,18 @@ class User extends Authenticatable
 		'calendar' => 'boolean'
     ];
 	
+	public function departments(){
+		return $this->belongsToMany('App\Department');
+	}
+
+	public function hasAnyDepartments($departments){
+		return null !== $this->departments()->whereIn('name', $departments)->first();
+	}
+	
+	public function hasAnyDepartment($department){
+		return null !== $this->departments()->where('name', $department)->first();
+	}
+	
 	public function roles(){
 		return $this->belongsToMany('App\Role');
 	}
