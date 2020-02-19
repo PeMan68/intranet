@@ -209,4 +209,19 @@ class IssuesController extends Controller
 		$issue->followers()->detach(Auth::id());
 		return redirect()->back();
 	}
+	
+	public function contacted($id)
+	{ 
+		$issue = Issue::find($id);
+		Issue::whereId($id)->update(['timeCustomercallback' => date('Y-m-d H:i',strtotime(now()))]);
+		return redirect()->back();
+	}
+	
+	public function uncontacted($id)
+	{
+		$issue = Issue::find($id);
+		Issue::whereId($id)->update(['timeCustomercallback' => null]);
+		return redirect()->back();
+	}
+	
 }

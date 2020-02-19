@@ -46,3 +46,6 @@ Route::resource('/visitors','VisitorsController');
 Route::get('/issues/{id}/follow','IssuesController@follow')->name('issues.follow')->middleware('auth');
 Route::get('/issues/{id}/unfollow','IssuesController@unfollow')->name('issues.unfollow')->middleware('auth');
 
+Route::get('/issues/{id}/contacted','IssuesController@contacted')->name('issues.contacted')->middleware('auth');
+Route::get('/issues/{id}/uncontacted','IssuesController@uncontacted')->name('issues.uncontacted')->middleware('auth');
+
