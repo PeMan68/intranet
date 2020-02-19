@@ -200,13 +200,13 @@ class IssuesController extends Controller
 	{
 		$issue = Issue::find($id);
 		$issue->followers()->attach(Auth::id());
-		return redirect()->back()->with('success', 'Du följer nu ärendet.');
+		return redirect()->back();
 	}
 	
 	public function unfollow($id)
 	{
 		$issue = Issue::find($id);
 		$issue->followers()->detach(Auth::id());
-		return redirect()->back()->with('success', 'Du följer inte längre ärendet.');
+		return redirect()->back();
 	}
 }
