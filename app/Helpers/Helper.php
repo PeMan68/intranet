@@ -209,7 +209,8 @@ if (!function_exists('load_calendar_data')){
 		$activeusers = User::where('active',1)
 						->where('calendar',1)
 						->get()->sortBy(function($u) {
-							return [$u->role,];
+							
+							return [$u->departments->sort()];
 						});
 						
 						
