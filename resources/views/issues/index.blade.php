@@ -46,31 +46,24 @@ $(document).ready(function($) {
 		<table class="table table-sm table-hover">
 			<thead class="thead-light">
 				<tr>
-					<th class="d-none d-lg-table-cell">#</th>
+					<th>#</th>
 					@hasrole ('superadmin')
-					<th class="d-none d-xl-table-cell">Level</th>
+					<th>Level</th>
 					@endhasrole
-					<th class="d-none d-sm-table-cell">Skapat</th>
-					<th class="d-none d-xl-table-cell">Senast</th>
 					<th>Område</th>
 					<th></th>
 					<th>Kund</th>
-					<th class="d-none d-md-table-cell">Namn</th>
-					<th class="d-none d-lg-table-cell">Beskrivning</th>
+					<th>Namn</th>
+					<th>Beskrivning</th>
 				</tr>
 			</thead>
 			<tbody>
 			@foreach($issues as $issue)
 				<tr class="table-row" data-href="{{ URL::to('issues/' . $issue->id) }}">
-					<td class="d-none d-lg-table-cell">{{$issue->ticketNumber}}</td>
+					<td data-toggle="tooltip" title="Skapat {{ $issue->timeInit }}">{{$issue->ticketNumber}}</td>
 					@hasrole('superadmin')
-					<td class="d-none d-xl-table-cell">{{ (int)$issue->calculated_prio }}</td>
+					<td>{{ (int)$issue->calculated_prio }}</td>
 					@endhasrole
-					<td class="d-none d-sm-table-cell" data-toggle="tooltip" title="Skapat {{ $issue->timeInit }}">{{date('y-m-d',strtotime($issue->timeInit))}}</td>
-					<td class="d-none d-xl-table-cell" data-toggle="tooltip" title="Senast uppdaterad {{ $issue->updated_at }}">{{date_diff
-					($issue->updated_at,
-					now())->format('%Dd:%Hh')
-					}}</td>
 					<td>{{$issue->task->name ?? '#saknas'}}</td>
 					<td class="text-right"> 
 						@if ($issue->prio == "2") 
@@ -90,11 +83,8 @@ $(document).ready(function($) {
 						@endif 
 					</td>
 					<td>{{$issue->customer}}</td>
-					<td class="d-none d-md-table-cell">{{$issue->customerName}}</td>
-					<td class="d-none d-lg-table-cell">
-					<div class="d-inline-block text-truncate stretched-link" style="max-width: 300px;" data-toggle="tooltip" title="{{$issue->description }}">{{$issue->description}}
-					</div>
-					</td>
+					<td>{{$issue->customerName}}</td>
+					<td class="d-inline-block text-truncate stretched-link" style="max-width: 300px;" data-toggle="tooltip" title="{{$issue->description }}">{{$issue->description}}</td>
 				</tr>
 			@endforeach
 			</tbody>
