@@ -88,6 +88,9 @@ $(document).ready(function($) {
 						@if ($issue->paused == "1") 
 							<i class="material-icons" data-toggle="tooltip" title="Pausat ärende">pause_circle_filled</i> 
 						@endif 
+						@if (!is_null($issue->timeCustomercallback)) 
+							<i class="material-icons" data-toggle="tooltip" title="Kontaktad">how_to_reg</i> 
+						@endif 
 					</td>
 					<td>{{$issue->customer}}</td>
 					<td class="d-none d-md-table-cell">{{$issue->customerName}}</td>

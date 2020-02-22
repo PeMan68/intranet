@@ -73,19 +73,6 @@ $(document).ready(function(){
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<div>
-						@if (is_null($issue->timeCustomercallback))
-							<a class="btn btn-success m-1" href="{{ route('issues.contacted', $issue->id) }}">Klicka här för att bekräfta att kund är kontaktad</a>
-						@else
-							Kund kontaktad: {{ date('Y-m-d H:i', strtotime($issue->timeCustomercallback)) }}
-							<a class="btn btn-secondary m-1" href="{{ route('issues.uncontacted', $issue->id) }}">Ångra kund kontaktad</a>
-						@endif
-					</div>
-				</div>
-			</div>
-				
-			<div class="row">
-				<div class="col-md-6">
 					<div class="form-check form-check-inline">
 						<input type="checkbox" class="form-check-input" id="vip" name="vip" value="1" {{ $issue->vip == "1" ? 'checked' : ''}}>
 						<label for="vip" class="font-weight-bold m-0">VIP-kund</label>
@@ -111,6 +98,8 @@ $(document).ready(function(){
 
 				</div>
 			</div>
+			
+				<hr>
 			<div class="row">
 				<div class="col-md-6">
 					<div>
@@ -122,6 +111,23 @@ $(document).ready(function(){
 						@else
 							<a class="btn btn-primary btn-sm m-2" href="{{ route('issues.follow', $issue->id) }}">
 								Följ ärende<i class="material-icons white md-18 ml-1" data-toggle="tooltip" title="Följ ärendet för att få mail när det händer något">help</i>
+							</a>
+						@endif
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div>
+						@if (is_null($issue->timeCustomercallback))
+							<a class="btn btn-sm btn-primary m-1" href="{{ route('issues.contacted', $issue->id) }}">
+								Kunden är kontaktad
+								<i class="material-icons white md-18 ml-1" data-toggle="tooltip" title="Klicka här för att bekräfta att kund är kontaktad">help</i>
+							</a>
+						@else
+							<i class="material-icons" data-toggle="tooltip" title="Kund kontaktad">how_to_reg</i> 
+							Kund kontaktad: {{ date('Y-m-d H:i', strtotime($issue->timeCustomercallback)) }}
+							<a class="btn btn-sm btn-secondary m-1" href="{{ route('issues.uncontacted', $issue->id) }}">
+								Ångra kund kontaktad
+								<i class="material-icons white md-18 m-1" data-toggle="tooltip" title="Klicka här för ta bort bekräftelsen">help</i>
 							</a>
 						@endif
 					</div>
