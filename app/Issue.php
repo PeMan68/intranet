@@ -91,6 +91,9 @@ class Issue extends Model
 		if ($this->taskPersonal_id == Auth::id()) {
 			$prio *=2;
 		}
+		if (!is_null($this->timeCustomercallback)) {
+			$prio /=5;
+		}
 		if ($this->waitingForReply) {
 			$prio /=10;
 		}
