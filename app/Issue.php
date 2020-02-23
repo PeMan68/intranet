@@ -77,13 +77,27 @@ class Issue extends Model
 		return $query;
 	}
 	
-	public function getCalculatedPrioAttribute()
-	{
+	public function userCurrentLevel() {
 		$level = 0;
 		if (!is_null(Auth::user()->tasks()->find($this->task_id)))
 		{
 			$level = Auth::user()->tasks()->find($this->task_id)->pivot->level;
 		}
+		return $level;
+	}
+	
+	public function hoursToCallback() {
+		if (!is_null($this->timeCustomercallback)){
+			$hours=0;
+		} else {
+			$hours = (strtotime($this->timeEstimatedcallback)-strtotime(date('Y-m-d H:i:s'))) / 3600;
+		}
+		return $hours;
+	}
+	
+	public function getCalculatedPrioAttribute()
+	{
+		$level = self::userCurrentLevel();
 		$prio = ($level +1) * $this->prio;
 		if ($this->vip) {
 			$prio *= 4; 
@@ -100,12 +114,14 @@ class Issue extends Model
 		if ($this->paused) {
 			$prio /=10;
 		}
-		$hours = (strtotime($this->timeEstimatedcallback)-strtotime(date('Y-m-d H:i:s'))) / 3600;
-		if (abs($hours) == $hours) {
-			//future
-			$prio /= $hours;
-		} else {
-			$prio *= $hours;
+		$hours = self::hoursToCallback();
+		if ($hours<>0) {
+			if (abs($hours) == $hours) {
+				//future
+				$prio /= $hours;
+			} else {
+				$prio *= $hours;
+			}
 		}
 		return $prio;
 	}
