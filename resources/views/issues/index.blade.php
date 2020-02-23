@@ -61,7 +61,24 @@ $(document).ready(function($) {
 			</thead>
 			<tbody>
 			@foreach($issues as $issue)
-				<tr class="table-row" data-href="{{ URL::to('issues/' . $issue->id) }}">
+				<tr
+				@if ($issue->hoursToCallback() < 0)
+					class="table-row table-danger"
+					data-toggle="tooltip" title="Tiden för återkoppling till kund har löpt ut. Kontakta kunden snarast!" 
+				@elseif (!is_null($issue->userCurrent_id)) 
+					class="table-row table-active" 
+					data-toggle="tooltip" title="Utcheckat av {{ $issue->userCurrent->name.' '.$issue->userCurrent->surname }}" 
+				@elseif ($issue->userCurrentLevel() == 3)
+					class="table-row table-warning"
+					data-toggle="tooltip" title="Ärendet tillhör ditt primära ansvarsområde" 
+				@elseif ($issue->userCurrentLevel() == 2)
+					class="table-row table-success"
+					data-toggle="tooltip" title="Ärendet tillhör ditt sekundära ansvarsområde" 
+				@else
+					class="table-row"
+				@endif
+				data-placement="left"
+				data-href="{{ URL::to('issues/' . $issue->id) }}">
 					<td class="d-none d-lg-table-cell">{{$issue->ticketNumber}}</td>
 					@hasrole('superadmin')
 					<td class="d-none d-xl-table-cell">{{ (int)$issue->calculated_prio }}</td>
