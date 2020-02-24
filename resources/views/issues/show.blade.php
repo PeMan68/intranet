@@ -21,9 +21,7 @@ $(document).ready(function(){
 @section('content')
 <div class="card">
 	<div class="card-header h3">Ärende {{ $issue->ticketNumber }}
-	
 	</div>
-
 	<div class="card-body">
 		@if ($auth_user->id <> $issue->userCurrent_id)
 		<div class="alert alert-info">
