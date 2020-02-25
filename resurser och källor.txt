@@ -1,3 +1,6 @@
 Filuppladdning
 https://quickadminpanel.com/blog/file-upload-in-laravel-the-ultimate-guide/
 
+Spara inställningar i databas. Denna har jag börjat på
+https://www.qcode.in/save-laravel-app-settings-in-database/
+
