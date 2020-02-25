@@ -94,7 +94,13 @@ class Issue extends Model
 		}
 		return $hours;
 	}
-	
+
+    /**
+     * Calculate the priority for an issue.
+	 * Higher priority => higher value
+     *
+     * @var array
+     */
 	public function getCalculatedPrioAttribute()
 	{
 		$level = self::userCurrentLevel();
@@ -118,10 +124,12 @@ class Issue extends Model
 		if ($hours<>0) {
 			if (abs($hours) == $hours) {
 				//future
-				$prio /= $hours;
 			} else {
-				$prio *= $hours;
+				$prio *= -$hours;
 			}
+		}
+		if (!is_null($this->timeClosed)) {
+			$prio = 0;
 		}
 		return $prio;
 	}

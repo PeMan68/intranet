@@ -44,8 +44,9 @@ class IssuesController extends Controller
 		// sort by calculated_prio
 		$issues = Issue::filter($filters)
 					->whereNull('timeClosed')
+					->orWhere('timeClosed','>',strtotime('-30 days'))
 					->get()
-					->sortBy('calculated_prio')
+					->sortByDesc('calculated_prio')
 					;
 		}
 		return view('issues.index',compact('issues',$issues),['filter' => $filters]);
