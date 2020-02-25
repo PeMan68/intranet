@@ -34,7 +34,7 @@
 				<div class="col-md-2 bg-dark">
 					<nav class="nav flex-column" >
 						@yield('nav-left')
-						<div class="fixed-bottom">ver. 2.1.1</div>
+						<div class="fixed-bottom">ver. 2.1.2</div>
 					</nav>
 				</div>
 				<div class="col-md-10 p-3">

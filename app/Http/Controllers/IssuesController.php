@@ -138,8 +138,9 @@ class IssuesController extends Controller
 		}
 
 		check_in_issues();
+		$issue->refresh();
 		$new_comment = check_out_issue($issue);
-		
+		$issue->refresh();
 		return view('issues.show')->with([
 			'issue' => $issue, 
 			'comments' => $Comments,
