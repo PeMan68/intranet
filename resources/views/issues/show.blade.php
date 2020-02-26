@@ -32,10 +32,19 @@ $(document).ready(function(){
 			Det går att lägga till kommentarer.
 		</div>
 		@endif
+		@if (!is_null($issue->timeClosed))
+		<div class="alert alert-danger">
+			Ärendet är avslutat.
+			<a class="btn btn-danger btn-sm m-2" href="{{ route('issues.reopen', $issue->id) }}" role="button">Öppna ärende igen</a>
+		</div>
+		
+		@endif
 		<form action="{{ url('issues', [$issue->id]) }}" method="post" id="issueheader">
 			@method('PUT')
 			@csrf
-			<fieldset @if ($auth_user->id <> $issue->userCurrent_id) disabled @endif>
+			@if ($auth_user->id <> $issue->userCurrent_id or !is_null($issue->timeClosed)) 
+				<fieldset disabled>
+			@endif
 
 			<div class="row">
 				<div class="col-md-6">
@@ -114,6 +123,7 @@ $(document).ready(function(){
 			</div>
 			</fieldset>
 				<hr>
+			@if (is_null($issue->timeClosed))
 			<div class="row">
 				<div class="col-md-6">
 					<div class="alert alert-info">
@@ -149,6 +159,7 @@ $(document).ready(function(){
 					@endif
 				</div>
 			</div>
+			@endif
 		</form>
 	</div>
 	<strong>Händelselogg</strong>
@@ -173,6 +184,7 @@ $(document).ready(function(){
 		</tr>
 	@endforeach
 	@endif
+		@if (is_null($issue->timeClosed))
 		<form action="{{ route('issuecomments.update', $new_comment->id) }}" method="post">
 			@method('PUT')
 			@csrf
@@ -197,11 +209,12 @@ $(document).ready(function(){
 					Spara  kommentar
 				</button>
 				<button type="submit" class="btn btn-success mr-2" name="saveAndClose">
-					Spara  och avsluta ärende
+					Spara och avsluta ärende
 				</button>
 			</td>
 		</tr>
 		</form>
+		@endif
 	</table>
 		
 				

@@ -226,4 +226,11 @@ class IssuesController extends Controller
 		return redirect()->back();
 	}
 	
+	public function reopen($id)
+	{
+		$issue = Issue::find($id);
+		Issue::whereId($id)->update(['timeClosed' => null]);
+		return redirect()->back();
+	}
+	
 }

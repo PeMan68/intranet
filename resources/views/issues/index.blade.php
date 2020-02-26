@@ -63,7 +63,7 @@ $(document).ready(function($) {
 			@foreach($issues as $issue)
 				<tr
 				@if (!is_null($issue->timeClosed))
-					class="table-row table-active" 
+					class="table-row" 
 				@elseif (!is_null($issue->userCurrent_id)) 
 					class="table-row table-active" 
 					data-toggle="tooltip" title="Utcheckat av {{ $issue->userCurrent->name.' '.$issue->userCurrent->surname }}" 
