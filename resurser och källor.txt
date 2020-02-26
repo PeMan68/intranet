@@ -4,3 +4,5 @@ https://quickadminpanel.com/blog/file-upload-in-laravel-the-ultimate-guide/
 Spara inställningar i databas. Denna har jag börjat på
 https://www.qcode.in/save-laravel-app-settings-in-database/
 
+Login - user editing - roles - impersonating
+    Created from Youtube tutorial Penguin Digital Laravel 5.8 Login system

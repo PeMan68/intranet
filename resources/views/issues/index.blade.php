@@ -62,12 +62,14 @@ $(document).ready(function($) {
 			<tbody>
 			@foreach($issues as $issue)
 				<tr
-				@if ($issue->hoursToCallback() < 0)
-					class="table-row table-danger"
-					data-toggle="tooltip" title="Tiden för återkoppling till kund har löpt ut. Kontakta kunden snarast!" 
+				@if (!is_null($issue->timeClosed))
+					class="table-row" 
 				@elseif (!is_null($issue->userCurrent_id)) 
 					class="table-row table-active" 
 					data-toggle="tooltip" title="Utcheckat av {{ $issue->userCurrent->name.' '.$issue->userCurrent->surname }}" 
+				@elseif ($issue->hoursToCallback() < 0)
+					class="table-row table-danger"
+					data-toggle="tooltip" title="Tiden för återkoppling till kund har löpt ut. Kontakta kunden snarast!" 
 				@elseif ($issue->userCurrentLevel() == 3)
 					class="table-row table-warning"
 					data-toggle="tooltip" title="Ärendet tillhör ditt primära ansvarsområde" 
@@ -89,24 +91,28 @@ $(document).ready(function($) {
 					now())->format('%Dd:%Hh')
 					}}</td>
 					<td>{{$issue->task->name ?? '#saknas'}}</td>
-					<td class="text-right"> 
-						@if ($issue->prio == "2") 
-							<i class="material-icons" data-toggle="tooltip" title="Hög prio">grade</i> 
-						@endif 
-						@if ($issue->vip == "1") 
-							<i class="material-icons" data-toggle="tooltip" title="VIP">favorite</i> 
-						@endif 
-						@if ($issue->taskPersonal_id <> 0) 
-							<i class="material-icons" data-toggle="tooltip" title="Personligt ärende för {{ $issue->namePersonalTask->name }} {{ $issue->namePersonalTask->surname }}">face</i> 
-						@endif 
-						@if ($issue->waitingForReply == "1") 
-							<i class="material-icons" data-toggle="tooltip" title="Väntar på svar">snooze</i> 
-						@endif 
-						@if ($issue->paused == "1") 
-							<i class="material-icons" data-toggle="tooltip" title="Pausat ärende">pause_circle_filled</i> 
-						@endif 
-						@if (!is_null($issue->timeCustomercallback)) 
-							<i class="material-icons" data-toggle="tooltip" title="Kontaktad">how_to_reg</i> 
+					<td class="text-right">
+						@if (!is_null($issue->timeClosed))
+							<i class="material-icons" data-toggle="tooltip" title="Avslutat">done_all</i>
+						@else
+							@if ($issue->prio == "2") 
+								<i class="material-icons" data-toggle="tooltip" title="Hög prio">grade</i> 
+							@endif 
+							@if ($issue->vip == "1") 
+								<i class="material-icons" data-toggle="tooltip" title="VIP">favorite</i> 
+							@endif 
+							@if ($issue->taskPersonal_id <> 0) 
+								<i class="material-icons" data-toggle="tooltip" title="Personligt ärende för {{ $issue->namePersonalTask->name }} {{ $issue->namePersonalTask->surname }}">face</i> 
+							@endif 
+							@if ($issue->waitingForReply == "1") 
+								<i class="material-icons" data-toggle="tooltip" title="Väntar på svar">snooze</i> 
+							@endif 
+							@if ($issue->paused == "1") 
+								<i class="material-icons" data-toggle="tooltip" title="Pausat ärende">pause_circle_filled</i> 
+							@endif 
+							@if (!is_null($issue->timeCustomercallback)) 
+								<i class="material-icons" data-toggle="tooltip" title="Kontaktad">how_to_reg</i> 
+							@endif 
 						@endif 
 					</td>
 					<td>{{$issue->customer}}</td>
