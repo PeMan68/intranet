@@ -7,6 +7,7 @@ use App\Issue;
 use Illuminate\Http\Request;
 use App\Events\NewIssueComment;
 use App\Events\IssueOpenedFirstTime;
+use App\Events\IssueClosed;
 use Illuminate\Support\Facades\Auth;
 
 class IssueCommentController extends Controller
@@ -73,28 +74,37 @@ class IssueCommentController extends Controller
      */
     public function update(Request $request, IssueComment $issuecomment)
     {
-		IssueComment::find($issuecomment->id)->update([
-			'checkin' => date('Y-m-d H:i',strtotime(now())),
-			'comment_internal' => $request->comment_internal,
-			'comment_external' => $request->comment_external,
-		]);
-		//Send mail to creator if this is first comment
-		if (IssueComment::where('issue_id', $issuecomment->issue_id)
-				->count() == 1) {
-			event(new IssueOpenedFirstTime($issuecomment));
-		}
-		//Send mail to staff who is following
-		event(new NewIssueComment($issuecomment));
-		//Add commenter as follower if not already
-		if (!$request->follow) {
-			$issue = Issue::find($issuecomment->issue_id);
-			$issue->followers()->attach(Auth::id());
+		$issue = Issue::find($issuecomment->issue_id);
+		if (!is_null($request->comment_internal) or !is_null($request->comment_external))
+		{
+			IssueComment::find($issuecomment->id)->update([
+				'checkin' => date('Y-m-d H:i',strtotime(now())),
+				'comment_internal' => $request->comment_internal,
+				'comment_external' => $request->comment_external,
+			]);
+			//Send mail to creator if another user and this is first comment
+			if ($issue->userCreate_id <> Auth::id())
+			{
+				if (IssueComment::where('issue_id', $issuecomment->issue_id)
+					->count() == 1) 
+				{
+					event(new IssueOpenedFirstTime($issue));
+				}
+			}
+			//Send mail to staff who is following
+			event(new NewIssueComment($issue));
+			//Add commenter as follower if not already
+			if (!$request->follow) {
+				$issue->followers()->attach(Auth::id());
+			}
 		}
         if ($request->has('saveAndClose')) {
 			$validatedData['timeClosed'] = date('Y-m-d H:i:s');
 			Issue::whereId($issuecomment->issue_id)->update([
 			'timeClosed' => date('Y-m-d H:i')
 			]);
+			event(new IssueClosed($issue));
+			event(new NewIssueComment($issue));
 			return redirect('/issues');
 			
 		}

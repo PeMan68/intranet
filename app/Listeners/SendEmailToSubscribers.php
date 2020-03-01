@@ -31,8 +31,8 @@ class SendEmailToSubscribers
      */
     public function handle(NewIssueComment $event)
     {
-		$issueID = $event->issuecomment->issue_id;
-		$issue = Issue::find($issueID);
+		//$issueID = $event->issuecomment->issue_id;
+		$issue = Issue::find($event->issue->id);
 		// Mail to all followers
 		$followers = $issue->followers;
 		foreach ($followers as $user) {
