@@ -167,8 +167,8 @@ $(document).ready(function(){
 	@if($comments->count())
 		<thead>
 			<th width="20%">Tidpunkt</th>
-			<th width="40%">Anteckning</th>
-			<th width="40%">Meddelanden till kund</th>
+			<th width="40%">Interna anteckningar</th>
+			<th width="40%">Kommunikation med kund</th>
 		</thead>
 	@foreach($comments as $comment)
 		<tr>
@@ -208,9 +208,11 @@ $(document).ready(function(){
 				<button type="submit" class="btn btn-primary mr-2" name="save">
 					Spara  kommentar
 				</button>
+				@if ($auth_user->id == $issue->userCurrent_id)
 				<button type="submit" class="btn btn-success mr-2" name="saveAndClose">
 					Spara och avsluta ärende
 				</button>
+				@endif
 			</td>
 		</tr>
 		</form>

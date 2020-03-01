@@ -9,7 +9,7 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use App\IssueComment;
+use App\Issue;
 
 class IssueOpenedFirstTime
 {
@@ -20,9 +20,9 @@ class IssueOpenedFirstTime
      *
      * @return void
      */
-    public function __construct(IssueComment $issuecomment)
+    public function __construct(Issue $issue)
     {
-        $this->issuecomment = $issuecomment;
+        $this->issue = $issue;
     }
 
     /**

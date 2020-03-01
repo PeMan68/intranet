@@ -27,13 +27,13 @@ class SendEmailToCreator
     /**
      * Handle the event.
      *
-     * @param  NewIssueComment  $event
+     * @param  IssueOpenedFirstTime $event
      * @return void
      */
     public function handle(IssueOpenedFirstTime $event)
     {
-		$issueID = $event->issuecomment->issue_id;
-		$issue = Issue::find($issueID);
+		//$issueID = $event->issuecomment->issue_id;
+		$issue = Issue::find($event->issue->id);
 		$user = User::find($issue->userCreate_id);
 		Mail::to($user->email)->send(new issueOpened($issue));
     }

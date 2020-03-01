@@ -6,3 +6,9 @@ https://www.qcode.in/save-laravel-app-settings-in-database/
 
 Login - user editing - roles - impersonating
     Created from Youtube tutorial Penguin Digital Laravel 5.8 Login system
+	
+Ikoner:
+https://material.io/resources/icons/?style=baseline
+
+Bootstrap4
+https://getbootstrap.com/docs/4.0/content/
