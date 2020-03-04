@@ -15,8 +15,8 @@ class AddStarttimeAndStoptimeAndWhoToVisitor extends Migration
     {
         Schema::table('visitors', function (Blueprint $table) {
 			$table->BigInteger('user_id');
-			$table->datetime('startTime');
-			$table->datetime('stopTime');
+			$table->dateTime('startTime');
+			$table->dateTime('stopTime');
         });
     }
 
