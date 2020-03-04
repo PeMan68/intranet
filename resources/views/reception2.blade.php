@@ -4,14 +4,29 @@
 	<div class="row">
 	
 		<div class="col-md-4" style="background-color:#d1f0f2; border-right: 10px solid white;">
-		@if (count($visitors) > 0)
-		<p class="h1 text-center mt-5">Idag gästas vi av</p>
-				<dl class="row h4" style="color:#000000;">
-				@foreach ($visitors as $visitor)
-					<dt class="col-sm-6">{{ $visitor->name }}</dt>
-					<dd class="col-sm-6">{{ $visitor->company }}</dd>
-				@endforeach
-			</dl>
+		@php $numberOfVisitors = count($visitors); @endphp
+		@if ( $numberOfVisitors > 0)
+			<p class="display-2 text-center mt-5">Idag välkomnar vi</p>
+			@foreach ($visitors as $visitor)
+			<br>
+				<div class="row">
+					<div class="col-12 h5">
+					@if (date('H:i', strtotime($visitor->startTime))<>'00:00') 
+					{{date('H:i', strtotime($visitor->startTime)).'. '}}
+					@endif
+					{{ $visitor->user->name.' '.$visitor->user->surname }} besöks av:</div>
+				</div>
+				<div class="row">
+					<div class="col-12 h1 font-weight-bold">{{ $visitor->company }}</div>
+				</div>
+				@foreach ($visitor->names as $name)
+				
+				<div class="row">
+					<div class="col-1">&nbsp;</div>
+					<div class="col-11 h3">{{ $name->name }}</div>
+				</div>
+			@endforeach
+			@endforeach
 		@endif
 		</div>
 		<div class="col-md-8 p-0">
