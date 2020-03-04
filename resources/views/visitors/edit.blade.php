@@ -12,10 +12,14 @@
 
 @section('scriptsBody')
 <script>
+
 $('input[name="daterange"]').daterangepicker({
-    "showWeekNumbers": true,
+	"timePicker": true,
+	"timePickerIncrement":15,
+	"timePicker24Hour":true,
+	"showWeekNumbers": true, 
     "locale": {
-        "format": "YYYY-MM-DD",
+        "format": "YYYY-MM-DD HH:mm",
         "separator": " till ",
         "applyLabel": "Välj",
         "cancelLabel": "Avbryt",
@@ -50,71 +54,88 @@ $('input[name="daterange"]').daterangepicker({
     },
 });
 </script>
+
+<script type="text/javascript">
+    $(document).ready(function(){ 
+		var i=1;
+		$('tr.name').each(function(index) {
+			$(this).attr('id', "row"+i);
+			$(this).append('<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>');
+			i++;  
+		});
+		$('#add').click(function(){  
+			$('#form-table').append('<tr id="row'+i+'" class="dynamic-added"><td class="text-md-right">Namn</td><td><input type="text" name="name[]" class="form-control" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+			i++;  
+		});  
+
+		$(document).on('click', '.btn_remove', function(){  
+			var button_id = $(this).attr("id");   
+			$('#row'+button_id+'').remove();  
+		});
+	});
+</script>
 @endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Ändra besökare</div>
+<div class="card">
+	<div class="card-header h3">Ändra besökare</div>
 
-                <div class="card-body">
-					@if ($errors->any())
-						<div class="alert alert-danger">
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
+	<div class="card-body">
+		<form method="POST" action="{{ route('visitors.update', $visitor->id) }}">
+			@csrf
+			@method('PUT')
+			<table class="table table-borderless" id="form-table">  
+			<tr><td class="text-md-right">
+				Vem besöks
+			</td>
+			<td>
+				<select class="form-control" id="user_id" name="who">
+					@foreach ($users as $user)
+						<option value="{{ $user->id }}" @if ($user->id == $visitor->user_id) selected @endif>{{ $user->name }}</option>
+					@endforeach
+				</select>
+			</td>
+			<td></td>
+			</tr>
 
-                    <form method="POST" action="{{ route('visitors.update', $visitor->id) }}">
-                        @csrf
-						@method('PUT')
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Namn</label>
+			<tr><td class="text-md-right">
+				Ange tidpunkt
+			</td>
+			<td>
+				<input id="start" type="text" class="form-control" name="daterange" value="{{ $visitor->startTime }} till {{ $visitor->stopTime }}">
+			</td>
+			<td></td>
+			</tr>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ $visitor->name }}">
-                            </div>
-                        </div>
+			<tr><td class="text-md-right">
+				Företag
+			</td>
+			<td>
+			<input id="company" type="text" class="form-control" name="company" value="{{ old('company', $visitor->company) }}">
+			</td>
+			<td></td>
+			</tr>
+			@foreach ($visitor->names as $name)
+			<tr class="name"><td class="text-md-right">
+				Namn
+			</td>
+			<td>
+				<input type="text" name="name[]" class="form-control" value="{{ $name->name }}">
+			</td>
+			</tr> 
+			@endforeach
+			</table>  
 
-                        <div class="form-group row">
-                            <label for="company" class="col-md-4 col-form-label text-md-right">Företag</label>
+			<div class="form-group row mb-0">
+				<div class="col-md-8 offset-md-4">
+					<button type="submit" class="btn btn-primary">Spara</button>
+					<button class="btn btn-secondary" type="submit" name="reset" value="reset">Avbryt</button>
+					<button class="btn btn-danger" type="submit" name="delete" value="delete">Radera besök</button>                            
+					<button type="button" name="add" id="add" class="btn btn-success">+ Lägg till namn</button>								
+				</div>
+			</div>
 
-                            <div class="col-md-6">
-                                <input id="company" type="text" class="form-control" name="company" value="{{ $visitor->company }}">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="start" class="col-md-4 col-form-label text-md-right">Tidsperiod</label>
-
-                            <div class="col-md-6">
-                                <input id="start" type="text" class="form-control" name="daterange" value="{{ $visitor->start }} till {{ $visitor->stop }}">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Spara
-                                </button>
-								<button class="btn btn-secondary" type="submit" name="reset" value="reset">
-									Avbryt
-								</button>                            
-								<button class="btn btn-danger" type="submit" name="delete" value="delete">
-									Radera
-								</button>                            
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+		</form>
+	</div>
 </div>
 @endsection

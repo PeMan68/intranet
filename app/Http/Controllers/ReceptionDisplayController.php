@@ -10,14 +10,14 @@ use App\Visitor;
 class ReceptionDisplayController extends Controller
 {
     public function index()
-	{
+	{dd();
 		$files = Storage::files('/public/reception');
 		if (!Auth::check()){
 			Auth::loginUsingId(4, true);
 		}
 		$visitors = Visitor::where([
-			['start','<=',date('Y-m-d')],
-			['stop','>=',date('Y-m-d')],
+			['startTime','<=',date('Y-m-d')],
+			['stopTime','>=',date('Y-m-d')],
 			])->get();
 
 		return view('/reception2', ['visitors' => $visitors, 'files' => $files]);

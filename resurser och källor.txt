@@ -12,3 +12,8 @@ https://material.io/resources/icons/?style=baseline
 
 Bootstrap4
 https://getbootstrap.com/docs/4.0/content/
+
+DatePicker
+https://www.daterangepicker.com/
+format: https://momentjs.com/docs/#/displaying/
+
