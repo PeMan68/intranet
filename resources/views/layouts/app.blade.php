@@ -30,11 +30,12 @@
 
 
         <main class="container-fluid">
-			<div class="row h-100">
+			<div class="row">
 				<div class="col-md-2 bg-dark">
-					<nav class="nav flex-column" >
+					<nav class="nav flex-column" style="height:100vh; margin-top:-55px; padding-top:55px;">
 						@yield('nav-left')
-						<div class="fixed-bottom">ver. 2.1.2</div>
+						@include('partials.nav-left')
+						<div class="fixed-bottom text-light font-weight-lighter">ver. 2.1.2</div>
 					</nav>
 				</div>
 				<div class="col-md-10 p-3">
