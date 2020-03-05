@@ -35,7 +35,7 @@
 					<nav class="nav flex-column" style="height:100vh; margin-top:-55px; padding-top:55px;">
 						@yield('nav-left')
 						@include('menues.main')
-						<div class="fixed-bottom text-light font-weight-lighter">ver. 2.1.2</div>
+						<div class="fixed-bottom text-light font-weight-lighter">ver. 2.2</div>
 					</nav>
 				</div>
 				<div class="col-md-10 p-3">
