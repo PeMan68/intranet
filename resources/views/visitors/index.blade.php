@@ -1,13 +1,11 @@
 @extends('layouts.app')
 
+@include('menues.visitors')
+
 @section('content')
 <div class="card">
 	<div class="card-header justify-content-between h3">
-			<span>Lista besökare</span>
-				<a class="btn btn-outline-primary" href="{{ route('visitors.create') }}">
-						Registrera ny besökare
-				</a>
-		
+		Lista besökare
 	</div>
 	<div class="card-body">
 		@foreach ($visitors as $visitor)

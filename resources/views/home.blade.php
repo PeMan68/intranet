@@ -8,13 +8,11 @@
                 </div>
         </div>
         <div class="row">
-                <div class="col pb-3">
-                        @include('partials._kalender')
-                </div>
-        </div>
-        <div class="row">
-                <div class="col pb-3">
-                        @include('partials._visitors')
+                <div class="col-xl-9 pb-3">
+					@include('partials._kalender')
+				</div>
+                <div class="col-xl-3 pb-3">
+					@include('partials._visitors')
                 </div>
         </div>
 

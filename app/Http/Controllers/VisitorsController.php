@@ -45,7 +45,6 @@ class VisitorsController extends Controller
      */
     public function store(StoreVisitor $request)
     {
- 		$validatedData = $request->validated();
 		$visitor = new Visitor();
 		
 		$visitor->company = request('company');
@@ -56,12 +55,18 @@ class VisitorsController extends Controller
 		
 		$visitor->user_id = $request->who;
 		$visitor->save();
-		foreach ($request->name as $name)
+		if (!is_null($request->name))
 		{
-			$visitor_name = new Visitor_name();
-			$visitor_name->visitor_id = $visitor->id;
-			$visitor_name->name = $name;
-			$visitor_name->save();
+			foreach ($request->name as $name)
+			{
+				if (!is_null($name))
+				{
+					$visitor_name = new Visitor_name();
+					$visitor_name->visitor_id = $visitor->id;
+					$visitor_name->name = $name;
+					$visitor_name->save();
+				}
+			}
 		}
 		
 		return redirect('/visitors');
@@ -104,12 +109,18 @@ class VisitorsController extends Controller
 		$visitor->save();
 		
 		$vistor_names = Visitor_name::where('visitor_id',$visitor->id)->delete();
-		foreach ($request->name as $name)
+		if (!is_null($request->name))
 		{
-			$visitor_name = new Visitor_name();
-			$visitor_name->visitor_id = $visitor->id;
-			$visitor_name->name = $name;
-			$visitor_name->save();
+			foreach ($request->name as $name)
+			{
+				if (!is_null($name))
+				{
+					$visitor_name = new Visitor_name();
+					$visitor_name->visitor_id = $visitor->id;
+					$visitor_name->name = $name;
+					$visitor_name->save();
+				}
+			}
 		}
 		
 		return redirect('/visitors');
