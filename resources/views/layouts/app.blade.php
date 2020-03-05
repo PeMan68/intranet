@@ -29,10 +29,24 @@
 	@include('partials._navbar')
 
 
-		<main class="py-4 container">
-			@include('partials.alerts')
-            @yield('content')
-        </main>
+        <main class="container-fluid">
+			<div class="row">
+				<div class="col-md-2 bg-dark">
+					<nav class="nav flex-column" style="height:100vh; margin-top:-55px; padding-top:55px;">
+						@yield('nav-left')
+						@include('menues.main')
+						<div class="fixed-bottom text-light font-weight-lighter">ver. 2.1.2</div>
+					</nav>
+				</div>
+				<div class="col-md-10 p-3">
+					@include('partials.alerts')
+					@if (Session::has('message'))
+					<div class="alert alert-info">{{ Session::get('message') }}</div>
+					@endif
+					@yield('content')
+				</div>
+			</div>        
+		</main>
     </div>
 	@include('partials._scripts')
 	@yield('scriptsBody')

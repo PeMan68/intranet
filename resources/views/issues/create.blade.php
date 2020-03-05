@@ -1,9 +1,6 @@
-@extends('layouts.issues')
+@extends('layouts.app')
 
-@section('nav-left')
-	<a class="nav-link" href="{{ url('/issues/create/') }}">Nytt ärende</a>
-	<a class="nav-link" href="{{ url('/issues/') }}">Mina ärenden</a>
-@endsection
+@include('menues.issues')
 
 @section('content')
 <div class="card">

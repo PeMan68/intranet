@@ -100,9 +100,11 @@ if (!function_exists('check_out_issue')){
      */	
 	function check_out_issue($issue)
 	{
-		Issue::whereId($issue->id)
-			->update(['userCurrent_id' => Auth::user()->id]);
-
+		//Checkout issue only if it is not already checked out
+		if (is_null($issue->userCurrent_id)){
+			Issue::whereId($issue->id)
+				->update(['userCurrent_id' => Auth::user()->id]);
+		}
 		$new_comment = new IssueComment;
 		$new_comment->issue_id = $issue->id;
 		$new_comment->user_id = Auth::id();

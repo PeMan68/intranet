@@ -28,6 +28,16 @@ class EventServiceProvider extends ServiceProvider
 		'App\Events\IssueOpenedFirstTime' => [
 			'App\Listeners\SendEmailToCreator',
 		],
+		'App\Events\IssueClosed' => [
+			'App\Listeners\GenerateClosedComment',
+			'App\Listeners\SendEmailToResponsibleIssueClosed',
+			'App\Listeners\SendEmailToCustomerIssueClosed',
+		],
+		'App\Events\IssueReopened' => [
+			'App\Listeners\GenerateReopenedComment',
+			'App\Listeners\SendEmailToResponsibleIssueReopened',
+			'App\Listeners\SendEmailToCustomerIssueReopened',
+		],
     ];
 
     /**

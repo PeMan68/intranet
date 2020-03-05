@@ -6,6 +6,7 @@ use App\CalendarEntry;
 use App\CalendarCategory;
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCalendar;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -37,18 +38,14 @@ class CalendarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCalendar $request)
     {
         if ($request->has('reset')) {
 			return redirect('/home');
 		}
-		$request['start'] = Str::before($request['daterange'],' till ');
-		$request['stop'] = Str::after($request['daterange'],' till ');
-        $validatedData = $request->validate([
-			'description' => 'required|max:255',
-			'start' => 'required|date',
-			'stop' => 'required|date|after_or_equal:start',
-		]);
+        $validatedData = $request->validated();
+		$validatedData['start'] = Str::before($request['daterange'],' till ');
+		$validatedData['stop'] = Str::after($request['daterange'],' till ');
 		$validatedData['user_id'] = $request->user_id;
 		$validatedData['calendarcategory_id'] = $request->calendarcategory_id;
 		$calendarEntry = CalendarEntry::create($validatedData);
@@ -91,7 +88,7 @@ class CalendarController extends Controller
      * @param  \App\CalendarEntry  $calendar
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CalendarEntry $calendar)
+    public function update(StoreCalendar $request, CalendarEntry $calendar)
     {
         if ($request->has('delete')) {
 			$entry = CalendarEntry::find($calendar->id);
@@ -102,13 +99,9 @@ class CalendarController extends Controller
 			return redirect('/home');
 		}
 		
-		$request['start'] = Str::before($request['daterange'],' till ');
-		$request['stop'] = Str::after($request['daterange'],' till ');
-        $validatedData = $request->validate([
-			'description' => 'required|max:255',
-			'start' => 'required|date',
-			'stop' => 'required|date|after_or_equal:start',
-		]);
+        $validatedData = $request->validated();
+		$validatedData['start'] = Str::before($request['daterange'],' till ');
+		$validatedData['stop'] = Str::after($request['daterange'],' till ');
 		$validatedData['user_id'] = $request->user_id;
 		$validatedData['calendarcategory_id'] = $request->calendarcategory_id;
 		

@@ -1,9 +1,6 @@
-@extends('layouts.issues')
+@extends('layouts.app')
 
-@section('nav-left')
-	<a class="nav-link" href="{{ url('/issues/create/') }}">Nytt ärende</a>
-	<a class="nav-link" href="{{ url('/issues/') }}">Mina ärenden</a>
-@endsection
+@include('menues.issues')
 
 @section('scriptsHead')
 <script>
@@ -22,11 +19,30 @@ $(document).ready(function(){
 <div class="card">
 	<div class="card-header h3">Ärende {{ $issue->ticketNumber }}
 	</div>
-
 	<div class="card-body">
+		@if ($auth_user->id <> $issue->userCurrent_id)
+		<div class="alert alert-info">
+			Ärendet är för närvarande öppet av
+			{{ $issue->userCurrent->name }}
+			{{ $issue->userCurrent->surname }}.
+			Du kan läsa men inte ändra några uppgifter förrän ärendet är ledigt.
+			Det går att lägga till kommentarer.
+		</div>
+		@endif
+		@if (!is_null($issue->timeClosed))
+		<div class="alert alert-danger">
+			Ärendet är avslutat.
+			<a class="btn btn-danger btn-sm m-2" href="{{ route('issues.reopen', $issue->id) }}" role="button">Öppna ärende igen</a>
+		</div>
+		
+		@endif
 		<form action="{{ url('issues', [$issue->id]) }}" method="post" id="issueheader">
 			@method('PUT')
 			@csrf
+			@if ($auth_user->id <> $issue->userCurrent_id or !is_null($issue->timeClosed)) 
+				<fieldset disabled>
+			@endif
+
 			<div class="row">
 				<div class="col-md-6">
 					<table style="width: 100%;">
@@ -38,9 +54,13 @@ $(document).ready(function(){
 						{{ $issue->userCreate->surname}}
 						</td></tr>
 						<tr><td><strong>Kundnr:</strong></td>
-							<td><input type="text" value="{{ old('customerNumber', $issue->customerNumber) }}" class="form-control" id="customerNumber" name="customerNumber"></td></tr>
+							<td>
+								<input type="text" value="{{ old('customerNumber', $issue->customerNumber) }}" 
+								class="form-control" id="customerNumber" name="customerNumber">
+							</td>
+						</tr>
 						<tr><td><strong>Kund:</strong></td>
-							<td><input type="text" value="{{ $issue->customer }}" class="form-control" id="customer" name="customer"></td></tr>
+							<td><input type="text" value="{{ $issue->customer }}" class="form-control" id="customer" name="customer" ></td></tr>
 						<tr><td><strong>Kontakt:</strong></td>
 							<td><input type="text" value="{{ $issue->customerName }}" class="form-control" id="customerName" name="customerName"></td></tr>
 						<tr><td><strong>Telefon:</strong></td>
@@ -65,13 +85,12 @@ $(document).ready(function(){
 				<div class="col-md-6">
 					<table style="width: 100%;">
 						<tr><td style="width: 30%;"><strong>Ärendebeskrivning:</strong></td>
-							<td> <textarea class="form-control" id="description" name="description" rows="8">{{ old('description', $issue->description) }}</textarea></td></tr>
+							<td> <textarea class="form-control" id="description" name="description" rows="7">{{ old('description', $issue->description) }}</textarea></td></tr>
 						<tr><td><strong>Intern kommentar:</strong></td>
 							<td> <textarea class="form-control" id="descriptionInternal" name="descriptionInternal" rows="5">{{ old('descriptionInternal', $issue->descriptionInternal) }}</textarea></td></tr>
 					</table>	
 				</div>
 			</div>
-				
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-check form-check-inline">
@@ -89,33 +108,55 @@ $(document).ready(function(){
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-6">
-					<div>
-						Följare:
-						@foreach ($followers as $user)
-							<span class="badge badge-pill m-1 font-weight-light shadow bg-info" data-toggle="tooltip" title="{{ $user->name.' '.$user->surname }}">{{ $user->initials() }}</span>
-						@endforeach
-					</div>
-					<div>
-						@if ($follow)
-							<a class="btn btn-info btn-sm mb-2" href="{{ route('issues.unfollow', $issue->id) }}" role="button">Sluta följa ärende</a>
-						@else
-							<a class="btn btn-primary btn-sm mb-2" href="{{ route('issues.follow', $issue->id) }}">Följ ärende</a>
-						@endif
-					</div>
-				</div>
-			</div>
-			<div class="row">
 				<div class="col-md-6" id="buttons">
-					<button type="submit" class="btn btn-primary mr-2" name="save">
+					<button type="submit" class="btn btn-primary m-2" name="save">
 						Spara ändringarna
 					</button>
-					<button type="submit" class="btn btn-secondary mr-2" name="cancel">
+					<button type="submit" class="btn btn-secondary m-2" name="cancel">
 						Ångra ändringarna
 					</button>
 
 				</div>
 			</div>
+			</fieldset>
+				<hr>
+			@if (is_null($issue->timeClosed))
+			<div class="row">
+				<div class="col-md-6">
+					<div class="alert alert-info">
+						@foreach ($followers as $user)
+							<span class="badge badge-pill circle badge-dark font-weight-light" data-toggle="tooltip" title="{{ $user->name.' '.$user->surname }}">{{ $user->initials() }}</span>
+						@endforeach
+						@if ($follow)
+							<a class="btn btn-primary btn-sm m-2" href="{{ route('issues.unfollow', $issue->id) }}" role="button">Sluta följa ärende</a>
+						@else
+							<a class="btn btn-primary btn-sm m-2" href="{{ route('issues.follow', $issue->id) }}">
+								Följ ärende<i class="material-icons white md-18 ml-1" data-toggle="tooltip" title="Följ ärendet för att få mail när det händer något" style="vertical-align: middle;">help</i>
+							</a>
+						@endif
+					</div>
+				</div>
+				<div class="col-md-6">
+					@if (is_null($issue->timeCustomercallback))
+					<div class="alert alert-primary">
+						<a class="btn btn-sm btn-primary m-1" href="{{ route('issues.contacted', $issue->id) }}">
+							Klicka här när kunden är kontaktad
+							<i class="material-icons white md-18 ml-1" data-toggle="tooltip" title="Klicka här för att bekräfta att kund är kontaktad" style="vertical-align: middle;">help</i>
+						</a>
+					</div>
+					@else
+					<div class="alert alert-success">
+						<i class="material-icons align-middle" data-toggle="tooltip" title="Kund kontaktad">how_to_reg</i> 
+						Kund kontaktad: {{ date('Y-m-d H:i', strtotime($issue->timeCustomercallback)) }}
+						<a class="btn btn-sm btn-secondary m-1" href="{{ route('issues.uncontacted', $issue->id) }}">
+							Ångra kund kontaktad
+							<i class="material-icons white md-18 m-1" data-toggle="tooltip" title="Klicka här för ta bort bekräftelsen" style="vertical-align: middle;">help</i>
+						</a>
+					</div>
+					@endif
+				</div>
+			</div>
+			@endif
 		</form>
 	</div>
 	<strong>Händelselogg</strong>
@@ -123,8 +164,8 @@ $(document).ready(function(){
 	@if($comments->count())
 		<thead>
 			<th width="20%">Tidpunkt</th>
-			<th width="40%">Anteckning</th>
-			<th width="40%">Meddelanden till kund</th>
+			<th width="40%">Interna anteckningar</th>
+			<th width="40%">Kommunikation med kund</th>
 		</thead>
 	@foreach($comments as $comment)
 		<tr>
@@ -140,6 +181,7 @@ $(document).ready(function(){
 		</tr>
 	@endforeach
 	@endif
+		@if (is_null($issue->timeClosed))
 		<form action="{{ route('issuecomments.update', $new_comment->id) }}" method="post">
 			@method('PUT')
 			@csrf
@@ -163,12 +205,15 @@ $(document).ready(function(){
 				<button type="submit" class="btn btn-primary mr-2" name="save">
 					Spara  kommentar
 				</button>
+				@if ($auth_user->id == $issue->userCurrent_id)
 				<button type="submit" class="btn btn-success mr-2" name="saveAndClose">
-					Spara  och avsluta ärende
+					Spara och avsluta ärende
 				</button>
+				@endif
 			</td>
 		</tr>
 		</form>
+		@endif
 	</table>
 		
 				

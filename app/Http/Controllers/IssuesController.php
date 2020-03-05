@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Mail\IssueCreated;
 use Illuminate\Support\Facades\Mail;
 use App\Events\NewIssue;
+use App\Events\IssueReopened;
+use App\Events\NewIssueComment;
 
 class IssuesController extends Controller
 {
@@ -44,8 +46,9 @@ class IssuesController extends Controller
 		// sort by calculated_prio
 		$issues = Issue::filter($filters)
 					->whereNull('timeClosed')
+					->orWhere('timeClosed','>',date('Y-m-d',strtotime('-30 days')))
 					->get()
-					->sortBy('calculated_prio')
+					->sortByDesc('calculated_prio')
 					;
 		}
 		return view('issues.index',compact('issues',$issues),['filter' => $filters]);
@@ -138,8 +141,9 @@ class IssuesController extends Controller
 		}
 
 		check_in_issues();
+		$issue->refresh();
 		$new_comment = check_out_issue($issue);
-		
+		$issue->refresh();
 		return view('issues.show')->with([
 			'issue' => $issue, 
 			'comments' => $Comments,
@@ -200,13 +204,37 @@ class IssuesController extends Controller
 	{
 		$issue = Issue::find($id);
 		$issue->followers()->attach(Auth::id());
-		return redirect()->back()->with('success', 'Du följer nu ärendet.');
+		return redirect()->back();
 	}
 	
 	public function unfollow($id)
 	{
 		$issue = Issue::find($id);
 		$issue->followers()->detach(Auth::id());
-		return redirect()->back()->with('success', 'Du följer inte längre ärendet.');
+		return redirect()->back();
 	}
+	
+	public function contacted($id)
+	{ 
+		$issue = Issue::find($id);
+		Issue::whereId($id)->update(['timeCustomercallback' => date('Y-m-d H:i',strtotime(now()))]);
+		return redirect()->back();
+	}
+	
+	public function uncontacted($id)
+	{
+		$issue = Issue::find($id);
+		Issue::whereId($id)->update(['timeCustomercallback' => null]);
+		return redirect()->back();
+	}
+	
+	public function reopen($id)
+	{
+		$issue = Issue::find($id);
+		Issue::whereId($id)->update(['timeClosed' => null]);
+		event(new IssueReopened($issue));
+		event(new NewIssueComment($issue));
+		return redirect()->back();
+	}
+	
 }
