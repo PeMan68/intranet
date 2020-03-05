@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@include('menues.visitors')
+
 @section('stylesheets')
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 @endsection
@@ -112,20 +114,12 @@ $('input[name="daterange"]').daterangepicker({
 			<td></td>
 			</tr>
 			
-			<tr><td class="text-md-right">
-				Namn
-			</td>
-			<td>
-				<input type="text" name="name[]" class="form-control">
-			</td>
-			<td></td>  
-			</tr>  
 			</table>  
 
 			<div class="form-group row mb-0">
 				<div class="col-md-8 offset-md-4">
 					<button type="submit" class="btn btn-primary">Spara</button>
-					<button class="btn btn-secondary" type="submit" name="reset" value="reset">Avbryt</button>
+					<a type="button" class="btn btn-secondary" href="{{ route('visitors.index') }}">Avbryt</a>
 					<button type="button" name="add" id="add" class="btn btn-success">+ Lägg till namn</button>								
 				</div>
 			</div>
