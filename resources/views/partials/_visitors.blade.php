@@ -1,8 +1,5 @@
 
 @if (count($visitors) > 0)
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-xs-12">
             <div class="card">
                 <div class="card-header">
 					Veckans besök i Karlstad
@@ -19,7 +16,4 @@
 					</table>
 				</div>
 			</div>
-		</div>
-	</div>
-</div>
 @endif
