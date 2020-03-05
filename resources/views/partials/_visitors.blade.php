@@ -8,8 +8,7 @@
 					<table class="table table-borderless">
 					@foreach ($visitors as $visitor)
 						<tr>
-							<td>{{ $visitor->start }} {{ ($visitor->start <> $visitor->stop) ? ' - ' . $visitor->stop :''}}</td>
-							<td>{{ $visitor->name }}</td>
+							<td>{{ $visitor->user->name }} {{ $visitor->user->surname }}: </td>
 							<td>{{ $visitor->company }}</td>
 						<tr>
 					@endforeach
