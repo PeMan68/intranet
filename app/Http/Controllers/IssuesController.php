@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Events\NewIssue;
 use App\Events\IssueReopened;
 use App\Events\NewIssueComment;
+//use App\Jobs\NewIssue;
 
 class IssuesController extends Controller
 {
@@ -99,13 +100,9 @@ class IssuesController extends Controller
 		$task = Task::find($request->task_id);
 		//Send mail to responsible staff
 		event(new NewIssue($issue));
-		// foreach ($task->users as $user) {
-			// if ($user->pivot->level == 3){
-				// Mail::to($user->email)->send(new issueCreated($issue));
-				
-			// }
-		// }
 		
+		//Dispatch job NewIssue
+		//NewIssue::dispatch($issue);
         if ($request->has('save')) {
 			return redirect('/issues')->with('success','Nytt ärende skapat: '.$validatedData['ticketNumber']);
 		}

@@ -22,7 +22,7 @@ class NewIssue
      */
     public function __construct(Issue $issue)
     {
-        $this->issue = $issue;
+		$this->issue = $issue;
     }
 
     /**
