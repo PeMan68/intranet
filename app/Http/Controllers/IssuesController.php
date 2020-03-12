@@ -8,6 +8,7 @@ use App\Task;
 use App\User;
 use App\Priority;
 use App\IssueComment;
+use App\IssueAttachment;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreIssue;
 use App\Http\Requests\UpdateIssue;
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Events\NewIssue;
 use App\Events\IssueReopened;
 use App\Events\NewIssueComment;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class IssuesController extends Controller
 {
@@ -92,7 +95,25 @@ class IssuesController extends Controller
 		$validatedData['vip'] = $request->has('vip');
 		//build ticketnumber, S+year+number of issues currentyear.
 		$validatedData['ticketNumber'] = 'S-' . date('y') . sprintf('%03d',Issue::whereYear('created_at', date('Y'))->count() +1);
-        $issue = Issue::create($validatedData);
+		
+		$issue = Issue::create($validatedData);
+		$files = $request->file('files');
+		if (!is_null($files))
+		{
+			{
+			foreach ($files as $key=>$file) {
+				$fileName = $validatedData['ticketNumber'].'-'.$file->getClientOriginalName();
+
+				$filePath = $file->storeAs('issues', $fileName, 'public');
+				$attachment = new IssueAttachment;
+				$attachment->issue_id = $issue->id;
+				$attachment->filename = $file->getClientOriginalName();
+				$attachment->url = $filePath;
+				$attachment->description = $request->fileDescriptions[$key];
+				$attachment->save();
+				}
+			}
+		}
 		if ($request->has('follow')) {
 			$issue->followers()->attach(Auth::id());
 		}
@@ -134,6 +155,9 @@ class IssuesController extends Controller
 		$auth_user = Auth::user();
 		$followers = $issue->followers;
 		$follow = 0;
+		$files = IssueAttachment::
+			where('issue_id',$issue->id)
+			->get();
 		foreach ($followers as $follower) {
 			if ($follower->id == Auth::id()) {
 				$follow = 1;
@@ -154,6 +178,7 @@ class IssuesController extends Controller
 			'followers' => $followers,
 			'follow' => $follow,
 			'new_comment' => $new_comment,
+			'files' => $files,
 			]);
     }
 

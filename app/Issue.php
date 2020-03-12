@@ -53,6 +53,10 @@ class Issue extends Model
 		return $this->hasMany('App\IssueComment');
 	}
 	
+	public function Attachments()	{
+		return $this->hasMany('App\IssueAttachment');
+	}
+	
 	public function task() {
 		return $this->belongsTo('App\Task');
 	}

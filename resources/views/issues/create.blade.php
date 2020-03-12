@@ -2,12 +2,32 @@
 
 @include('menues.issues')
 
+@section('scriptsBody')
+<script type="text/javascript">
+    $(document).ready(function(){      
+		var i=1;  
+		$('#form-table').hide();
+
+		$('#add').click(function(){  
+			i++; 
+			$('#form-table').show();
+			$('#form-table').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="file" class="form-control-file" name="files[]"></td><td><input type="text" class="form-control form-control-sm" id="fileDescription"  name="fileDescriptions[]" value="{{ old('fileDescription') }}"></td></tr>');  
+		});  
+
+		$(document).on('click', '.btn_remove', function(){  
+			var button_id = $(this).attr("id");   
+			$('#row'+button_id+'').remove();  
+		});
+	});
+</script>
+@endsection
+
 @section('content')
 <div class="card">
 	<div class="card-header h3">Nytt ärende</div>
 
 	<div class="card-body">
-		<form action="/issues" method="post">
+		<form action="/issues" method="post" enctype="multipart/form-data">
 			@csrf
 			<input type="hidden" name="timeInit" value="{{ $timeInit }}"
 			<div class="row justify-content-center">
@@ -67,42 +87,55 @@
 					</div>
 				</div>
 
-					<div class="col-lg-6">
-						<div class="form-row">
-							<div class="col-md-4 form-group">
-								<label for="customerNumber" class="font-weight-bold">Kundnummer</label>
-								<input type="text" class="form-control form-control-sm" id="customerNumber" name="customerNumber" value="{{ old('customerNumber') }}">
-							</div>
-							<div class="col-md-8 form-group">
-								<label for="customer" class="font-weight-bold">Kund</label>
-								<input type="text" class="form-control form-control-sm" id="customer" name="customer" value="{{ old('customer') }}">
-							</div>
+				<div class="col-lg-6">
+					<div class="form-row">
+						<div class="col-md-4 form-group">
+							<label for="customerNumber" class="font-weight-bold">Kundnummer</label>
+							<input type="text" class="form-control form-control-sm" id="customerNumber" name="customerNumber" value="{{ old('customerNumber') }}">
 						</div>
-						<div class="form-row">
-							<div class="col-md-8 form-group">
-								<label for="customerName" class="font-weight-bold">Kontaktperson(*)</label>
-								<input type="text" class="form-control form-control-sm" id="customerName"  name="customerName" value="{{ old('customerName') }}">
-							</div>
-							<div class="col-md-4 form-group">
-								<label for="customerTel" class="font-weight-bold">Telefon(*)</label>
-								<input type="text" class="form-control form-control-sm" id="customerTel"  name="customerTel"  value="{{ old('customerTel') }}">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="customerMail" class="font-weight-bold">E-post(*)</label>
-							<input type="text" class="form-control form-control-sm" id="customerMail"  name="customerMail" value="{{ old('customerMail') }}">
-						</div>
-						<div class="form-row">
-							<div class="col-md-6 form-group">
-								<label for="description" class="font-weight-bold">Formell beskrivning(*)</label>
-								<textarea class="form-control form-control-sm" id="description" name="description" rows="8">{{ old('description') }}</textarea>
-							</div>
-							<div class="col-md-6 form-group">
-								<label for="descriptionInternal" class="font-weight-bold">Intern anteckning</label>
-								<textarea class="form-control form-control-sm" id="descriptionInternal" name="descriptionInternal" rows="8">{{ old('descriptionInternal') }}</textarea>
-							</div>
+						<div class="col-md-8 form-group">
+							<label for="customer" class="font-weight-bold">Kund</label>
+							<input type="text" class="form-control form-control-sm" id="customer" name="customer" value="{{ old('customer') }}">
 						</div>
 					</div>
+					<div class="form-row">
+						<div class="col-md-8 form-group">
+							<label for="customerName" class="font-weight-bold">Kontaktperson(*)</label>
+							<input type="text" class="form-control form-control-sm" id="customerName"  name="customerName" value="{{ old('customerName') }}">
+						</div>
+						<div class="col-md-4 form-group">
+							<label for="customerTel" class="font-weight-bold">Telefon(*)</label>
+							<input type="text" class="form-control form-control-sm" id="customerTel"  name="customerTel"  value="{{ old('customerTel') }}">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="customerMail" class="font-weight-bold">E-post(*)</label>
+						<input type="text" class="form-control form-control-sm" id="customerMail"  name="customerMail" value="{{ old('customerMail') }}">
+					</div>
+					<div class="form-row">
+						<div class="col-md-6 form-group">
+							<label for="description" class="font-weight-bold">Formell beskrivning(*)</label>
+							<textarea class="form-control form-control-sm" id="description" name="description" rows="8">{{ old('description') }}</textarea>
+						</div>
+						<div class="col-md-6 form-group">
+							<label for="descriptionInternal" class="font-weight-bold">Intern anteckning</label>
+							<textarea class="form-control form-control-sm" id="descriptionInternal" name="descriptionInternal" rows="8">{{ old('descriptionInternal') }}</textarea>
+						</div>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group">
+						<br>
+						<table id="form-table" class="table">
+							<tr>
+							<th width="30%">Fil</th>
+							<th width="70%">Beskrivning</th>
+							</tr>
+						</table>
+						<br>
+						<button type="button" name="add" id="add" class="btn btn-sm btn-light">+ Lägg till fil</button>
+					</div>
+				</div>
 			</div>
 			<div class="form-row">
 				<div class="col-md-12">

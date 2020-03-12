@@ -26,6 +26,9 @@ class DropStartAndStopVistitorsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('visitors', function (Blueprint $table) {
+			$table->date('start');
+			$table->date('stop');
+		});
     }
 }

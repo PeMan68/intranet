@@ -108,6 +108,25 @@ $(document).ready(function(){
 				</div>
 			</div>
 			<div class="row">
+				<div class="col-md-6">
+				</div>
+			</div>
+					<div class="form-row">
+						<div class="form-group">
+							<br>
+							<label for="file" class="font-weight-bold">Bilagor:</label>
+							<table class="table table-sm table-borderless">
+							@foreach ($files as $file)
+								<tr>
+								<td><a href="{{ '/storage/'.$file->url }}">{{ $file->filename }}</a></td>
+								<td>{{ $file->description }}</td>
+								</tr>
+							@endforeach
+							</table>
+							<input id="file" type="file" class="form-control-file @error('file') is-invalid @enderror" name="files[]" value="{{ old('file') }}" multiple>
+						</div>
+					</div>
+			<div class="row">
 				<div class="col-md-6" id="buttons">
 					<button type="submit" class="btn btn-primary m-2" name="save">
 						Spara ändringarna
