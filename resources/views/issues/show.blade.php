@@ -15,6 +15,26 @@ $(document).ready(function(){
 </script>
 @endsection
 
+@section('scriptsBody')
+<script type="text/javascript">
+    $(document).ready(function(){      
+		var i=1;  
+		$('#form-table').hide();
+
+		$('#add').click(function(){  
+			i++; 
+			$('#form-table').show();
+			$('#form-table').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="file" class="form-control-file" name="files[]"></td><td><input type="text" class="form-control form-control-sm" id="fileDescription"  name="fileDescriptions[]" value="{{ old('fileDescription') }}"></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove btn-sm">X</button></td></tr>');  
+		});  
+
+		$(document).on('click', '.btn_remove', function(){  
+			var button_id = $(this).attr("id");   
+			$('#row'+button_id+'').remove();  
+		});
+	});
+</script>
+@endsection
+
 @section('content')
 <div class="card">
 	<div class="card-header h3">Ärende {{ $issue->ticketNumber }}
@@ -123,9 +143,21 @@ $(document).ready(function(){
 								</tr>
 							@endforeach
 							</table>
-							<input id="file" type="file" class="form-control-file @error('file') is-invalid @enderror" name="files[]" value="{{ old('file') }}" multiple>
 						</div>
 					</div>
+				<div class="form-row">
+					<div class="form-group">
+						<br>
+						<table id="form-table" class="table">
+							<tr>
+							<th width="30%">Fil</th>
+							<th width="70%">Beskrivning</th>
+							</tr>
+						</table>
+						<br>
+						<button type="button" name="add" id="add" class="btn btn-sm btn-success">+ Lägg till fil</button>
+					</div>
+				</div>
 			<div class="row">
 				<div class="col-md-6" id="buttons">
 					<button type="submit" class="btn btn-primary m-2" name="save">
@@ -160,7 +192,7 @@ $(document).ready(function(){
 					<div class="alert alert-primary">
 						<a class="btn btn-sm btn-primary m-1" href="{{ route('issues.contacted', $issue->id) }}">
 							Klicka här när kunden är kontaktad
-							<i class="material-icons white md-18 ml-1" data-toggle="tooltip" title="Klicka här för att bekräfta att kund är kontaktad" style="vertical-align: middle;">help</i>
+							<i class="material-icons white md-18 ml-1" data-toggle="tooltip" title="Klicka här för att bekräfta att kund har fått en första återkoppling" style="vertical-align: middle;">help</i>
 						</a>
 					</div>
 					@else
