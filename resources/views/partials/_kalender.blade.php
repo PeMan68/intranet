@@ -68,6 +68,11 @@
 											<div class="activity text-truncate bg-activity-sjuk">{{ $activity->description }}</div>
 										</a>
 										@break
+									@case(6)
+										<a href="{{ route('calendar.edit',$activity->id) }}" data-toggle="tooltip" title="{{$activity->description }}">
+											<div class="activity text-truncate bg-activity-permit">{{ $activity->description }}</div>
+										</a>
+										@break
 								@endswitch
 							@else
 							@endif

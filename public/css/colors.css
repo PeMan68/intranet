@@ -8,6 +8,7 @@
 	--color-prel: #88FF88;
 	--color-sjuk: #F3BC2E;
 	--color-resa: #D45B12;
+	--color-permit: #ffcccc;
 
 	/* Neutral */
 	--color-bg-navbar: #E72335;
@@ -19,6 +20,7 @@
 	--color-prel: #88FF88;
 	--color-sjuk: #ebf700;
 	--color-resa: #ffa137;
+	--color-permit: #ffcccc;
 	
 }
 
@@ -59,4 +61,8 @@ body {
 
 .bg-activity-resa {
 	background-color: var(--color-resa);
+}
+
+.bg-activity-permit {
+	background-color: var(--color-permit);
 }

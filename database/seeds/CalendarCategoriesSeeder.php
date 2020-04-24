@@ -34,5 +34,9 @@ class CalendarCategoriesSeeder extends Seeder
 				'name' => 'Sjuk',
 				'url_image' => 'images/yellow.png',
 			]);
+		CalendarCategory::create([
+				'name' => 'Permitterad',
+				'url_image' => 'images/pink.png',
+			]);
     }
 }
