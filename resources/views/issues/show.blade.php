@@ -17,12 +17,23 @@ $(document).ready(function(){
 
 @section('content')
 <div class="card">
-	<div class="card-header h3">Ärende {{ $issue->ticketNumber }}
+	<div class="card-header h3">
+		Ärende {{ $issue->ticketNumber }} utcheckat av 
+		{{ $issue->userCurrent->name }} 
+		{{ $issue->userCurrent->surname }}
+		@if ($auth_user->id == $issue->userCurrent_id)
+			<a class="btn btn-primary btn-sm m-2" href="{{ route('issues.index') }}" role="button">
+			Checka tillbaks ärende
+			<i class="material-icons white md-18 ml-1" data-toggle="tooltip" 
+			title="Checka tillbaks ärendet när du är klar så det inte är blockerat för andra användare" 
+			style="vertical-align: middle;">help</i>
+			</a>
+		@endif
 	</div>
 	<div class="card-body">
 		@if ($auth_user->id <> $issue->userCurrent_id)
 		<div class="alert alert-info">
-			Ärendet är för närvarande öppet av
+			Ärendet är för närvarande utcheckat av
 			{{ $issue->userCurrent->name }}
 			{{ $issue->userCurrent->surname }}.
 			Du kan läsa men inte ändra några uppgifter förrän ärendet är ledigt.
