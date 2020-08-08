@@ -24,9 +24,8 @@ class StoreDocument extends FormRequest
     public function rules()
     {
         return [
-            'description' => 'required',
+            'description' => 'required|max:191',
 			'document' => 'required|max:2048',
-			'tags' => 'nullable',
         ];
     }
 	
@@ -39,6 +38,8 @@ class StoreDocument extends FormRequest
 	{
 		return [
 			'description.required' => 'Ange en kort beskrivning vad det är för fil',
-			'document.required' => 'Filen är ogiltig',
+			'description.max' => 'Beskrivning får vara max 191 tecken',
+			'document.required' => 'Filen saknas',
+			'document.max' => 'Filen är större än 2GB',
 		];
 	}}

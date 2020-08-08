@@ -31,7 +31,7 @@ $(document).ready(function($) {
 		</div>
 	</div>
 	<div class="card-body">
-		<table class="table table-sm table-hover">
+		<table class="table table-sm">
 			<thead class="thead-light">
 				<tr>
 					<th class="d-none d-lg-table-cell">fil</th>
@@ -46,18 +46,21 @@ $(document).ready(function($) {
 			<tbody>
 			@foreach ($files as $file)
 				<tr class="table-row">
-					<td class="d-none d-lg-table-cell link-cell" data-href="{{ URL::to('documents/download/' . $file->id) }}">
+					<td class="d-lg-table-cell">
+					<a href="{{ URL::to('documents/download/' . $file->id) }}">
 					{{ $file->filename }}</a></td>
-					<td class="d-none d-lg-table-cell text-right link-cell" data-href="{{ URL::to('documents/download/' . $file->id) }}">
-					{{ readableBytes($file->size) }}</a></td>
-					<td class="d-none d-lg-table-cell text-center link-cell" data-href="{{ URL::to('documents/download/' . $file->id) }}">
-					{{ $file->version }}</a></td>
-					<td class="d-none d-lg-table-cell link-cell" data-href="{{ URL::to('documents/download/' . $file->id) }}">
-					{{ $file->created_at }}</a></td>
-					<td class="d-none d-lg-table-cell link-cell" data-href="{{ URL::to('documents/download/' . $file->id) }}">
-					{{ $file->user->name . ' ' . $file->user->surname }}</a></td>
-					<td class="d-none d-lg-table-cell link-cell" data-href="{{ URL::to('documents/download/' . $file->id) }}">
-					{{ $file->description }}</a></td>
+					<td class="d-none d-lg-table-cell text-right">
+					{{ readableBytes($file->size) }}</td>
+					<td class="d-none d-lg-table-cell text-center">
+					{{ $file->version }}</td>
+					<td class="d-none d-lg-table-cell">
+					{{ $file->created_at }}</td>
+					<td class="d-none d-lg-table-cell">
+					{{ $file->user->name . ' ' . $file->user->surname }}</td>
+					<td class="d-lg-table-cell">
+					<div class="d-inline-block text-truncate stretched-link" style="max-width: 300px;" data-toggle="tooltip" title="{{ $file->description }}">{{ $file->description }}
+					</div>
+					</td>
 					<td>
 						<form method="POST" action="{{ url('documents', [$file]) }}">
 						@method('DELETE')
