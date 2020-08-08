@@ -254,3 +254,19 @@ if (! function_exists('setting')) {
         return is_null($value) ? value($default) : $value;
     }
 }
+
+if (! function_exists('readableBytes')) {
+	
+	/**
+	 * Converts a long string of bytes into a readable format e.g KB, MB, GB, TB, YB
+	 * 
+	 * @param {Int} num The number of bytes.
+	 */
+	function readableBytes($bytes) {
+		$i = floor(log($bytes) / log(1024));
+
+		$sizes = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+
+		return sprintf('%.0F', $bytes / pow(1024, $i)) * 1 . ' ' . $sizes[$i];
+	}
+}

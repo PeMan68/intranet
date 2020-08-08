@@ -18,6 +18,9 @@
 					<a class="nav-link" href="{{ url('/issues/') }}">Ärenden</a>
 				</li>
 				<li class="nav-item">
+					<a class="nav-link" href="{{ url('/documents/') }}">Dokument</a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link" href="{{ route('visitors.index') }}">Besökare</a>
 				</li>
 			</ul>
