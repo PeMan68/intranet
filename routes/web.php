@@ -15,16 +15,10 @@ Route::get('/posten', 'PagesController@posten');
 Route::get('/reception', 'PagesController@reception');
 Route::get('/reception2', 'PagesController@reception2');
 
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
-
-Route::get('/admin', function(){
-	return 'you are admin';
-})->middleware(['auth', 'auth.admin']);
-
 
 Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->name('admin.')->group(function(){
 	Route::resource('/users', 'UserController', ['except' => ['show', 'store']]);
@@ -41,13 +35,15 @@ Route::resource('/calendar','CalendarController')->middleware('auth');
 Route::resource('/issues','IssuesController')->middleware('auth');
 Route::resource('/issuecomments','IssueCommentController')->middleware('auth');
 
-Route::resource('/visitors','VisitorsController');
-
 Route::get('/issues/{id}/follow','IssuesController@follow')->name('issues.follow')->middleware('auth');
 Route::get('/issues/{id}/unfollow','IssuesController@unfollow')->name('issues.unfollow')->middleware('auth');
-
 Route::get('/issues/{id}/contacted','IssuesController@contacted')->name('issues.contacted')->middleware('auth');
 Route::get('/issues/{id}/uncontacted','IssuesController@uncontacted')->name('issues.uncontacted')->middleware('auth');
-
 Route::get('/issues/{id}/reopen','IssuesController@reopen')->name('issues.reopen')->middleware('auth');
+
+Route::resource('/visitors','VisitorsController');
+
+Route::resource('/documents','DocumentsController')->middleware('auth');
+Route::get('/documents/download/{id}','DocumentsController@download')->name('documents.download')->middleware('auth');
+
 
