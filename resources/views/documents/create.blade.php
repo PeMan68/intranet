@@ -19,7 +19,7 @@
 				<input type="text" class="form-control form-control-sm" id="description"  name="description" value="{{ old('description') }}">
 			</div>
 			<div class="form-group">
-				<label for="document" class="font-weight-bold">Fil (Max 2GB)</label>
+				<label for="document" class="font-weight-bold">Fil (Max 2MB)</label>
 				<input type="file" class="form-control form-control-sm" id="document"  name="document" value="{{ old('document') }}" style="height: calc(1.68125rem + 8px);">
 			</div>
 			<div class="form-group">
