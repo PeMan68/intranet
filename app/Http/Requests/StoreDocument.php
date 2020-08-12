@@ -40,6 +40,6 @@ class StoreDocument extends FormRequest
 			'description.required' => 'Ange en kort beskrivning vad det är för fil',
 			'description.max' => 'Beskrivning får vara max 191 tecken',
 			'document.required' => 'Filen saknas',
-			'document.max' => 'Filen är större än 2GB',
+			'document.max' => 'Filen är större än 2MB',
 		];
 	}}
