@@ -1,5 +1,8 @@
 # intranet
 
+2020-08-12 Hotfix 2.3.1
+	Corrected info of file-size to 2MB
+	
 2020-08-11 Release 2.3.0
 	Added module documents
 	
