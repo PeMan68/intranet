@@ -2,8 +2,10 @@
 
 ### Working on
 *Bug fixes:*
-* Fixed rule description of file-size (GB -> MB)
 
+## Release 2.3.2 (2020-08-21)
+* Fixed rule description of file-size (GB -> MB)
+* B200821 Wrong file deleted from documents
 
 ## Release 2.3.1 (2020-08-12)
 *Bug fixes:*
