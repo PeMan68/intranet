@@ -75,12 +75,11 @@ class DocumentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Documents  $documents
+     * @param  \App\Documents  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-		
 		$file = Documents::find($id);
 		Storage::delete($file->path);
 		$file->delete();				

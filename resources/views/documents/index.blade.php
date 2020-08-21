@@ -62,13 +62,14 @@ $(document).ready(function($) {
 					</div>
 					</td>
 					<td>
-						<form method="POST" action="{{ url('documents', [$file]) }}">
+						<form method="POST" action="/documents/{{ $file->id }}">
 						@method('DELETE')
 						@csrf
 						<button type="submit" class="btn btn-danger btn-sm show_confirm" name="delete">
 						<i class="material-icons white md-18"
 						style="vertical-align: middle;">delete</i>
 						</button>
+						</form>
 					</td>
 				</tr>
 			@endforeach
