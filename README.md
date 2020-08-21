@@ -1,10 +1,20 @@
 # intranet
 
-2020-08-12 Hotfix 2.3.1
-	Corrected info of file-size to 2MB
+### Working on
+*Bug fixes:*
+
+## Release 2.3.2 (2020-08-21)
+* Fixed rule description of file-size (GB -> MB)
+* B200821 Wrong file deleted from documents
+
+## Release 2.3.1 (2020-08-12)
+*Bug fixes:*
+* Corrected info of file-size to 2MB
 	
-2020-08-11 Release 2.3.0
-	Added module documents
+## Release 2.3.0 (2020-08-11)
+*Features:*
+* Added module documents
 	
-2020-02-19 Release 2.1.1
-	Added departments and sorts the calendar from it
+## Release 2.1.1 (2020-02-19)
+*Features:*
+* Added departments and sorts the calendar by it
