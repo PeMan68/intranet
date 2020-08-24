@@ -72,6 +72,7 @@ class Issue extends Model
 					->orWhere('customerName', 'LIKE', '%' . $filter . '%')
 					->orWhere('description', 'LIKE', '%' . $filter . '%')
 					->orWhere('descriptionInternal', 'LIKE', '%' . $filter . '%')
+					->orWhere('ticketNumber', 'LIKE', '%' . $filter . '%')
 			;
 		}
 		return $query;
