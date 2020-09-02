@@ -113,9 +113,9 @@ $(document).ready(function($) {
 						@endif 
 					</td>
 					<td>{{$issue->customer}}</td>
-					<td class="d-none d-md-table-cell">{{$issue->customerName}}</td>
+					<td class="d-none d-md-table-cell">{{ $issue->customerName}}</td>
 					<td class="d-none d-lg-table-cell">
-					<div class="d-inline-block text-truncate stretched-link" style="max-width: 300px;" data-toggle="tooltip" title="{{$issue->description }}">{{$issue->description}}
+					<div class="d-inline-block text-truncate stretched-link" style="max-width: 300px;" data-toggle="tooltip" data-html="true" title="Senaste händelse:<br/>{{ $lastComment }}">{{$issue->header}}
 					</div>
 					</td>
 				</tr>
