@@ -28,6 +28,7 @@ class StoreIssue extends FormRequest
             'task_id' => 'required',
 			'customerName' => 'nullable',
 			'customerTel' => 'required_with:customerName',
+			'header' => 'required',
 			'description' => 'required',
 			'customer' => 'nullable',
 			'customerNumber' => 'nullable',
@@ -36,7 +37,6 @@ class StoreIssue extends FormRequest
 			'urgent' => 'nullable',
 			'vip' => 'nullable',
 			'prio' => 'nullable',
-			'header' => 'required',
         ];
     }
 
@@ -49,7 +49,7 @@ class StoreIssue extends FormRequest
 	{
 		return [
 			'task_id.required' => 'Välj område',
-			'header.required' => 'Ange en kort, beskrivande rubrik',
+			'header.required' => 'Rubrik är obligatorisk',
 			'description.required' => 'Formell beskrivning är obligatorisk',
 			'customerName.required' => 'Kontaktperson är obligatorisk',
 			'customerTel.required_with' => 'Ange telefonnummer till  kontaktpersonen',
