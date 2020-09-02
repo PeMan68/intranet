@@ -36,6 +36,7 @@ class StoreIssue extends FormRequest
 			'urgent' => 'nullable',
 			'vip' => 'nullable',
 			'prio' => 'nullable',
+			'header' => 'required',
         ];
     }
 
@@ -48,6 +49,7 @@ class StoreIssue extends FormRequest
 	{
 		return [
 			'task_id.required' => 'Välj område',
+			'header.required' => 'Ange en kort, beskrivande rubrik',
 			'description.required' => 'Formell beskrivning är obligatorisk',
 			'customerName.required' => 'Kontaktperson är obligatorisk',
 			'customerTel.required_with' => 'Ange telefonnummer till  kontaktpersonen',

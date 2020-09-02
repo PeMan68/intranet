@@ -34,6 +34,7 @@ class Issue extends Model
 		'timeCustomercallback',
 		'prio',
 		'ticketNumber',
+		'header',
     ];
 	
 	public function namePersonalTask(){
