@@ -115,7 +115,15 @@ $(document).ready(function($) {
 					<td>{{$issue->customer}}</td>
 					<td class="d-none d-md-table-cell">{{ $issue->customerName}}</td>
 					<td class="d-none d-lg-table-cell">
-					<div class="d-inline-block text-truncate stretched-link" style="max-width: 300px;" data-toggle="tooltip" data-html="true" title="Senaste händelse:<br/>{{ $lastComment }}">{{$issue->header}}
+
+
+					<div class="d-inline-block text-truncate stretched-link" style="max-width: 300px;" data-toggle="tooltip" data-html="true" 
+					title="Senaste händelse:<br/>{{ $issue->latestComment['updated_at'] }}<br/>{{ $issue->latestComment['comment_internal'] }}">
+					@if (!is_null($issue->header)) 
+					{{ $issue->header }}
+					@else 
+					Rubrik saknas
+					@endif
 					</div>
 					</td>
 				</tr>

@@ -51,12 +51,13 @@ class IssuesController extends Controller
 					->sortByDesc('calculated_prio')
 					;
 		}
-		$lastComment = IssueComment::where('issue_id',190)
-					->where('comment_internal','!=',null)
-					->get()
-					->last()
-					->comment_internal;
-		return view('issues.index',compact('issues',$issues),['filter' => $filters, 'lastComment' => $lastComment]);
+		
+		// $lastComment = IssueComment::where('issue_id',190)
+		// 			->where('comment_internal','!=',null)
+		// 			->get()
+		// 			->last()
+		// 			->comment_internal;
+		return view('issues.index',compact('issues',$issues),['filter' => $filters]);
     }
 
     /**
