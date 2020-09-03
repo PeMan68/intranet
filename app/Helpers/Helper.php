@@ -271,3 +271,8 @@ if (! function_exists('readableBytes')) {
 	}
 }
 
+if (! function_exists('unansweredIssues')) {
+	function unansweredIssues() {
+		return Issue::where('timeCustomercallback',null)->count();
+	}
+}

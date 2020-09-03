@@ -15,7 +15,9 @@
 					<a class="nav-link" href="{{ url('/') }}">Hem</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="{{ url('/issues/') }}">Ärenden</a>
+					<a class="nav-link" href="{{ url('/issues/') }}">Ärenden
+					<span class="badge badge-danger" data-toggle="tooltip" title="Antal ej besvarade ärenden">{{ unansweredIssues() }}</span>
+					</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('/documents/') }}">Dokument</a>
