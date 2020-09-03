@@ -2,10 +2,11 @@
 
 ### Working on
 *Bug fixes:*
+All headers tootip show the same latest comment.
 
 ## Done
 *Features*
-* Added header to Issues. Showng lates comment as tooltip in Issues-list.
+* Added header to Issues. Showing latest comment as tooltip in Issues-list.
 
 ## Release 2.3.2 (2020-08-21)
 * Fixed rule description of file-size (GB -> MB)

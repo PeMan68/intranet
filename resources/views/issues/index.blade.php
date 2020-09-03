@@ -83,10 +83,10 @@ $(document).ready(function($) {
 					<td class="d-none d-xl-table-cell">{{ (int)$issue->calculated_prio }}</td>
 					@endhasrole
 					<td class="d-none d-sm-table-cell" data-toggle="tooltip" title="Skapat {{ $issue->timeInit }}">{{date('y-m-d',strtotime($issue->timeInit))}}</td>
-					<td class="d-none d-xl-table-cell" data-toggle="tooltip" title="Senast uppdaterad {{ $issue->updated_at }}">{{date_diff
-					($issue->updated_at,
-					now())->format('%Dd:%Hh')
-					}}</td>
+					<td class="d-none d-xl-table-cell">
+					{{ !is_null($issue->latestComment) ? 
+						date_diff($issue->latestComment['updated_at'],now())->format('%Dd:%Hh') :
+						date_diff($issue->created_at,now())->format('%Dd:%Hh') }}</td>
 					<td>{{$issue->task->name ?? '#saknas'}}</td>
 					<td class="text-right">
 						@if (!is_null($issue->timeClosed))
@@ -115,7 +115,15 @@ $(document).ready(function($) {
 					<td>{{$issue->customer}}</td>
 					<td class="d-none d-md-table-cell">{{ $issue->customerName}}</td>
 					<td class="d-none d-lg-table-cell">
-					<div class="d-inline-block text-truncate stretched-link" style="max-width: 300px;" data-toggle="tooltip" data-html="true" title="Senaste händelse:<br/>{{ $lastComment }}">{{$issue->header}}
+
+
+					<div class="d-inline-block text-truncate stretched-link" style="max-width: 300px;" data-toggle="tooltip" data-html="true" 
+					title="Senaste händelse:<br/>{{ $issue->latestComment['updated_at'] }}<br/>{{ $issue->latestComment['comment_internal'] }}">
+					@if (!is_null($issue->header)) 
+					{{ $issue->header }}
+					@else 
+					Rubrik saknas
+					@endif
 					</div>
 					</td>
 				</tr>

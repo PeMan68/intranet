@@ -54,6 +54,10 @@ class Issue extends Model
 		return $this->hasMany('App\IssueComment');
 	}
 	
+	public function latestComment() {
+		return $this->hasOne('App\IssueComment')->where('comment_internal','!=',null)->latest();
+	}
+
 	public function task() {
 		return $this->belongsTo('App\Task');
 	}
