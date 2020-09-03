@@ -270,3 +270,4 @@ if (! function_exists('readableBytes')) {
 		return sprintf('%.0F', $bytes / pow(1024, $i)) * 1 . ' ' . $sizes[$i];
 	}
 }
+
