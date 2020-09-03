@@ -1,12 +1,11 @@
 # intranet
 
 ### Working on
-*Bug fixes:*
-All headers tootip show the same latest comment.
 
 ## Done
 *Features*
 * Added header to Issues. Showing latest comment as tooltip in Issues-list.
+* Changed the column "senast" in issues index-view. Now calculated against latest comment.
 
 ## Release 2.3.2 (2020-08-21)
 * Fixed rule description of file-size (GB -> MB)
