@@ -82,7 +82,7 @@ class Issue extends Model
 		}
 		return $query;
 	}
-	
+
 	public function userCurrentLevel() {
 		$level = 0;
 		if (!is_null(Auth::user()->tasks()->find($this->task_id)))
@@ -91,15 +91,17 @@ class Issue extends Model
 		}
 		return $level;
 	}
-	
-	public function hoursToCallback() {
-		if (!is_null($this->timeCustomercallback)){
-			$hours=0;
-		} else {
-			$hours = (strtotime($this->timeEstimatedcallback)-strtotime(date('Y-m-d H:i:s'))) / 3600;
-		}
-		return $hours;
-	}
+
+	// Ta bort om inte används
+
+	// public function hoursToCallback() {
+	// 	if (!is_null($this->timeCustomercallback)){
+	// 		$hours=0;
+	// 	} else {
+	// 		$hours = (strtotime($this->timeEstimatedcallback)-strtotime(date('Y-m-d H:i:s'))) / 3600;
+	// 	}
+	// 	return $hours;
+	// }
 
 
 	public function minutesToCallback() {
