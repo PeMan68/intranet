@@ -273,6 +273,11 @@ if (! function_exists('readableBytes')) {
 
 if (! function_exists('unansweredIssues')) {
 	function unansweredIssues() {
-		return Issue::where('timeCustomercallback',null)->count();
+		$data = Issue::whereNull('timeCustomercallback')
+			->whereDate('timeEstimatedcallback','<', date('Y-m-d H:i:s'))
+			->whereTime('timeEstimatedcallback','<', date('Y-m-d H:i:s'))
+			->get();
+		//dump($data);
+		return $data->count();
 	}
 }

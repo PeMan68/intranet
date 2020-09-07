@@ -101,9 +101,20 @@ class Issue extends Model
 		return $hours;
 	}
 
+
+	public function minutesToCallback() {
+		if (!is_null($this->timeCustomercallback)){
+			$minutes=0;
+		} else {
+			$minutes = (strtotime($this->timeEstimatedcallback)-strtotime(date('Y-m-d H:i:s'))) / 60;
+		}
+		return $minutes;
+	}
+
     /**
      * Calculate the priority for an issue.
 	 * Higher priority => higher value
+	 * generates attribute calculate_prio
      *
      * @var array
      */
@@ -112,27 +123,23 @@ class Issue extends Model
 		$level = self::userCurrentLevel();
 		$prio = ($level +1) * $this->prio;
 		if ($this->vip) {
-			$prio *= 4; 
+			$prio *= 5; 
 		}
 		if ($this->taskPersonal_id == Auth::id()) {
 			$prio *=2;
 		}
 		if (!is_null($this->timeCustomercallback)) {
-			$prio /=5;
+			$prio /=6;
 		}
 		if ($this->waitingForReply) {
-			$prio /=10;
+			$prio /=9;
 		}
 		if ($this->paused) {
-			$prio /=10;
+			$prio /=11;
 		}
-		$hours = self::hoursToCallback();
-		if ($hours<>0) {
-			if (abs($hours) == $hours) {
-				//future
-			} else {
-				$prio *= -$hours;
-			}
+		$minutes = self::minutesToCallback();
+		if ($minutes<0) {
+			$prio *= -$minutes;
 		}
 		if (!is_null($this->timeClosed)) {
 			$prio = 0;

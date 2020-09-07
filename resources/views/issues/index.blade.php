@@ -64,7 +64,7 @@ $(document).ready(function($) {
 				@elseif (!is_null($issue->userCurrent_id)) 
 					class="table-row table-active" 
 					data-toggle="tooltip" title="Utcheckat av {{ $issue->userCurrent->name.' '.$issue->userCurrent->surname }}" 
-				@elseif ($issue->hoursToCallback() < 0)
+				@elseif ($issue->minutesToCallback() < 0)
 					class="table-row table-danger"
 					data-toggle="tooltip" title="Tiden för återkoppling till kund har löpt ut. Kontakta kunden snarast!" 
 				@elseif ($issue->userCurrentLevel() == 3)
