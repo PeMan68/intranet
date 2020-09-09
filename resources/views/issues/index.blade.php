@@ -82,7 +82,7 @@ $(document).ready(function($) {
 					@hasrole('superadmin')
 					<td class="d-none d-xl-table-cell">{{ (int)$issue->calculated_prio }}</td>
 					@endhasrole
-					<td class="d-none d-sm-table-cell" data-toggle="tooltip" title="Skapat {{ $issue->timeInit }}">{{date('y-m-d',strtotime($issue->timeInit))}}</td>
+					<td class="d-none d-sm-table-cell">{{date('y-m-d',strtotime($issue->timeInit))}}</td>
 					<td class="d-none d-xl-table-cell">
 					{{ !is_null($issue->latestComment) ? 
 						date_diff($issue->latestComment['updated_at'],now())->format('%Dd:%Hh') :
