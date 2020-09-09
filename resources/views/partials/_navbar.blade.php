@@ -16,8 +16,12 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('/issues/') }}">Ärenden
-					<span class="badge badge-danger" data-toggle="tooltip" title="Kunder som inte blivit kontaktade">{{ expiredIssues() }}</span>
-					<span class="badge badge-warning" data-toggle="tooltip" title="Dina öppna ärenden">{{ unansweredIssues() }}</span>
+					@if (expiredIssues() > 0)
+						<span class="badge badge-danger" data-toggle="tooltip" title="Kunder som inte blivit kontaktade">{{ expiredIssues() }}</span>
+					@endif
+					@if (unansweredIssues() > 0)
+						<span class="badge badge-warning" data-toggle="tooltip" title="Dina öppna ärenden">{{ unansweredIssues() }}</span>
+					@endif
 					</a>
 				</li>
 				<li class="nav-item">
