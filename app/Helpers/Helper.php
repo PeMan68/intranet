@@ -270,3 +270,28 @@ if (! function_exists('readableBytes')) {
 		return sprintf('%.0F', $bytes / pow(1024, $i)) * 1 . ' ' . $sizes[$i];
 	}
 }
+
+if (! function_exists('unansweredIssues')) {
+	function unansweredIssues() {
+		$tasks = DB::table('task_user')
+			->where('user_id', Auth::id())
+			->where('level', 3)
+			->get();
+		$i = Issue::whereNull('timeClosed')
+		 	->whereIn('task_id', $tasks->pluck('task_id'))
+		 	->get();
+		return $i->count();
+
+	}
+}
+
+if (! function_exists('expiredIssues')) {
+	function expiredIssues() {
+		$data = Issue::whereNull('timeCustomercallback')
+			->whereNull('timeClosed')
+			->whereDate('timeEstimatedcallback','<', date('Y-m-d H:i:s'))
+			->whereTime('timeEstimatedcallback','<', date('Y-m-d H:i:s'))
+			->get();
+		return $data->count();
+	}
+}

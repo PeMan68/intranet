@@ -51,6 +51,7 @@ class IssuesController extends Controller
 					->sortByDesc('calculated_prio')
 					;
 		}
+		
 		return view('issues.index',compact('issues',$issues),['filter' => $filters]);
     }
 
@@ -180,8 +181,7 @@ class IssuesController extends Controller
         if ($request->has('cancel')) {
 			return redirect('/issues/'.$issue->id);
 		}
-		//Validate
-        $validatedData = $request->validated();
+		$validatedData = $request->validated();
 		$validatedData['vip'] = $request->has('vip');
 		Issue::whereId($issue->id)->update($validatedData);
         if ($request->has('save')) {

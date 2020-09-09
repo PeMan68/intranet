@@ -95,6 +95,8 @@ $(document).ready(function(){
 				</div>
 				<div class="col-md-6">
 					<table style="width: 100%;">
+						<tr><td><strong>Rubrik:</strong></td>
+							<td><input type="text" value="{{ old('header', $issue->header) }}" class="form-control" id="header" name="header" ></td></tr>
 						<tr><td style="width: 30%;"><strong>Ärendebeskrivning:</strong></td>
 							<td> <textarea class="form-control" id="description" name="description" rows="7">{{ old('description', $issue->description) }}</textarea></td></tr>
 						<tr><td><strong>Intern kommentar:</strong></td>

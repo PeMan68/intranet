@@ -1,11 +1,14 @@
-# intranet
+# Release notes
 
 ### Working on
+*Bug fixes:*
 
-## Done
-*Features*
+## Release 2.3.3 (2020-09-09)
+*Features:*
+* Added Ticket Number in search of Issues
 * Added header to Issues. Showing latest comment as tooltip in Issues-list.
 * Changed the column "senast" in issues index-view. Now calculated against latest comment.
+* Removed Tooltip for column Skapat in Issues-list.
 
 ## Release 2.3.2 (2020-08-21)
 * Fixed rule description of file-size (GB -> MB)
