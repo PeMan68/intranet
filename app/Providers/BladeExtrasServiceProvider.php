@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use Illuminate\Auth\Events\Authenticated;
 
 class BladeExtrasServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,19 @@ class BladeExtrasServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+		Blade::if('showmodule', function($expression){
+			if(!Auth::check()){
+				return false;
+			}
+			if(setting($expression)){
+				return true;
+			}
+			if(Auth::user()->hasAnyRole('superadmin')){
+				return true;
+			}
+			return false;
+		});
+
 		Blade::if('hasrole', function($expression){
 			
 			if(Auth::user()){

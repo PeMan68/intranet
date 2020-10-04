@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light shadow-sm navbar-bg">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
+		<a class="navbar-brand" href="{{ url('/') }}">{{ setting('app_name') }}</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -14,6 +14,7 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('/') }}">Hem</a>
 				</li>
+				@showmodule('enable_issues')
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('/issues/') }}">Ärenden
 					@if (expiredIssues() > 0)
@@ -24,12 +25,19 @@
 					@endif
 					</a>
 				</li>
+				@endshowmodule
+
+				@showmodule('enable_documents')
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('/documents/') }}">Dokument</a>
 				</li>
+				@endshowmodule
+				
+				@showmodule('enable_visitors')
 				<li class="nav-item">
 					<a class="nav-link" href="{{ route('visitors.index') }}">Besökare</a>
 				</li>
+				@endshowmodule
 			</ul>
 
 

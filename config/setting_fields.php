@@ -16,11 +16,28 @@ return [
                 'class' => '', // any class for input
                 'value' => 'Intranet' // default value if you want
             ],
+        ]
+    ],
+    'modules' => [
+        'title' => 'Moduler',
+        'desc' => 'Aktivera moduler för användare',
+        'icon' => 'dashboard',
+
+        'elements' => [
             [
                 'type' => 'checkbox', // input fields type
                 'data' => 'boolean', // data type, string, int, boolean
                 'name' => 'enable_issues', // unique name for field
-                'label' => 'Aktivera Ärenden för användare', // you know what label it is
+                'label' => 'Ärenden', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 0 // default value if you want
+            ],
+            [
+                'type' => 'checkbox', // input fields type
+                'data' => 'boolean', // data type, string, int, boolean
+                'name' => 'enable_dokument', // unique name for field
+                'label' => 'Dokument', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => 0 // default value if you want
@@ -29,7 +46,7 @@ return [
                 'type' => 'checkbox', // input fields type
                 'data' => 'boolean', // data type, string, int, boolean
                 'name' => 'enable_produkter', // unique name for field
-                'label' => 'Aktivera Produkter för användare', // you know what label it is
+                'label' => 'Produkter', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => 0 // default value if you want
