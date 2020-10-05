@@ -10,12 +10,17 @@ use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\SkipsOnError;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\SkipsErrors;
+use Maatwebsite\Excel\Concerns\WithStartRow;;
 
-class ProductsImport implements ToModel
+class ProductsImport implements ToModel, WithStartRow
 {
     use Importable;
     
-    /**
+    public function startRow() : int
+    {
+        return 2;
+    }
+   /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null

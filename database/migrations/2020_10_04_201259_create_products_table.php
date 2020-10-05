@@ -30,7 +30,7 @@ class CreateProductsTable extends Migration
             $table->string('status')->nullable();
             $table->string('abc',1)->nullable();
             $table->string('ean',20)->nullable();
-            $table->string('enummer',7)->nullable();
+            $table->string('enummer',20)->nullable();
         });
     }
 
