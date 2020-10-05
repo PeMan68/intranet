@@ -1,9 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-
+<div class='h1'>
+	Importera fil 'Prislista_sigip.xls'
+</div>
 	
-		<form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+		<form action="{{ route('admin.import') }}" method="POST" enctype="multipart/form-data">
 			@csrf
 			<input type="file" name="file" class="form-control">
 			<br>

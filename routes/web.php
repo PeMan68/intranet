@@ -27,6 +27,9 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 	Route::resource('/tasks','TaskController');
     Route::get('/settings', 'SettingController@index')->name('settings');
     Route::post('/settings', 'SettingController@store')->name('settings.store');
+	Route::get('/products', 'ProductController@index');
+	Route::get('/importproducts', 'ProductController@importform')->name('importproducts');
+	Route::post('/import', 'ProductController@import')->name('import');
 });
 
 Route::get('/admin/impersonate/destroy', 'Admin\ImpersonateController@destroy')->name('admin.impersonate.destroy');
@@ -46,8 +49,6 @@ Route::resource('/visitors','VisitorsController');
 Route::resource('/documents','DocumentsController')->middleware('auth');
 Route::get('/documents/download/{id}','DocumentsController@download')->name('documents.download')->middleware('auth');
 
-Route::get('/products', 'ProductController@index');
-Route::get('/importproducts', 'ProductController@importform');
-Route::post('/import', 'ProductController@import')->name('import');
+
 
 

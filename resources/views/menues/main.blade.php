@@ -14,7 +14,8 @@
 @hasrole('superadmin')
 <span class="border-top mt-1"></span>
 <div class="text-light">Inställningar</div>
-	<a class="nav-link" href="{{ url('/admin/tasks/')}}">Hantera ärenden</a>
+	<a class="nav-link" href="{{ route('admin.tasks.index')}}">Hantera ärenden</a>
 	<a class="nav-link" href="{{ route('admin.users.index')}}">Hantera användare</a>
 	<a class="nav-link" href="{{ route('admin.images.create')}}">Lägg till fil till receptionsskärm</a>
+	<a class="nav-link" href="{{ route('admin.importproducts')}}">Uppdatera produktlista</a>
 @endhasrole

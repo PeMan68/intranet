@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Product;
 use App\Imports\ProductsImport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -12,18 +13,19 @@ class ProductController extends Controller
     public function index()
 	{
 		$products = Product::paginate(50);
-		return view('products.index',['products' => $products]);
+		return view('admin.products.index',['products' => $products]);
 	}
 	
 	public function importform()
     {
-       return view('products.import');
+       return view('admin.products.import');
     }
       
     public function import() 
     {
         Product::truncate(); // deletes all rows before inserting new data
 		Excel::import(new ProductsImport,request()->file('file'));
-		return redirect('/products');
+		//return redirect('/products');
+		return redirect('/admin/products');
 	}
 }
