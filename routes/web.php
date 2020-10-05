@@ -46,4 +46,8 @@ Route::resource('/visitors','VisitorsController');
 Route::resource('/documents','DocumentsController')->middleware('auth');
 Route::get('/documents/download/{id}','DocumentsController@download')->name('documents.download')->middleware('auth');
 
+Route::get('/products', 'ProductController@index');
+Route::get('/importproducts', 'ProductController@importform');
+Route::post('/import', 'ProductController@import')->name('import');
+
 

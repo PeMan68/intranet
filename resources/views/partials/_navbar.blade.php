@@ -27,6 +27,12 @@
 				</li>
 				@endshowmodule
 
+				@showmodule('enable_produkter')
+				<li class="nav-item">
+					<a class="nav-link" href="{{ url('/produkter/') }}">Produkter</a>
+				</li>
+				@endshowmodule
+
 				@showmodule('enable_documents')
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('/documents/') }}">Dokument</a>
