@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\ProductLocation;
+use App\ProductStatus;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class ProductLocationController extends Controller
+class ProductStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,8 @@ class ProductLocationController extends Controller
      */
     public function index()
     {
-		return view('productlocations.index')->with('locations', ProductLocation::all());
+        return view('admin.productstatus.index')
+            ->with('statuses', ProductStatus::all());
     }
 
     /**
@@ -24,7 +26,7 @@ class ProductLocationController extends Controller
      */
     public function create()
     {
-        return view('productlocations.create');
+        return view('admin.productstatus.create');
     }
 
     /**
@@ -36,24 +38,25 @@ class ProductLocationController extends Controller
     public function store(Request $request)
     {
         if ($request->has('reset')) {
-            return redirect('productlocations');
+            return redirect('admin/productstatus');
         }
         $validatedData = $request->validate([
             'description' => 'required',
         ]);
-        $productLocation = ProductLocation::create($validatedData);
-        return redirect('productlocations')->with('success', 'Ny plats tillagd');
+        $productStatus = ProductStatus::create($validatedData);
+        return redirect('admin/productstatus')
+            ->with('success', 'Ny status tillagd');
     }
 
-     /**
+    /**
      * Show the form for editing the specified resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $location = ProductLocation::find($id);
-        return view('productlocations.edit',['location' => $location]);
+        $productStatus = ProductStatus::find($id);
+        return view('admin.productstatus.edit', ['status' => $productStatus]);
     }
 
     /**
@@ -65,14 +68,15 @@ class ProductLocationController extends Controller
     public function update(Request $request, $id)
     {
         if ($request->has('delete')) {
-			$entry = ProductLocation::find($id);
-			$entry->delete();
-			return redirect('productlocations');
-		}
+            $entry = ProductStatus::find($id);
+            $entry->delete();
+            return redirect('admin/productstatus');
+        }
         if ($request->has('reset')) {
-			return redirect('productlocations');
-		}
-		ProductLocation::whereId($id)->update(['description' => $request->description]);
-        return redirect('productlocations/');
+            return redirect('admin/productstatus');
+        }
+        ProductStatus::whereId($id)
+            ->update(['description' => $request->description]);
+        return redirect('admin/productstatus');
     }
 }

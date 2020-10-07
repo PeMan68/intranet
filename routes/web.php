@@ -30,6 +30,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 	Route::get('/products', 'ProductController@index');
 	Route::get('/importproducts', 'ProductController@importform')->name('importproducts');
 	Route::post('/import', 'ProductController@import')->name('import');
+	Route::resource('/productstatus', 'ProductStatusController');
 });
 
 Route::get('/admin/impersonate/destroy', 'Admin\ImpersonateController@destroy')->name('admin.impersonate.destroy');
