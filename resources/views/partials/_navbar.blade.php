@@ -29,7 +29,7 @@
 
 				@showmodule('enable_demoprodukter')
 				<li class="nav-item">
-					<a class="nav-link" href="{{ url('/demostock/') }}">Demolager</a>
+					<a class="nav-link" href="{{ url('/demoproducts/') }}">Demoprodukter</a>
 				</li>
 				@endshowmodule
 

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Demostock;
+use App\Demoproduct;
 use Illuminate\Http\Request;
 
-class DemostockController extends Controller
+class DemoproductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class DemostockController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Demostock  $demostock
+     * @param  \App\Demoproduct  $demoproduct
      * @return \Illuminate\Http\Response
      */
-    public function show(Demostock $demostock)
+    public function show(Demoproduct $demoproduct)
     {
         //
     }
@@ -52,10 +52,10 @@ class DemostockController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Demostock  $demostock
+     * @param  \App\Demoproduct  $demoproduct
      * @return \Illuminate\Http\Response
      */
-    public function edit(Demostock $demostock)
+    public function edit(Demoproduct $demoproduct)
     {
         //
     }
@@ -64,10 +64,10 @@ class DemostockController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Demostock  $demostock
+     * @param  \App\Demoproduct  $demoproduct
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Demostock $demostock)
+    public function update(Request $request, Demoproduct $demoproduct)
     {
         //
     }
@@ -75,10 +75,10 @@ class DemostockController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Demostock  $demostock
+     * @param  \App\Demoproduct  $demoproduct
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Demostock $demostock)
+    public function destroy(Demoproduct $demoproduct)
     {
         //
     }
