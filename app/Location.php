@@ -11,4 +11,14 @@ class Location extends Model
     public function products() {
         return $this->hasMany('App\Product');
     }
+
+    public function locations()
+    {
+        return $this->hasMany('App\Location');
+    }
+
+    public function childrenLocations()
+    {
+        return $this->hasMany('App\Location')->with('locations');
+    }
 }
