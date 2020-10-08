@@ -7,7 +7,7 @@
 			<div class="card">
 				<div class="card-header h3">Ändra Plats</div>
 				<div class="card-body">
-					<form action="{{ url('productlocations', [$location->id]) }}" method="post">
+					<form action="{{ url('locations', [$location->id]) }}" method="post">
 						@method('PUT')
 						@csrf
 						<div class="form-group">

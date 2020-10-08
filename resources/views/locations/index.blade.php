@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header h3">Hantera platser för demoprodukter 
 					<a class="btn btn-outline-primary float-right" 
-					href="{{ route('productlocations.create') }}">Skapa ny</a>
+					href="{{ route('locations.create') }}">Skapa ny</a>
 				</div>
                 <div class="card-body">
 					
@@ -22,7 +22,7 @@
 						@foreach($locations as $location)
 						<tr>
 							<td>
-							<a href="{{ route('productlocations.edit', $location->id) }}">{{ $location->id }}</a>
+							<a href="{{ route('locations.edit', $location->id) }}">{{ $location->id }}</a>
 							</td>
 							<td>{{ $location->description }}</td>
 						</tr>

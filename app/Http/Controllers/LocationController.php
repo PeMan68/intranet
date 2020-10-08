@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\ProductLocation;
+use App\Location;
 use Illuminate\Http\Request;
 
-class ProductLocationController extends Controller
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ProductLocationController extends Controller
      */
     public function index()
     {
-		return view('productlocations.index')->with('locations', ProductLocation::all());
+		return view('locations.index')->with('locations', Location::all());
     }
 
     /**
@@ -24,7 +24,7 @@ class ProductLocationController extends Controller
      */
     public function create()
     {
-        return view('productlocations.create');
+        return view('locations.create');
     }
 
     /**
@@ -36,13 +36,13 @@ class ProductLocationController extends Controller
     public function store(Request $request)
     {
         if ($request->has('reset')) {
-            return redirect('productlocations');
+            return redirect('locations');
         }
         $validatedData = $request->validate([
             'description' => 'required',
         ]);
-        $productLocation = ProductLocation::create($validatedData);
-        return redirect('productlocations')->with('success', 'Ny plats tillagd');
+        $location = Location::create($validatedData);
+        return redirect('locations')->with('success', 'Ny plats tillagd');
     }
 
      /**
@@ -52,8 +52,8 @@ class ProductLocationController extends Controller
      */
     public function edit($id)
     {
-        $location = ProductLocation::find($id);
-        return view('productlocations.edit',['location' => $location]);
+        $location = Location::find($id);
+        return view('locations.edit',['location' => $location]);
     }
 
     /**
@@ -65,14 +65,14 @@ class ProductLocationController extends Controller
     public function update(Request $request, $id)
     {
         if ($request->has('delete')) {
-			$entry = ProductLocation::find($id);
+			$entry = Location::find($id);
 			$entry->delete();
-			return redirect('productlocations');
+			return redirect('locations');
 		}
         if ($request->has('reset')) {
-			return redirect('productlocations');
+			return redirect('locations');
 		}
-		ProductLocation::whereId($id)->update(['description' => $request->description]);
-        return redirect('productlocations/');
+		Location::whereId($id)->update(['description' => $request->description]);
+        return redirect('locations/');
     }
 }

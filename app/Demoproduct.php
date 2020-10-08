@@ -8,7 +8,7 @@ class Demoproduct extends Model
 {
     public function location() 
     {
-        return $this->belongsTo('App\ProductLocation', 'location_id');
+        return $this->belongsTo('App\Location', 'location_id');
     }
 
     public function product()

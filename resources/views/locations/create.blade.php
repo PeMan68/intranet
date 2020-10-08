@@ -7,7 +7,7 @@
 			<div class="card">
 				<div class="card-header h3">Lägg till plats för demoprodukter</div>
 				<div class="card-body">
-					<form action="{{ route('productlocations.store') }}" method="post">
+					<form action="{{ route('locations.store') }}" method="post">
 						@csrf
 						<div class="form-group">
 						<label for="name" class="font-weight-bold h5">Beskrivning</label>

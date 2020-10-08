@@ -51,6 +51,6 @@ Route::resource('/documents','DocumentsController')->middleware('auth');
 Route::get('/documents/download/{id}','DocumentsController@download')->name('documents.download')->middleware('auth');
 
 Route::resource('/demoproducts', 'DemoproductController')->middleware('auth');
-Route::resource('/productlocations', 'ProductLocationController')->middleware('auth');
+Route::resource('/locations', 'LocationController')->middleware('auth');
 
 
