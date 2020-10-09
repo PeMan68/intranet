@@ -14,7 +14,10 @@ class LocationController extends Controller
      */
     public function index()
     {
-		return view('locations.index')->with('locations', Location::all());
+        $locations = Location::whereNull('location_id')
+            ->with('childrenLocations')
+            ->get();
+		return view('locations.index', compact('locations'));
     }
 
     /**

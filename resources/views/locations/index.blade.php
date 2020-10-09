@@ -5,30 +5,21 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header h3">Hantera platser för demoprodukter 
+                <div class="card-header h3">Hantera platser 
 					<a class="btn btn-outline-primary float-right" 
 					href="{{ route('locations.create') }}">Skapa ny</a>
 				</div>
                 <div class="card-body">
-					
-					<table class="table">
-					  <thead>
-						<tr>
-						  <th scope="col">ID</th>
-						  <th scope="col">Beskrivning</th>
-						</tr>
-					  </thead>
-					  <tbody>
-						@foreach($locations as $location)
-						<tr>
-							<td>
-							<a href="{{ route('locations.edit', $location->id) }}">{{ $location->id }}</a>
-							</td>
-							<td>{{ $location->description }}</td>
-						</tr>
+					<ul>
+						@foreach ($locations as $location)
+							<li>{{ $location->name }}</li>
+							<ul>
+								@foreach ($location->childrenLocations as $childLocation)
+									@include('locations/child_location',['child_location' => $childLocation])
+								@endforeach
+							</ul>
 						@endforeach
-					  </tbody>
-					</table>
+					</ul>
 				</div>
             </div>
         </div>
