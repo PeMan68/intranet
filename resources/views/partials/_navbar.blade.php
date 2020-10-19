@@ -33,7 +33,7 @@
 				</li>
 				@endshowmodule
 
-				@showmodule('enable_documents')
+				@showmodule('enable_dokument')
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('/documents/') }}">Dokument</a>
 				</li>

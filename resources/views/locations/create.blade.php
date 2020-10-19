@@ -9,9 +9,11 @@
 				<div class="card-body">
 					<form action="{{ route('locations.store') }}" method="post">
 						@csrf
+						Parent: {{ $parent }}
+						<input type="hidden" name="parent" value="{{$parent}}">
 						<div class="form-group">
 						<label for="name" class="font-weight-bold h5">Beskrivning</label>
-						<input type="text" class="form-control" id="description" name="description">
+						<input type="text" class="form-control" id="name" name="name">
 						</div>
 						<div class="form-group row mb-0">
 							<div class="col-md-8 offset-md-4">

@@ -3,6 +3,7 @@ cursor:pointer;
 }
 
 /* Rules for sizing the icon. */
+.material-icons.md-16 { font-size: 16px; }
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
@@ -11,6 +12,9 @@ cursor:pointer;
 .material-icons.red { color: #FB0000; }
 .material-icons.white { color: #EEEEEE; }
 .material-icons.green { color: #00FF00; }
+.material-icons.black { color: #000000; }
+
+.material-icons {vertical-align: middle;}
 
 /* Badge circle */
 .badge-pill.circle {

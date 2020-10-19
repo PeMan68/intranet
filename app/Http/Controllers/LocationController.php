@@ -25,9 +25,9 @@ class LocationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('locations.create');
+        return view('locations.create', ['parent' => $id]);
     }
 
     /**
@@ -42,8 +42,9 @@ class LocationController extends Controller
             return redirect('locations');
         }
         $validatedData = $request->validate([
-            'description' => 'required',
+            'name' => 'required',
         ]);
+        $validatedData['location_id'] = $request->parent;
         $location = Location::create($validatedData);
         return redirect('locations')->with('success', 'Ny plats tillagd');
     }
