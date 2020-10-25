@@ -21,4 +21,9 @@ class Location extends Model
     {
         return $this->hasMany('App\Location')->with('locations');
     }
+
+    public function hasAnyChildren()
+    {
+        return null !== $this->locations()->where('location_id', $this->id)->first();
+    }
 }

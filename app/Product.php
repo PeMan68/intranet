@@ -10,6 +10,6 @@ class Product extends Model
 
     public function demoproduct() 
     {
-        return $this->hasMany('App\Demoproduct')
+        return $this->hasMany('App\Demoproduct');
     }
 }

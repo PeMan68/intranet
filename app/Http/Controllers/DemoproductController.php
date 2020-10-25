@@ -3,10 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Demoproduct;
+use App\Location;
+use App\Product;
 use Illuminate\Http\Request;
+use Arr;
 
 class DemoproductController extends Controller
 {
+    /**
+     * Recursively populate array with all children
+     * 
+     * @param \App\Location $location
+     * @param mixed $path
+     * @param mixed &$locationBreadcrumbList
+     * @return void 
+     */
+    private function findChildren(Location $location, $path, &$locationBreadcrumbList)
+    {
+        $id = $location->id;
+        foreach ($location->childrenLocations as $children) {
+            $oldPath = $path;
+            $oldId = $id;
+            $path .= ' > ' . $children->name;
+            $this->findChildren($children, $path, $locationBreadcrumbList);
+            $path = $oldPath;
+            $id = $oldId;
+        }
+        $locationBreadcrumbList->push(['name' => $path, 'id' => $id]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +49,16 @@ class DemoproductController extends Controller
      */
     public function create()
     {
-        //
+        $locations = Location::whereNull('location_id')
+        ->get();
+        $locationBreadcrumbList = collect([]);
+        foreach ($locations as $parent) {
+            $place = $parent->name;
+            $this->findChildren($parent, $place, $locationBreadcrumbList);
+        }
+        $locationBreadcrumbList = collect($locationBreadcrumbList)->sortBy('name');
+        $products = Product::all();
+        return view('demoproducts.create')->with(['locations' => $locationBreadcrumbList, 'products' => $products]);
     }
 
     /**
@@ -35,7 +69,7 @@ class DemoproductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
