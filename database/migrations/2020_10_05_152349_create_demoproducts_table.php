@@ -20,8 +20,9 @@ class CreateDemoproductsTable extends Migration
             $table->integer('location_id');
             $table->integer('status_id');
             $table->text('comment')->nullable();
-            $table->boolean('original_box')->default(1);
-            $table->boolean('original_docs')->default(1);
+            $table->boolean('original_box')->default(0);
+            $table->boolean('original_docs')->default(0);
+            $table->boolean('tested')->default(0);
             $table->string('serial')->nullable();
             $table->date('invoice_date')->nullable();
             $table->string('invoice_no')->nullable();

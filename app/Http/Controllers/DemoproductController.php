@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Demoproduct;
 use App\Location;
 use App\Product;
+use App\ProductStatus;
 use Illuminate\Http\Request;
 use Arr;
 
@@ -58,7 +59,11 @@ class DemoproductController extends Controller
         }
         $locationBreadcrumbList = collect($locationBreadcrumbList)->sortBy('name');
         $products = Product::all();
-        return view('demoproducts.create')->with(['locations' => $locationBreadcrumbList, 'products' => $products]);
+        return view('demoproducts.create')->with([
+            'locations' => $locationBreadcrumbList, 
+            'products' => Product::all(),
+            'statuses' => ProductStatus::all(),
+            ]);
     }
 
     /**
