@@ -16,27 +16,22 @@
 			<thead class="thead-light">
 				<tr>
 					<th class="d-none d-lg-table-cell">produkt</th>
-					<th class="d-none d-lg-table-cell text-right">benämning</th>
-					<th class="d-none d-lg-table-cell text-center">serienummer</th>
-					<th class="d-none d-lg-table-cell">inköpt</th>
-					<th class="d-none d-lg-table-cell">av</th>
-					<th class="d-none d-lg-table-cell">beskrivning</th>
-					<th class="d-none d-lg-table-cell"></th>
+					<th class="d-none d-lg-table-cell">benämning</th>
+					<th class="d-none d-lg-table-cell">status</th>
+					<th class="d-none d-lg-table-cell">plats</th>
 				</tr>
 			</thead>
 			<tbody>
 			@foreach ($products as $product)
 				<tr class="table-row">
 					<td class="d-lg-table-cell">
-					
-                        {{ $product->product_id }}</a></td>
-                        <td class="d-none d-lg-table-cell text-right">
-					{{ $product->item_description_swe }}</td>
-					<td class="d-none d-lg-table-cell text-center">
-					{{ $product->version }}</td>
+                        {{ $product->product->item }}</a></td>
+                    <td class="d-none d-lg-table-cell">
+					    {{ $product->product->item_description_swe }}</td>
 					<td class="d-none d-lg-table-cell">
-					{{ $product->invoice_date }}</td>
-					
+					    {{ $product->status->description }}</td>
+					<td class="d-none d-lg-table-cell">
+					    {{ $product->location->name }}</td>				
 				</tr>
 			@endforeach
 			</tbody>

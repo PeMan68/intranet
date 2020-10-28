@@ -9,6 +9,6 @@ class ProductStatus extends Model
     protected $guarded = [];
 
     public function products() {
-        return $this->hasMany('App\Product');
+        return $this->hasMany('App\Demoproduct');
     }
 }
