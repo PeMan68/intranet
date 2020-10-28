@@ -26,4 +26,9 @@ class Location extends Model
     {
         return null !== $this->locations()->where('location_id', $this->id)->first();
     }
+
+    public function parent()
+    {
+        return $this->belongsTo('App\Location', 'location_id');
+    }
 }

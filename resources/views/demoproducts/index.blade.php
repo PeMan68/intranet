@@ -31,7 +31,7 @@
 					<td class="d-none d-lg-table-cell">
 					    {{ $product->status->description }}</td>
 					<td class="d-none d-lg-table-cell">
-					    {{ $product->location->name }}</td>				
+					    {{ $product->location->parent }}</td>				
 				</tr>
 			@endforeach
 			</tbody>
