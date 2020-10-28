@@ -7,6 +7,8 @@ use App\Location;
 use App\Product;
 use App\ProductStatus;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreDemoproduct;
+use Illuminate\Support\Facades\Auth;
 use Arr;
 
 class DemoproductController extends Controller
@@ -40,7 +42,8 @@ class DemoproductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Demoproduct::all();
+        return view('demoproducts.index', ['products' => $products]);
     }
 
     /**
@@ -72,9 +75,12 @@ class DemoproductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDemoproduct $request)
     {
-        dd($request);
+        $validatedData = $request->validated();
+        $validatedData['userCreate_id'] = Auth::id();
+        $demoProduct = Demoproduct::create($validatedData);
+        return redirect('/demoproducts')->with('success', $validatedData['product_id']. ' inlagd');
     }
 
     /**

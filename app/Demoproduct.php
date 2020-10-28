@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Demoproduct extends Model
 {
+    protected $guarded = [];
+
     public function location() 
     {
         return $this->belongsTo('App\Location', 'location_id');
