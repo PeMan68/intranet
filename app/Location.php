@@ -41,12 +41,26 @@ class Location extends Model
         return $result;
     }
 
-    public function parentName()
+    // public function parentName()
+    // {
+    //     $name = 'top';
+    //     if ($this->hasParent())
+    //     {
+    //         $name = $this->parent()->value('name');
+    //     }
+    //     return $name;
+    // }
+
+    public function path()
     {
-        $name = 'top';
-        if ($this->hasParent())
-        {
-            $name = $this->parent()->value('name');
+        $name=$this->name;
+        if ($this->hasParent()) {
+            $parent = $this->parent;
+            $name = $parent->name . ' > ' . $name;
+            while ($parent->hasParent()) {
+                $parent = $parent->parent;
+                $name = $parent->name . '>' . $name;
+            }
         }
         return $name;
     }
