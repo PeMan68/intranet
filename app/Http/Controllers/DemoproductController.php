@@ -80,7 +80,7 @@ class DemoproductController extends Controller
         $validatedData = $request->validated();
         $validatedData['userCreate_id'] = Auth::id();
         $demoProduct = Demoproduct::create($validatedData);
-        return redirect('/demoproducts')->with('success', $validatedData['product_id']. ' inlagd');
+        return redirect('/demoproducts')->with('success', $demoProduct->product->item . ' registrerad, plats ' . $demoProduct->location->name);
     }
 
     /**

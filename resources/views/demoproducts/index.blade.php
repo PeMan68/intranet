@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@include('menues.documents')
+@include('menues.demoproducts')
 
 @section('content')
 <div class="card">
