@@ -30,6 +30,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 	Route::get('/products', 'ProductController@index');
 	Route::get('/importproducts', 'ProductController@importform')->name('importproducts');
 	Route::post('/import', 'ProductController@import')->name('import');
+	Route::resource('/productstatus', 'ProductStatusController');
 });
 
 Route::get('/admin/impersonate/destroy', 'Admin\ImpersonateController@destroy')->name('admin.impersonate.destroy');
@@ -49,6 +50,8 @@ Route::resource('/visitors','VisitorsController');
 Route::resource('/documents','DocumentsController')->middleware('auth');
 Route::get('/documents/download/{id}','DocumentsController@download')->name('documents.download')->middleware('auth');
 
-
+Route::resource('/demoproducts', 'DemoproductController')->middleware('auth');
+Route::resource('/locations', 'LocationController', ['except' => ['show', 'create']])->middleware('auth');
+Route::get('/locations/{id}', 'LocationController@create')->name('locations.create')->middleware('auth');
 
 

@@ -45,8 +45,17 @@ return [
             [
                 'type' => 'checkbox', // input fields type
                 'data' => 'boolean', // data type, string, int, boolean
-                'name' => 'enable_produkter', // unique name for field
-                'label' => 'Produkter', // you know what label it is
+                'name' => 'enable_visitors', // unique name for field
+                'label' => 'Besökare', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 0 // default value if you want
+            ],
+            [
+                'type' => 'checkbox', // input fields type
+                'data' => 'boolean', // data type, string, int, boolean
+                'name' => 'enable_demoprodukter', // unique name for field
+                'label' => 'Demoprodukter', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => 0 // default value if you want

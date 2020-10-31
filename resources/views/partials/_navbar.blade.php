@@ -27,13 +27,13 @@
 				</li>
 				@endshowmodule
 
-				@showmodule('enable_produkter')
+				@showmodule('enable_demoprodukter')
 				<li class="nav-item">
-					<a class="nav-link" href="{{ url('/demostock/') }}">Demolager</a>
+					<a class="nav-link" href="{{ url('/demoproducts/') }}">Demoprodukter</a>
 				</li>
 				@endshowmodule
 
-				@showmodule('enable_documents')
+				@showmodule('enable_dokument')
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('/documents/') }}">Dokument</a>
 				</li>
