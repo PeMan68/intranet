@@ -1925,7 +1925,7 @@ __webpack_require__.r(__webpack_exports__);
 
     setTimeout(function () {
       return _this.elementVisible = false;
-    }, 1000);
+    }, 10000);
   }
 });
 

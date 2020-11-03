@@ -13,7 +13,7 @@
         },
 
         created() {
-            setTimeout(() => this.elementVisible = false, 1000)
+            setTimeout(() => this.elementVisible = false, 10000)
         }
     }
 </script>

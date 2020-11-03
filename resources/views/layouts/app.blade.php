@@ -45,7 +45,6 @@
 					@if (Session::has('message'))
 					<app-message>{{ Session::get('message') }}</app-message>
 					@endif
-					<app-message>Hejja</app-message>
 					@yield('content')
 				</div>
 			</div>        

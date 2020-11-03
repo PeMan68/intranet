@@ -9,7 +9,7 @@
 	<div class="card-body">
 		<form action="/issues" method="post">
 			@csrf
-			<input type="hidden" name="timeInit" value="{{ $timeInit }}"
+			<input type="hidden" name="timeInit" value="{{ $timeInit }}">
 			<div class="row justify-content-center">
 				<div class="col-lg-6">
 					<div class="form-row">
