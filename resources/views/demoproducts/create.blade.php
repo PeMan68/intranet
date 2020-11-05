@@ -58,8 +58,8 @@
             </div>
             <div class="form-group">
                 <label for="invoice_date">Inköpsdatum</label>
-                <input class="form-control" 
-                    type="text"
+                <b-form-input  
+                    type="date"
                     name="invoice_date"
                     id="daterange" 
                     value="{{ old('invoice_date') }}">

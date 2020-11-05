@@ -3,6 +3,10 @@
 @include('menues.demoproducts')
 
 @section('content')
+<div>
+    <b-button variant='success'>Knapp bootstrap-vue</b-button>
+    <button>Vanlig knapp</button>
+</div>
 <div class="card">
 	<div class="card-header">
 		<div class="row">
