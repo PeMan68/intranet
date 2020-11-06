@@ -16,6 +16,7 @@ class LocationController extends Controller
     {
         $locations = Location::whereNull('location_id')
             ->with('childrenLocations')
+            ->orderBy('name','asc')
             ->get();
 		return view('locations.index', compact('locations'));
     }
@@ -27,6 +28,9 @@ class LocationController extends Controller
      */
     public function create($id)
     {
+        if ($id == 0) {
+            $id = null;
+        }
         return view('locations.create', ['parent' => $id]);
     }
 

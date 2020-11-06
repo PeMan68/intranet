@@ -14,12 +14,12 @@ class Location extends Model
 
     public function locations()
     {
-        return $this->hasMany('App\Location');
+        return $this->hasMany('App\Location')->orderBy('name');
     }
 
     public function childrenLocations()
     {
-        return $this->hasMany('App\Location')->with('locations');
+        return $this->hasMany('App\Location')->orderBy('name')->with('locations');
     }
 
     public function hasAnyChildren()

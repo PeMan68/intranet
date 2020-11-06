@@ -7,7 +7,7 @@
 	</div>
 	<div class="card-body">
 		<a class="btn btn-small btn-outline-primary" 
-		href="{{ route('locations.create', '') }}">
+		href="{{ route('locations.create', '0') }}">
 		<i class="material-icons black">house</i> Ny byggnad</a>
 		<ul style="list-style-type: none; padding: 0">
 			@foreach ($locations as $location)
