@@ -42,8 +42,17 @@ class DemoproductController extends Controller
      */
     public function index()
     {
-        $products = Demoproduct::all();
-        return view('demoproducts.index', ['products' => $products]);
+        $demoproducts = Demoproduct::select('comment', 'product_id', 'location_id')->with('product:id,item,item_description_swe', 'location')->get();
+        $selectedproducts = $demoproducts->map(function ( $product ) {
+            return [
+                'Artikel' => $product->product->item,
+                'Beskrivning' => $product->product->item_description_swe,
+                'Kommentar' => $product->comment,
+                //'Plats' => $product->location->
+            ];
+        });
+         
+        return view('demoproducts.index', ['products' => $selectedproducts]);
     }
 
     /**

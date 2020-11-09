@@ -13,7 +13,9 @@
 		</div>
 	</div>
 	<div class="card-body">
-		<table class="table table-sm">
+		<my-table :items="{{ $products }}">
+		</my-table>
+		{{-- <table class="table table-sm">
 			<thead class="thead-light">
 				<tr>
 					<th class="d-none d-lg-table-cell">produkt</th>
@@ -36,7 +38,7 @@
 				</tr>
 			@endforeach
 			</tbody>
-		</table>
+		</table> --}}
 	</div>
 </div>
 	
