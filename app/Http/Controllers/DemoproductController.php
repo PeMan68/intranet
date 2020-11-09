@@ -48,7 +48,7 @@ class DemoproductController extends Controller
                 'Artikel' => $product->product->item,
                 'Beskrivning' => $product->product->item_description_swe,
                 'Kommentar' => $product->comment,
-                //'Plats' => $product->location->
+                'Plats' => $product->location->path(),
             ];
         });
          
