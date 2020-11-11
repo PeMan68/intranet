@@ -8,12 +8,35 @@
             aria-controls="my-table"
         ></b-pagination>
 
+        <b-form-group
+          label="Filter"
+          label-cols-sm="3"
+          label-align-sm="right"
+          label-size="sm"
+          label-for="filterInput"
+          class="mb-0"
+        >
+          <b-input-group size="sm">
+            <b-form-input
+              v-model="filter"
+              type="search"
+              id="filterInput"
+              placeholder="Type to Search"
+            ></b-form-input>
+            <b-input-group-append>
+              <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+            </b-input-group-append>
+          </b-input-group>
+        </b-form-group>
+
         <b-table 
             id="my-table"
             :items="items"
             :fields="fields"
             :per-page="perPage"
             :current-page="currentPage"
+            :filter="filter"
+            @filtered="onFiltered"
             small
         ></b-table>
     </div>
@@ -31,6 +54,7 @@
             return {
                 perPage: 10,
                 currentPage: 1,
+                filter: null,
             }
         },
 
@@ -38,6 +62,19 @@
             rows() {
                 return this.items.length
             }
-        }
+        },
+
+        mounted() {
+            // Set the initial number of items
+            this.totalRows = this.items.length
+        },
+        methods: {
+
+            onFiltered(filteredItems) {
+            // Trigger pagination to update the number of buttons/pages due to filtering
+            this.totalRows = filteredItems.length
+            this.currentPage = 1
+            }
+        },
     }
 </script>
