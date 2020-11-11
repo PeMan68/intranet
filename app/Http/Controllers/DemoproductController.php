@@ -51,8 +51,14 @@ class DemoproductController extends Controller
                 'Plats' => $product->location->path(),
             ];
         });
-         
-        return view('demoproducts.index', ['products' => $selectedproducts]);
+        $fields = collect($selectedproducts->first())->keys();
+        $fields->transform(function ($item){
+            return [
+                'key' => $item,
+                'sortable' => true,
+            ];
+        }); 
+        return view('demoproducts.index', ['products' => $selectedproducts, 'fields' => $fields]);
     }
 
     /**

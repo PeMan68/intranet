@@ -13,7 +13,7 @@
 		</div>
 	</div>
 	<div class="card-body">
-		<my-table :items="{{ $products }}">
+		<my-table :items="{{ $products }}" :fields="{{ $fields }}">
 		</my-table>
 		{{-- <table class="table table-sm">
 			<thead class="thead-light">

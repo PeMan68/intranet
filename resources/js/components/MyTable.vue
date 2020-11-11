@@ -11,6 +11,7 @@
         <b-table 
             id="my-table"
             :items="items"
+            :fields="fields"
             :per-page="perPage"
             :current-page="currentPage"
             small
@@ -20,7 +21,11 @@
 
 <script>
     export default {
-        props: ['items'],
+        props: [
+            'items',
+            'fields',
+            ],
+
 
         data() {
             return {

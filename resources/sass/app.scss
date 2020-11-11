@@ -6,3 +6,8 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+
+// Bootstrap-vue, to have the sorting icons for example
+@import 'node_modules/bootstrap-vue/src/index.scss';
