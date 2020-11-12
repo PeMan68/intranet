@@ -3,7 +3,7 @@
     <div>
         <b-pagination
             v-model="currentPage"
-            :total-rows="rows"
+            :total-rows="totalRows"
             :per-page="perPage"
             aria-controls="my-table"
         ></b-pagination>
@@ -55,12 +55,7 @@
                 perPage: 10,
                 currentPage: 1,
                 filter: null,
-            }
-        },
-
-        computed: {
-            rows() {
-                return this.items.length
+                totalRows: 1,
             }
         },
 
