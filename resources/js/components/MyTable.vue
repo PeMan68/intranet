@@ -1,34 +1,38 @@
 <template>
 
-    <div>
-        <b-pagination
-            v-model="currentPage"
-            :total-rows="totalRows"
-            :per-page="perPage"
-            aria-controls="my-table"
-        ></b-pagination>
-
-        <b-form-group
-          label="Filter"
-          label-cols-sm="3"
-          label-align-sm="right"
-          label-size="sm"
-          label-for="filterInput"
-          class="mb-0"
-        >
-          <b-input-group size="sm">
-            <b-form-input
-              v-model="filter"
-              type="search"
-              id="filterInput"
-              placeholder="Type to Search"
-            ></b-form-input>
-            <b-input-group-append>
-              <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
-            </b-input-group-append>
-          </b-input-group>
-        </b-form-group>
-
+    <b-container fluid>
+        <b-row>
+            <b-col sm="6">
+                <b-pagination
+                    v-model="currentPage"
+                    :total-rows="totalRows"
+                    :per-page="perPage"
+                    aria-controls="my-table"
+                ></b-pagination>
+            </b-col>
+            <b-col sm="6">
+                <b-form-group
+                label="Filter"
+                label-cols-sm="3"
+                label-align-sm="right"
+                label-size="sm"
+                label-for="filterInput"
+                class="mb-0"
+                >
+                <b-input-group size="sm">
+                    <b-form-input
+                    v-model="filter"
+                    type="search"
+                    id="filterInput"
+                    placeholder="Type to Search"
+                    ></b-form-input>
+                    <b-input-group-append>
+                    <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+                    </b-input-group-append>
+                </b-input-group>
+                </b-form-group>
+            </b-col>
+        </b-row>
         <b-table 
             id="my-table"
             :items="items"
@@ -38,8 +42,9 @@
             :filter="filter"
             @filtered="onFiltered"
             small
+            sticky-header
         ></b-table>
-    </div>
+    </b-container>
 </template>
 
 <script>
