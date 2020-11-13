@@ -24,10 +24,10 @@
                     v-model="filter"
                     type="search"
                     id="filterInput"
-                    placeholder="Type to Search"
+                    placeholder="Sök i alla kolumner"
                     ></b-form-input>
                     <b-input-group-append>
-                    <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+                    <b-button :disabled="!filter" @click="filter = ''">Rensa</b-button>
                     </b-input-group-append>
                 </b-input-group>
                 </b-form-group>
@@ -42,7 +42,8 @@
             :filter="filter"
             @filtered="onFiltered"
             small
-            sticky-header
+            sticky-header="400px"
+            sort-icon-left
         ></b-table>
     </b-container>
 </template>
@@ -76,5 +77,6 @@
             this.currentPage = 1
             }
         },
+    
     }
 </script>
