@@ -9,7 +9,8 @@ use App\ProductStatus;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreDemoproduct;
 use Illuminate\Support\Facades\Auth;
-use Arr;
+use Illuminate\Support\Str;
+// use Arr;
 
 class DemoproductController extends Controller
 {
@@ -42,8 +43,28 @@ class DemoproductController extends Controller
      */
     public function index()
     {
-        $products = Demoproduct::all();
-        return view('demoproducts.index', ['products' => $products]);
+        // $demoproducts = Demoproduct::select('comment', 'product_id', 'location_id', 'status_id', )
+        // $demoproducts = Demoproduct::with('product:id,item,item_description_swe', 'location', 'status')->get();
+        $demoproducts = Demoproduct::with('product', 'location', 'status')->get();
+        $selectedproducts = $demoproducts->map(function ( $product ) {
+            return [
+                'Artikel' => $product->product->item,
+                //'Beskrivning' => $product->product->item_description_swe,
+                'Status' => $product->status->description,
+                'Kommentar' => $product->comment,
+                'Plats' => $product->location->path(),
+                //'Testad' => $product->tested,
+                //'E-nummer' => $product->product->enummer,
+            ];
+        });
+        $fields = collect($selectedproducts->first())->keys();
+        $fields->transform(function ($item){
+            return [
+                'key' => $item,
+                'sortable' => true,
+            ];
+        }); 
+        return view('demoproducts.index', ['products' => $selectedproducts, 'fields' => $fields]);
     }
 
     /**

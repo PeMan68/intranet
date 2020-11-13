@@ -41,16 +41,6 @@ class Location extends Model
         return $result;
     }
 
-    // public function parentName()
-    // {
-    //     $name = 'top';
-    //     if ($this->hasParent())
-    //     {
-    //         $name = $this->parent()->value('name');
-    //     }
-    //     return $name;
-    // }
-
     public function path()
     {
         $name=$this->name;
@@ -59,7 +49,7 @@ class Location extends Model
             $name = $parent->name . ' > ' . $name;
             while ($parent->hasParent()) {
                 $parent = $parent->parent;
-                $name = $parent->name . '>' . $name;
+                $name = $parent->name . ' > ' . $name;
             }
         }
         return $name;
