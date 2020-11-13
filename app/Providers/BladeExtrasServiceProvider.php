@@ -34,7 +34,7 @@ class BladeExtrasServiceProvider extends ServiceProvider
 			if(setting($expression)){
 				return true;
 			}
-			if(Auth::user()->hasAnyRoles(['superadmin','beta'])){
+			if(Auth::user()->hasAnyRole('beta')){
 				return true;
 			}
 			return false;

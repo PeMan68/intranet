@@ -20,7 +20,7 @@ return [
     ],
     'modules' => [
         'title' => 'Moduler',
-        'desc' => 'Aktivera moduler för användare. Oaktiverade moduler visas för rollerna "superadmin" och "beta"',
+        'desc' => 'Aktivera moduler för användare. Oaktiverade moduler visas för rollen "beta"',
         'icon' => 'dashboard',
 
         'elements' => [
