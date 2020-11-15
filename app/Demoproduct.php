@@ -20,6 +20,6 @@ class Demoproduct extends Model
 
     public function status()
     {
-        return $this->belongsTo('App\Productstatus', 'status_id');
+        return $this->belongsTo('App\ProductStatus', 'status_id');
     }
 }
