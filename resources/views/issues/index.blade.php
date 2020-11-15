@@ -20,7 +20,7 @@ $(document).ready(function($) {
 		@if (isset($filter))		
 			<h3>Alla ärenden, sökning "{{ $filter }}"</h3>
 		@else	
-			<h3>{{ settings(Ärenden, sorterade efter prioritet</h3>
+			<h3>Ärenden, sorterade efter prioritet</h3>
 		@endif
 		<small>Sidan uppdaterad {{ date('y-m-d H:i') }}</small>
 		</div>

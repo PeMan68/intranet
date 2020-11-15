@@ -1,8 +1,11 @@
 <template>
 
     <b-container fluid>
-        <b-row>
-            <b-col sm="6">
+        <b-row class="mb-2">
+            <b-col sm="2">
+                <b-button size="sm" href="demoproducts/create">Lägg in produkt</b-button>
+            </b-col>
+            <b-col sm="5">
                 <b-pagination
                     v-model="currentPage"
                     :total-rows="totalRows"
@@ -10,7 +13,8 @@
                     aria-controls="my-table"
                 ></b-pagination>
             </b-col>
-            <b-col sm="6">
+
+            <b-col sm="5">
                 <b-form-group
                 label="Filter"
                 label-cols-sm="3"

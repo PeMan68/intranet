@@ -1,10 +1,28 @@
 # intranet
 
-*Nyheter kommande version*
+## Version 2.4.0 ##
+*Nyheter*
+* Hantering av platser för företaget.
+    * SuperAdmin kan lägga till nya huvudplatser, alla användare kan lägga till och editera underplatser
+    * En plats kan bara tas bort om den inte har någon underplats eller några produkter
+* Import av produktlistan i excel
 * Tabell för demoprodukter med filtrering och sortering
-* beta-användare för test av moduler moduler, aktiveras per användare
-* Hantering av platser för demoprodukter
-    Lägg till ny plats
+    * Visar översiktligt alla demoprodukter, plats och status
+* beta-användare för test av moduler moduler, aktiveras per användare av SuperAdmin.
+    
+*Förändringar*
+* Vänstermenyn komprimerad för att få plats med fler rader
+    * Inställningar som rollen har tillgång till visas längs ned på menyn.
+* Kortet som visar besökare på startsidan visas endast om den finns besök aktuell vecka
+
+### Installation ###
+Uppgradering från 2.3.3
+
+<code>php artisan migrate</code>
+
+<code>php artisan db:seed --class=ProductStatusTableSeeder</code>
+
+<code>php artisan db:seed --class=RolesTableSeeder</code>
 
 ## Version 2.3.3 ##
 
