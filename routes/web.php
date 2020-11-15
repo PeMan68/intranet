@@ -53,5 +53,6 @@ Route::get('/documents/download/{id}','DocumentsController@download')->name('doc
 Route::resource('/demoproducts', 'DemoproductController')->middleware('auth');
 Route::resource('/locations', 'LocationController', ['except' => ['show', 'create']])->middleware('auth');
 Route::get('/locations/{id}', 'LocationController@create')->name('locations.create')->middleware('auth');
+Route::get('/locations/delete/{id}', 'LocationController@destroy')->name('locations.destroy')->middleware('auth');
 
 

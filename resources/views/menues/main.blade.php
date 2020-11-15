@@ -13,9 +13,17 @@
 <a href="./posten">Posten Adresslappar</a>
 @showmodule('enable_demoprodukter')
 <span class="border-top mt-1"></span>
-<div class="text-light">Inställningar</div><a href="{{ route('locations.index')}}">Hantera platser</a>
+<div class="text-light">Inställningar</div>
+<a href="{{ route('locations.index')}}">Hantera platser</a>
 @endshowmodule
+@hasrole('admin')
+<span class="border-top mt-1"></span>
+<div class="text-light">Inställningar för Admin</div>
+<a href="{{ route('locations.create', '0') }}">Ny huvudplats</a>
+@endhasrole
 @hasrole('superadmin')
+<span class="border-top mt-1"></span>
+<div class="text-light">Inställningar för Superadmin</div>
 <a href="{{ route('admin.tasks.index')}}">Hantera ärenden</a>
 <a href="{{ route('admin.users.index')}}">Hantera användare</a>
 <a href="{{ route('admin.images.create')}}">Lägg till fil till receptionsskärm</a>

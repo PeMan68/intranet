@@ -14,7 +14,7 @@ class AddUserToDemoproducts extends Migration
     public function up()
     {
         Schema::table('demoproducts', function (Blueprint $table) {
-            $table->bigInteger('userCreate_id');
+            $table->bigInteger('userUpdate_id');
         });
     }
 
@@ -26,7 +26,7 @@ class AddUserToDemoproducts extends Migration
     public function down()
     {
         Schema::table('demoproducts', function (Blueprint $table) {
-            $table->dropColumn('userCreate_id');
+            $table->dropColumn('userUpdate_id');
         });
     }
 }

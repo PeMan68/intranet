@@ -20,18 +20,23 @@ class LocationController extends Controller
             ->get();
 		return view('locations.index', compact('locations'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
+     * @param mixed $id
      * @return \Illuminate\Http\Response
      */
     public function create($id)
     {
         if ($id == 0) {
+            $name = '';
             $id = null;
+        } else {
+            $location = Location::find($id);
+            $name = $location->path();
         }
-        return view('locations.create', ['parent' => $id]);
+        return view('locations.create', ['parent' => $name, 'id' => $id]);
     }
 
     /**
@@ -48,7 +53,7 @@ class LocationController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
         ]);
-        $validatedData['location_id'] = $request->parent;
+        $validatedData['location_id'] = $request->parent_id;
         $location = Location::create($validatedData);
         return redirect('locations')->with('success', 'Ny plats tillagd');
     }
@@ -56,6 +61,7 @@ class LocationController extends Controller
      /**
      * Show the form for editing the specified resource.
      *
+     * @param mixed $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -68,19 +74,31 @@ class LocationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param mixed $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        if ($request->has('delete')) {
-			$entry = Location::find($id);
-			$entry->delete();
-			return redirect('locations');
-		}
         if ($request->has('reset')) {
 			return redirect('locations');
 		}
-		Location::whereId($id)->update(['description' => $request->description]);
+		Location::whereId($id)->update(['name' => $request->description]);
         return redirect('locations/');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param \App\CalendarEntry $calendar
+     * @param mixed $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $entry = Location::find($id);
+        if ($entry->deletable()) {
+            $entry->delete();
+        }
+        return redirect('locations');
     }
 }

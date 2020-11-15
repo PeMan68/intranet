@@ -1,5 +1,11 @@
 # intranet
 
+*Nyheter kommande version*
+* Tabell för demoprodukter med filtrering och sortering
+* beta-användare för test av moduler moduler, aktiveras per användare
+* Hantering av platser för demoprodukter
+    Lägg till ny plats
+
 ## Version 2.3.3 ##
 
 *Nyheter*

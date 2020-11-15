@@ -53,14 +53,13 @@
         props: [
             'items',
             'fields',
-            ],
-
+            'filter',
+        ],
 
         data() {
             return {
                 perPage: 10,
                 currentPage: 1,
-                filter: null,
                 totalRows: 1,
             }
         },

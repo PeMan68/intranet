@@ -54,4 +54,12 @@ class Location extends Model
         }
         return $name;
     }
+
+    public function deletable()
+    {
+        if (!$this->hasAnyChildren() && !count($this->demoProducts)) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -11,8 +11,8 @@
 						@method('PUT')
 						@csrf
 						<div class="form-group">
-							<label for="name" class="font-weight-bold h5">Beskrivning</label>
-							<input type="text" value="{{ $location->description }}" class="form-control" id="description" name="description">
+							<label for="name" class="font-weight-bold h5">Beskrivande namn</label>
+							<input type="text" value="{{ $location->name }}" class="form-control" id="description" name="description">
 						</div>
 						<div class="form-group row mb-0">
 							<div class="col-md-8 offset-md-4">

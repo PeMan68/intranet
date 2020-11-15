@@ -43,8 +43,6 @@ class DemoproductController extends Controller
      */
     public function index()
     {
-        // $demoproducts = Demoproduct::select('comment', 'product_id', 'location_id', 'status_id', )
-        // $demoproducts = Demoproduct::with('product:id,item,item_description_swe', 'location', 'status')->get();
         $demoproducts = Demoproduct::with('product', 'location', 'status')->get();
         $selectedproducts = $demoproducts->map(function ( $product ) {
             return [
@@ -63,8 +61,9 @@ class DemoproductController extends Controller
                 'key' => $item,
                 'sortable' => true,
             ];
-        }); 
-        return view('demoproducts.index', ['products' => $selectedproducts, 'fields' => $fields]);
+        });
+        $filter = request('filter') ;
+        return view('demoproducts.index', ['products' => $selectedproducts, 'fields' => $fields, 'filter' => $filter]);
     }
 
     /**
@@ -99,7 +98,7 @@ class DemoproductController extends Controller
     public function store(StoreDemoproduct $request)
     {
         $validatedData = $request->validated();
-        $validatedData['userCreate_id'] = Auth::id();
+        $validatedData['userUpdate_id'] = Auth::id();
         $demoProduct = Demoproduct::create($validatedData);
         return redirect('/demoproducts')->with('success', $demoProduct->product->item . ' registrerad, plats ' . $demoProduct->location->name);
     }
