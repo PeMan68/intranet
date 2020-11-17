@@ -17,15 +17,84 @@ use Illuminate\Support\Facades\Mail;
 use App\Events\NewIssue;
 use App\Events\IssueReopened;
 use App\Events\NewIssueComment;
+use Illuminate\Support\Str;
 
 class IssuesController extends Controller
 {
-    /**
+	public function index()
+    {
+		check_in_issues();
+		
+		// cleanup task_user table for current user
+		$tasks = Task::all();
+		Auth::user()->tasks()->sync($tasks);
+
+        $issues = Issue::with('task','latestComment','userCreate')
+					->whereNull('timeClosed')
+					->orWhere('timeClosed','>',date('Y-m-d',strtotime('-30 days')))
+					->get()
+					->sortByDesc('calculated_prio')
+					->flatten()
+					;
+					
+        $selected = $issues->map(function ( $item ) {
+			if (!is_null($item->latestComment)) {
+				$latest = date_diff($item->latestComment->updated_at, now())->format('%Dd:%Hh');
+			} else {
+				$latest = date_diff($item->created_at, now())->format('%Dd:%Hh');
+			}
+			if ($item->minutesToCallback() < 0) {
+
+				$rowVariant = 'danger';
+			} elseif ($item->userCurrentLevel() == 3) {
+				$rowVariant = 'warning';
+			} elseif ($item->userCurrentLevel() == 2) {
+				$rowVariant = 'success';
+			} else {
+				$rowVariant = '';
+			}
+            return [
+                'Ärende' => $item->ticketNumber,
+				'Registrerat' => date('y-m-d',strtotime($item->timeInit)),
+				'Senaste' => $latest,
+				'Område' => $item->task->name,
+				'finish' => $item->timeClosed,
+				'vip' => $item->vip,
+				'prio' => $item->prio,
+				'wait' => $item->waitingForReply,
+				'pause' => $item->paused,
+				'contacted' => $item->timeCustomercallback,
+				'Kund' => $item->customer,
+				'Kontakt' => $item->customerName,
+				'Beskrivning' => Str::limit($item->header,30),
+				'E_post' => $item->customerMail,
+				'Telefon' => $item->customerTel,
+				'Skapad_av' => $item->userCreate->fullName(),
+
+				'_rowVariant' => $rowVariant,
+            ];
+		});
+
+		$fields = collect([]);
+		$fields->push(['key'=> 'Ärende', 'sortable' => true]);
+		$fields->push(['key'=> 'Registrerat', 'sortable' => true]);
+		$fields->push(['key'=> 'Senaste', 'sortable' => true]);
+		$fields->push(['key'=> 'Område', 'sortable' => true]);
+		$fields->push(['key'=> '.', 'class' => 'text-right']);
+		$fields->push(['key'=> 'Kund']);
+		$fields->push(['key'=> 'Kontakt']);
+		$fields->push(['key'=> 'Beskrivning']);
+		$fields->push(['key'=> 'visa_detaljer']);
+
+        return view('issues.index-vue', ['products' => $selected, 'fields' => $fields]);
+	}
+	
+	/**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function indexold(Request $request)
     {
 		check_in_issues();
 		

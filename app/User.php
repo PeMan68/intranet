@@ -100,8 +100,20 @@ class User extends Authenticatable
 	public function followingIssues() {
 		return $this->belongsToMany('App\Issue')
 			->withTimestamps();
-	}
-	
+    }
+    
+    /**
+    * Generate fullname from name and surname
+    *
+    * @param string $name
+    * @return string
+    */   
+    public function fullName()
+    {
+        $name = $this->name.' '.$this->surname;
+        return $name;
+    }
+    
     /**
      * Generate initials from a name
      *
@@ -110,8 +122,8 @@ class User extends Authenticatable
      */
     public function initials()
     {
-        $name = $this->name.' '.$this->surname;
-		$words = explode(' ', $name);
+        
+		$words = explode(' ', $this->fullName());
         if (count($words) >= 2) {
             return strtoupper(substr($words[0], 0, 1) . substr(end($words), 0, 1));
         }

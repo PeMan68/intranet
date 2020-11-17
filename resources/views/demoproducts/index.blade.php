@@ -13,12 +13,12 @@
 		</div>
 	</div>
 	<div class="card-body">
-		<my-table 
+		<demoproducts-table 
 			:items="{{ $products }}" 
 			:fields="{{ $fields }}" 
 			filter="{{ $filter }}">
-		</my-table>
+		</demoproducts-table>
 	</div>
 </div>
-	
+
 @endsection
