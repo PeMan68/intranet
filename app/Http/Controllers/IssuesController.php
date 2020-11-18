@@ -39,9 +39,11 @@ class IssuesController extends Controller
 					
         $selected = $issues->map(function ( $item ) {
 			if (!is_null($item->latestComment)) {
-				$latest = date_diff($item->latestComment->updated_at, now())->format('%Dd:%Hh');
+				$latest_days = date_diff($item->latestComment->updated_at, now())->format('%Dd, %Hh');
+				$latest_date = date('y-m-d',strtotime($item->latestComment->updated_at));
 			} else {
-				$latest = date_diff($item->created_at, now())->format('%Dd:%Hh');
+				$latest_days = date_diff($item->created_at, now())->format('%Dd, %Hh');
+				$latest_date = '';
 			}
 			if ($item->minutesToCallback() < 0) {
 
@@ -54,9 +56,11 @@ class IssuesController extends Controller
 				$rowVariant = '';
 			}
             return [
+				'Id' => $item->id,
                 'Ärende' => $item->ticketNumber,
 				'Registrerat' => date('y-m-d',strtotime($item->timeInit)),
-				'Senaste' => $latest,
+				'Fördröjt' => $latest_days,
+				'Senaste' => $latest_date,
 				'Område' => $item->task->name,
 				'finish' => $item->timeClosed,
 				'vip' => $item->vip,
@@ -70,21 +74,22 @@ class IssuesController extends Controller
 				'E_post' => $item->customerMail,
 				'Telefon' => $item->customerTel,
 				'Skapad_av' => $item->userCreate->fullName(),
+				'Senaste_kommentar' => $item->latestComment['comment_internal'],
 
 				'_rowVariant' => $rowVariant,
             ];
 		});
 
 		$fields = collect([]);
+		$fields->push(['key'=> 'mer']);
 		$fields->push(['key'=> 'Ärende', 'sortable' => true]);
 		$fields->push(['key'=> 'Registrerat', 'sortable' => true]);
-		$fields->push(['key'=> 'Senaste', 'sortable' => true]);
+		$fields->push(['key'=> 'Fördröjt', 'sortable' => true]);
 		$fields->push(['key'=> 'Område', 'sortable' => true]);
 		$fields->push(['key'=> '.', 'class' => 'text-right']);
 		$fields->push(['key'=> 'Kund']);
 		$fields->push(['key'=> 'Kontakt']);
 		$fields->push(['key'=> 'Beskrivning']);
-		$fields->push(['key'=> 'visa_detaljer']);
 
         return view('issues.index-vue', ['products' => $selected, 'fields' => $fields]);
 	}

@@ -20,6 +20,6 @@
 		</issue-table>
 	</div>
 </div>
-<div>{{$products}}</div>
+{{-- <div>{{$products}}</div> --}}
 @endsection
 

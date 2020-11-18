@@ -68,42 +68,59 @@
                 </span>
                 <span class="text-nowrap">{{ data.value }}</span>
             </template>
-            <template #cell(visa_detaljer)="row">
-                <b-button size="sm" @click="row.toggleDetails" class="mr-2 text-nowrap">
-                    {{ row.detailsShowing ? 'Dölj' : 'Visa'}} Detaljer
-                </b-button>
+            <template #cell(mer)="row">
+                <template>
+                    <span @click="row.toggleDetails">
+                        <i v-if="row.detailsShowing" class="material-icons">expand_less</i>
+                        <i v-else class="material-icons">expand_more</i>
+                    </span>
+                </template>
             </template>
 
             <template #row-details="row">
-                <b-card>
-                    <i>Registrerat {{ row.item.Registrerat }} av {{ row.item.Skapad_av }}</i>
-                <b-row class="mb-2">
-                    <b-col sm="3" class="text-sm text-nowrap">
-                        <template v-if="row.item.vip">
-                            <i class="material-icons">favorite</i> = VIP-kund<br>
-                        </template>
-                        <template v-if="row.item.prio == 2">
-                            <i class="material-icons">grade</i> = Hög prio<br>
-                        </template>
-                        <template v-if="row.item.contacted">
-                            <i class="material-icons">how_to_reg</i> = Första kontakt klar<br>
-                        </template>
-                        <template v-if="row.item.wait">
-                            <i class="material-icons">snooze</i> = Framflyttad<br>
-                        </template>
-                        <template v-if="row.item.pause">
-                            <i class="material-icons">pause_circle_filled</i> = Pausad<br>
-                        </template>
-                    </b-col>
-                    <b-col sm="2" class="text-sm">
-                        <b>Kund:</b> {{ row.item.Kund }}<br>
-                        <b>E-post:</b> {{ row.item.E_post }}<br>
+                <b-card bg-variant="dark">
+                    <b>Registrerat:</b> {{ row.item.Registrerat }} av <i>{{ row.item.Skapad_av }}</i>
+                    <b-row class="mb-2">
+                        <b-col sm="3" class="text-sm text-nowrap">
+                            <template v-if="row.item.vip">
+                                <i class="material-icons">favorite</i> = VIP-kund<br>
+                            </template>
+                            <template v-if="row.item.prio == 2">
+                                <i class="material-icons">grade</i> = Hög prio<br>
+                            </template>
+                            <template v-if="row.item.contacted">
+                                <i class="material-icons">how_to_reg</i> = Första kontakt klar<br>
+                            </template>
+                            <template v-if="row.item.wait">
+                                <i class="material-icons">snooze</i> = Framflyttad<br>
+                            </template>
+                            <template v-if="row.item.pause">
+                                <i class="material-icons">pause_circle_filled</i> = Pausad<br>
+                            </template>
+                        </b-col>
+                        <b-col sm="3">
+                            <table class="table-sm table-borderless">
+                                <tr>
+                                    <td><b>Kund:</b></td><td>{{ row.item.Kund }}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Kontakt:</b></td><td>{{ row.item.Kontakt }}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>E-post:</b></td><td>{{ row.item.E_post }}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Telefon:</b></td><td>{{ row.item.Telefon }}</td>
+                                </tr>
+                            </table>
+                        </b-col>
+                        <b-col>
+                            <b>Senaste kommentar: </b>{{ row.item.Senaste }}<br>
+                            {{ row.item.Senaste_kommentar }}<br>
+                        </b-col>
+                    </b-row>
 
-                    </b-col>
-                    <b-col></b-col>
-                </b-row>
-
-                <b-button size="sm" @click="row.toggleDetails">Hide Details</b-button>
+                    <b-button size="sm" :href="'/issues/' + row.item.Id ">Öppna ärendet</b-button>
                 </b-card>
             </template>
         </b-table>
