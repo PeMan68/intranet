@@ -2,7 +2,7 @@
 
 @include('menues.issues')
 
-@section('scriptsHead')
+@section('scriptsBody')
 <script>
 $(document).ready(function(){
 	$('#buttons').hide();
@@ -173,6 +173,7 @@ $(document).ready(function(){
 		</form>
 	</div>
 	<strong>Händelselogg</strong>
+	<form action="{{ route('issuecomments.update', $new_comment->id) }}" method="post">
 	<table class="table-responsive table-sm table-bordered">
 	@if($comments->count())
 		<thead>
@@ -182,20 +183,15 @@ $(document).ready(function(){
 		</thead>
 	@foreach($comments as $comment)
 		<tr>
-			<form action="{{ route('issuecomments.update', $comment->id) }}" method="post">
-			@method('PUT')
-			@csrf
 			<td> {{ date('Y-m-d H:i', strtotime($comment->checkin)) }}
 			<br>
 			{{ $comment->user->name . ' ' . $comment->user->surname }} </td>
 			<td> {!! nl2br(e($comment->comment_internal)) !!} </td>
 			<td> {!! nl2br(e($comment->comment_external)) !!} </td>
-			</form>
 		</tr>
 	@endforeach
 	@endif
 		@if (is_null($issue->timeClosed))
-		<form action="{{ route('issuecomments.update', $new_comment->id) }}" method="post">
 			@method('PUT')
 			@csrf
 			<input type="hidden" name="follow" value="{{$follow}}">
@@ -225,8 +221,8 @@ $(document).ready(function(){
 				@endif
 			</td>
 		</tr>
-		</form>
 		@endif
+	</form>
 	</table>
 		
 				

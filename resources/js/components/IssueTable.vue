@@ -136,7 +136,7 @@
 
         data() {
             return {
-                perPage: 10,
+                perPage: 4,
                 currentPage: 1,
                 totalRows: 1,
                 filter: null,
