@@ -105,7 +105,7 @@ class IssuesController extends Controller
 		$fields->push(['key'=> 'Kontakt']);
 		$fields->push(['key'=> 'Rubrik']);
 
-        return view('issues.index-vue', ['products' => $selected, 'fields' => $fields]);
+        return view('issues.index', ['products' => $selected, 'fields' => $fields]);
 	}
 
     /**
