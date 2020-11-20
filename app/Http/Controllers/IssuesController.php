@@ -21,6 +21,12 @@ use Illuminate\Support\Str;
 
 class IssuesController extends Controller
 {
+	
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
 	public function index()
     {
 		check_in_issues();
@@ -31,7 +37,7 @@ class IssuesController extends Controller
 
         $issues = Issue::with('task','latestComment','userCreate')
 					->whereNull('timeClosed')
-					->orWhere('timeClosed','>',date('Y-m-d',strtotime('-30 days')))
+					//->orWhere('timeClosed','>',date('Y-m-d',strtotime('-30 days')))
 					->get()
 					->sortByDesc('calculated_prio')
 					->flatten()
@@ -39,12 +45,20 @@ class IssuesController extends Controller
 					
         $selected = $issues->map(function ( $item ) {
 			if (!is_null($item->latestComment)) {
-				$latest_days = date_diff($item->latestComment->updated_at, now())->format('%Dd, %Hh');
+				$latest_days = date_diff($item->latestComment->updated_at, now())->format('%a');
 				$latest_date = date('y-m-d',strtotime($item->latestComment->updated_at));
 			} else {
-				$latest_days = date_diff($item->created_at, now())->format('%Dd, %Hh');
+				$latest_days = date_diff($item->created_at, now())->format('%a');
 				$latest_date = '';
 			}
+			if ($latest_days == 0) {
+				$latest_days = ' idag';
+			} elseif ($latest_days == 1){
+				$latest_days = 'dag';
+			} else {
+				$latest_days .= ' dagar';
+			}
+
 			if ($item->minutesToCallback() < 0) {
 
 				$rowVariant = 'danger';
@@ -59,7 +73,7 @@ class IssuesController extends Controller
 				'Id' => $item->id,
                 'Ärende' => $item->ticketNumber,
 				'Registrerat' => date('y-m-d',strtotime($item->timeInit)),
-				'Fördröjt' => $latest_days,
+				'Senaste_kontakt' => $latest_days,
 				'Senaste' => $latest_date,
 				'Område' => $item->task->name,
 				'finish' => $item->timeClosed,
@@ -70,7 +84,7 @@ class IssuesController extends Controller
 				'contacted' => $item->timeCustomercallback,
 				'Kund' => $item->customer,
 				'Kontakt' => $item->customerName,
-				'Beskrivning' => Str::limit($item->header,30),
+				'Rubrik' => Str::limit($item->header,30),
 				'E_post' => $item->customerMail,
 				'Telefon' => $item->customerTel,
 				'Skapad_av' => $item->userCreate->fullName(),
@@ -81,53 +95,18 @@ class IssuesController extends Controller
 		});
 
 		$fields = collect([]);
-		$fields->push(['key'=> 'mer']);
+		$fields->push(['key'=> 'Info']);
 		$fields->push(['key'=> 'Ärende', 'sortable' => true]);
 		$fields->push(['key'=> 'Registrerat', 'sortable' => true]);
-		$fields->push(['key'=> 'Fördröjt', 'sortable' => true]);
+		$fields->push(['key'=> 'Senaste_kontakt', 'sortable' => true]);
 		$fields->push(['key'=> 'Område', 'sortable' => true]);
 		$fields->push(['key'=> '.', 'class' => 'text-right']);
 		$fields->push(['key'=> 'Kund']);
 		$fields->push(['key'=> 'Kontakt']);
-		$fields->push(['key'=> 'Beskrivning']);
+		$fields->push(['key'=> 'Rubrik']);
 
         return view('issues.index-vue', ['products' => $selected, 'fields' => $fields]);
 	}
-	
-	/**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function indexold(Request $request)
-    {
-		check_in_issues();
-		
-		// cleanup task_user table for current user
-		$tasks = Task::all();
-		Auth::user()->tasks()->sync($tasks);
-		
-		$filters = $request->search;
-		if (isset($filters)) { 
-		// list all issues matching $filter
-		// 
-		$issues = Issue::filter($filters)
-					->get()
-					;
-			
-		} else {
-		// list open issues
-		// sort by calculated_prio
-		$issues = Issue::filter($filters)
-					->whereNull('timeClosed')
-					->orWhere('timeClosed','>',date('Y-m-d',strtotime('-30 days')))
-					->get()
-					->sortByDesc('calculated_prio')
-					;
-		}
-		
-		return view('issues.index',compact('issues',$issues),['filter' => $filters]);
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -174,13 +153,7 @@ class IssuesController extends Controller
 		$task = Task::find($request->task_id);
 		//Send mail to responsible staff
 		event(new NewIssue($issue));
-		// foreach ($task->users as $user) {
-			// if ($user->pivot->level == 3){
-				// Mail::to($user->email)->send(new issueCreated($issue));
-				
-			// }
-		// }
-		
+
         if ($request->has('save')) {
 			return redirect('/issues')->with('success','Nytt ärende skapat: '.$validatedData['ticketNumber']);
 		}

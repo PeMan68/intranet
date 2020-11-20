@@ -3,7 +3,7 @@
     <b-container fluid>
         <b-row class="mb-2">
             <b-col sm="2">
-                <b-button size="sm" href="issues/create">Nytt ärende</b-button>
+                <b-button variant="primary" size="sm" href="issues/create"><i class="material-icons">add_circle</i> Nytt ärende</b-button>
             </b-col>
             <b-col sm="5">
                 <b-pagination
@@ -46,7 +46,7 @@
             :filter="filter"
             @filtered="onFiltered"
             small
-            sticky-header="400px"
+            sticky-header="1000px"
             sort-icon-left
             responsive
             >
@@ -68,19 +68,18 @@
                 </span>
                 <span class="text-nowrap">{{ data.value }}</span>
             </template>
-            <template #cell(mer)="row">
-                <template>
-                    <span @click="row.toggleDetails">
+            <template #cell(info)="row">
+                <div class="small">
+                    <b-badge :variant="row.item._rowVariant" href="#" @click="row.toggleDetails">
                         <i v-if="row.detailsShowing" class="material-icons">expand_less</i>
                         <i v-else class="material-icons">expand_more</i>
-                    </span>
-                </template>
+                    </b-badge>
+                </div>
             </template>
 
             <template #row-details="row">
-                <b-card bg-variant="dark">
-                    <b>Registrerat:</b> {{ row.item.Registrerat }} av <i>{{ row.item.Skapad_av }}</i>
-                    <b-row class="mb-2">
+                <b-card no-body>
+                    <b-row :bg-variant="row.item._rowVariant" class="my-2 mx-0">
                         <b-col sm="3" class="text-sm text-nowrap">
                             <template v-if="row.item.vip">
                                 <i class="material-icons">favorite</i> = VIP-kund<br>
@@ -89,20 +88,17 @@
                                 <i class="material-icons">grade</i> = Hög prio<br>
                             </template>
                             <template v-if="row.item.contacted">
-                                <i class="material-icons">how_to_reg</i> = Första kontakt klar<br>
+                                <i class="material-icons">how_to_reg</i> = Första kontakt gjord<br>
                             </template>
                             <template v-if="row.item.wait">
-                                <i class="material-icons">snooze</i> = Framflyttad<br>
+                                <i class="material-icons">snooze</i> = Väntar på svar<br>
                             </template>
                             <template v-if="row.item.pause">
                                 <i class="material-icons">pause_circle_filled</i> = Pausad<br>
                             </template>
                         </b-col>
                         <b-col sm="3">
-                            <table class="table-sm table-borderless">
-                                <tr>
-                                    <td><b>Kund:</b></td><td>{{ row.item.Kund }}</td>
-                                </tr>
+                            <table class="table-sm">
                                 <tr>
                                     <td><b>Kontakt:</b></td><td>{{ row.item.Kontakt }}</td>
                                 </tr>
@@ -120,7 +116,7 @@
                         </b-col>
                     </b-row>
 
-                    <b-button size="sm" :href="'/issues/' + row.item.Id ">Öppna ärendet</b-button>
+                    <b-button :variant="row.item._rowVariant" size="sm" :href="'/issues/' + row.item.Id ">Öppna ärendet</b-button>
                 </b-card>
             </template>
         </b-table>
@@ -136,7 +132,7 @@
 
         data() {
             return {
-                perPage: 4,
+                perPage: 20,
                 currentPage: 1,
                 totalRows: 1,
                 filter: null,
