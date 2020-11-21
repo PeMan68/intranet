@@ -289,9 +289,9 @@ if (! function_exists('expiredIssues')) {
 	function expiredIssues() {
 		$data = Issue::whereNull('timeCustomercallback')
 			->whereNull('timeClosed')
-			->whereDate('timeEstimatedcallback','<', date('Y-m-d H:i:s'))
+			->whereDate('timeEstimatedcallback','<', date('Y-m-d'))
 			->orWhere(function($query) {
-				$query->whereDate('timeEstimatedcallback','=', date('Y-m-d H:i:s'))
+				$query->whereDate('timeEstimatedcallback','=', date('Y-m-d'))
 						->whereTime('timeEstimatedcallback','<', date('H:i:s'));
 			})
 			->get();
