@@ -63,9 +63,9 @@ class IssuesController extends Controller
 
 				$rowVariant = 'danger';
 			} elseif ($item->userCurrentLevel() == 3) {
-				$rowVariant = 'warning';
+				$rowVariant = 'primary';
 			} elseif ($item->userCurrentLevel() == 2) {
-				$rowVariant = 'success';
+				$rowVariant = 'secondary';
 			} else {
 				$rowVariant = '';
 			}
@@ -85,6 +85,7 @@ class IssuesController extends Controller
 				'Kund' => $item->customer,
 				'Kontakt' => $item->customerName,
 				'Rubrik' => Str::limit($item->header,30),
+				'Ärende_beskrivning' => $item->description,
 				'E_post' => $item->customerMail,
 				'Telefon' => $item->customerTel,
 				'Skapad_av' => $item->userCreate->fullName(),

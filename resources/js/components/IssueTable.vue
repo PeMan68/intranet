@@ -78,8 +78,23 @@
             </template>
 
             <template #row-details="row">
-                <b-card no-body>
-                    <b-row :bg-variant="row.item._rowVariant" class="my-2 mx-0">
+                <b-card >
+                    <template v-if="row.item._rowVariant== 'danger'">
+                        <div class="alert alert-danger">
+                            <h4 class="font-weight-bolder text-center">Kunden har ännu inte fått en första feedback! Kontakta kunden snarast!</h4>
+                        </div>
+                    </template>
+                    <template v-if="row.item._rowVariant== 'primary'">
+                        <div class="alert alert-primary">
+                            <h5 class="font-weight-bolder text-center">Ärendet tillhör till primära ansvarsområde</h5>
+                        </div>
+                    </template>
+                    <template v-if="row.item._rowVariant== 'secondary'">
+                        <div class="alert alert-secondary">
+                            <h6 class="font-weight-bolder text-center">Ärendet tillhör till sekundära ansvarsområde</h6>
+                        </div>
+                    </template>
+                    <b-row class="my-2 mx-0">
                         <b-col sm="3" class="text-sm text-nowrap">
                             <template v-if="row.item.vip">
                                 <i class="material-icons">favorite</i> = VIP-kund<br>
@@ -111,12 +126,18 @@
                             </table>
                         </b-col>
                         <b-col>
-                            <b>Senaste kommentar: </b>{{ row.item.Senaste }}<br>
-                            {{ row.item.Senaste_kommentar }}<br>
+                            <template v-if="row.item.Senaste_kommentar != null">
+                                <b>Senaste kommentar: </b>{{ row.item.Senaste }}<br>
+                                {{ row.item.Senaste_kommentar }}<br>
+                            </template>
+                            <template v-else>
+                                <b>Ärendebeskrivning:</b><br>
+                                {{ row.item.Ärende_beskrivning }}
+                            </template>                
                         </b-col>
                     </b-row>
 
-                    <b-button :variant="row.item._rowVariant" size="sm" :href="'/issues/' + row.item.Id ">Öppna ärendet</b-button>
+                    <b-button size="sm" :href="'/issues/' + row.item.Id ">Öppna ärendet</b-button>
                 </b-card>
             </template>
         </b-table>

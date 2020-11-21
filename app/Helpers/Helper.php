@@ -292,7 +292,7 @@ if (! function_exists('expiredIssues')) {
 			->whereDate('timeEstimatedcallback','<', date('Y-m-d H:i:s'))
 			->orWhere(function($query) {
 				$query->whereDate('timeEstimatedcallback','=', date('Y-m-d H:i:s'))
-						->whereTime('timeEstimatedcallback','<', date('Y-m-d H:i:s'));
+						->whereTime('timeEstimatedcallback','<', date('H:i:s'));
 			})
 			->get();
 		return $data->count();
