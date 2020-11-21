@@ -17,10 +17,10 @@
                     @endforeach
                 </select>
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="number">Antal</label>
                 <input class="form-control" type="number" id="number" name="number" value="{{ old('number') }}">
-            </div>
+            </div> --}}
             <div class="form-group">
                 <label for="place">Plats</label>
                 <select class="form-control" name="location_id" id="place">
