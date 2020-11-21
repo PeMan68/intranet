@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@include('menues.demoproducts')
+{{-- @include('menues.demoproducts') --}}
 
 @section('content')
 

@@ -3,7 +3,7 @@
     <b-container fluid>
         <b-row class="mb-2">
             <b-col sm="2">
-                <b-button size="sm" href="demoproducts/create">Lägg in produkt</b-button>
+                <b-button variant="primary" size="sm" href="demoproducts/create"><i class="material-icons">add_circle</i>Lägg in produkt</b-button>
             </b-col>
             <b-col sm="5">
                 <b-pagination
