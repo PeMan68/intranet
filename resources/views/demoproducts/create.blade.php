@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@include('partials._singledatepicker')
+{{-- @include('partials._singledatepicker') --}}
 
 @section('content')
 <div class="card">
@@ -9,6 +9,10 @@
 	<div class="card-body">
 		<form action="/demoproducts" method="post">
             @csrf
+            {{-- <div class="form-group">
+
+                <demoproducts-form :items="{{$items}}"></demoproducts-form>
+            </div> --}}
             <div class="form-group">
                 <label for="product_id">Välj produkt</label>
                 <select class="form-control" id="product_id" name="product_id">
@@ -17,10 +21,10 @@
                     @endforeach
                 </select>
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="number">Antal</label>
                 <input class="form-control" type="number" id="number" name="number" value="{{ old('number') }}">
-            </div>
+            </div> --}}
             <div class="form-group">
                 <label for="place">Plats</label>
                 <select class="form-control" name="location_id" id="place">
@@ -66,13 +70,13 @@
                 <small class="form-text text-muted">Ange inköpsdatum, minst År, gärna Månad, helst Dag</small>
             </div>
             <div class="form-group">
-                <label for="invoice_no">Fakturanummer</label>
+                <label for="invoice_no">Fakturanummer/ordernummer</label>
                     <input class="form-control" 
                     type="text"
                     name="invoice_no"
                     id="invoice_no"
                     value="{{ old('invoice_no') }}">
-                <small class="form-text text-muted">Ange fakturanummer om det är känt</small>
+                <small class="form-text text-muted">Ange fakturanummer eller ordernummer om det är känt</small>
             </div>
             <div class="form-group">
                 <div class="form-check">

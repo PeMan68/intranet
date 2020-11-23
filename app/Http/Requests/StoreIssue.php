@@ -26,7 +26,7 @@ class StoreIssue extends FormRequest
 		return [
             'taskPersonal_id' => 'required',
             'task_id' => 'required',
-			'customerName' => 'nullable',
+			'customerName' => 'required',
 			'customerTel' => 'required_with:customerName',
 			'header' => 'required',
 			'description' => 'required',

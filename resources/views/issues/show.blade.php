@@ -2,7 +2,7 @@
 
 @include('menues.issues')
 
-@section('scriptsHead')
+@section('scriptsBody')
 <script>
 $(document).ready(function(){
 	$('#buttons').hide();
@@ -173,61 +173,57 @@ $(document).ready(function(){
 		</form>
 	</div>
 	<strong>Händelselogg</strong>
-	<table class="table-responsive table-sm table-bordered">
-	@if($comments->count())
-		<thead>
-			<th width="20%">Tidpunkt</th>
-			<th width="40%">Interna anteckningar</th>
-			<th width="40%">Kommunikation med kund</th>
-		</thead>
-	@foreach($comments as $comment)
-		<tr>
-			<form action="{{ route('issuecomments.update', $comment->id) }}" method="post">
-			@method('PUT')
-			@csrf
-			<td> {{ date('Y-m-d H:i', strtotime($comment->checkin)) }}
-			<br>
-			{{ $comment->user->name . ' ' . $comment->user->surname }} </td>
-			<td> {!! nl2br(e($comment->comment_internal)) !!} </td>
-			<td> {!! nl2br(e($comment->comment_external)) !!} </td>
-			</form>
-		</tr>
-	@endforeach
-	@endif
-		@if (is_null($issue->timeClosed))
-		<form action="{{ route('issuecomments.update', $new_comment->id) }}" method="post">
-			@method('PUT')
-			@csrf
-			<input type="hidden" name="follow" value="{{$follow}}">
-		<tr>
-			<td>
-			</td>
-			<td>
-				<textarea class="form-control" id="comment_internal" name="comment_internal" rows="3">{{ old('comment_internal') }}</textarea>
-				<small class="text-muted">Intern anteckning</small>
-			</td>	
-			<td>
-				<textarea class="form-control" id="comment_external" name="comment_external" rows="3">{{ old('comment_external') }}</textarea>
-				<small class="text-muted">(Detta fält kommer skickas till kunds e-postadress i kommande version)</small>
-			</td>	
-		</tr>
-		<tr>
-			<td>
-			</td>
-			<td>
-				<button type="submit" class="btn btn-primary mr-2" name="save">
-					Spara  kommentar
-				</button>
-				@if ($auth_user->id == $issue->userCurrent_id)
-				<button type="submit" class="btn btn-success mr-2" name="saveAndClose">
-					Spara och avsluta ärende
-				</button>
-				@endif
-			</td>
-		</tr>
-		</form>
+	<form action="{{ route('issuecomments.update', $new_comment->id) }}" method="post">
+		<table class="table-responsive table-sm table-bordered">
+		@if($comments->count())
+			<thead>
+				<th width="20%">Tidpunkt</th>
+				<th width="40%">Interna anteckningar</th>
+				<th width="40%">Kommunikation med kund</th>
+			</thead>
+		@foreach($comments as $comment)
+			<tr>
+				<td> {{ date('Y-m-d H:i', strtotime($comment->checkin)) }}
+				<br>
+				{{ $comment->user->name . ' ' . $comment->user->surname }} </td>
+				<td> {!! nl2br(e($comment->comment_internal)) !!} </td>
+				<td> {!! nl2br(e($comment->comment_external)) !!} </td>
+			</tr>
+		@endforeach
 		@endif
-	</table>
+			@if (is_null($issue->timeClosed))
+				@method('PUT')
+				@csrf
+				<input type="hidden" name="follow" value="{{$follow}}">
+			<tr>
+				<td>
+				</td>
+				<td>
+					<textarea class="form-control" id="comment_internal" name="comment_internal" rows="3">{{ old('comment_internal') }}</textarea>
+					<small class="text-muted">Intern anteckning</small>
+				</td>	
+				<td>
+					<textarea class="form-control" id="comment_external" name="comment_external" rows="3">{{ old('comment_external') }}</textarea>
+					<small class="text-muted">(Detta fält kommer skickas till kunds e-postadress i kommande version)</small>
+				</td>	
+			</tr>
+			<tr>
+				<td>
+				</td>
+				<td>
+					<button type="submit" class="btn btn-primary mr-2" name="save">
+						Spara  kommentar
+					</button>
+					@if ($auth_user->id == $issue->userCurrent_id)
+					<button type="submit" class="btn btn-success mr-2" name="saveAndClose">
+						Spara och avsluta ärende
+					</button>
+					@endif
+				</td>
+			</tr>
+			@endif
+		</table>
+	</form>
 		
 				
 </div>
