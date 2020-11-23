@@ -37,7 +37,7 @@ class IssuesController extends Controller
 
         $issues = Issue::with('task','latestComment','userCreate')
 					->whereNull('timeClosed')
-					//->orWhere('timeClosed','>',date('Y-m-d',strtotime('-30 days')))
+					->orWhere('timeClosed','>',date('Y-m-d',strtotime('-1 year')))
 					->get()
 					->sortByDesc('calculated_prio')
 					->flatten()
