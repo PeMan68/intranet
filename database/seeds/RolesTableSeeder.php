@@ -19,5 +19,6 @@ class RolesTableSeeder extends Seeder
 		Role::create(['name' => 'sale']);
 		Role::create(['name' => 'support']);
 		Role::create(['name' => 'user']);
+		Role::create(['name' => 'beta']);
     }
 }

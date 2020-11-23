@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class Setting extends Model
 {
@@ -192,6 +193,38 @@ class Setting extends Model
      */
     public static function getAllSettings()
     {
-        return self::all();
+        return Cache::rememberForever('settings.all', function() {
+            return self::all();
+        });
+    }
+
+    /**
+     * Flush the cache
+     */
+    public static function flushCache()
+    {
+        Cache::forget('settings.all');
+    }
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updated(function () {
+            self::flushCache();
+        });
+
+        static::created(function() {
+            self::flushCache();
+        });
+
+        static::deleted(function () {
+            self::flushCache();
+        });
     }
 }

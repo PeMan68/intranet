@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+
 	@yield('scriptsHead')
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -49,7 +49,7 @@
 				</div>
 			</div>        
 		</main>
-    </div>
+	</div>
 	@include('partials._scripts')
 	@yield('scriptsBody')
 </body>

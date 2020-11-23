@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light shadow-sm navbar-bg">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
+		<a class="navbar-brand" href="{{ url('/') }}">{{ setting('app_name') }}</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -14,6 +14,7 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('/') }}">Hem</a>
 				</li>
+				@showmodule('enable_issues')
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('/issues/') }}">Ärenden
 					@if (expiredIssues() > 0)
@@ -22,14 +23,42 @@
 					@if (unansweredIssues() > 0)
 						<span class="badge badge-warning" data-toggle="tooltip" title="Dina öppna ärenden">{{ unansweredIssues() }}</span>
 					@endif
+					@if (!setting('enable_issues'))
+						<sup>beta</sup>
+					@endif
 					</a>
 				</li>
+				@endshowmodule
+
+				@showmodule('enable_demoprodukter')
 				<li class="nav-item">
-					<a class="nav-link" href="{{ url('/documents/') }}">Dokument</a>
+					<a class="nav-link" href="{{ url('/demoproducts/') }}">Demoprodukter
+					@if (!setting('enable_demoprodukter'))
+						<sup>beta</sup>
+					@endif
+					</a>
 				</li>
+				@endshowmodule
+
+				@showmodule('enable_dokument')
 				<li class="nav-item">
-					<a class="nav-link" href="{{ route('visitors.index') }}">Besökare</a>
+					<a class="nav-link" href="{{ url('/documents/') }}">Dokument
+					@if (!setting('enable_dokument'))
+						<sup>beta</sup>
+					@endif
+					</a>
 				</li>
+				@endshowmodule
+				
+				@showmodule('enable_visitors')
+				<li class="nav-item">
+					<a class="nav-link" href="{{ route('visitors.index') }}">Besökare
+						@if (!setting('enable_visitors'))
+						<sup>beta</sup>
+					@endif
+					</a>
+				</li>
+				@endshowmodule
 			</ul>
 
 

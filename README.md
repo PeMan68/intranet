@@ -1,24 +1,40 @@
 # intranet
 
-### Working on
+## Version 2.4.0 ##
+*Nyheter*
+* Hantering av platser för företaget.
+    * SuperAdmin kan lägga till nya huvudplatser, alla användare kan lägga till och editera underplatser
+    * En plats kan bara tas bort om den inte har någon underplats eller några produkter
+* Import av produktlistan från excel till databasen
+* Tabell för demoprodukter med filtrering och sortering
+    * Visar översiktligt alla demoprodukter, plats och status
+* beta-användare för test av moduler moduler, aktiveras per användare av SuperAdmin.
+    
+*Förändringar*
+* Vänstermenyn komprimerad för att få plats med fler rader:
+    * Inställningar som rollen har tillgång till visas längs ned på menyn.
+* Kortet som visar besökare på startsidan visas endast om den finns besök aktuell vecka.
+* Email innehåller rubriken för ärendet, bådi i ärende och i mailtexten.
+* Email ärenderad innehåller "BRÅDSKANDE" om det valts när man skapade ärendet.
 
-## Done
-*Features*
-* Added header to Issues. Showing latest comment as tooltip in Issues-list.
-* Changed the column "senast" in issues index-view. Now calculated against latest comment.
+### Installation ###
+Uppgradering från 2.3.3
 
-## Release 2.3.2 (2020-08-21)
-* Fixed rule description of file-size (GB -> MB)
-* B200821 Wrong file deleted from documents
+<code>php artisan migrate</code>
 
-## Release 2.3.1 (2020-08-12)
-*Bug fixes:*
-* Corrected info of file-size to 2MB
-	
-## Release 2.3.0 (2020-08-11)
-*Features:*
-* Added module documents
-	
-## Release 2.1.1 (2020-02-19)
-*Features:*
-* Added departments and sorts the calendar by it
+<code>php artisan db:seed --class=ProductStatusTableSeeder</code>
+
+<code>php artisan db:seed --class=RolesTableSeeder</code>
+
+## Version 2.3.3 ##
+
+*Nyheter*
+* Ärendenummer inkluderas i sökning av ärende
+* Nytt fält i Ärenden, "Rubrik"
+    
+    Obligatoriskt fält, kortfattad beskrivning av ärendet som visas i listan av ärenden för att snabbare indentifiera ärendet.
+* Kolumnen "Senast" visar tiden som löpt sedan senast sparade kommentar
+* Bredvid "Ärenden" i huvudmenyn visas ny information:
+    
+    Antal obesvarade ärenden i rött (Där kunden inte fått svar inom utlovad tid) alla användare ser denna information.
+    Antal öppna ärenden i gult. Denna information är individuell beroende på ansvarsområden.
