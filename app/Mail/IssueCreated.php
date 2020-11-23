@@ -29,7 +29,7 @@ class IssueCreated extends Mailable
         $this->issue = $issue;
 		$this->ticketNumber = $issue->ticketNumber;
         $this->customer = $issue->customer;
-        $this->headline = $issue->header;
+        $this->header = $issue->header;
     }
 
     /**
@@ -39,7 +39,7 @@ class IssueCreated extends Mailable
      */
     public function build()
     {
-        return $this->subject('Nytt ärende för dig: '.$this->ticketNumber.'. '.$this->headline)
+        return $this->subject($this->ticketNumber.' Nytt ärende för dig: "'.$this->header.'"')
 					->view('emails.issueCreated');
     }
 }

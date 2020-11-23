@@ -42,6 +42,11 @@
 			</tr>
 		</table>
 		<p>
+		<b>Rubrik:</b><br>
+		{!! nl2br(e($issue->header)) !!}
+		<br>
+		</p>
+		<p>
 		<b>Ärendebeskrivning:</b><br>
 		{!! nl2br(e($issue->description)) !!}
 		<br>
