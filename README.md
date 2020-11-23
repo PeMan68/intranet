@@ -1,6 +1,6 @@
 # intranet
 
-## Version 2.4.0 ##
+## Version 2.4.1 ##
 *Nyheter*
 * Hantering av platser för företaget.
     * SuperAdmin kan lägga till nya huvudplatser, alla användare kan lägga till och editera underplatser
@@ -17,14 +17,14 @@
 * Email innehåller rubriken för ärendet, bådi i ärende och i mailtexten.
 * Email ärenderad innehåller "BRÅDSKANDE" om det valts när man skapade ärendet.
 
-### Installation ###
+### Installation 2.4 ###
 Uppgradering från 2.3.3
 
-<code>php artisan migrate</code>
+* <code>php artisan migrate</code>
 
-<code>php artisan db:seed --class=ProductStatusTableSeeder</code>
+* <code>php artisan db:seed --class=ProductStatusTableSeeder</code>
 
-<code>php artisan db:seed --class=RolesTableSeeder</code>
+* Lägg till rollen 'beta' i Roles table.
 
 ## Version 2.3.3 ##
 
