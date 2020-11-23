@@ -5,15 +5,17 @@
 * Hantering av platser för företaget.
     * SuperAdmin kan lägga till nya huvudplatser, alla användare kan lägga till och editera underplatser
     * En plats kan bara tas bort om den inte har någon underplats eller några produkter
-* Import av produktlistan i excel
+* Import av produktlistan från excel till databasen
 * Tabell för demoprodukter med filtrering och sortering
     * Visar översiktligt alla demoprodukter, plats och status
 * beta-användare för test av moduler moduler, aktiveras per användare av SuperAdmin.
     
 *Förändringar*
-* Vänstermenyn komprimerad för att få plats med fler rader
+* Vänstermenyn komprimerad för att få plats med fler rader:
     * Inställningar som rollen har tillgång till visas längs ned på menyn.
-* Kortet som visar besökare på startsidan visas endast om den finns besök aktuell vecka
+* Kortet som visar besökare på startsidan visas endast om den finns besök aktuell vecka.
+* Email innehåller rubriken för ärendet, bådi i ärende och i mailtexten.
+* Email ärenderad innehåller "BRÅDSKANDE" om det valts när man skapade ärendet.
 
 ### Installation ###
 Uppgradering från 2.3.3
