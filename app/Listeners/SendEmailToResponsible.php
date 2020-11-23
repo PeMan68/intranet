@@ -36,10 +36,11 @@ class SendEmailToResponsible
 		$taskID = $event->issue->task_id;
 		$issueID = $event->issue->id;
 		$task = Task::find($taskID);
-		$issue = Issue::find($issueID);
+        $issue = Issue::find($issueID);
+        
 		foreach ($task->users as $user) {
 			if ($user->pivot->level == 3){
-				Mail::to($user->email)->send(new issueCreated($issue));
+				Mail::to($user->email)->send(new issueCreated($issue, $event->urgent));
 			}
 		}
     }
