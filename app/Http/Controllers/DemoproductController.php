@@ -81,11 +81,21 @@ class DemoproductController extends Controller
             $this->findChildren($parent, $place, $locationBreadcrumbList);
         }
         $locationBreadcrumbList = collect($locationBreadcrumbList)->sortBy('name');
-        $products = Product::all();
-        return view('demoproducts.create')->with([
+        $products = Product::limit(50)->get();
+        //dd($products);
+        $items = $products->map(function ( $data ) {
+            return [
+                'id' => $data->id,
+                'item' => $data->item,
+                'beskr' => $data->item_description_swe,
+            ];
+        });
+        //  dd($items);
+        return view('demoproducts.create', [
             'locations' => $locationBreadcrumbList, 
             'products' => Product::all(),
             'statuses' => ProductStatus::all(),
+            'items' => $items,
             ]);
     }
 

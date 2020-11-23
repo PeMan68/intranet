@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@include('partials._singledatepicker')
+{{-- @include('partials._singledatepicker') --}}
 
 @section('content')
 <div class="card">
@@ -10,13 +10,17 @@
 		<form action="/demoproducts" method="post">
             @csrf
             <div class="form-group">
+
+                <demoproducts-form :items="{{$items}}"></demoproducts-form>
+            </div>
+            {{-- <div class="form-group">
                 <label for="product_id">Välj produkt</label>
                 <select class="form-control" id="product_id" name="product_id">
                     @foreach ($products as $product)
                     <option value="{{ $product->id }}">{{ $product->item }}</option>
                     @endforeach
                 </select>
-            </div>
+            </div> --}}
             {{-- <div class="form-group">
                 <label for="number">Antal</label>
                 <input class="form-control" type="number" id="number" name="number" value="{{ old('number') }}">
