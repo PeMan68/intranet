@@ -59,7 +59,7 @@ class IssuesController extends Controller
 				$latest_days .= ' dagar';
 			}
 
-			if ($item->minutesToCallback() < 0) {
+			if ($item->minutesToCallback() < 0 && is_null($item->timeClosed)) {
 
 				$rowVariant = 'danger';
 			} elseif ($item->userCurrentLevel() == 3) {
