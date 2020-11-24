@@ -12,45 +12,6 @@
 
 @section('scriptsBody')
 <script>
-$('input[name="daterange"]').daterangepicker({
-    "showWeekNumbers": true,
-    "locale": {
-        "format": "YYYY-MM-DD",
-        "separator": " till ",
-        "applyLabel": "Välj",
-        "cancelLabel": "Avbryt",
-        "fromLabel": "Från",
-        "toLabel": "Till",
-        "customRangeLabel": "Custom",
-        "weekLabel": "V",
-        "daysOfWeek": [
-            "Sön",
-            "Mån",
-            "Tis",
-            "Ons",
-            "Tor",
-            "Fre",
-            "Lör"
-        ],
-        "monthNames": [
-            "Januari",
-            "Februari",
-            "Mars",
-            "April",
-            "Maj",
-            "Juni",
-            "Juli",
-            "Augusti",
-            "September",
-            "Oktober",
-            "November",
-            "December"
-        ],
-        "firstDay": 1
-    },
-});
-</script>
-<script>
 	document.getElementById('calendarcategory_id').on('change',function(){
     var description = $(this).children('option:selected').data('name');
     document.getElementById('description').value=description;
@@ -106,7 +67,6 @@ $('input[name="daterange"]').daterangepicker({
                             
                             <div class="col-md-6">
                                 <b-form-datepicker id="start" name="start"></b-form-datepicker>
-                                {{-- <input id="start" type="text" class="form-control" name="daterange" value="{{ old('daterange') }}"> --}}
                             </div>
                         </div>
                         <div class="form-group row">
