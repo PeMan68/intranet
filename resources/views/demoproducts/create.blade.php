@@ -62,11 +62,7 @@
             </div>
             <div class="form-group">
                 <label for="invoice_date">Inköpsdatum</label>
-                <b-form-input  
-                    type="date"
-                    name="invoice_date"
-                    id="daterange" 
-                    value="{{ old('invoice_date') }}">
+                <b-form-datepicker name="invoice_date" id="date" value="{{ now() }}"></b-form-datepicker>
                 <small class="form-text text-muted">Ange inköpsdatum, minst År, gärna Månad, helst Dag</small>
             </div>
             <div class="form-group">
