@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-{{-- @include('partials._singledatepicker') --}}
-
 @section('content')
 <div class="card">
 	<div class="card-header h3">Lägg in produkt på demolager</div>
@@ -9,10 +7,6 @@
 	<div class="card-body">
 		<form action="/demoproducts" method="post">
             @csrf
-            {{-- <div class="form-group">
-
-                <demoproducts-form :items="{{$items}}"></demoproducts-form>
-            </div> --}}
             <div class="form-group">
                 <label for="product_id">Välj produkt</label>
                 <select class="form-control" id="product_id" name="product_id">
@@ -21,10 +15,6 @@
                     @endforeach
                 </select>
             </div>
-            {{-- <div class="form-group">
-                <label for="number">Antal</label>
-                <input class="form-control" type="number" id="number" name="number" value="{{ old('number') }}">
-            </div> --}}
             <div class="form-group">
                 <label for="place">Plats</label>
                 <select class="form-control" name="location_id" id="place">
@@ -62,11 +52,7 @@
             </div>
             <div class="form-group">
                 <label for="invoice_date">Inköpsdatum</label>
-                <b-form-input  
-                    type="date"
-                    name="invoice_date"
-                    id="daterange" 
-                    value="{{ old('invoice_date') }}">
+                <b-form-datepicker name="invoice_date" id="date" value="{{ now() }}"></b-form-datepicker>
                 <small class="form-text text-muted">Ange inköpsdatum, minst År, gärna Månad, helst Dag</small>
             </div>
             <div class="form-group">

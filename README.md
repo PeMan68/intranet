@@ -1,5 +1,8 @@
 # intranet
 
+## Version 2.4.2 ##
+*bugfixar*
+* Ersatt daterangepicker med bootstrap-vue komponenter
 ## Version 2.4.1 ##
 *Nyheter*
 * Hantering av platser för företaget.
