@@ -102,10 +102,17 @@ $('input[name="daterange"]').daterangepicker({
                         </div>
 
                         <div class="form-group row">
-                            <label for="start" class="col-md-4 col-form-label text-md-right">Tidsperiod</label>
-
+                            <label for="start" class="col-md-4 col-form-label text-md-right">Startdatum</label>
+                            
                             <div class="col-md-6">
-                                <input id="start" type="text" class="form-control" name="daterange" value="{{ old('daterange') }}">
+                                <b-form-datepicker id="start" name="start"></b-form-datepicker>
+                                {{-- <input id="start" type="text" class="form-control" name="daterange" value="{{ old('daterange') }}"> --}}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="stop" class="col-md-4 col-form-label text-md-right">Slutdatum (Kan lämnas tomt om samma dag)</label>
+                            <div class="col-md-6">
+                                <b-form-datepicker id="stop" name="stop"></b-form-datepicker>
                             </div>
                         </div>
 
