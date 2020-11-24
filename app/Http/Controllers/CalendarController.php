@@ -44,8 +44,6 @@ class CalendarController extends Controller
 			return redirect('/home');
 		}
         $validatedData = $request->validated();
-		// $validatedData['start'] = Str::before($request['daterange'],' till ');
-		// $validatedData['stop'] = Str::after($request['daterange'],' till ');
         $validatedData['start'] = $request->start;
         if ($request->stop == '' || $request->stop < $request->start) {
             $validatedData['stop'] = $validatedData['start'];
