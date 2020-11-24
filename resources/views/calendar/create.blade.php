@@ -1,15 +1,5 @@
 @extends('layouts.app')
 
-@section('stylesheets')
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-@endsection
-
-@section('scriptsHead')
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
-@endsection
-
 @section('scriptsBody')
 <script>
 	document.getElementById('calendarcategory_id').on('change',function(){
@@ -66,7 +56,7 @@
                             <label for="start" class="col-md-4 col-form-label text-md-right">Startdatum</label>
                             
                             <div class="col-md-6">
-                                <b-form-datepicker id="start" name="start"></b-form-datepicker>
+                                <b-form-datepicker id="start" name="start" value="{{ now() }}"></b-form-datepicker>
                             </div>
                         </div>
                         <div class="form-group row">
