@@ -21,7 +21,7 @@
 						<span class="badge badge-danger" data-toggle="tooltip" title="Kunder som inte blivit kontaktade">{{ expiredIssues() }}</span>
 					@endif
 					@if (unansweredIssues() > 0)
-						<span class="badge badge-warning" data-toggle="tooltip" title="Dina öppna ärenden">{{ unansweredIssues() }}</span>
+						<span class="badge badge-primary" data-toggle="tooltip" title="Dina öppna ärenden">{{ unansweredIssues() }}</span>
 					@endif
 					@if (!setting('enable_issues'))
 						<sup>beta</sup>
