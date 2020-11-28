@@ -1,7 +1,7 @@
 <b-navbar toggleable="md" type="light" class="navbar-bg">
 	<b-navbar-brand href="{{ url('/') }}">{{ setting('app_name') }}</b-navbar-brand>
 		<b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-			<b-collapse id="nav-collapse" is-nav>
+		<b-collapse id="nav-collapse" is-nav>
 			<!-- Left Side Of Navbar -->
 			<b-navbar-nav>
 			</b-navbar-nav>			
@@ -77,7 +77,7 @@
 				</b-nav-item-dropdown>
 			@endguest
 			</b-navbar-nav>
-			</b-collapse>
+		</b-collapse>
 </b-navbar>
 			
 
