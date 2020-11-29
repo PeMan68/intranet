@@ -26,8 +26,9 @@ class StoreIssue extends FormRequest
 		return [
             'taskPersonal_id' => 'required',
             'task_id' => 'required',
-			'customerName' => 'nullable',
+			'customerName' => 'required',
 			'customerTel' => 'required_with:customerName',
+			'header' => 'required',
 			'description' => 'required',
 			'customer' => 'nullable',
 			'customerNumber' => 'nullable',
@@ -48,6 +49,7 @@ class StoreIssue extends FormRequest
 	{
 		return [
 			'task_id.required' => 'Välj område',
+			'header.required' => 'Rubrik är obligatorisk',
 			'description.required' => 'Formell beskrivning är obligatorisk',
 			'customerName.required' => 'Kontaktperson är obligatorisk',
 			'customerTel.required_with' => 'Ange telefonnummer till  kontaktpersonen',

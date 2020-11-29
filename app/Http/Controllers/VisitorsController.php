@@ -49,9 +49,18 @@ class VisitorsController extends Controller
 		
 		$visitor->company = request('company');
 
-		$visitor->startTime = Str::before($request['daterange'],' till ');
-
-		$visitor->stopTime = Str::after($request['daterange'],' till ');
+		$visitor->startTime = $request->startDate.' '.$request->startTime;
+      if ($request->stopDate < $request->startDate) {
+        $stopDate = $request->startDate;
+      } else {
+        $stopDate = $request->stopDate;
+      }
+      if ($request->stopTime < $request->startTime) {
+         $stopTime = $request->startTime;
+      } else {
+        $stopTime = $request->stopTime;
+      }
+		$visitor->stopTime = $stopDate.' '.$stopTime;
 		
 		$visitor->user_id = $request->who;
 		$visitor->save();
@@ -80,7 +89,19 @@ class VisitorsController extends Controller
      */
     public function edit($id)
     {
-        return view('visitors.edit')->with(['visitor' => Visitor::findOrFail($id), 'users' => User::where('calendar',1)->get()]);
+        $visitor = Visitor::findOrFail($id);
+        $startDate = date('Y-m-d', strtotime($visitor->startTime));
+        $startTime = date('H:i', strtotime($visitor->startTime));
+        $stopDate = date('Y-m-d', strtotime($visitor->stopTime));
+        $stopTime = date('H:i', strtotime($visitor->stopTime));
+        return view('visitors.edit')->with([
+          'visitor' => $visitor, 
+          'users' => User::where('calendar',1)->get(),
+          'startDate' => $startDate,
+          'startTime' => $startTime,
+          'stopDate' => $stopDate,
+          'stopTime' => $stopTime,
+          ]);
     }
 
     /**
@@ -103,8 +124,19 @@ class VisitorsController extends Controller
 		}
 		
 		$visitor->company = request('company');
-		$visitor->startTime = Str::before($request['daterange'],' till ');
-		$visitor->stopTime = Str::after($request['daterange'],' till ');
+		$visitor->startTime = $request->startDate.' '.$request->startTime;
+    if ($request->stopDate < $request->startDate) {
+      $stopDate = $request->startDate;
+    } else {
+      $stopDate = $request->stopDate;
+    }
+    if ($request->stopTime < $request->startTime) {
+       $stopTime = $request->startTime;
+    } else {
+      $stopTime = $request->stopTime;
+    }
+  $visitor->stopTime = $stopDate.' '.$stopTime;
+  
 		$visitor->user_id = $request->who;
 		$visitor->save();
 		

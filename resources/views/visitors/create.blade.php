@@ -2,62 +2,7 @@
 
 @include('menues.visitors')
 
-@section('stylesheets')
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-@endsection
-
-@section('scriptsHead')
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
-@endsection
-
 @section('scriptsBody')
-<script>
-$('input[name="daterange"]').daterangepicker({
-	"timePicker": true,
-	"timePickerIncrement":15,
-	"timePicker24Hour":true,
-	"startDate": moment().startOf('hour'),
-    "endDate": moment().startOf('hour').add(2, 'hour'),
-    "showWeekNumbers": true,
-    "locale": {
-        "format": "YYYY-MM-DD HH:mm",
-        "separator": " till ",
-        "applyLabel": "Välj",
-        "cancelLabel": "Avbryt",
-        "fromLabel": "Från",
-        "toLabel": "Till",
-        "customRangeLabel": "Custom",
-        "weekLabel": "V",
-        "daysOfWeek": [
-            "Sön",
-            "Mån",
-            "Tis",
-            "Ons",
-            "Tor",
-            "Fre",
-            "Lör"
-        ],
-        "monthNames": [
-            "Januari",
-            "Februari",
-            "Mars",
-            "April",
-            "Maj",
-            "Juni",
-            "Juli",
-            "Augusti",
-            "September",
-            "Oktober",
-            "November",
-            "December"
-        ],
-        "firstDay": 1
-    },
-});
-</script>
-
 <script type="text/javascript">
     $(document).ready(function(){      
 		var i=1;  
@@ -82,40 +27,29 @@ $('input[name="daterange"]').daterangepicker({
 	<div class="card-body">
 		<form method="POST" action="{{ route('visitors.store') }}">
 			@csrf
-			<table class="table table-borderless" id="form-table">  
-			<tr><td class="text-md-right">
-				Vem besöks
-			</td>
-			<td>
+			<div class="form-group">
+				<label for="user_id">Vem besöks</label>	
 				<select class="form-control" id="user_id" name="who">
 					@foreach ($users as $user)
-						<option value="{{ $user->id }}" @if ($user->id == Auth::user()->id) selected @endif>{{ $user->name }}</option>
+					<option value="{{ $user->id }}" @if ($user->id == Auth::user()->id) selected @endif>{{ $user->name }}</option>
 					@endforeach
 				</select>
-			</td>
-			<td></td>
-			</tr>
-
-			<tr><td class="text-md-right">
-				Ange tidpunkt
-			</td>
-			<td>
-				<input id="start" type="text" class="form-control" name="daterange" value="{{ old('daterange') }}">
-			</td>
-			<td></td>
-			</tr>
-
-			<tr><td class="text-md-right">
-				Företag
-			</td>
-			<td>
-			<input id="company" type="text" class="form-control" name="company" value="{{ old('company') }}">
-			</td>
-			<td></td>
-			</tr>
+			</div>
 			
-			</table>  
-
+			<div class="form-group">
+			<label for="startTime">Ankomsttid</label>	
+				<b-form-datepicker id="startTime" name="startDate" value="{{ now() }}"></b-form-datepicker>
+				<b-form-timepicker name="startTime" minutes-step="30" value="08:00"></b-form-timepicker>
+			</div>
+			<div class="form-group">
+				<label for="stopTime">Sluttid</label>	
+				<b-form-datepicker id="stopTime" name="stopDate" value="{{ now() }}"></b-form-datepicker>
+				<b-form-timepicker name="stopTime" minutes-step="30" value="16:00"></b-form-timepicker>
+			</div>
+			<div class="form-group">
+				<label for="company">Företag</label>
+				<input id="company" type="text" class="form-control" name="company" value="{{ old('company') }}">
+			</div>
 			<div class="form-group row mb-0">
 				<div class="col-md-8 offset-md-4">
 					<button type="submit" class="btn btn-primary">Spara</button>

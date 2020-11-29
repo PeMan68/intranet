@@ -20,42 +20,97 @@ use App\Events\IssueReopened;
 use App\Events\NewIssueComment;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class IssuesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+	
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index()
     {
 		check_in_issues();
 		
 		// cleanup task_user table for current user
 		$tasks = Task::all();
 		Auth::user()->tasks()->sync($tasks);
-		
-		$filters = $request->search;
-		if (isset($filters)) { 
-		// list all issues matching $filter
-		// 
-		$issues = Issue::filter($filters)
-					->get()
-					;
-			
-		} else {
-		// list open issues
-		// sort by calculated_prio
-		$issues = Issue::filter($filters)
+
+        $issues = Issue::with('task','latestComment','userCreate')
 					->whereNull('timeClosed')
-					->orWhere('timeClosed','>',date('Y-m-d',strtotime('-30 days')))
+					->orWhere('timeClosed','>',date('Y-m-d',strtotime('-1 year')))
 					->get()
 					->sortByDesc('calculated_prio')
+					->flatten()
 					;
-		}
-		return view('issues.index',compact('issues',$issues),['filter' => $filters]);
-    }
+					
+        $selected = $issues->map(function ( $item ) {
+			if (!is_null($item->latestComment)) {
+				$latest_days = date_diff($item->latestComment->updated_at, now())->format('%a');
+				$latest_date = date('y-m-d',strtotime($item->latestComment->updated_at));
+			} else {
+				$latest_days = date_diff($item->created_at, now())->format('%a');
+				$latest_date = '';
+			}
+			if ($latest_days == 0) {
+				$latest_days = ' idag';
+			} elseif ($latest_days == 1){
+				$latest_days = '1 dag';
+			} else {
+				$latest_days .= ' dagar';
+			}
+
+			if ($item->minutesToCallback() < 0 && is_null($item->timeClosed)) {
+
+				$rowVariant = 'danger';
+			} elseif ($item->userCurrentLevel() == 3) {
+				$rowVariant = 'primary';
+			} elseif ($item->userCurrentLevel() == 2) {
+				$rowVariant = 'secondary';
+			} else {
+				$rowVariant = '';
+			}
+            return [
+				'Id' => $item->id,
+                'Ärende' => $item->ticketNumber,
+				'Registrerat' => date('y-m-d',strtotime($item->timeInit)),
+				'Senaste_kontakt' => $latest_days,
+				'Senaste' => $latest_date,
+				'Område' => $item->task->name,
+				'finish' => $item->timeClosed,
+				'vip' => $item->vip,
+				'prio' => $item->prio,
+				'wait' => $item->waitingForReply,
+				'pause' => $item->paused,
+				'contacted' => $item->timeCustomercallback,
+				'Kund' => $item->customer,
+				'Kontakt' => $item->customerName,
+				'Rubrik' => Str::limit($item->header,30),
+				'Ärende_beskrivning' => $item->description,
+				'E_post' => $item->customerMail,
+				'Telefon' => $item->customerTel,
+				'Skapad_av' => $item->userCreate->fullName(),
+				'Senaste_kommentar' => $item->latestComment['comment_internal'],
+
+				'_rowVariant' => $rowVariant,
+            ];
+		});
+
+		$fields = collect([]);
+		$fields->push(['key'=> 'Info']);
+		$fields->push(['key'=> 'Ärende', 'sortable' => true]);
+		$fields->push(['key'=> 'Registrerat', 'sortable' => true]);
+		$fields->push(['key'=> 'Senaste_kontakt', 'sortable' => true]);
+		$fields->push(['key'=> 'Område', 'sortable' => true]);
+		$fields->push(['key'=> '.', 'class' => 'text-right']);
+		$fields->push(['key'=> 'Kund']);
+		$fields->push(['key'=> 'Kontakt']);
+		$fields->push(['key'=> 'Rubrik']);
+
+        return view('issues.index', ['products' => $selected, 'fields' => $fields]);
+	}
 
     /**
      * Show the form for creating a new resource.
@@ -119,14 +174,8 @@ class IssuesController extends Controller
 		}
 		$task = Task::find($request->task_id);
 		//Send mail to responsible staff
-		event(new NewIssue($issue));
-		// foreach ($task->users as $user) {
-			// if ($user->pivot->level == 3){
-				// Mail::to($user->email)->send(new issueCreated($issue));
-				
-			// }
-		// }
-		
+		event(new NewIssue($issue, $hours));
+
         if ($request->has('save')) {
 			return redirect('/issues')->with('success','Nytt ärende skapat: '.$validatedData['ticketNumber']);
 		}
@@ -205,8 +254,7 @@ class IssuesController extends Controller
         if ($request->has('cancel')) {
 			return redirect('/issues/'.$issue->id);
 		}
-		//Validate
-        $validatedData = $request->validated();
+		$validatedData = $request->validated();
 		$validatedData['vip'] = $request->has('vip');
 		Issue::whereId($issue->id)->update($validatedData);
         if ($request->has('save')) {

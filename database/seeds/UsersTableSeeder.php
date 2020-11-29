@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
         User::truncate();
 		
 		$adminRole = Role::where('name', 'admin')->first();
+		$superadminRole = Role::where('name', 'superadmin')->first();
 		$saleRole = Role::where('name', 'sale')->first();
 		$supportRole = Role::where('name', 'support')->first();
 		$userRole = Role::where('name', 'user')->first();
@@ -65,6 +66,7 @@ class UsersTableSeeder extends Seeder
         ]);
 		
 		$admin->roles()->attach($adminRole);
+		$admin->roles()->attach($superadminRole);
 		$sale->roles()->attach($saleRole);
 		$support->roles()->attach($supportRole);
 		$user->roles()->attach($userRole);
