@@ -12,11 +12,19 @@ class IssueAttachment extends Model
      * @var array
      */
     protected $fillable = [
-        'issue_id', 'filename',
+        'user_id', 
+        'issue_id',
+        'path',
+        'filename',
+        'description',
     ];
 
-    //
-	public function issue() {
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+    
+    public function issue() {
 		return $this->belongsTo('App\Issue');
-	}
+    }
 }
