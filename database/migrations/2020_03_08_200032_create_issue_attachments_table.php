@@ -15,11 +15,12 @@ class CreateIssueAttachmentsTable extends Migration
     {
         Schema::create('issue_attachments', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table->integer('issue_id');
-			$table->string('url');
+            $table->timestamps();
+            $table->integer('issue_id');
+            $table->integer('user_id');
+			$table->string('path');
 			$table->string('filename');
 			$table->string('description')->nullable();
-            $table->timestamps();
         });
     }
 

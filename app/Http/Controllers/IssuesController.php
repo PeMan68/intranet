@@ -21,6 +21,8 @@ use App\Events\NewIssueComment;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Http\Requests\StoreDocument;
+use Illuminate\Support\Facades\Storage;
 
 class IssuesController extends Controller
 {
@@ -127,6 +129,20 @@ class IssuesController extends Controller
 
 		return view('issues.create')->with(['areas' => $areas, 'tasks' => $tasks, 'user' => $user, 'timeInit' => $initTime]);
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+	public function storeFile(StoreIssue $request)
+	{
+		$tmpFileName=$request->file;
+		$realFileName=$tmpFileName->getClientOriginalName();
+		$documentExtension = $tmpFileName->getClientOriginalExtension();
+		$pathToFile = $request->document->store('public/documents');
+	}
 
     /**
      * Store a newly created resource in storage.
@@ -251,7 +267,8 @@ class IssuesController extends Controller
      */
     public function update(UpdateIssue $request, Issue $issue)
     {
-        if ($request->has('cancel')) {
+		dd($request->files);
+		if ($request->has('cancel')) {
 			return redirect('/issues/'.$issue->id);
 		}
 		$validatedData = $request->validated();

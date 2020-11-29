@@ -168,7 +168,14 @@ $(document).ready(function(){
 							</tr>
 						</table>
 						<br>
-						<button type="button" name="add" id="add" class="btn btn-sm btn-success">+ Lägg till fil</button>
+						<b-form-file
+							name="files"
+							multiple
+							v-model="file1"
+							:state="Boolean(file1)"
+							placeholder="Choose a file or drop it here..."
+							drop-placeholder="Drop file here..."
+							></b-form-file>
 					</div>
 				</div>
 			<div class="row">

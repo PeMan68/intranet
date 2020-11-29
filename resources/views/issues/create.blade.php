@@ -2,26 +2,6 @@
 
 @include('menues.issues')
 
-@section('scriptsBody')
-<script type="text/javascript">
-    $(document).ready(function(){      
-		var i=1;  
-		$('#form-table').hide();
-
-		$('#add').click(function(){  
-			i++; 
-			$('#form-table').show();
-			$('#form-table').append('<tr id="row'+i+'" class="dynamic-added"><td class="custom-file"><input type="file" class="custom-file-input"  id="f'+i+'" name="files[]"><label class="custom-file-label" for="f'+i+'">Välj fil</label></td><td><input type="text" class="form-control form-control-sm" id="fileDescription"  name="fileDescriptions[]" value="{{ old('fileDescription') }}"></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove btn-sm">X</button></td></tr>');  
-		});  
-
-		$(document).on('click', '.btn_remove', function(){  
-			var button_id = $(this).attr("id");   
-			$('#row'+button_id+'').remove();  
-		});
-	});
-</script>
-@endsection
-
 @section('content')
 <div class="card">
 	<div class="card-header h3">Nytt ärende</div>
@@ -130,15 +110,13 @@
 				</div>
 				<div class="row">
 					<div class="form-group">
-						<br>
-						<table id="form-table" class="table">
-							<tr>
-							<th>Fil</th>
-							<th>Beskrivning</th>
-							</tr>
-						</table>
-						<br>
-						<button type="button" name="add" id="add" class="btn btn-sm btn-success">+ Lägg till fil</button>
+						<b-form-file
+							v-model="file1"
+							:state="Boolean(file1)"
+							placeholder="Choose a file or drop it here..."
+							drop-placeholder="Drop file here..."
+							></b-form-file>
+						
 					</div>
 				</div>
 			<div class="row">
