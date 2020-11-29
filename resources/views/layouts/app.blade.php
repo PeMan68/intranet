@@ -31,7 +31,7 @@
 
         <main class="container-fluid">
 			<div class="row">
-				<div class="col-md-2 bg-dark">
+				<div class="d-none d-sm-block col-md-3 col-sm-4 bg-dark">
 					<nav class="nav flex-column" style="height:100vh; margin-top:-55px; padding-top:55px;">
 						@yield('nav-left')
 						@include('menues.main')
@@ -40,7 +40,7 @@
 						</div>
 					</nav>
 				</div>
-				<div class="col-md-10 p-3">
+				<div class="col-md-9 col-sm-8 p-3">
 					@include('partials.alerts')
 					@if (Session::has('message'))
 					<div class="alert alert-info">{{ Session::get('message') }}</div>
