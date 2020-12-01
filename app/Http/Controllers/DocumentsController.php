@@ -41,6 +41,7 @@ class DocumentsController extends Controller
      */
     public function store(StoreDocument $request)
     {
+      dd($request);
 		$validatedData = $request->validated();
 		$tmpFileName=$request->document;
 		$realFileName=$tmpFileName->getClientOriginalName();

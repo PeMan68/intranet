@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Mail;
 use App\Events\NewIssue;
 use App\Events\IssueReopened;
 use App\Events\NewIssueComment;
+use App\Http\Requests\StoreAttachment;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Http\Requests\StoreDocument;
-use Illuminate\Support\Facades\Storage;
 
 class IssuesController extends Controller
 {
@@ -136,14 +136,35 @@ class IssuesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-	public function storeFile(StoreIssue $request)
+	public function storeFile(Request $request)
 	{
+		// $data = $request;
 		$tmpFileName=$request->file;
+		
 		$realFileName=$tmpFileName->getClientOriginalName();
 		$documentExtension = $tmpFileName->getClientOriginalExtension();
-		$pathToFile = $request->document->store('public/documents');
+		$pathToFile = $request->file->store('public/documents');
+		$data['path'] = $pathToFile;
+		$data['filename'] = $realFileName;
+		$data['user_id'] = Auth::id();
+		$data['issue_id'] = $request->id;
+		$document = IssueAttachment::create($data);
+		// dd($data);
+		return redirect('/issues/', $request->id)->with('success','Fil uppladdad');
 	}
 
+    /**
+     * Download the specified resource.
+     *
+     * @param  \App\Documents  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function download($id)
+    {
+        $document = Documents::find($id);
+		return Storage::download($document->path, $document->filename);
+	}
+	
     /**
      * Store a newly created resource in storage.
      *
@@ -267,7 +288,7 @@ class IssuesController extends Controller
      */
     public function update(UpdateIssue $request, Issue $issue)
     {
-		dd($request->files);
+		dd('fel');
 		if ($request->has('cancel')) {
 			return redirect('/issues/'.$issue->id);
 		}

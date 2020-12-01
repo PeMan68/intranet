@@ -44,6 +44,7 @@ Route::get('/issues/{id}/unfollow','IssuesController@unfollow')->name('issues.un
 Route::get('/issues/{id}/contacted','IssuesController@contacted')->name('issues.contacted')->middleware('auth');
 Route::get('/issues/{id}/uncontacted','IssuesController@uncontacted')->name('issues.uncontacted')->middleware('auth');
 Route::get('/issues/{id}/reopen','IssuesController@reopen')->name('issues.reopen')->middleware('auth');
+Route::post('/issues/attach','IssuesController@storeFile')->name('issues.attach')->middleware('auth');
 
 Route::resource('/visitors','VisitorsController');
 

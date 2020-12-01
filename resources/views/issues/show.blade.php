@@ -168,42 +168,34 @@ $(document).ready(function(){
 							</tr>
 						</table>
 						<br>
-						<b-form-file
-							name="files"
-							multiple
-							v-model="file1"
-							:state="Boolean(file1)"
-							placeholder="Choose a file or drop it here..."
-							drop-placeholder="Drop file here..."
-							></b-form-file>
 					</div>
 				</div>
-			<div class="row">
-				<div class="col-md-6" id="buttons">
-					<button type="submit" class="btn btn-primary m-2" name="save">
-						Spara ändringarna
-					</button>
-					<button type="submit" class="btn btn-secondary m-2" name="cancel">
-						Ångra ändringarna
-					</button>
-
+				<div class="row">
+					<div class="col-md-6" id="buttons">
+						<button type="submit" class="btn btn-primary m-2" name="save">
+							Spara ändringarna
+						</button>
+						<button type="submit" class="btn btn-secondary m-2" name="cancel">
+							Ångra ändringarna
+						</button>
+						
+					</div>
 				</div>
-			</div>
 			</fieldset>
-				<hr>
+			<hr>
 			@if (is_null($issue->timeClosed))
 			<div class="row">
 				<div class="col-md-6">
 					<div class="alert alert-info">
 						@foreach ($followers as $user)
-							<span class="badge badge-pill circle badge-dark font-weight-light" data-toggle="tooltip" title="{{ $user->name.' '.$user->surname }}">{{ $user->initials() }}</span>
+						<span class="badge badge-pill circle badge-dark font-weight-light" data-toggle="tooltip" title="{{ $user->name.' '.$user->surname }}">{{ $user->initials() }}</span>
 						@endforeach
 						@if ($follow)
-							<a class="btn btn-primary btn-sm m-2" href="{{ route('issues.unfollow', $issue->id) }}" role="button">Sluta följa ärende</a>
+						<a class="btn btn-primary btn-sm m-2" href="{{ route('issues.unfollow', $issue->id) }}" role="button">Sluta följa ärende</a>
 						@else
-							<a class="btn btn-primary btn-sm m-2" href="{{ route('issues.follow', $issue->id) }}">
-								Följ ärende<i class="material-icons white md-18 ml-1" data-toggle="tooltip" title="Följ ärendet för att få mail när det händer något" style="vertical-align: middle;">help</i>
-							</a>
+						<a class="btn btn-primary btn-sm m-2" href="{{ route('issues.follow', $issue->id) }}">
+							Följ ärende<i class="material-icons white md-18 ml-1" data-toggle="tooltip" title="Följ ärendet för att få mail när det händer något" style="vertical-align: middle;">help</i>
+						</a>
 						@endif
 					</div>
 				</div>
@@ -229,6 +221,11 @@ $(document).ready(function(){
 			</div>
 			@endif
 		</form>
+		{{-- <form action="{{ route('issues.attach', [$issue->id]) }}" method="post"> --}}
+			
+			<form-file :id={{ $issue->id }}></form-file>
+
+		{{-- </form> --}}
 	</div>
 	<strong>Händelselogg</strong>
 	<form action="{{ route('issuecomments.update', $new_comment->id) }}" method="post">
