@@ -3,7 +3,7 @@
     <b-container fluid>
         <b-row class="mb-2">
             <b-col sm="2">
-                <b-button variant="primary" size="sm" href="issues/create"><i class="material-icons">add_circle</i> Nytt ärende</b-button>
+                <b-button variant="primary" size="sm" href="/issues/create"><i class="material-icons">add_circle</i> Nytt ärende</b-button>
             </b-col>
             <b-col sm="5">
                 <b-pagination
