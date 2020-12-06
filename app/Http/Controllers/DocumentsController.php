@@ -17,7 +17,8 @@ class DocumentsController extends Controller
      */
     public function index()
     {
-       	$data = Documents::all();
+		$data = Documents::all();
+
        	$data = $data->map(function($item) {
 			return [
 				'Id' => $item->id,
@@ -32,11 +33,11 @@ class DocumentsController extends Controller
 		});
 		$fields = collect([]);
 		$fields->push(['key' => 'Fil']);
+		$fields->push(['key' => 'Beskrivning']);
 		$fields->push(['key' => 'Version']);
 		$fields->push(['key' => 'Storlek']);
 		$fields->push(['key' => 'Uppladdad']);
 		$fields->push(['key' => 'Av']);
-		$fields->push(['key' => 'Beskrivning']);
 		return view('documents.index',[
 			'items' => $data,
 			'fields' => $fields,

@@ -2,16 +2,19 @@
 
     <b-container fluid>
         <b-row class="mb-2">
-            <b-col sm="2">
+            <b-col sm="3">
                 <b-button variant="primary" size="sm" :href="link"><i class="material-icons">add_circle</i> <slot></slot></b-button>
             </b-col>
-            <b-col sm="5">
-                <b-pagination v-show="paginate"
-                    v-model="currentPage"
-                    :total-rows="totalRows"
-                    :per-page="perPage"
-                    aria-controls="table"
-                ></b-pagination>
+            <b-col sm="4">
+                <b-form-checkbox
+                    v-show=false
+                    v-model="showLatest"
+                    value="true"
+                    unchecked-value="false"
+                    @click="showLatest = !showLatest"
+                >
+                Endast senaste version
+                </b-form-checkbox>
             </b-col>
 
             <b-col sm="5">
@@ -63,6 +66,17 @@
                 <div class="text-right">{{ data.value }}</div>
             </template>
         </b-table>
+        <b-row>
+            <b-col >
+                <hr>
+                <b-pagination v-show="paginate"
+                    v-model="currentPage"
+                    :total-rows="totalRows"
+                    :per-page="perPage"
+                    aria-controls="table"
+                ></b-pagination>
+            </b-col>
+        </b-row>
     </b-container>
 </template>
 
@@ -77,11 +91,12 @@
 
         data() {
             return {
-                perPage: 20,
+                perPage: 10,
                 currentPage: 1,
                 totalRows: 1,
                 filter: null,
                 paginate: true,
+                showLatest: true,
             }
         },
 
