@@ -71,6 +71,8 @@
                 <b-card
                     :title="row.item.Grupp"
                     :sub-title="row.item.Rubrik"
+                    :img-src="row.item.Image"
+                    img-bottom
                 >
                     <b-card-text class="h5">
                         {{ row.item.Kapitel }}
