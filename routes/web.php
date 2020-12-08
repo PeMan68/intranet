@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Controllers\Admin\PostController;
+
 Route::get('/posten', 'PagesController@posten');
 Route::get('/reception', 'PagesController@reception');
 Route::get('/reception2', 'PagesController@reception2');
@@ -54,5 +56,7 @@ Route::resource('/demoproducts', 'DemoproductController')->middleware('auth');
 Route::resource('/locations', 'LocationController', ['except' => ['show', 'create']])->middleware('auth');
 Route::get('/locations/{id}', 'LocationController@create')->name('locations.create')->middleware('auth');
 Route::get('/locations/delete/{id}', 'LocationController@destroy')->name('locations.destroy')->middleware('auth');
+
+Route::get('/posts', 'PostController@index')->name('posts.index')->middleware('auth');
 
 
