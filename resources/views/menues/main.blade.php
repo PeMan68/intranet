@@ -4,12 +4,12 @@
 <a href="http://172.16.0.161">Reserved Area</a>
 <a href="http://productselection.net">Product Selection</a>
 <a href="http://gavazzi.se">Gavazzi.se</a>
-<a href="{{ route('posts.index')}}">Gamla supportartiklar</a>
 <span class="border-top mt-1"></span>
 <div class="text-light">CG verktyg</div>
 <a href=" http://172.16.0.184/qweb ">QUARTA</a>
 <a href="http://194.243.72.228">GESTREQ</a>
 <a href="http://172.16.0.183/projects/si5/wiki">Dokumentation SIGIP mm</a>
+<a href="{{ route('posts.index') }}">Gamla supportartiklar</a>
 <a href="./posten">Posten Adresslappar</a>
 @showmodule('enable_demoprodukter')
 <span class="border-top mt-1"></span>
