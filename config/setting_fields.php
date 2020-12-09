@@ -60,6 +60,15 @@ return [
                 'class' => '', // any class for input
                 'value' => 0 // default value if you want
             ],
+            [
+                'type' => 'checkbox', // input fields type
+                'data' => 'boolean', // data type, string, int, boolean
+                'name' => 'enable_posts', // unique name for field
+                'label' => 'Artiklar', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 0 // default value if you want
+            ],
         ]
     ],
     'email' => [
