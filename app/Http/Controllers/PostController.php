@@ -23,8 +23,9 @@ class PostController extends Controller
             ];
         });
         $fields = collect([]);
+        $fields->push(['key'=>'Grupp', 'sortable' => true]);
         $fields->push(['key'=>'Rubrik', 'sortable' => true]);
-        $fields->push(['key'=>'Kapitel', 'sortable' => true]);
+        $fields->push(['key'=>'Kapitel']);
         $fields->push(['key'=>'Visa']);
 
         return view('posts.index', ['posts' => $posts, 'fields' => $fields]);
