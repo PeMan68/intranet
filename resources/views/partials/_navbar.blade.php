@@ -39,6 +39,14 @@
 				</b-nav-item>
 				@endshowmodule
 				
+				@showmodule('enable_posts')
+				<b-nav-item href="{{ url('/posts/') }}">Artiklar
+					@if (!setting('enable_posts'))
+						<sup>beta</sup>
+					@endif
+				</b-nav-item>
+				@endshowmodule
+				
 				@showmodule('enable_visitors')
 				<b-nav-item href="{{ route('visitors.index') }}">Besökare
 						@if (!setting('enable_visitors'))
