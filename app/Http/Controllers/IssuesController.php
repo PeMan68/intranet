@@ -54,7 +54,7 @@ class IssuesController extends Controller
 			if ($latest_days == 0) {
 				$latest_days = ' idag';
 			} elseif ($latest_days == 1){
-				$latest_days = 'dag';
+				$latest_days = '1 dag';
 			} else {
 				$latest_days .= ' dagar';
 			}

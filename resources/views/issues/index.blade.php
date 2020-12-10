@@ -14,7 +14,8 @@
 	<div class="card-body">
 		<issue-table 
 			:items="{{ $products }}" 
-			:fields="{{ $fields }}" >
+			:fields="{{ $fields }}"
+			>
 		</issue-table>
 	</div>
 </div>

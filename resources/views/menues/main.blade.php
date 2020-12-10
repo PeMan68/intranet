@@ -3,8 +3,7 @@
 <a href="http://172.16.0.2:10099/INTRANET/SFA/">SFA</a>
 <a href="http://172.16.0.161">Reserved Area</a>
 <a href="http://productselection.net">Product Selection</a>
-<a href="http://gavazzi.se">Nya Gavazzi.se</a>
-<a href="http://support-carlogavazzi.se">Gamla supportsidan</a>
+<a href="http://gavazzi.se">Gavazzi.se</a>
 <span class="border-top mt-1"></span>
 <div class="text-light">CG verktyg</div>
 <a href=" http://172.16.0.184/qweb ">QUARTA</a>
