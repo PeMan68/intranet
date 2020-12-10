@@ -19,14 +19,17 @@ class PostController extends Controller
                 'Kapitel'   => $data->chapter,
                 'Datum'     => $data->date,
                 'Text'      => $data->text,
-                'Image'    => $data->image_ref,
+                'Image'     => $data->image_ref,
+                'Internal'  => $data->internal,
+                'Exported'  => $data->exported,
             ];
         });
         $fields = collect([]);
+        $fields->push(['key'=>'Visa']);
+        $fields->push(['key'=>'.']);
         $fields->push(['key'=>'Grupp', 'sortable' => true]);
         $fields->push(['key'=>'Rubrik', 'sortable' => true]);
         $fields->push(['key'=>'Kapitel']);
-        $fields->push(['key'=>'Visa']);
 
         return view('posts.index', ['posts' => $posts, 'fields' => $fields]);
     }
