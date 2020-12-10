@@ -1,5 +1,17 @@
 # intranet
 
+## Version 2.4.3  
+(2020-12-10)
+
+*Nyheter*
+* Supportartiklar importerade. 
+    * Sökbara i dynamisk tabell. Varje aritkel kan öppnas upp i detalj-läge där all text visas med html-formateringen i orginal. Det innebär att interna länkar mellan filer på supportsidan inte funkar t ex, men att de sidor där man gjort egen HTML-kod ändå visas skapligt bra, som tabeller m.m.
+
+*bugfixar*
+* Fixat Dokument så den fungerar med uppladdning och nedladdning, sökbarhet med ny layout
+* Vänstermenyn mer dynamisk för att pass fler skärmstorlekar
+
+
 ## Version 2.4.2 ##
 *bugfixar*
 * Ersatt daterangepicker med bootstrap-vue komponenter

@@ -36,7 +36,6 @@ class SendEmailToSubscribers
 		// Mail to all followers
 		$followers = $issue->followers;
 		foreach ($followers as $user) {
-			//dd($user->id.' inloggad:'.Auth::id());
 			if ($user->id <> Auth::id()) {
 				Mail::to($user->email)->send(new issueCommentedStaff($issue));
 			}
