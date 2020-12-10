@@ -79,15 +79,14 @@
                 <b-card
                     :title="row.item.Rubrik"
                     :sub-title="row.item.Grupp"
-                    :img-src="row.item.Image"
-                    img-bottom
                     bg-variant="primary"
                 >
                     <b-card-text class="h5">
                         {{ row.item.Kapitel }}
                     </b-card-text>
-                    <b-card-footer :footer-html="row.item.Text">
-                    </b-card-footer>
+                     
+                    <b-card-footer :footer-html="row.item.Text"></b-card-footer>
+                    <b-img-lazy :src="row.item.Image" fluid></b-img-lazy>
                     
                 </b-card>
             </template>
@@ -123,6 +122,6 @@
             this.currentPage = 1
             }
         },
-    
+   
     }
 </script>
