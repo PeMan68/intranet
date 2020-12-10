@@ -132,7 +132,6 @@ if (!function_exists('check_in_issues')){
 		// Find all open comments for active user and close them
 		$openIssues = IssueComment::where('user_id', Auth::user()->id)
 			->where('checkin', null)->get();
-		//dd($openIssues);
 		foreach ($openIssues as $i){
 			$i->update(['checkin' => check_in_time($i->checkout)]);
 			}
