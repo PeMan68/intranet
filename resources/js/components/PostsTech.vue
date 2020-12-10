@@ -66,6 +66,13 @@
                     </b-badge>
                 </div>
             </template>
+            <template #cell(.)="data">
+                <span class="text-nowrap">
+                <i v-if="data.item.Exported" class="material-icons">done</i>
+                <i v-if="data.item.Internal" class="material-icons">subtitles_off</i>
+                </span>
+                <span class="text-nowrap">{{ data.value }}</span>
+            </template>
 
             <template #row-details="row">
                

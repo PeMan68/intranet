@@ -19,7 +19,9 @@ class PostController extends Controller
                 'Kapitel'   => $data->chapter,
                 'Datum'     => $data->date,
                 'Text'      => $data->text,
-                'Image'    => $data->image_ref,
+                'Image'     => $data->image_ref,
+                'Internal'  => $data->internal,
+                'Exported'  => $data->exported,
             ];
         });
         $fields = collect([]);
