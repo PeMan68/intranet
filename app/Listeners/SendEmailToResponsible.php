@@ -36,13 +36,20 @@ class SendEmailToResponsible
 		$taskID = $event->issue->task_id;
 		$issueID = $event->issue->id;
 		$task = Task::find($taskID);
-		$issue = Issue::find($issueID);
+        $issue = Issue::find($issueID);
+        
 		foreach ($task->users as $user) {
 			if ($user->pivot->level == 3) {
 				NewMail::dispatch($issue,$user->email);
 			} elseif ($user->pivot->level == 2) {
 				NewMail::dispatch($issue,$user->email)->delay(now()->addHours($task->priority->hours));
-			}
+            
+            // * TOFIX
+            // Denna ändring är gjord senare i develop, måste implementeras
+            // *
+            // if ($user->pivot->level == 3){
+			// 	Mail::to($user->email)->send(new issueCreated($issue, $event->urgent));
+			// }
 		}
     }
 }

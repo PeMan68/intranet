@@ -29,7 +29,7 @@ class IssueCommentedStaff extends Mailable
         $this->issue = $issue;
 		$this->ticketNumber = $issue->ticketNumber;
 		$this->customer = $issue->customer;
-		//$this->comments = $comment;
+        $this->header = $issue->header;
     }
 
     /**
@@ -39,7 +39,7 @@ class IssueCommentedStaff extends Mailable
      */
     public function build()
     {
-        return $this->subject('Ny kommentar i ärende '.$this->ticketNumber.', '.$this->customer)
+        return $this->subject($this->ticketNumber.' Ny kommentar i ärende: "'.$this->header.'"')
 					->view('emails.issueCommentedStaff');
     }
 }

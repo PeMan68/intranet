@@ -1,9 +1,6 @@
-@extends('layouts.issues')
+@extends('layouts.app')
 
-@section('nav-left')
-	<a class="nav-link" href="{{ url('/issues/create/') }}">Nytt ärende</a>
-	<a class="nav-link" href="{{ url('/issues/') }}">Mina ärenden</a>
-@endsection
+@include('menues.issues')
 
 @section('content')
 <div class="card">
@@ -12,7 +9,7 @@
 	<div class="card-body">
 		<form action="/issues" method="post">
 			@csrf
-			<input type="hidden" name="timeInit" value="{{ $timeInit }}"
+			<input type="hidden" name="timeInit" value="{{ $timeInit }}">
 			<div class="row justify-content-center">
 				<div class="col-lg-6">
 					<div class="form-row">
@@ -92,8 +89,12 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="customerMail" class="font-weight-bold">E-post(*)</label>
+							<label for="customerMail" class="font-weight-bold">E-post</label>
 							<input type="text" class="form-control form-control-sm" id="customerMail"  name="customerMail" value="{{ old('customerMail') }}">
+						</div>
+						<div class="form-group">
+							<label for="customerMail" class="font-weight-bold">Rubrik(*)</label>
+							<input type="text" class="form-control form-control-sm" id="header"  name="header" value="{{ old('header') }}">
 						</div>
 						<div class="form-row">
 							<div class="col-md-6 form-group">

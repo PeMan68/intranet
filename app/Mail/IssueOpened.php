@@ -29,7 +29,7 @@ class IssueOpened extends Mailable
         $this->issue = $issue;
 		$this->ticketNumber = $issue->ticketNumber;
 		$this->customer = $issue->customer;
-		//$this->comments = $comment;
+		$this->header = $issue->header;
     }
 
     /**
@@ -39,7 +39,7 @@ class IssueOpened extends Mailable
      */
     public function build()
     {
-        return $this->subject('Ditt ärende '.$this->ticketNumber.', '.$this->customer.' är öppnat')
+        return $this->subject('Ditt ärende '.$this->ticketNumber.', "'.$this->header.'" är öppnat')
 					->view('emails.issueOpened');
     }
 }

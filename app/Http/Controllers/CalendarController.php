@@ -44,8 +44,12 @@ class CalendarController extends Controller
 			return redirect('/home');
 		}
         $validatedData = $request->validated();
-		$validatedData['start'] = Str::before($request['daterange'],' till ');
-		$validatedData['stop'] = Str::after($request['daterange'],' till ');
+        $validatedData['start'] = $request->start;
+        if ($request->stop == '' || $request->stop < $request->start) {
+            $validatedData['stop'] = $validatedData['start'];
+        } else {
+            $validatedData['stop'] = $request->stop;
+        }
 		$validatedData['user_id'] = $request->user_id;
 		$validatedData['calendarcategory_id'] = $request->calendarcategory_id;
 		$calendarEntry = CalendarEntry::create($validatedData);
@@ -100,8 +104,12 @@ class CalendarController extends Controller
 		}
 		
         $validatedData = $request->validated();
-		$validatedData['start'] = Str::before($request['daterange'],' till ');
-		$validatedData['stop'] = Str::after($request['daterange'],' till ');
+        $validatedData['start'] = $request->start;
+        if ($request->stop == '' || $request->stop < $request->start) {
+            $validatedData['stop'] = $validatedData['start'];
+        } else {
+            $validatedData['stop'] = $request->stop;
+        }
 		$validatedData['user_id'] = $request->user_id;
 		$validatedData['calendarcategory_id'] = $request->calendarcategory_id;
 		

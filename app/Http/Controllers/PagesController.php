@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Visitor;
-use App\User;
 
 class PagesController extends Controller
 {
@@ -39,10 +38,9 @@ class PagesController extends Controller
 			Auth::loginUsingId(4, true);
 		}
 		$visitors = Visitor::where([
-			['start','<=',date('Y-m-d')],
-			['stop','>=',date('Y-m-d')],
-			])->get();
-		
+			['startTime','<=',date('Y-m-d',strtotime('tomorrow'))],
+			['stopTime','>=',date('Y-m-d')],
+			])->orderBy('company')->get()->sortBy('startTime');
 		$files = Storage::files('public/reception');
 		$f=array();
 		// trim the path to images

@@ -132,7 +132,6 @@ if (!function_exists('check_in_issues')){
 		// Find all open comments for active user and close them
 		$openIssues = IssueComment::where('user_id', Auth::user()->id)
 			->where('checkin', null)->get();
-		//dd($openIssues);
 		foreach ($openIssues as $i){
 			$i->update(['checkin' => check_in_time($i->checkout)]);
 			}
@@ -253,4 +252,51 @@ if (! function_exists('setting')) {
 
         return is_null($value) ? value($default) : $value;
     }
+}
+
+if (! function_exists('readableBytes')) {
+	
+	/**
+	 * Converts a long string of bytes into a readable format e.g KB, MB, GB, TB, YB
+	 * 
+	 * @param {Int} num The number of bytes.
+	 */
+	function readableBytes($bytes) {
+		$i = floor(log($bytes) / log(1024));
+
+		$sizes = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+
+		return sprintf('%.0F', $bytes / pow(1024, $i)) * 1 . ' ' . $sizes[$i];
+	}
+}
+
+if (! function_exists('unansweredIssues')) {
+	function unansweredIssues() {
+		$tasks = DB::table('task_user')
+			->where('user_id', Auth::id())
+			->where('level', 3)
+			->get();
+		$i = Issue::whereNull('timeClosed')
+		 	->whereIn('task_id', $tasks->pluck('task_id'))
+		 	->get();
+		return $i->count();
+
+	}
+}
+
+if (! function_exists('expiredIssues')) {
+	function expiredIssues() {
+		$data = Issue::whereNull('timeCustomercallback')
+			->whereNull('timeClosed')
+			->where(function($query) {
+
+				$query->whereDate('timeEstimatedcallback','<', date('Y-m-d'))
+				->orWhere(function($query) {
+					$query->whereDate('timeEstimatedcallback','=', date('Y-m-d'))
+					->whereTime('timeEstimatedcallback','<', date('H:i:s'));
+				});
+			})
+			->get();
+		return $data->count();
+	}
 }

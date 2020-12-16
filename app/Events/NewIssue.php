@@ -20,9 +20,13 @@ class NewIssue
      *
      * @return void
      */
-    public function __construct(Issue $issue)
+    public function __construct(Issue $issue, $hours)
     {
-		$this->issue = $issue;
+        $this->issue = $issue;
+        $this->urgent = false;
+        if ($hours==0) {
+            $this->urgent = true;
+        }
     }
 
     /**

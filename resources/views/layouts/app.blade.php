@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+
 	@yield('scriptsHead')
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -29,11 +29,27 @@
 	@include('partials._navbar')
 
 
-		<main class="py-4 container">
-			@include('partials.alerts')
-            @yield('content')
-        </main>
-    </div>
+        <main class="container-fluid">
+			<div class="row">
+				<div class="d-none d-sm-block col-md-3 col-sm-4 bg-dark">
+					<nav class="nav flex-column" style="height:100vh; margin-top:-55px; padding-top:55px;">
+						@yield('nav-left')
+						@include('menues.main')
+						<div class="fixed-bottom text-light font-weight-lighter">
+							@include('version')
+						</div>
+					</nav>
+				</div>
+				<div class="col-md-9 col-sm-8 p-3">
+					@include('partials.alerts')
+					@if (Session::has('message'))
+					<div class="alert alert-info">{{ Session::get('message') }}</div>
+					@endif
+					@yield('content')
+				</div>
+			</div>        
+		</main>
+	</div>
 	@include('partials._scripts')
 	@yield('scriptsBody')
 </body>

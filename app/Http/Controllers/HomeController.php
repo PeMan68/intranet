@@ -29,10 +29,10 @@ class HomeController extends Controller
 		$chart = load_chart_data();
 		$data = load_calendar_data($request, $chart, 14);
 		$day1ofweek = strtotime("this week");
-		$day5ofweek = strtotime("+4 days", $day1ofweek);
+		$day7ofweek = strtotime("+7 days", $day1ofweek);
 		$visitors = Visitor::where([
-			['start','>=',date("Y-m-d", $day1ofweek)],
-			['stop','<=',date("Y-m-d", $day5ofweek)],
+			['startTime','>=',date("Y-m-d", $day1ofweek)],
+			['stopTime','<=',date("Y-m-d", $day7ofweek)],
 			])->get();
 			$data['visitors'] = $visitors;
 		return view('home',$data);

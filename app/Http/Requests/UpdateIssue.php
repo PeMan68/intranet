@@ -29,6 +29,7 @@ class UpdateIssue extends FormRequest
 			'customerName' => 'nullable',
 			'customerTel' => 'required_with:customerName',
 			'description' => 'required',
+			'header' => 'required',
 			'customer' => 'nullable',
 			'customerNumber' => 'nullable',
 			'customerMail' => 'nullable|email:rfc',
@@ -50,6 +51,7 @@ class UpdateIssue extends FormRequest
 		return [
 			'task_id.required' => 'Välj område',
 			'task_id.alpha_num' => 'Välj område',
+			'header.required' => 'Rubrik är obligatorisk',
 			'description.required' => 'Formell beskrivning är obligatorisk',
 			'customerName.required' => 'Kontaktperson är obligatorisk',
 			'customerTel.required_with' => 'Ange telefonnummer till kontaktpersonen',

@@ -1,2 +1,0 @@
-2020-02-19 Release 2.1.1
-	Added departments and sorts the calendar from it
