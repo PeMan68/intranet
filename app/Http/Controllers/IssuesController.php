@@ -154,12 +154,7 @@ class IssuesController extends Controller
 		}
 		$task = Task::find($request->task_id);
 		//Send mail to responsible staff
-		event(new NewIssue($issue));
-		
-		// * TOFIX
-		// NewIssue har nytt format från develop
-		//
-		//event(new NewIssue($issue, $hours));
+		event(new NewIssue($issue, $hours));
 
         if ($request->has('save')) {
 			return redirect('/issues')->with('success','Nytt ärende skapat: '.$validatedData['ticketNumber']);

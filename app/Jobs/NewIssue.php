@@ -20,15 +20,17 @@ class NewIssue implements ShouldQueue
 	public $tries = 3;
 	private $issue;
 	private $email;
+	private $urgent;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Issue $issue, $email)
+    public function __construct(Issue $issue, $email, $urgent)
     {
         $this->issue = $issue;
 		$this->email = $email;
+		$this->urgent = $urgent;
     }
 
     /**
@@ -39,7 +41,7 @@ class NewIssue implements ShouldQueue
     public function handle()
     {
 		if (is_null($this->issue->timeCustomercallback)) {
-			Mail::to($this->email)->send(new issueCreated($this->issue));
+			Mail::to($this->email)->send(new issueCreated($this->issue, $this->urgent));
 		}
     }
 }
