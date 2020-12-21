@@ -49,6 +49,6 @@ class NewIssue implements ShouldQueue
 		Mail::to($this->email)->send(new issueCreated($this->issue, $this->urgent));
 
 		// add to queue again as a reminder
-		$this->release(now()->addMinutes(5));
+		// $this->release(now()->addMinutes(5));
     }
 }
