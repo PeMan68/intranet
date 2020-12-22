@@ -6,7 +6,7 @@ use App\Events\IssueClosed;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendEmailToResponsibleIssueClosed
+class IssueSendEmailToCustomerClosed
 {
     /**
      * Create the event listener.

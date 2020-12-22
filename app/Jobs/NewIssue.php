@@ -29,7 +29,7 @@ class NewIssue implements ShouldQueue
      */
     public function __construct(Issue $issue, $email, $urgent)
     {
-        $this->issue = $issue;
+		$this->issue = $issue;
 		$this->email = $email;
 		$this->urgent = $urgent;
 		$this->queue = 'emails';
@@ -45,10 +45,6 @@ class NewIssue implements ShouldQueue
 		if (!is_null($this->issue->timeCustomercallback)) {
 			return;
 		}
-
 		Mail::to($this->email)->send(new issueCreated($this->issue, $this->urgent));
-
-		// add to queue again as a reminder
-		// $this->release(now()->addMinutes(5));
     }
 }

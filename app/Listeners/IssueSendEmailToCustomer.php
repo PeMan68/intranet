@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Events\IssueClosed;
+use App\Events\NewIssue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendEmailToCustomerIssueClosed
+class IssueSendEmailToCustomer
 {
     /**
      * Create the event listener.
@@ -21,10 +21,10 @@ class SendEmailToCustomerIssueClosed
     /**
      * Handle the event.
      *
-     * @param  IssueClosed  $event
+     * @param  NewIssue  $event
      * @return void
      */
-    public function handle(IssueClosed $event)
+    public function handle(NewIssue $event)
     {
         //
     }

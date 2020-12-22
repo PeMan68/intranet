@@ -43,11 +43,15 @@ class RemindOfIssue implements ShouldQueue
 		if (!is_null($this->issue->timeCustomercallback)) {
 			return;
 		}
-
 		Mail::to($this->email)->send(new issueReminder($this->issue, $this->urgent));
 
 		// add to queue again as a reminder
-		// $this->release(now()->addMinutes(5));
+        if ($this->urgent) {
+            $delayhours = now()->addMinutes(30);
+        } else {
+            $delayhours = now()->addHours($task->priority->hours);
+		}
+		$this->release($delayhours);
     }
 
 }

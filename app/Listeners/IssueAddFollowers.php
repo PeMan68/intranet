@@ -4,7 +4,8 @@ namespace App\Listeners;
 
 use App\Events\NewIssue;
 use App\Task;
-class AddFollowers
+
+class IssueAddFollowers
 {
     /**
      * Create the event listener.
@@ -32,7 +33,7 @@ class AddFollowers
                 $event->issue->followers()->syncWithoutDetaching($user->id);
             }
         }
-        
+
 
     }
 }

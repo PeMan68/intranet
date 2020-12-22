@@ -19,28 +19,25 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
 		'App\Events\NewIssueComment' => [
-			'App\Listeners\SendEmailToSubscribers',
+			'App\Listeners\IssueSendEmailToSubscribers',
 		],
 		'App\Events\NewIssue' => [
-			'App\Listeners\AddFollowers',
-		],
-		'App\Events\NewIssueStored' => [
-			'App\Listeners\SendEmailToResponsible',
-			'App\Listeners\SendEmailToCustomer',
+			'App\Listeners\IssueAddFollowers',
+            'App\Listeners\IssueSendEmailToFollowers',
+            'App\Listeners\IssueSendEmailToCustomer',
 		],
 		'App\Events\IssueOpenedFirstTime' => [
-			'App\Listeners\SendEmailToCreator',
+			'App\Listeners\IssueSendEmailToCreator',
 		],
 		'App\Events\IssueClosed' => [
-			'App\Listeners\GenerateClosedComment',
-			'App\Listeners\SendEmailToResponsibleIssueClosed',
-            'App\Listeners\SendEmailToCustomerIssueClosed',
+			'App\Listeners\IssueGenerateClosedComment',
+            'App\Listeners\IssueSendEmailToCustomerClosed',
             'App\Listeners\IssueContacted',
 		],
 		'App\Events\IssueReopened' => [
-			'App\Listeners\GenerateReopenedComment',
+			'App\Listeners\IssueGenerateReopenedComment',
 			'App\Listeners\SendEmailToResponsibleIssueReopened',
-			'App\Listeners\SendEmailToCustomerIssueReopened',
+			'App\Listeners\IssueSendEmailToCustomerReopened',
 		],
     ];
 

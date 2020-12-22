@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\IssueCommentedStaff;
 use Illuminate\Support\Facades\Auth;
 
-class SendEmailToSubscribers
+class IssueSendEmailToSubscribers
 {
     /**
      * Create the event listener.
@@ -31,7 +31,6 @@ class SendEmailToSubscribers
      */
     public function handle(NewIssueComment $event)
     {
-		//$issueID = $event->issuecomment->issue_id;
 		$issue = Issue::find($event->issue->id);
 		// Mail to all followers
 		$followers = $issue->followers;
