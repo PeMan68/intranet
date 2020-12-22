@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\IssueCreated;
 use Illuminate\Support\Facades\Auth;
 use App\Jobs\NewIssue as NewMail;
+use App\Jobs\RemindOfIssue;
 
 class SendEmailToResponsible
 {
@@ -47,7 +48,8 @@ class SendEmailToResponsible
                 } else {
                     $delayhours = now()->addHours($task->priority->hours);
                 }
-                NewMail::dispatch($issue, $user->email, $event->urgent)->delay($delayhours);
+                $delayhours = now()->addMinute(); //testing
+                RemindOfIssue::dispatch($issue, $user->email, $event->urgent)->delay($delayhours);
             }
 		}
     }
