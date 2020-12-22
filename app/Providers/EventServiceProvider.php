@@ -22,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
 			'App\Listeners\SendEmailToSubscribers',
 		],
 		'App\Events\NewIssue' => [
+			'App\Listeners\AddFollowers',
+		],
+		'App\Events\NewIssueStored' => [
 			'App\Listeners\SendEmailToResponsible',
 			'App\Listeners\SendEmailToCustomer',
 		],

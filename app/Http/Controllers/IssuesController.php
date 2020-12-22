@@ -144,16 +144,18 @@ class IssuesController extends Controller
 			$prio = Task::find($request->task_id)->prio_id;
 			$hours = Priority::find($prio)->hours;
 		}
-		$validatedData['timeEstimatedcallback'] = date('Y-m-d H:i', strtotime(sprintf("+%d hours", $hours)));
+		$validatedData['timeEstimatedcallback'] = date('Y-m-d H:i', strtotime(sprintf("+%d hours", $hours))); //Enhancement, adjust to working hours according to calendar
 		$validatedData['vip'] = $request->has('vip');
 		//build ticketnumber, S+year+number of issues currentyear.
 		$validatedData['ticketNumber'] = 'S-' . date('y') . sprintf('%03d',Issue::whereYear('created_at', date('Y'))->count() +1);
         $issue = Issue::create($validatedData);
+		
 		if ($request->has('follow')) {
 			$issue->followers()->attach(Auth::id());
 		}
+
 		$task = Task::find($request->task_id);
-		//Send mail to responsible staff
+		//Send mail to responsible staff and other stuff
 		event(new NewIssue($issue, $hours));
 
         if ($request->has('save')) {
