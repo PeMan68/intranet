@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Events\NewIssue;
 use App\Events\IssueReopened;
 use App\Events\NewIssueComment;
-//use App\Jobs\NewIssue;
+//use App\Jobs\IssueNew;
 use Illuminate\Support\Str;
 
 class IssuesController extends Controller

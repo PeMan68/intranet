@@ -11,7 +11,7 @@ use App\Issue;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\IssueReminder;
 
-class RemindOfIssue implements ShouldQueue
+class IssueReminder implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 

@@ -2,12 +2,12 @@
 
 namespace App\Listeners;
 
-use App\Events\NewIssue;
+use App\Events\IssueNew;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Task;
 use App\Issue;
-use App\Jobs\NewIssue as NewMail;
-use App\Jobs\RemindOfIssue;
+use App\Jobs\IssueNew as NewMail;
+use App\Jobs\IssueReminder;
 
 class IssueSendEmailToFollowers
 {
@@ -43,7 +43,7 @@ class IssueSendEmailToFollowers
         }
         foreach ($followers as $user) {
             NewMail::dispatch($issue, $user->email, $event->urgent);
-			RemindOfIssue::dispatch($issue, $user->email, $event->urgent)->delay($delayhours);
+			IssueReminder::dispatch($issue, $user->email, $event->urgent)->delay($delayhours);
         }
     }
 }

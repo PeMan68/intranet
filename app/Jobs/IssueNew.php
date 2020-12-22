@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\IssueCreated;
 
 
-class NewIssue implements ShouldQueue
+class IssueNew implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 	
