@@ -2,11 +2,11 @@
 
 namespace App\Listeners\Issues;
 
-use App\Events\Issues\IssueReopened;
+use App\Events\Issues\NewIssue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class NotifyCustomerOfReopenedIssue
+class AddFollowers
 {
     /**
      * Create the event listener.
@@ -21,10 +21,10 @@ class NotifyCustomerOfReopenedIssue
     /**
      * Handle the event.
      *
-     * @param  IssueReopened  $event
+     * @param  NewIssue  $event
      * @return void
      */
-    public function handle(IssueReopened $event)
+    public function handle(NewIssue $event)
     {
         //
     }

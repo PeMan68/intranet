@@ -18,22 +18,22 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-		'App\Events\NewIssueComment' => [
+		'App\Events\Issues\NewComment' => [
 			'App\Listeners\Issues\NotifyFollowersOfNewComment',
 		],
-		'App\Events\NewIssue' => [
+		'App\Events\Issues\NewIssue' => [
 			'App\Listeners\Issues\AddFollowers',
             'App\Listeners\Issues\NotifyFollowersOfUpdatedIssue',
             'App\Listeners\Issues\NotifyCustomerOfNewIssue',
 		],
-		'App\Events\IssueOpenedFirstTime' => [
+		'App\Events\Issues\IssueOpenedFirstTime' => [
 			'App\Listeners\Issues\NotifyCreator',
 		],
-		'App\Events\IssueClosed' => [
+		'App\Events\Issues\IssueClosed' => [
 			'App\Listeners\Issues\GenerateClosedComment',
             'App\Listeners\Issues\NotifyCustomerOfClosedIssue',
 		],
-		'App\Events\IssueReopened' => [
+		'App\Events\Issues\IssueReopened' => [
 			'App\Listeners\Issues\GenerateReopenedComment',
 			'App\Listeners\Issues\NotifyCustomerOfReopenedIssue',
 		],

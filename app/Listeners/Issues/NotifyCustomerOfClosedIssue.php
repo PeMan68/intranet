@@ -2,7 +2,7 @@
 
 namespace App\Listeners\Issues;
 
-use App\Events\IssueClosed;
+use App\Events\Issues\IssueClosed;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 

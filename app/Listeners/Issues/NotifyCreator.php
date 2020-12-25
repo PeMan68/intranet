@@ -2,7 +2,7 @@
 
 namespace App\Listeners\Issues;
 
-use App\Events\IssueOpenedFirstTime;
+use App\Events\Issues\IssueOpenedFirstTime;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\User;

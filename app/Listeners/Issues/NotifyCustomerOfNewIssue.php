@@ -2,7 +2,7 @@
 
 namespace App\Listeners\Issues;
 
-use App\Events\NewIssue;
+use App\Events\Issues\NewIssue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 

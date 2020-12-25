@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\IssueComment;
 use App\Issue;
 use Illuminate\Http\Request;
-use App\Events\NewIssueComment;
-use App\Events\IssueOpenedFirstTime;
-use App\Events\IssueClosed;
+use App\Events\Issues\NewComment;
+use App\Events\Issues\IssueOpenedFirstTime;
+use App\Events\Issues\IssueClosed;
 use Illuminate\Support\Facades\Auth;
 
 class IssueCommentController extends Controller
@@ -92,7 +92,7 @@ class IssueCommentController extends Controller
 				}
 			}
 			//Send mail to staff who is following
-			event(new NewIssueComment($issue));
+			event(new NewComment($issue));
 			//Add commenter as follower if not already
 			if (!$request->follow) {
 				$issue->followers()->attach(Auth::id());
@@ -104,7 +104,7 @@ class IssueCommentController extends Controller
 			'timeClosed' => date('Y-m-d H:i')
 			]);
 			event(new IssueClosed($issue));
-			event(new NewIssueComment($issue));
+			event(new NewComment($issue));
 			return redirect('/issues');
 			
 		}

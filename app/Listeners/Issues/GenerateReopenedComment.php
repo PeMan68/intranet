@@ -2,7 +2,7 @@
 
 namespace App\Listeners\Issues;
 
-use App\Events\IssueReopened;
+use App\Events\Issues\IssueReopened;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Auth;

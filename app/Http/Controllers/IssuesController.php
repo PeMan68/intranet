@@ -14,9 +14,9 @@ use App\Http\Requests\UpdateIssue;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\IssueCreated;
 use Illuminate\Support\Facades\Mail;
-use App\Events\NewIssue;
-use App\Events\IssueReopened;
-use App\Events\NewIssueComment;
+use App\Events\Issues\NewIssue;
+use App\Events\Issues\IssueReopened;
+use App\Events\Issues\NewComment;
 use Illuminate\Support\Str;
 
 class IssuesController extends Controller
@@ -283,7 +283,7 @@ class IssuesController extends Controller
 		$issue = Issue::find($id);
 		Issue::whereId($id)->update(['timeClosed' => null]);
 		event(new IssueReopened($issue));
-		event(new NewIssueComment($issue));
+		event(new NewComment($issue));
 		return redirect()->back();
 	}
 	

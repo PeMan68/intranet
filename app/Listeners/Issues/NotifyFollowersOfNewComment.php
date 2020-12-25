@@ -2,7 +2,7 @@
 
 namespace App\Listeners\Issues;
 
-use App\Events\NewIssueComment;
+use App\Events\Issues\NewComment;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Issue;
@@ -23,10 +23,10 @@ class NotifyFollowersOfNewComment
     /**
      * Handle the event.
      *
-     * @param  NewIssueComment  $event
+     * @param  NewComment  $event
      * @return void
      */
-    public function handle(NewIssueComment $event)
+    public function handle(NewComment $event)
     {
 		$issue = Issue::find($event->issue->id);
 		// Mail to all followers
