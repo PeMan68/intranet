@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\Issues;
 
 use App\Events\IssueReopened;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class IssueSendEmailToCustomerReopened
+class NotifyCustomerOfIssueReopened
 {
     /**
      * Create the event listener.

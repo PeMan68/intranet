@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\Issues;
 
-use App\Events\IssueClosed;
+use App\Events\IssueReopened;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Auth;
 use App\IssueComment;
 
-class IssueGenerateClosedComment
+class GenerateReopenedComment
 {
     /**
      * Create the event listener.
@@ -23,19 +23,18 @@ class IssueGenerateClosedComment
     /**
      * Handle the event.
      *
-     * @param  IssueClosed  $event
+     * @param  IssueReopened  $event
      * @return void
      */
-    public function handle(IssueClosed $event)
+    public function handle(IssueReopened $event)
     {
         //
 		$new_comment = new IssueComment;
 		$new_comment->issue_id = $event->issue->id;
 		$new_comment->user_id = Auth::id();
-		$new_comment->comment_internal = 'Ärendet avslutat';
+		$new_comment->comment_internal = 'Ärendet öppnat igen';
 		$new_comment->checkout = date('Y-m-d H:i',strtotime(now()));
 		$new_comment->checkin = date('Y-m-d H:i',strtotime(now()));
 		$new_comment->Save();
-		
     }
 }

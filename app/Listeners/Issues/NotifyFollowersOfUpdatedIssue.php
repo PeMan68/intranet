@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\Issues;
 
 use App\Events\NewIssue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -9,7 +9,7 @@ use App\Issue;
 use App\Jobs\IssueNew as NewMail;
 use App\Jobs\IssueReminder;
 
-class IssueSendEmailToFollowers
+class NotifyFollowersOfUpdatedIssue
 {
     /**
      * Create the event listener.

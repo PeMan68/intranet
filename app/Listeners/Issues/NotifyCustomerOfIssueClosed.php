@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\Issues;
 
 use App\Events\IssueClosed;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class IssueSendEmailToCustomerClosed
+class NotifyCustomerOfIssueClosed
 {
     /**
      * Create the event listener.

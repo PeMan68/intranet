@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\Issues;
 
 use App\Events\NewIssueComment;
 use Illuminate\Queue\InteractsWithQueue;
@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Issue;
 use App\Jobs\IssueNewComment;
 
-class IssueSendEmailToSubscribers
+class NotifyFollowersOfNewComment
 {
     /**
      * Create the event listener.
