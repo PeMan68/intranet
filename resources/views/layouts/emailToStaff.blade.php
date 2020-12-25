@@ -6,9 +6,19 @@
 	
 </head>
 <body>
+	<span style='font-size: 1em; font-family: Verdana,Arial,sans-serif'>
+		<p>
+			@yield('header')
+		</p>
+	</span>
+
 	<span style='font-size: 0.8em; font-family: Verdana,Arial,sans-serif'>
 		<p>
+			|
 			<a href="{{ url('/issues/'.$issue->id) }}">Öppna ärende</a>
+			|
+			@yield('links')
+
 		</p>
 		<table>
 			<tr>

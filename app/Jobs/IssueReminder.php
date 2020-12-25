@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Issue;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\IssueReminder;
+use App\Mail\IssueReminder as MailReminder;
 
 class IssueReminder implements ShouldQueue
 {
@@ -43,7 +43,7 @@ class IssueReminder implements ShouldQueue
 		if (!is_null($this->issue->timeCustomercallback)) {
 			return;
 		}
-		Mail::to($this->email)->send(new issueReminder($this->issue, $this->urgent));
+		Mail::to($this->email)->send(new MailReminder($this->issue, $this->urgent));
 
 		// add to queue again as a reminder
         if ($this->urgent) {

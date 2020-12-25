@@ -32,11 +32,9 @@ class EventServiceProvider extends ServiceProvider
 		'App\Events\IssueClosed' => [
 			'App\Listeners\IssueGenerateClosedComment',
             'App\Listeners\IssueSendEmailToCustomerClosed',
-            'App\Listeners\IssueContacted',
 		],
 		'App\Events\IssueReopened' => [
 			'App\Listeners\IssueGenerateReopenedComment',
-			'App\Listeners\SendEmailToResponsibleIssueReopened',
 			'App\Listeners\IssueSendEmailToCustomerReopened',
 		],
     ];

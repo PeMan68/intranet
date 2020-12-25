@@ -6,10 +6,7 @@ use App\Events\NewIssueComment;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Issue;
-use App\IssueComment;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\IssueCommentedStaff;
-use Illuminate\Support\Facades\Auth;
+use App\Jobs\IssueNewComment;
 
 class IssueSendEmailToSubscribers
 {
@@ -35,9 +32,7 @@ class IssueSendEmailToSubscribers
 		// Mail to all followers
 		$followers = $issue->followers;
 		foreach ($followers as $user) {
-			if ($user->id <> Auth::id()) {
-				Mail::to($user->email)->send(new issueCommentedStaff($issue));
-			}
+			IssueNewComment::dispatch($issue, $user->email);
 		}
     }
 }

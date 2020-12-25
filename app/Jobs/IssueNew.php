@@ -8,7 +8,6 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Issue;
-use App\Task;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\IssueCreated;
 

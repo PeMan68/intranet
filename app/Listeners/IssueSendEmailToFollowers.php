@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\IssueNew;
+use App\Events\NewIssue;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Task;
 use App\Issue;
