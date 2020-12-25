@@ -3,9 +3,7 @@
 namespace App\Listeners\Issues;
 
 use App\Events\Issues\NewIssue;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-
+use App\Task;
 class AddFollowers
 {
     /**
@@ -26,6 +24,13 @@ class AddFollowers
      */
     public function handle(NewIssue $event)
     {
-        //
+        $taskID = $event->issue->task_id;
+		$task = Task::find($taskID);
+        
+		foreach ($task->users as $user) {
+			if ($user->pivot->level == 3) {
+                $event->issue->followers()->syncWithoutDetaching($user->id);
+            }
+        }
     }
 }
