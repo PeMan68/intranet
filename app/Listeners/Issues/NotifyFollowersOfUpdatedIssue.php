@@ -6,8 +6,8 @@ use App\Events\NewIssue;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Task;
 use App\Issue;
-use App\Jobs\IssueNew as NewMail;
-use App\Jobs\IssueReminder;
+use App\Jobs\Issues\SendEmailAboutNewIssue;
+use App\Jobs\Issues\SendEmailAboutReminder;
 
 class NotifyFollowersOfUpdatedIssue
 {
@@ -42,8 +42,8 @@ class NotifyFollowersOfUpdatedIssue
             $delayhours = now()->addHours($task->priority->hours);
         }
         foreach ($followers as $user) {
-            NewMail::dispatch($issue, $user->email, $event->urgent);
-			IssueReminder::dispatch($issue, $user->email, $event->urgent)->delay($delayhours);
+            SendEmailAboutNewIssue::dispatch($issue, $user->email, $event->urgent);
+			SendEmailAboutReminder::dispatch($issue, $user->email, $event->urgent)->delay($delayhours);
         }
     }
 }

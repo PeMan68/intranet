@@ -6,7 +6,7 @@ use App\Events\NewIssueComment;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Issue;
-use App\Jobs\IssueNewComment;
+use App\Jobs\Issues\SendEmailAboutNewComment;
 
 class NotifyFollowersOfNewComment
 {
@@ -32,7 +32,7 @@ class NotifyFollowersOfNewComment
 		// Mail to all followers
 		$followers = $issue->followers;
 		foreach ($followers as $user) {
-			IssueNewComment::dispatch($issue, $user->email);
+			SendEmailAboutNewComment::dispatch($issue, $user->email);
 		}
     }
 }

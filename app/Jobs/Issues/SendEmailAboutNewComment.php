@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\Issues;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -9,28 +9,25 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Issue;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\IssueCreated;
+use App\Mail\IssueCommentedStaff;
 
-
-class IssueNew implements ShouldQueue
+class SendEmailAboutNewComment implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-	
-	public $tries = 3;
+
+    public $tries = 3;
 	public $retryAfter = 60;
 	private $issue;
 	private $email;
-	private $urgent;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Issue $issue, $email, $urgent)
+    public function __construct(Issue $issue, $email)
     {
-		$this->issue = $issue;
+        $this->issue = $issue;
 		$this->email = $email;
-		$this->urgent = $urgent;
 		$this->queue = 'emails';
     }
 
@@ -41,9 +38,6 @@ class IssueNew implements ShouldQueue
      */
     public function handle()
     {
-		if (!is_null($this->issue->timeCustomercallback)) {
-			return;
-		}
-		Mail::to($this->email)->send(new issueCreated($this->issue, $this->urgent));
+       Mail::to($this->email)->send(new IssueCommentedStaff($this->issue));
     }
 }

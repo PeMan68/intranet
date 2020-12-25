@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Jobs\Issues;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -9,9 +9,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Issue;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\IssueCommentedStaff;
+use App\Mail\IssueReminder as MailReminder;
 
-class IssueNewComment implements ShouldQueue
+class SendEmailAboutReminder implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -19,15 +19,17 @@ class IssueNewComment implements ShouldQueue
 	public $retryAfter = 60;
 	private $issue;
 	private $email;
+	private $urgent;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Issue $issue, $email)
+    public function __construct(Issue $issue, $email, $urgent)
     {
         $this->issue = $issue;
 		$this->email = $email;
+		$this->urgent = $urgent;
 		$this->queue = 'emails';
     }
 
@@ -38,6 +40,18 @@ class IssueNewComment implements ShouldQueue
      */
     public function handle()
     {
-       Mail::to($this->email)->send(new IssueCommentedStaff($this->issue));
+		if (!is_null($this->issue->timeCustomercallback)) {
+			return;
+		}
+		Mail::to($this->email)->send(new MailReminder($this->issue, $this->urgent));
+
+		// add to queue again as a reminder
+        if ($this->urgent) {
+            $delayhours = now()->addMinutes(30);
+        } else {
+            $delayhours = now()->addHours($task->priority->hours);
+		}
+		$this->release($delayhours);
     }
+
 }
