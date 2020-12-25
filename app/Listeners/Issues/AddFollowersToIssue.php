@@ -4,7 +4,7 @@ namespace App\Listeners\Issues;
 
 use App\Events\NewIssue;
 use App\Task;
-class AddFollowersToIssue
+class AddFollowers
 {
     /**
      * Create the event listener.

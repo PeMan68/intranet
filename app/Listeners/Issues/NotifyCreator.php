@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\IssueOpened;
 use Illuminate\Support\Facades\Auth;
 
-class NotifyIssueCreator
+class NotifyCreator
 {
     /**
      * Create the event listener.

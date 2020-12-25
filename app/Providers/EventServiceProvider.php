@@ -22,20 +22,20 @@ class EventServiceProvider extends ServiceProvider
 			'App\Listeners\Issues\NotifyFollowersOfNewComment',
 		],
 		'App\Events\NewIssue' => [
-			'App\Listeners\Issues\AddFollowersToIssue',
+			'App\Listeners\Issues\AddFollowers',
             'App\Listeners\Issues\NotifyFollowersOfUpdatedIssue',
             'App\Listeners\Issues\NotifyCustomerOfNewIssue',
 		],
 		'App\Events\IssueOpenedFirstTime' => [
-			'App\Listeners\Issues\NotifyIssueCreator',
+			'App\Listeners\Issues\NotifyCreator',
 		],
 		'App\Events\IssueClosed' => [
 			'App\Listeners\Issues\GenerateClosedComment',
-            'App\Listeners\Issues\NotifyCustomerOfIssueClosed',
+            'App\Listeners\Issues\NotifyCustomerOfClosedIssue',
 		],
 		'App\Events\IssueReopened' => [
 			'App\Listeners\Issues\GenerateReopenedComment',
-			'App\Listeners\Issues\NotifyCustomerOfIssueReopened',
+			'App\Listeners\Issues\NotifyCustomerOfReopenedIssue',
 		],
     ];
 
