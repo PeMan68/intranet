@@ -2,13 +2,13 @@
 
 namespace App\Listeners\Issues;
 
-use App\Events\Issues\NewComment;
+use App\Events\Issues\UpdatedIssue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Issue;
-use App\Jobs\Issues\SendEmailAboutNewComment;
+use App\Jobs\Issues\SendEmailToFollowersAboutUpdate;
 
-class NotifyFollowersOfNewComment
+class NotifyFollowersOfUpdate
 {
     /**
      * Create the event listener.
@@ -23,16 +23,16 @@ class NotifyFollowersOfNewComment
     /**
      * Handle the event.
      *
-     * @param  NewComment  $event
+     * @param  UpdatedIssue  $event
      * @return void
      */
-    public function handle(NewComment $event)
+    public function handle(UpdatedIssue $event)
     {
 		$issue = Issue::find($event->issue->id);
 		// Mail to all followers
 		$followers = $issue->followers;
 		foreach ($followers as $user) {
-			SendEmailAboutNewComment::dispatch($issue, $user->email);
+			SendEmailToFollowersAboutUpdate::dispatch($issue, $user->email);
 		}
     }
 }

@@ -18,8 +18,8 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-		'App\Events\Issues\NewComment' => [
-			'App\Listeners\Issues\NotifyFollowersOfNewComment',
+		'App\Events\Issues\UpdatedIssue' => [
+			'App\Listeners\Issues\NotifyFollowersOfUpdate',
 		],
 		'App\Events\Issues\NewIssue' => [
 			'App\Listeners\Issues\AddFollowers',

@@ -1,7 +1,7 @@
 @extends('../layouts.emailToStaff')
 
 @section('header')
-Ny kommentar i ärendet
+Uppdaterad information
 <hr>
 
 @endsection

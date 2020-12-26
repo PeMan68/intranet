@@ -16,7 +16,7 @@ use App\Mail\IssueCreated;
 use Illuminate\Support\Facades\Mail;
 use App\Events\Issues\NewIssue;
 use App\Events\Issues\IssueReopened;
-use App\Events\Issues\NewComment;
+use App\Events\Issues\UpdatedIssue;
 use Illuminate\Support\Str;
 
 class IssuesController extends Controller
@@ -235,7 +235,7 @@ class IssuesController extends Controller
 			$validatedData = $request->validated();
 			$validatedData['vip'] = $request->has('vip');
 			Issue::whereId($issue->id)->update($validatedData);
-			//event(new UpdatedIssue($issue));
+			event(new UpdatedIssue($issue));
 		}
 		return redirect('/issues/'.$issue->id);
     }
@@ -284,7 +284,7 @@ class IssuesController extends Controller
 		$issue = Issue::find($id);
 		Issue::whereId($id)->update(['timeClosed' => null]);
 		event(new IssueReopened($issue));
-		event(new NewComment($issue));
+		event(new UpdatedIssue($issue));
 		return redirect()->back();
 	}
 	

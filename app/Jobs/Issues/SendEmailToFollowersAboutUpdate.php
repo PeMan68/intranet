@@ -9,9 +9,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Issue;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\IssueCommentedStaff;
+use App\Mail\MailToFollowersAboutUpdate;
 
-class SendEmailAboutNewComment implements ShouldQueue
+class SendEmailToFollowersAboutUpdate implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -38,6 +38,6 @@ class SendEmailAboutNewComment implements ShouldQueue
      */
     public function handle()
     {
-       Mail::to($this->email)->send(new IssueCommentedStaff($this->issue));
+       Mail::to($this->email)->send(new MailToFollowersAboutUpdate($this->issue));
     }
 }
