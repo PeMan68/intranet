@@ -8,7 +8,7 @@ use App\Task;
 use App\Jobs\Issues\SendEmailAboutNewIssue;
 use App\Jobs\Issues\SendEmailAboutReminder;
 
-class NotifyFollowersOfUpdatedIssue
+class NotifyFollowersOfNewIssue
 {
     /**
      * Create the event listener.

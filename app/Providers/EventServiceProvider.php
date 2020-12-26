@@ -23,7 +23,7 @@ class EventServiceProvider extends ServiceProvider
 		],
 		'App\Events\Issues\NewIssue' => [
 			'App\Listeners\Issues\AddFollowers',
-            'App\Listeners\Issues\NotifyFollowersOfUpdatedIssue',
+            'App\Listeners\Issues\NotifyFollowersOfNewIssue',
             'App\Listeners\Issues\NotifyCustomerOfNewIssue',
 		],
 		'App\Events\Issues\IssueOpenedFirstTime' => [
