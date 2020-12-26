@@ -231,12 +231,13 @@ class IssuesController extends Controller
         if ($request->has('cancel')) {
 			return redirect('/issues/'.$issue->id);
 		}
-		$validatedData = $request->validated();
-		$validatedData['vip'] = $request->has('vip');
-		Issue::whereId($issue->id)->update($validatedData);
         if ($request->has('save')) {
-			return redirect('/issues/'.$issue->id);
+			$validatedData = $request->validated();
+			$validatedData['vip'] = $request->has('vip');
+			Issue::whereId($issue->id)->update($validatedData);
+			//event(new UpdatedIssue($issue));
 		}
+		return redirect('/issues/'.$issue->id);
     }
 
     /**
