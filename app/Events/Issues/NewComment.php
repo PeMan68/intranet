@@ -9,6 +9,7 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use App\Issue;
 
 class NewComment
 {
@@ -19,9 +20,9 @@ class NewComment
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Issue $issue)
     {
-        //
+        $this->issue = $issue;
     }
 
     /**
