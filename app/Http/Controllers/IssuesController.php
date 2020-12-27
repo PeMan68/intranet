@@ -230,11 +230,12 @@ class IssuesController extends Controller
         if ($request->has('cancel')) {
 			return redirect('/issues/'.$issue->id);
 		}
+		
         if ($request->has('save')) {
 			$validatedData = $request->validated();
 			$validatedData['vip'] = $request->has('vip');
-			Issue::whereId($issue->id)->update($validatedData);
-			event(new UpdatedIssue($issue, $type='header'));
+			$issue->update($validatedData);
+			event(new UpdatedIssue($issue, $type='header', $issue->getChanges()));
 		}
 		return redirect('/issues/'.$issue->id);
     }
@@ -283,7 +284,7 @@ class IssuesController extends Controller
 		$issue = Issue::find($id);
 		Issue::whereId($id)->update(['timeClosed' => null]);
 		event(new IssueReopened($issue));
-		event(new UpdatedIssue($issue, $type='comment'));
+		event(new UpdatedIssue($issue, $type='comment'), []);
 		return redirect()->back();
 	}
 	

@@ -9,9 +9,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Issue;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\MailToFollowersAboutUpdate;
+use App\Mail\MailToCustomerAboutUpdate;
 
-class SendEmailToFollowersAboutUpdate implements ShouldQueue
+class SendEmailToCustomerAboutUpdate implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -20,7 +20,7 @@ class SendEmailToFollowersAboutUpdate implements ShouldQueue
 	private $issue;
     private $email;
     private $type;
-    
+
     /**
      * Create a new job instance.
      *
@@ -41,6 +41,6 @@ class SendEmailToFollowersAboutUpdate implements ShouldQueue
      */
     public function handle()
     {
-       Mail::to($this->email)->send(new MailToFollowersAboutUpdate($this->issue, $this->type));
+        Mail::to($this->email)->send(new MailToCustomerAboutUpdate($this->issue, $this->type));
     }
 }

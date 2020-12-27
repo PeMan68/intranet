@@ -20,10 +20,11 @@ class UpdatedIssue
      *
      * @return void
      */
-    public function __construct(Issue $issue, $type)
+    public function __construct(Issue $issue, $type, $changedFields)
     {
         $this->issue = $issue;
         $this->type = $type;
+        $this->changedFields = $changedFields;
     }
 
     /**

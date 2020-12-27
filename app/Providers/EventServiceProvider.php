@@ -32,7 +32,8 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
 		'App\Events\Issues\UpdatedIssue' => [
-			'App\Listeners\Issues\NotifyFollowersOfUpdate',
+            'App\Listeners\Issues\NotifyFollowersOfUpdate',
+            'App\Listeners\Issues\NotifyCustomerOfUpdate',
 		],
 		'App\Events\Issues\NewIssue' => [
             'App\Listeners\Issues\NotifyFollowersOfNewIssue',

@@ -92,11 +92,11 @@ class IssueCommentController extends Controller
 				}
 			}
 			//Send mail to staff who is following
-			event(new UpdatedIssue($issue, $type='comment'));
 			//Add commenter as follower if not already
 			if (!$request->follow) {
-				$issue->followers()->attach(Auth::id());
+                $issue->followers()->attach(Auth::id());
 			}
+            event(new UpdatedIssue($issue, $type='comment',[]));
 		}
         if ($request->has('saveAndClose')) {
 			$validatedData['timeClosed'] = date('Y-m-d H:i:s');
@@ -104,7 +104,7 @@ class IssueCommentController extends Controller
 			'timeClosed' => date('Y-m-d H:i')
 			]);
 			event(new IssueClosed($issue));
-			event(new UpdatedIssue($issue, $type='comment'));
+			event(new UpdatedIssue($issue, $type='comment',[]));
 			return redirect('/issues');
 			
 		}

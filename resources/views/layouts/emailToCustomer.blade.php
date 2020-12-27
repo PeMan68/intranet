@@ -16,6 +16,7 @@
 		<p>
 			@yield('message')
 		</p>
+		<hr>
 		<table>
 			<tr>
 				<td><b>Skapat:</b> </td>
@@ -48,6 +49,8 @@
 		{!! nl2br(e($issue->description)) !!}
 		<br>
 		</p>
+		<hr>
+		@if (!empty($issue->issueComments->comment_external))
 		<b>Händelselogg</b>
 		@foreach($issue->issueComments as $comment)
 
@@ -58,6 +61,7 @@
 			@endif
 		@endforeach
 		<p>&nbsp;</p>
+		@endif
 
     </span>
 </body>
