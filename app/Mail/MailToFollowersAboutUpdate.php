@@ -17,19 +17,21 @@ class MailToFollowersAboutUpdate extends Mailable
      *
      * @var Issue
      */
-	public $issue;
+    public $issue;
+    public $type;
 	
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Issue $issue)
+    public function __construct(Issue $issue, $type)
     {
         $this->issue = $issue;
 		$this->ticketNumber = $issue->ticketNumber;
 		$this->customer = $issue->customer;
         $this->header = $issue->header;
+        $this->type= $type;
     }
 
     /**

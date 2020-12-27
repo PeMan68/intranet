@@ -153,11 +153,10 @@ class IssuesController extends Controller
 			$issue->followers()->attach(Auth::id());
 		}
 
-		$task = Task::find($request->task_id);
 		//Send mail to responsible staff and other stuff
-		event(new NewIssue($issue, $hours));
-
+		
         if ($request->has('save')) {
+			event(new NewIssue($issue, $hours));
 			return redirect('/issues')->with('success','Nytt ärende skapat: '.$validatedData['ticketNumber']);
 		}
         if ($request->has('saveOpen')) {
@@ -235,7 +234,7 @@ class IssuesController extends Controller
 			$validatedData = $request->validated();
 			$validatedData['vip'] = $request->has('vip');
 			Issue::whereId($issue->id)->update($validatedData);
-			event(new UpdatedIssue($issue));
+			event(new UpdatedIssue($issue, $type='header'));
 		}
 		return redirect('/issues/'.$issue->id);
     }
@@ -284,7 +283,7 @@ class IssuesController extends Controller
 		$issue = Issue::find($id);
 		Issue::whereId($id)->update(['timeClosed' => null]);
 		event(new IssueReopened($issue));
-		event(new UpdatedIssue($issue));
+		event(new UpdatedIssue($issue, $type='comment'));
 		return redirect()->back();
 	}
 	

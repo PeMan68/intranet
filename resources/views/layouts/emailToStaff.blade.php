@@ -33,6 +33,7 @@
 			@yield('links')
 
 		</p>
+		<hr>
 		<table>
 			<tr>
 				<td><b>Typ:</b> </td>
@@ -78,6 +79,7 @@
 		<b>Intern anteckning:</b><br>
 		{!! nl2br(e($issue->descriptionInternal)) !!}
 		</p>
+		<hr>
 		<b>Händelselogg</b>
 		@foreach($issue->issueComments as $comment)
 			@if (isset($comment->comment_internal))

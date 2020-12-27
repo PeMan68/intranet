@@ -18,16 +18,18 @@ class SendEmailToFollowersAboutUpdate implements ShouldQueue
     public $tries = 3;
 	public $retryAfter = 60;
 	private $issue;
-	private $email;
+    private $email;
+    private $type;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Issue $issue, $email)
+    public function __construct(Issue $issue, $email, $type)
     {
         $this->issue = $issue;
-		$this->email = $email;
+        $this->email = $email;
+        $this->type = $type; 
 		$this->queue = 'emails';
     }
 
@@ -38,6 +40,6 @@ class SendEmailToFollowersAboutUpdate implements ShouldQueue
      */
     public function handle()
     {
-       Mail::to($this->email)->send(new MailToFollowersAboutUpdate($this->issue));
+       Mail::to($this->email)->send(new MailToFollowersAboutUpdate($this->issue, $this->type));
     }
 }

@@ -32,7 +32,7 @@ class NotifyFollowersOfUpdate
 		// Mail to all followers
 		$followers = $issue->followers;
 		foreach ($followers as $user) {
-			SendEmailToFollowersAboutUpdate::dispatch($issue, $user->email);
+			SendEmailToFollowersAboutUpdate::dispatch($issue, $user->email, $event->type);
 		}
     }
 }
