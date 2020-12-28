@@ -4,7 +4,6 @@ namespace App\Listeners\Issues;
 
 use App\Events\Issues\NewIssue;
 use Illuminate\Queue\InteractsWithQueue;
-use App\Task;
 use App\Jobs\Issues\SendEmailAboutNewIssue;
 use App\Jobs\Issues\SendEmailAboutReminder;
 
@@ -28,10 +27,7 @@ class NotifyFollowersOfNewIssue
      */
     public function handle(NewIssue $event)
     {
-        $taskID = $event->issue->task_id;
-		$task = Task::find($taskID);
-        
-		foreach ($task->users as $user) {
+		foreach ($event->issue->task->users as $user) {
 			if ($user->pivot->level == 3) {
                 $event->issue->followers()->syncWithoutDetaching($user->id);
             }
@@ -39,9 +35,9 @@ class NotifyFollowersOfNewIssue
 
 		$followers = $event->issue->followers;
         if ($event->urgent) {
-            $delayhours = now()->addMinutes(30);
+            $delayReminder = now()->addMinutes(setting('time_reminder_urgent_issue'));
         } else {
-            $delayhours = now()->addHours($task->priority->hours);
+            $delayReminder = now()->addHours($event->issue->task->priority->hours);
         }
         $delay=0;
         if (cache($event->issue->ticketNumber)) {
@@ -49,7 +45,7 @@ class NotifyFollowersOfNewIssue
         }
         foreach ($followers as $user) {
             SendEmailAboutNewIssue::dispatch($event->issue, $user->email, $event->urgent)->delay($delay);
-			SendEmailAboutReminder::dispatch($event->issue, $user->email, $event->urgent)->delay($delayhours);
+			SendEmailAboutReminder::dispatch($event->issue, $user->email, $event->urgent)->delay($delayReminder);
         }
     }
 }

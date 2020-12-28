@@ -160,6 +160,7 @@ class IssuesController extends Controller
 			return redirect('/issues')->with('success','Nytt ärende skapat: '.$issue->ticketNumber);
 		}
         if ($request->has('saveOpen')) {
+			// Key is used to delay email of New Issue and Block mails about updates until key is expired
 			cache([$issue->ticketNumber => true], now()->addMinutes(setting('time_disable_update_job')));
 			event(new NewIssue($issue, $hours));
 			return redirect('/issues/'.$issue->id)->with('success','Nytt ärende '.$issue->ticketNumber);

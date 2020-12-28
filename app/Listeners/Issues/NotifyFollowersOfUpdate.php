@@ -5,7 +5,6 @@ namespace App\Listeners\Issues;
 use App\Events\Issues\UpdatedIssue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Issue;
 use App\Jobs\Issues\SendEmailToFollowersAboutUpdate;
 
 class NotifyFollowersOfUpdate
@@ -28,12 +27,12 @@ class NotifyFollowersOfUpdate
      */
     public function handle(UpdatedIssue $event)
     {
-      foreach ($event->issue->task->users as $user) {
-        if ($user->pivot->level == 3) {
-                  $event->issue->followers()->syncWithoutDetaching($user->id);
-              }
-          }
-		$issue = Issue::find($event->issue->id);
+		foreach ($event->issue->task->users as $user) {
+			if ($user->pivot->level == 3) {
+				$event->issue->followers()->syncWithoutDetaching($user->id);
+			}
+		}
+		// Prevent email if cache-key is active	
 		if (!cache($event->issue->ticketNumber)) {
 			$followers = $event->issue->followers;
 			foreach ($followers as $user) {
