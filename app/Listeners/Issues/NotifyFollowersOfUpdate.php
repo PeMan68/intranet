@@ -28,11 +28,17 @@ class NotifyFollowersOfUpdate
      */
     public function handle(UpdatedIssue $event)
     {
+      foreach ($event->issue->task->users as $user) {
+        if ($user->pivot->level == 3) {
+                  $event->issue->followers()->syncWithoutDetaching($user->id);
+              }
+          }
 		$issue = Issue::find($event->issue->id);
-		// Mail to all followers
-		$followers = $issue->followers;
-		foreach ($followers as $user) {
-			SendEmailToFollowersAboutUpdate::dispatch($issue, $user->email, $event->type);
+		if (!cache($event->issue->ticketNumber)) {
+			$followers = $event->issue->followers;
+			foreach ($followers as $user) {
+				SendEmailToFollowersAboutUpdate::dispatch($event->issue, $user->email, $event->type);
+			}
 		}
-    }
+	}
 }

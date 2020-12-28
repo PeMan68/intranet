@@ -17,23 +17,23 @@ class AddFollowers
         //
     }
 
-    /**
-     * Handle New Issue event.
-     *
-     * @param  NewIssue  $event
-     * @return void
-     */
-    public function handleNewIssue(NewIssue $event)
-    {
-        $taskID = $event->issue->task_id;
-		$task = Task::find($taskID);
+    // /**
+    //  * Handle New Issue event.
+    //  *
+    //  * @param  NewIssue  $event
+    //  * @return void
+    //  */
+    // public function handleNewIssue(NewIssue $event)
+    // {
+    //     $taskID = $event->issue->task_id;
+	// 	$task = Task::find($taskID);
         
-		foreach ($task->users as $user) {
-			if ($user->pivot->level == 3) {
-                $event->issue->followers()->syncWithoutDetaching($user->id);
-            }
-        }
-    }
+	// 	foreach ($task->users as $user) {
+	// 		if ($user->pivot->level == 3) {
+    //             $event->issue->followers()->syncWithoutDetaching($user->id);
+    //         }
+    //     }
+    // }
     
     /**
      * Handle Updated Issue event.
@@ -42,26 +42,26 @@ class AddFollowers
      * @return void
      */
     public function handleUpdatedIssue(UpdatedIssue $event)
-    {
-        $taskID = $event->issue->task_id;
-		$task = Task::find($taskID);
+    // {
+    //     $taskID = $event->issue->task_id;
+	// 	$task = Task::find($taskID);
         
-		foreach ($task->users as $user) {
-			if ($user->pivot->level == 3) {
-                $event->issue->followers()->syncWithoutDetaching($user->id);
-            }
-        }
+	// 	foreach ($task->users as $user) {
+	// 		if ($user->pivot->level == 3) {
+    //             $event->issue->followers()->syncWithoutDetaching($user->id);
+    //         }
+    //     }
     }
 
     public function subscribe($events) 
     {
-        $events->listen(
-            'App\Events\Issues\NewIssue',
-            'App\Listeners\Issues\AddFollowers@handleNewIssue'  
-        );
-        $events->listen(
-            'App\Events\Issues\UpdatedIssue',
-            'App\Listeners\Issues\AddFollowers@handleUpdatedIssue'  
-        );
+        // $events->listen(
+        //     'App\Events\Issues\NewIssue',
+        //     'App\Listeners\Issues\AddFollowers@handleNewIssue'  
+        // );
+        // $events->listen(
+        //     'App\Events\Issues\UpdatedIssue',
+        //     'App\Listeners\Issues\AddFollowers@handleUpdatedIssue'  
+        // );
     }
 }

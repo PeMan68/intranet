@@ -39,7 +39,8 @@ class NotifyCustomerOfUpdate
         ];
         if (!empty(Arr::only($event->changedFields, $fieldsToNotify)) &&
             $event->type == 'header' &&
-            !is_null($event->issue->customerMail)
+            !is_null($event->issue->customerMail) &&
+            !cache($event->issue->ticketNumber)
         )
 
         {

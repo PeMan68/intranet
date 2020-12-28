@@ -18,10 +18,10 @@ class EventServiceProvider extends ServiceProvider
      * 
      */
 
-     protected $subscribe = [
-         'App\Listeners\Issues\AddFollowers',
+    //  protected $subscribe = [
+    //      'App\Listeners\Issues\AddFollowers',
 
-     ];
+    //  ];
     /**
      * The event listener mappings for the application.
      *

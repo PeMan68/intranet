@@ -28,7 +28,11 @@ class NotifyCustomerOfNewIssue
     public function handle(NewIssue $event)
     {
         if (!is_null($event->issue->customerMail)) {
-            SendEmailToCustomerAboutNewIssue::dispatch($event->issue, $event->issue->customerMail);
+            $delay=0;
+            if (cache($event->issue->ticketNumber)){
+                $delay = now()->addMinutes(setting('time_disable_update_job'));
+            }
+            SendEmailToCustomerAboutNewIssue::dispatch($event->issue, $event->issue->customerMail)->delay($delay);
         }
     }
 }

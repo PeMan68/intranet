@@ -18,7 +18,7 @@ use App\Events\Issues\NewIssue;
 use App\Events\Issues\IssueReopened;
 use App\Events\Issues\UpdatedIssue;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Cache;
 class IssuesController extends Controller
 {
 	
@@ -157,10 +157,12 @@ class IssuesController extends Controller
 		
         if ($request->has('save')) {
 			event(new NewIssue($issue, $hours));
-			return redirect('/issues')->with('success','Nytt ärende skapat: '.$validatedData['ticketNumber']);
+			return redirect('/issues')->with('success','Nytt ärende skapat: '.$issue->ticketNumber);
 		}
         if ($request->has('saveOpen')) {
-			return redirect('/issues/'.$issue->id)->with('success','Nytt ärende '.$validatedData['ticketNumber']);
+			cache([$issue->ticketNumber => true], now()->addMinutes(setting('time_disable_update_job')));
+			event(new NewIssue($issue, $hours));
+			return redirect('/issues/'.$issue->id)->with('success','Nytt ärende '.$issue->ticketNumber);
 		}
 		
     }

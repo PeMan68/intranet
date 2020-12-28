@@ -18,6 +18,12 @@ class NewIssue
     /**
      * Create a new event instance.
      *
+     * @param \App\Issue $issue
+     * 
+     * @param mixed $hours
+     * 
+     * @param mixed $delayJob
+     * 
      * @return void
      */
     public function __construct(Issue $issue, $hours)
