@@ -47,11 +47,11 @@ class SendEmailAboutReminder implements ShouldQueue
 
 		// add to queue again as a reminder
         if ($this->urgent) {
-            $delayhours = now()->addMinutes(setting('time_reminder_urgent_issue'));
+            $delayReminder = now()->addMinutes(setting('time_reminder_urgent_issue'));
         } else {
-            $delayhours = now()->addHours($this->issue->task->priority->hours);
+            $delayReminder = now()->addHours($this->issue->task->priority->hours);
 		}
-		$this->release($delayhours);
+		$this->release($delayReminder);
     }
 
 }
