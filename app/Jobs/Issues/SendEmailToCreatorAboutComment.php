@@ -7,19 +7,29 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use App\Issue;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\IssueOpened;
 
-class SendEmailToCreator implements ShouldQueue
+class SendEmailToCreatorAboutComment implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    public $tries = 3;
+    public $retryAfter = 60;
+    private $issue;
+    private $email;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Issue $issue, $email)
     {
-        //
+        $this->issue = $issue;
+        $this->email = $email;
+        $this->queue = 'emails';
     }
 
     /**
@@ -29,6 +39,6 @@ class SendEmailToCreator implements ShouldQueue
      */
     public function handle()
     {
-        //
+        Mail::to($this->email)->send(new issueOpened($this->issue));
     }
 }

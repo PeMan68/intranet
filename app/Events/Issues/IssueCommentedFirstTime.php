@@ -11,7 +11,7 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use App\Issue;
 
-class IssueOpenedFirstTime
+class IssueCommentedFirstTime
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 

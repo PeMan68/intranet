@@ -6,7 +6,7 @@ use App\IssueComment;
 use App\Issue;
 use Illuminate\Http\Request;
 use App\Events\Issues\UpdatedIssue;
-use App\Events\Issues\IssueOpenedFirstTime;
+use App\Events\Issues\IssueCommentedFirstTime;
 use App\Events\Issues\IssueClosed;
 use Illuminate\Support\Facades\Auth;
 
@@ -88,7 +88,7 @@ class IssueCommentController extends Controller
 				if (IssueComment::where('issue_id', $issuecomment->issue_id)
 					->count() == 1) 
 				{
-					event(new IssueOpenedFirstTime($issue));
+					event(new IssueCommentedFirstTime($issue));
 				}
 			}
 			//Send mail to staff who is following

@@ -26,7 +26,7 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\Issues\NotifyFollowersOfNewIssue',
             'App\Listeners\Issues\NotifyCustomerOfNewIssue',
 		],
-		'App\Events\Issues\IssueOpenedFirstTime' => [
+		'App\Events\Issues\IssueCommentedFirstTime' => [
 			'App\Listeners\Issues\NotifyCreator',
 		],
 		'App\Events\Issues\IssueClosed' => [
