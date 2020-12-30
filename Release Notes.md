@@ -2,6 +2,7 @@
 
 ### Working on
 *Bug fixes:*
+* 2020-12-30 Fixed Cancel on calendar form from being validated
 
 ## Release 2.3.3 (2020-09-09)
 *Features:*
