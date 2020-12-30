@@ -1,4 +1,10 @@
 # Release notes
+### To-do
+*Fixes*
+* Fix rendering of navbar. If a big table is loaded(i.e. Issues), the page seems to wait for the table before the navbar is rendered correct.
+
+*Features*
+
 
 ### Working on
 *Bug fixes:*
