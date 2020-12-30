@@ -4,6 +4,7 @@
 *Features:*
 * Emailing moved to jobs, making it more reliable
 * Reminder emails if customer is not contacted within specified time
+* Updated Email templates
 
 *Bug fixes:*
 
