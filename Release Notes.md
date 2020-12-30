@@ -1,6 +1,10 @@
 # Release notes
 
 ### Working on
+*Features:*
+* Emailing moved to jobs, making it more reliable
+* Reminder emails if customer is not contacted within specified time
+
 *Bug fixes:*
 
 ## Release 2.3.3 (2020-09-09)
