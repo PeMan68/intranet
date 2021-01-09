@@ -5,6 +5,7 @@
 * The side-menu is not handled well when window height gets smaller
 * Selection for viewing all Issues or only the latest
     * Default should be less records, while search should include all
+* Demoproducts, primary key must be itemnumber!
 
 *Features*
 * Add status Pause, WaitingForInternal, WaitingForCustomer to Issues
