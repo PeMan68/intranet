@@ -86,7 +86,7 @@ class UserController extends Controller
 			$user->tasks()->updateExistingPivot($task, ['level' => $level]);
 		}
 
-		return redirect()->route('admin.users.index')->with('success', 'Användaren uppdaterad.');
+		return redirect()->route('admin.users.index')->with('message', 'Användaren uppdaterad.');
     }
 
     /**
@@ -108,7 +108,7 @@ class UserController extends Controller
 			$user->departments()->detach();
 			$user->tasks()->detach();
 			$user->destroy($id);
-			return redirect()->route('admin.users.index')->with('success', 'Användaren raderad.');
+			return redirect()->route('admin.users.index')->with('message', 'Användaren raderad.');
 		}
 			
 		return redirect()->route('admin.users.index')->with('warning', 'Denna användaren kan inte raderas.');

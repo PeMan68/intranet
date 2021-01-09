@@ -55,7 +55,7 @@ class LocationController extends Controller
         ]);
         $validatedData['location_id'] = $request->parent_id;
         $location = Location::create($validatedData);
-        return redirect('locations')->with('success', 'Ny plats tillagd');
+        return redirect('locations')->with('message', 'Ny plats tillagd');
     }
 
      /**
