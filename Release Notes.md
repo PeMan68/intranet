@@ -3,7 +3,7 @@
 *Fixes*
 * Fix rendering of navbar. If a big table is loaded(i.e. Issues), the page seems to wait for the table before the navbar is rendered correct.
 * The side-menu is not handled well when window height gets smaller
-* Selection for viewing all Issues or only the latest
+* 210109 Selection for viewing all Issues or only the latest
     * Default should be less records, while search should include all
 * Demoproducts, primary key must be itemnumber!
 
