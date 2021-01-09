@@ -1,20 +1,20 @@
 # Release notes
 ## To-do
 *Fixes*
-* Fix rendering of navbar. If a big table is loaded(i.e. Issues), the page seems to wait for the table before the navbar is rendered correct.
-* The side-menu is not handled well when window height gets smaller
-* 210109 Selection for viewing all Issues or only the latest
+* 210109-1 Fix rendering of navbar. If a big table is loaded(i.e. Issues), the page seems to wait for the table before the navbar is rendered correct.
+* 210109-2 The side-menu is not handled well when window height gets smaller
+* 210109-3 Selection for viewing all Issues or only the latest
     * Default should be less records, while search should include all
-* Demoproducts, primary key must be itemnumber!
+* 210109-4 Demoproducts, primary key must be itemnumber!
 
 *Features*
-* Add status Pause, WaitingForInternal, WaitingForCustomer to Issues
-* Add email to customer for registered Issue
-* Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails ar enot responded upon.
-* Add email-form from Issues to message directly to customer or internal support to be stored in Issue Comments History
-* Add question of debit customer for supporttime when checking back Issue. When Issue is closed an report shall be created to be invoiced from.
-* Ability to edit comments in Issues.
-* Pickup incoming emails, automatic adding comments and notification to followers.
+* 210109-5 Add status Pause, WaitingForInternal, WaitingForCustomer to Issues
+* 210109-6 Add email to customer for registered Issue
+* 210109-7 Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails ar enot responded upon.
+* 210109-8 Add email-form from Issues to message directly to customer or internal support to be stored in Issue Comments History
+* 210109-9 Add question of debit customer for supporttime when checking back Issue. When Issue is closed an report shall be created to be invoiced from.
+* 210109-10 Ability to edit comments in Issues.
+* 210109-11 Pickup incoming emails, automatic adding comments and notification to followers.
 
 ## Working on
 *Bug fixes:*
