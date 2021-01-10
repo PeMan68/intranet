@@ -34,10 +34,10 @@ class IssuesController extends Controller
 		// cleanup task_user table for current user
 		$tasks = Task::all();
 		Auth::user()->tasks()->sync($tasks);
-
+// TODO choose different timescopes, all-1Year-1month
         $issues = Issue::with('task','latestComment','userCreate')
 					->whereNull('timeClosed')
-					->orWhere('timeClosed','>',date('Y-m-d',strtotime('-1 year')))
+					// ->orWhere('timeClosed','>',date('Y-m-d',strtotime('-1 year')))
 					->get()
 					->sortByDesc('calculated_prio')
 					->flatten()
@@ -73,6 +73,7 @@ class IssuesController extends Controller
 				'Id' => $item->id,
                 'Ärende' => $item->ticketNumber,
 				'Registrerat' => date('y-m-d',strtotime($item->timeInit)),
+				'Avslutat' => date('y-m-d', strtotime($item->timeClosed)),
 				'Senaste_kontakt' => $latest_days,
 				'Senaste' => $latest_date,
 				'Område' => $item->task->name,

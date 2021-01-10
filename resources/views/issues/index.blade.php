@@ -11,6 +11,7 @@
 			</div>
 		</div>
 	</div>
+	{{-- TODO add timescope --}}
 	<div class="card-body">
 		<issue-table 
 			:items="{{ $products }}" 

@@ -2,33 +2,27 @@
 
     <b-container fluid>
         <b-row class="mb-2">
-            <b-col sm="2">
+            <b-col class="my-1" cols="12" sm="5" lg="3">
                 <b-button variant="primary" size="sm" href="/issues/create"><i class="material-icons">add_circle</i> Nytt ärende</b-button>
             </b-col>
-            <b-col sm="5">
-                <b-pagination
-                    v-model="currentPage"
-                    :total-rows="totalRows"
-                    :per-page="perPage"
-                    aria-controls="issue-table"
-                ></b-pagination>
-            </b-col>
 
-            <b-col sm="5">
-                <b-form-group
-                label="Filter"
-                label-cols-sm="3"
-                label-align-sm="right"
-                label-size="sm"
-                label-for="filterInput"
-                class="mb-0"
-                >
+            <b-col class="my-1" cols="12" sm="7">
+                <b-form-radio-group
+                    v-model="scope"
+                    :options="options"
+                    name="radio-options"
+                ></b-form-radio-group>
+            </b-col>
+        </b-row>
+        <b-row class="mb-2">
+            <b-col class="my-1" cols="12" sm="6" order-lg="3">
                 <b-input-group size="sm">
                     <b-form-input
-                    v-model="filter"
+                    v-model="filter.text"
                     type="search"
                     id="filterInput"
                     placeholder="Sök i alla kolumner"
+                    align="center"
                     ></b-form-input>
                     <b-input-group-append>
                     <b-button :disabled="!filter" @click="filter = ''">Rensa</b-button>
@@ -36,14 +30,26 @@
                 </b-input-group>
                 </b-form-group>
             </b-col>
+
+            <b-col class="my-1" cols="12" sm="6" order-lg="2">
+                <b-pagination
+                    v-model="currentPage"
+                    :total-rows="totalRows"
+                    :per-page="perPage"
+                    aria-controls="issue-table"
+                    align="center"
+                ></b-pagination>
+            </b-col>        
         </b-row>
+
         <b-table 
             id="issue-table"
+            ref="table"
             :items="items"
             :fields="fields"
             :per-page="perPage"
             :current-page="currentPage"
-            :filter="filter"
+            :filter="filter.text"
             @filtered="onFiltered"
             small
             sticky-header="1000px"
@@ -156,14 +162,46 @@
                 perPage: 20,
                 currentPage: 1,
                 totalRows: 1,
-                filter: null,
+                filter: {
+                    text: null,
+                },
+                    scope: 'Month',
+                        options: [
+                            { text: 'Alla', value: 'All' },
+                            { text: '1 År', value: 'Year'},
+                            { text: '1 Månad', value: 'Month'},
+                    ]
+                
             }
         },
 
+       
         mounted() {
             // Set the initial number of items
             this.totalRows = this.items.length
         },
+        watch: {
+            scope: {
+                handler: function(value) {
+                    if (value=='All') {
+                        // this.items = itemsAll
+                        console.log('Alla')
+                    }
+                    if (value=='Year') {
+                        // this.items = itemsYear
+                        console.log('År')
+                    }
+                    if (value=='Month') {
+                        // this.items = itemsMonth
+                        console.log('Månad')
+                    }
+                    this.$refs.table.refresh()
+                },
+                // * To also detect nested value changes inside Objects, you need to pass in deep: true in the options argument. Note that you don’t need to do so to listen for Array mutations.
+                //deep: true
+            }
+        },
+        
         methods: {
 
             onFiltered(filteredItems) {
