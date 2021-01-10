@@ -151,6 +151,13 @@
 </template>
 
 <script>
+    
+    // ? Arbetsidé
+    // Skicka alla issues till table
+    // skapa computed property: ta bort alla issues som har timeClosed>30 dagar
+    // Denna ska laddas som default data till tabellen
+    // om man börjar skriva i filter, växla till Alla data
+    
     export default {
         props: [
             'items',
@@ -197,8 +204,6 @@
                     }
                     this.$refs.table.refresh()
                 },
-                // * To also detect nested value changes inside Objects, you need to pass in deep: true in the options argument. Note that you don’t need to do so to listen for Array mutations.
-                //deep: true
             }
         },
         

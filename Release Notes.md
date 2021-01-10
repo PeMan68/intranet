@@ -19,12 +19,6 @@
 * 2020-12-30 Fixed Cancel on calendar form from being validated
 * 210109-3 Selection for viewing all Issues or only the latest
     * Default should be less records, while search should include all
-    
-    Arbetsidé
-    Skicka alla issues till table
-    skapa computed property: ta bort alla issues som har timeClosed>30 dagar
-    Denna ska laddas som default data till tabellen
-    om man börjar skriva i filter, växla till Alla data
 
 *Features*
 * All emailing is moved to queues and handled by workers
