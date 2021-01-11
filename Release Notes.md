@@ -8,14 +8,14 @@
 * 210109-4 Demoproducts, primary key must be itemnumber!
 
 *Features*
-* 210109-5 Add status Pause, WaitingForInternal, WaitingForCustomer to Issues
-* 210109-6 Add email to customer for registered Issue
-* 210109-7 Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails ar enot responded upon.
-* 210109-8 Add email-form from Issues to message directly to customer or internal support to be stored in Issue Comments History
-* 210109-9 Add question of debit customer for supporttime when checking back Issue. When Issue is closed an report shall be created to be invoiced from.
+* 210109-5  Add status Pause, WaitingForInternal, WaitingForCustomer to Issues
+* 210109-6  Add email to customer for registered Issue
+* 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails ar enot responded upon.
+* 210109-8  Add email-form from Issues to message directly to customer or internal support to be stored in Issue Comments History
+* 210109-9  Add question of debit customer for supporttime when checking back Issue. When Issue is closed an report shall be created to be invoiced from.
 * 210109-10 Ability to edit comments in Issues.
 * 210109-11 Pickup incoming emails, automatic adding comments and notification to followers.
-
+* 210111    Edit links in menu from Settings-db
 ## Working on
 *Bug fixes:*
 * 2020-12-30 Fixed Cancel on calendar form from being validated
