@@ -17,14 +17,16 @@
 ## Working on
 *Bug fixes:*
 * 2020-12-30 Fixed Cancel on calendar form from being validated
-* 210109-3 Selection for viewing all Issues or only the latest
-    * Default should be less records, while search should include all
 
 *Features*
 * All emailing is moved to queues and handled by workers
 * Jobs created for reminders to First line and Second Line of unattended Issues
 * Attachments stored in Issues
 
+## Finsihed for next release
+*Features*
+* 210109-3 Automatic selection for viewing all Issues or only the latest
+    * Default should be less records, while search should include all
 ## **Release 2.3.3 (2020-09-09)**
 *Features:*
 * Added Ticket Number in search of Issues
