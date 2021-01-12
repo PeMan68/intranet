@@ -3,8 +3,6 @@
 *Fixes*
 * 210109-1 Fix rendering of navbar. If a big table is loaded(i.e. Issues), the page seems to wait for the table before the navbar is rendered correct.
 * 210109-2 The side-menu is not handled well when window height gets smaller
-* 210109-3 Selection for viewing all Issues or only the latest
-    * Default should be less records, while search should include all
 * 210109-4 Demoproducts, primary key must be itemnumber!
 
 *Features*
@@ -25,6 +23,10 @@
 * Jobs created for reminders to First line and Second Line of unattended Issues
 * Attachments stored in Issues
 
+## Finsihed for next release
+*Features*
+* 210109-3 Automatic selection for viewing all Issues or only the latest
+    * Default should be less records, while search should include all
 ## **Release 2.3.3 (2020-09-09)**
 *Features:*
 * Added Ticket Number in search of Issues
