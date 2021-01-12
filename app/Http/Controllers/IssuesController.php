@@ -35,14 +35,38 @@ class IssuesController extends Controller
 		$tasks = Task::all();
 		Auth::user()->tasks()->sync($tasks);
 // TODO choose different timescopes, all-1Year-1month
-        $issues = Issue::with('task','latestComment','userCreate')
-					->whereNull('timeClosed')
-					// ->orWhere('timeClosed','>',date('Y-m-d',strtotime('-1 year')))
-					->get()
-					->sortByDesc('calculated_prio')
-					->flatten()
-					;
-					
+		$itemsAll = $this->createTableData(
+			Issue::with('task','latestComment','userCreate')
+				->get()
+				->sortByDesc('calculated_prio')
+				->flatten()
+		);
+
+		$items30 = $this->createTableData(
+			Issue::with('task','latestComment','userCreate')
+				->whereNull('timeClosed')
+				->orWhere('timeClosed','>',date('Y-m-d',strtotime('-1 month')))
+				->get()
+				->sortByDesc('calculated_prio')
+				->flatten()
+		);
+
+		$fields = collect([]);
+		$fields->push(['key'=> 'Info']);
+		$fields->push(['key'=> 'Ärende', 'sortable' => true]);
+		$fields->push(['key'=> 'Registrerat', 'sortable' => true]);
+		$fields->push(['key'=> 'Senaste_kontakt', 'sortable' => true]);
+		$fields->push(['key'=> 'Område', 'sortable' => true]);
+		$fields->push(['key'=> '.', 'class' => 'text-right']);
+		$fields->push(['key'=> 'Kund']);
+		$fields->push(['key'=> 'Kontakt']);
+		$fields->push(['key'=> 'Rubrik']);
+
+        return view('issues.index', ['itemsAll' => $itemsAll, 'items30' => $items30, 'fields' => $fields]);
+	}
+
+	private function createTableData($issues) 
+	{					
         $selected = $issues->map(function ( $item ) {
 			if (!is_null($item->latestComment)) {
 				$latest_days = date_diff($item->latestComment->updated_at, now())->format('%a');
@@ -95,19 +119,7 @@ class IssuesController extends Controller
 				'_rowVariant' => $rowVariant,
             ];
 		});
-
-		$fields = collect([]);
-		$fields->push(['key'=> 'Info']);
-		$fields->push(['key'=> 'Ärende', 'sortable' => true]);
-		$fields->push(['key'=> 'Registrerat', 'sortable' => true]);
-		$fields->push(['key'=> 'Senaste_kontakt', 'sortable' => true]);
-		$fields->push(['key'=> 'Område', 'sortable' => true]);
-		$fields->push(['key'=> '.', 'class' => 'text-right']);
-		$fields->push(['key'=> 'Kund']);
-		$fields->push(['key'=> 'Kontakt']);
-		$fields->push(['key'=> 'Rubrik']);
-
-        return view('issues.index', ['products' => $selected, 'fields' => $fields]);
+		return $selected;
 	}
 
     /**

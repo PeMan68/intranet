@@ -2,36 +2,27 @@
 
     <b-container fluid>
         <b-row class="mb-2">
-            <b-col class="my-1" cols="12" sm="5" lg="3">
+            <b-col class="my-1" cols="12" lg="3">
                 <b-button variant="primary" size="sm" href="/issues/create"><i class="material-icons">add_circle</i> Nytt ärende</b-button>
             </b-col>
 
-            <b-col class="my-1" cols="12" sm="7">
-                <b-form-radio-group
-                    v-model="scope"
-                    :options="options"
-                    name="radio-options"
-                ></b-form-radio-group>
-            </b-col>
-        </b-row>
-        <b-row class="mb-2">
-            <b-col class="my-1" cols="12" sm="6" order-lg="3">
+            <b-col class="my-1" cols="12" lg="5" order-lg="3">
                 <b-input-group size="sm">
                     <b-form-input
-                    v-model="filter.text"
+                    v-model="filter" 
                     type="search"
                     id="filterInput"
-                    placeholder="Sök i alla kolumner"
+                    placeholder="Sök i all historik"
                     align="center"
+                    debounce="500"
                     ></b-form-input>
                     <b-input-group-append>
-                    <b-button :disabled="!filter" @click="filter = ''">Rensa</b-button>
                     </b-input-group-append>
                 </b-input-group>
                 </b-form-group>
             </b-col>
 
-            <b-col class="my-1" cols="12" sm="6" order-lg="2">
+            <b-col class="my-1" cols="12" lg="4" order-lg="2">
                 <b-pagination
                     v-model="currentPage"
                     :total-rows="totalRows"
@@ -49,7 +40,7 @@
             :fields="fields"
             :per-page="perPage"
             :current-page="currentPage"
-            :filter="filter.text"
+            :filter="filter"
             @filtered="onFiltered"
             small
             sticky-header="1000px"
@@ -151,16 +142,14 @@
 </template>
 
 <script>
-    
-    // ? Arbetsidé
-    // Skicka alla issues till table
-    // skapa computed property: ta bort alla issues som har timeClosed>30 dagar
-    // Denna ska laddas som default data till tabellen
-    // om man börjar skriva i filter, växla till Alla data
-    
+/**
+ * * Table is loaded with open items plus items 30 days old
+ * * when search is made with the filter table loads another dataset with all items
+ */
     export default {
         props: [
-            'items',
+            'itemsAll',
+            'items30',
             'fields',
          ],
 
@@ -169,52 +158,31 @@
                 perPage: 20,
                 currentPage: 1,
                 totalRows: 1,
-                filter: {
-                    text: null,
-                },
-                    scope: 'Month',
-                        options: [
-                            { text: 'Alla', value: 'All' },
-                            { text: '1 År', value: 'Year'},
-                            { text: '1 Månad', value: 'Month'},
-                    ]
-                
-            }
+                filter: null,
+                items: [],
+              }
         },
 
-       
         mounted() {
             // Set the initial number of items
+            this.items = this.items30
             this.totalRows = this.items.length
         },
-        watch: {
-            scope: {
-                handler: function(value) {
-                    if (value=='All') {
-                        // this.items = itemsAll
-                        console.log('Alla')
-                    }
-                    if (value=='Year') {
-                        // this.items = itemsYear
-                        console.log('År')
-                    }
-                    if (value=='Month') {
-                        // this.items = itemsMonth
-                        console.log('Månad')
-                    }
-                    this.$refs.table.refresh()
-                },
-            }
-        },
-        
+                
         methods: {
 
             onFiltered(filteredItems) {
-            // Trigger pagination to update the number of buttons/pages due to filtering
-            this.totalRows = filteredItems.length
-            this.currentPage = 1
-            }
+                // Trigger pagination to update the number of buttons/pages due to filtering
+                if (this.filter == '' || this.filter == null) {
+                    this.items = this.items30
+                    this.totalRows = this.items.length
+                } else {
+                    this.items = this.itemsAll
+                    this.totalRows = filteredItems.length
+                }
+                    this.currentPage = 1
+            },
         },
-    
+ 
     }
 </script>
