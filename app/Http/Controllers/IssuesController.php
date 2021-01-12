@@ -34,7 +34,6 @@ class IssuesController extends Controller
 		// cleanup task_user table for current user
 		$tasks = Task::all();
 		Auth::user()->tasks()->sync($tasks);
-// TODO choose different timescopes, all-1Year-1month
 		$itemsAll = $this->createTableData(
 			Issue::with('task','latestComment','userCreate')
 				->get()
