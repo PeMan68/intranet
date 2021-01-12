@@ -168,7 +168,7 @@ class IssuesController extends Controller
 		event(new NewIssue($issue, $hours));
 
         if ($request->has('save')) {
-			return redirect('/issues')->with('message','Nytt ärende skapat: '.$validatedData['ticketNumber']);
+			return redirect('/issues')->with('success','Nytt ärende skapat: '.$validatedData['ticketNumber']);
 		}
         if ($request->has('saveOpen')) {
 			return redirect('/issues/'.$issue->id)->with('message','Nytt ärende '.$validatedData['ticketNumber']);
