@@ -14,6 +14,7 @@
 * 210109-10 Ability to edit comments in Issues.
 * 210109-11 Pickup incoming emails, automatic adding comments and notification to followers.
 * 210111    Edit links in menu from Settings-db
+* 210112    Change layout of Issue Comments
 ## Working on
 *Bug fixes:*
 * 2020-12-30 Fixed Cancel on calendar form from being validated
