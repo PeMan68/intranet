@@ -2,7 +2,7 @@
 
 ### Working on
 *Features:*
-* Emailing moved to jobs, making it more reliable
+* Emailing moved to jobs, making it more reliable. Jobs require worker(s) to run on the server.
 * Reminder emails if customer is not contacted within specified time
 * Updated Email templates
 
