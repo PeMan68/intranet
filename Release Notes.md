@@ -7,7 +7,6 @@
 
 *Features*
 * 210109-5  Add status Pause, WaitingForInternal, WaitingForCustomer to Issues
-* 210109-6  Add email to customer for registered Issue
 * 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails ar enot responded upon.
 * 210109-8  Add email-form from Issues to message directly to customer or internal support to be stored in Issue Comments History
 * 210109-9  Add question of debit customer for supporttime when checking back Issue. When Issue is closed an report shall be created to be invoiced from.
@@ -28,6 +27,7 @@
 *Features*
 * 210109-3 Automatic selection for viewing all Issues or only the latest
     * Default should be less records, while search should include all
+* 210109-6  Add email to customer for registered Issue
 * All emailing is moved to queues and handled by workers
 * Jobs created for reminders to First line and Second Line of unattended Issues
 * Updated Email templates
