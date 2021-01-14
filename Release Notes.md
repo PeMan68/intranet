@@ -13,14 +13,14 @@
 * 210109-10 Ability to edit comments in Issues.
 * 210109-11 Pickup incoming emails, automatic adding comments and notification to followers.
 * 210111    Edit links in menu from Settings-db
-* 210112-1  Change to nicer layout of Issue Comments. 
-    * Add fields for from/to, choose from customer contact and Internal/Enterprise contacts
-    * Table for Enterprise contactpersons (outside office, but within Enterprise)
 * 210112-2  Save customer details for autofill
 
 ### ***Working on***
 *Features:*
 * Attachments stored in Issues
+* 210112-1  Change to nicer layout of Issue Comments. 
+    * Add fields for from/to, choose from customer contact and Internal/Enterprise contacts
+    * Table for Enterprise contactpersons (outside office, but within Enterprise)
 
 *Bug fixes:*
 ## Finsihed for next release
