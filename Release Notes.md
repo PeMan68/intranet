@@ -18,19 +18,22 @@
     * Add fields for from/to, choose from customer contact and Internal/Enterprise contacts
     * Table for Enterprise contactpersons (outside office, but within Enterprise)
 * 210112-2  Save customer details for autofill
-## Working on
-*Bug fixes:*
-* 2020-12-30 Fixed Cancel on calendar form from being validated
 
-*Features*
-* All emailing is moved to queues and handled by workers
-* Jobs created for reminders to First line and Second Line of unattended Issues
+### ***Working on***
+*Features:*
 * Attachments stored in Issues
 
+*Bug fixes:*
 ## Finsihed for next release
 *Features*
 * 210109-3 Automatic selection for viewing all Issues or only the latest
     * Default should be less records, while search should include all
+* All emailing is moved to queues and handled by workers
+* Jobs created for reminders to First line and Second Line of unattended Issues
+* Updated Email templates
+
+*Bug fixes:*
+* 2020-12-30 Fixed Cancel on calendar form from being validated
 ## **Release 2.3.3 (2020-09-09)**
 *Features:*
 * Added Ticket Number in search of Issues

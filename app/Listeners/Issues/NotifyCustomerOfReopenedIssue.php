@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\Issues;
 
-use App\Events\IssueClosed;
+use App\Events\Issues\IssueReopened;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendEmailToResponsibleIssueClosed
+class NotifyCustomerOfReopenedIssue
 {
     /**
      * Create the event listener.
@@ -21,10 +21,10 @@ class SendEmailToResponsibleIssueClosed
     /**
      * Handle the event.
      *
-     * @param  IssueClosed  $event
+     * @param  IssueReopened  $event
      * @return void
      */
-    public function handle(IssueClosed $event)
+    public function handle(IssueReopened $event)
     {
         //
     }

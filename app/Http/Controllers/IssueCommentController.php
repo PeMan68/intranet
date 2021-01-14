@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\IssueComment;
 use App\Issue;
 use Illuminate\Http\Request;
-use App\Events\NewIssueComment;
-use App\Events\IssueOpenedFirstTime;
-use App\Events\IssueClosed;
+use App\Events\Issues\UpdatedIssue;
+use App\Events\Issues\IssueCommentedFirstTime;
+use App\Events\Issues\IssueClosed;
 use Illuminate\Support\Facades\Auth;
 
 class IssueCommentController extends Controller
@@ -88,15 +88,15 @@ class IssueCommentController extends Controller
 				if (IssueComment::where('issue_id', $issuecomment->issue_id)
 					->count() == 1) 
 				{
-					event(new IssueOpenedFirstTime($issue));
+					event(new IssueCommentedFirstTime($issue));
 				}
 			}
 			//Send mail to staff who is following
-			event(new NewIssueComment($issue));
 			//Add commenter as follower if not already
 			if (!$request->follow) {
-				$issue->followers()->attach(Auth::id());
+                $issue->followers()->attach(Auth::id());
 			}
+            event(new UpdatedIssue($issue, $type='comment',[]));
 		}
         if ($request->has('saveAndClose')) {
 			$validatedData['timeClosed'] = date('Y-m-d H:i:s');
@@ -104,7 +104,7 @@ class IssueCommentController extends Controller
 			'timeClosed' => date('Y-m-d H:i')
 			]);
 			event(new IssueClosed($issue));
-			event(new NewIssueComment($issue));
+			event(new UpdatedIssue($issue, $type='comment',[]));
 			return redirect('/issues');
 			
 		}

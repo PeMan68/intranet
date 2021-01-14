@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\Issues;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -11,7 +11,7 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use App\Issue;
 
-class IssueOpenedFirstTime
+class IssueClosed
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 

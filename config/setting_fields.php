@@ -97,4 +97,30 @@ return [
             ],
         ]
     ],
+    'module_settings_issue' => [
+        'title' => 'Ärenden',
+        'desc' => 'Inställningar för ärenden',
+        'icon' => 'settings_applications',
+
+        'elements' => [
+            [
+                'type' => 'text', // input fields type
+                'data' => 'int', // data type, string, int, boolean
+                'name' => 'time_disable_update_job', // unique name for field
+                'label' => 'Fördröjning av mail av "Nytt ärende" vid direktutcheckning (minuter)', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '15' // default value if you want
+            ],
+            [
+                'type' => 'text', // input fields type
+                'data' => 'int', // data type, string, int, boolean
+                'name' => 'time_reminder_urgent_issue', // unique name for field
+                'label' => 'Fördröjning av påminnelsemail vid BRÅDSKANDE ärenden (minuter)', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '30' // default value if you want
+            ],
+        ]
+    ],
 ];

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\Issues;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -11,7 +11,7 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use App\Issue;
 
-class NewIssue
+class UpdatedIssue
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -20,13 +20,11 @@ class NewIssue
      *
      * @return void
      */
-    public function __construct(Issue $issue, $hours)
+    public function __construct(Issue $issue, $type, $changedFields)
     {
         $this->issue = $issue;
-        $this->urgent = false;
-        if ($hours==0) {
-            $this->urgent = true;
-        }
+        $this->type = $type;
+        $this->changedFields = $changedFields;
     }
 
     /**

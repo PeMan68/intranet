@@ -1,7 +1,14 @@
 @extends('../layouts.emailToStaff')
 
 @section('header')
-    Nytt ärende
+Orsak till uppdatering: 
+@if ($type=='comment')
+Ny kommentar i ärendet
+@else
+Uppdaterad information om ärendet
+@endif
+<hr>
+
 @endsection
 
 @section('links')

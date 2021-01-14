@@ -14,11 +14,11 @@ use App\Http\Requests\UpdateIssue;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\IssueCreated;
 use Illuminate\Support\Facades\Mail;
-use App\Events\NewIssue;
-use App\Events\IssueReopened;
-use App\Events\NewIssueComment;
+use App\Events\Issues\NewIssue;
+use App\Events\Issues\IssueReopened;
+use App\Events\Issues\UpdatedIssue;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Cache;
 class IssuesController extends Controller
 {
 	
@@ -155,23 +155,27 @@ class IssuesController extends Controller
 			$prio = Task::find($request->task_id)->prio_id;
 			$hours = Priority::find($prio)->hours;
 		}
-		$validatedData['timeEstimatedcallback'] = date('Y-m-d H:i', strtotime(sprintf("+%d hours", $hours)));
+		$validatedData['timeEstimatedcallback'] = date('Y-m-d H:i', strtotime(sprintf("+%d hours", $hours))); //Enhancement, adjust to working hours according to calendar
 		$validatedData['vip'] = $request->has('vip');
 		//build ticketnumber, S+year+number of issues currentyear.
 		$validatedData['ticketNumber'] = 'S-' . date('y') . sprintf('%03d',Issue::whereYear('created_at', date('Y'))->count() +1);
         $issue = Issue::create($validatedData);
+		
 		if ($request->has('follow')) {
 			$issue->followers()->attach(Auth::id());
 		}
-		$task = Task::find($request->task_id);
-		//Send mail to responsible staff
-		event(new NewIssue($issue, $hours));
 
+		//Send mail to responsible staff and other stuff
+		
         if ($request->has('save')) {
-			return redirect('/issues')->with('success','Nytt ärende skapat: '.$validatedData['ticketNumber']);
+			event(new NewIssue($issue, $hours));
+			return redirect('/issues')->with('success','Nytt ärende skapat: '.$issue->ticketNumber);
 		}
         if ($request->has('saveOpen')) {
-			return redirect('/issues/'.$issue->id)->with('message','Nytt ärende '.$validatedData['ticketNumber']);
+			// Key is used to delay email of New Issue and Block mails about updates until key is expired
+			cache([$issue->ticketNumber => true], now()->addMinutes(setting('time_disable_update_job')));
+			event(new NewIssue($issue, $hours));
+			return redirect('/issues/'.$issue->id)->with('message','Nytt ärende '.$issue->ticketNumber);
 		}
 		
     }
@@ -241,12 +245,14 @@ class IssuesController extends Controller
         if ($request->has('cancel')) {
 			return redirect('/issues/'.$issue->id);
 		}
-		$validatedData = $request->validated();
-		$validatedData['vip'] = $request->has('vip');
-		Issue::whereId($issue->id)->update($validatedData);
+		
         if ($request->has('save')) {
-			return redirect('/issues/'.$issue->id);
+			$validatedData = $request->validated();
+			$validatedData['vip'] = $request->has('vip');
+			$issue->update($validatedData);
+			event(new UpdatedIssue($issue, $type='header', $issue->getChanges()));
 		}
+		return redirect('/issues/'.$issue->id);
     }
 
     /**
@@ -293,7 +299,7 @@ class IssuesController extends Controller
 		$issue = Issue::find($id);
 		Issue::whereId($id)->update(['timeClosed' => null]);
 		event(new IssueReopened($issue));
-		event(new NewIssueComment($issue));
+		event(new UpdatedIssue($issue, $type='comment'), []);
 		return redirect()->back();
 	}
 	

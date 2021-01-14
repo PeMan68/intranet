@@ -6,10 +6,34 @@
 	
 </head>
 <body>
+	<span style='font-size: 1em; font-family: Verdana,Arial,sans-serif'>
+		<p>
+			@yield('header')
+		</p>
+	</span>
+	@if (is_null($issue->timeCustomercallback))
+	<span style='font-size: 0.8em; font-family: Verdana,Arial,sans-serif'>
+		<b><i>
+		Kunden har inte fått någon återkoppling ännu!<br><br>
+		Om du kan, kontakta kunden för att ge en första feedback
+		</i></b>
+		<ul>
+			<li>Öppna ärendet, kontrollera status för återkoppling</li>
+			<li>Kontakta kunden för en första återkoppling</li>
+			<li>Markera kunden som kontaktad</li>
+		</ul>
+		<hr>
+	</span>
+	@endif
 	<span style='font-size: 0.8em; font-family: Verdana,Arial,sans-serif'>
 		<p>
+			|
 			<a href="{{ url('/issues/'.$issue->id) }}">Öppna ärende</a>
+			|
+			@yield('links')
+
 		</p>
+		<hr>
 		<table>
 			<tr>
 				<td><b>Typ:</b> </td>
@@ -55,6 +79,7 @@
 		<b>Intern anteckning:</b><br>
 		{!! nl2br(e($issue->descriptionInternal)) !!}
 		</p>
+		<hr>
 		<b>Händelselogg</b>
 		@foreach($issue->issueComments as $comment)
 			@if (isset($comment->comment_internal))
