@@ -249,23 +249,7 @@
 
         <form action="{{ route('issuecomments.update', $new_comment->id) }}" method="post">
             <table class="table-responsive table-sm table-bordered">
-                @if ($comments->count())
-                    <thead>
-                        <th width="20%">Tidpunkt</th>
-                        <th width="40%">Interna anteckningar</th>
-                        <th width="40%">Kommunikation med kund</th>
-                    </thead>
-                    @foreach ($comments as $comment)
-                        <tr>
-                            <td> {{ date('Y-m-d H:i', strtotime($comment->checkin)) }}
-                                <br>
-                                {{ $comment->user->name . ' ' . $comment->user->surname }}
-                            </td>
-                            <td> {!! nl2br(e($comment->comment_internal)) !!} </td>
-                            <td> {!! nl2br(e($comment->comment_external)) !!} </td>
-                        </tr>
-                    @endforeach
-                @endif
+
                 @if (is_null($issue->timeClosed))
                     @method('PUT')
                     @csrf
@@ -278,12 +262,7 @@
                                 rows="3">{{ old('comment_internal') }}</textarea>
                             <small class="text-muted">Intern anteckning</small>
                         </td>
-                        <td>
-                            <textarea class="form-control" id="comment_external" name="comment_external"
-                                rows="3">{{ old('comment_external') }}</textarea>
-                            <small class="text-muted">(Detta fält kommer skickas till kunds e-postadress i kommande
-                                version)</small>
-                        </td>
+
                     </tr>
                     <tr>
                         <td>
