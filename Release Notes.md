@@ -20,7 +20,7 @@
 * Attachments stored in Issues
 * 210112-1  Change to nicer layout of Issue Comments. 
     * Add fields for from/to, choose from customer contact and Internal/Enterprise contacts
-    * Table for Enterprise contactpersons (outside office, but within Enterprise)
+    * Table for contactpersons outside office. Contacts outside Enterprise tagged with 'external' in contacts table.
 
 *Bug fixes:*
 ## Finsihed for next release
