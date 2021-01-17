@@ -32,6 +32,6 @@ class IssueComment extends Model
 	public function scopeHasComments($query)
 	{
 		return $query
-			->where('comment', '<>', '')
+			->where('comment', '<>', '');
 	}
 }
