@@ -12,7 +12,7 @@ class IssueComment extends Model
      * @var array
      */
     protected $fillable = [
-        'issue_id', 'user_id', 'comment_internal', 'comment_external', 'checkin', 'checkout'
+        'issue_id', 'user_id', 'comment', 'checkin', 'checkout'
     ];
 
     //
@@ -32,7 +32,6 @@ class IssueComment extends Model
 	public function scopeHasComments($query)
 	{
 		return $query
-			->where('comment_internal', '<>', '')
-			->OrWhere('comment_external', '<>', '');
+			->where('comment', '<>', '')
 	}
 }

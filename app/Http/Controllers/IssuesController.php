@@ -113,7 +113,7 @@ class IssuesController extends Controller
 				'E_post' => $item->customerMail,
 				'Telefon' => $item->customerTel,
 				'Skapad_av' => $item->userCreate->fullName(),
-				'Senaste_kommentar' => $item->latestComment['comment_internal'],
+				'Senaste_kommentar' => $item->latestComment['comment'],
 
 				'_rowVariant' => $rowVariant,
             ];

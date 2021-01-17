@@ -32,7 +32,7 @@ class GenerateClosedComment
 		$new_comment = new IssueComment;
 		$new_comment->issue_id = $event->issue->id;
 		$new_comment->user_id = Auth::id();
-		$new_comment->comment_internal = 'Ärendet avslutat';
+		$new_comment->comment = 'Ärendet avslutat';
 		$new_comment->checkout = date('Y-m-d H:i',strtotime(now()));
 		$new_comment->checkin = date('Y-m-d H:i',strtotime(now()));
 		$new_comment->Save();

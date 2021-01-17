@@ -118,7 +118,7 @@ $(document).ready(function($) {
 
 
 					<div class="d-inline-block text-truncate stretched-link" style="max-width: 300px;" data-toggle="tooltip" data-html="true" 
-					title="Senaste händelse:<br/>{{ $issue->latestComment['updated_at'] }}<br/>{{ $issue->latestComment['comment_internal'] }}">
+					title="Senaste händelse:<br/>{{ $issue->latestComment['updated_at'] }}<br/>{{ $issue->latestComment['comment'] }}">
 					@if (!is_null($issue->header)) 
 					{{ $issue->header }}
 					@else 

@@ -50,7 +50,8 @@
 		<br>
 		</p>
 		<hr>
-		@if (!empty($issue->issueComments->comment_external))
+		 {{--// ! Gör om innehållet i mailet. comment_external är raderad från DB!  --}}
+		{{-- @if (!empty($issue->issueComments->comment_external))
 		<b>Händelselogg</b>
 		@foreach($issue->issueComments as $comment)
 
@@ -61,7 +62,7 @@
 			@endif
 		@endforeach
 		<p>&nbsp;</p>
-		@endif
+		@endif --}}
 
     </span>
 </body>

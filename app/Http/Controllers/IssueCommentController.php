@@ -75,12 +75,11 @@ class IssueCommentController extends Controller
     public function update(Request $request, IssueComment $issuecomment)
     {
 		$issue = Issue::find($issuecomment->issue_id);
-		if (!is_null($request->comment_internal) or !is_null($request->comment_external))
+		if (!is_null($request->comment))
 		{
 			IssueComment::find($issuecomment->id)->update([
 				'checkin' => date('Y-m-d H:i',strtotime(now())),
-				'comment_internal' => $request->comment_internal,
-				'comment_external' => $request->comment_external,
+				'comment' => $request->comment,
 			]);
 			//Send mail to creator if another user and this is first comment
 			if ($issue->userCreate_id <> Auth::id())

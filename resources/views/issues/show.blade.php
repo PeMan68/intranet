@@ -240,7 +240,7 @@
                 </template>
                 <b-card border-variant="danger">
                     <b-card-text>
-                        {!! nl2br(e($comment->comment_internal)) !!}
+                        {!! nl2br(e($comment->comment)) !!}
                     </b-card-text>
                 </b-card>
             </issue-comment>
@@ -258,8 +258,8 @@
                         <td>
                         </td>
                         <td>
-                            <textarea class="form-control" id="comment_internal" name="comment_internal"
-                                rows="3">{{ old('comment_internal') }}</textarea>
+                            <textarea class="form-control" id="comment" name="comment"
+                                rows="3">{{ old('comment') }}</textarea>
                             <small class="text-muted">Intern anteckning</small>
                         </td>
 

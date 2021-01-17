@@ -14,11 +14,14 @@ class AddContactAndDirectionToCommentsTable extends Migration
     public function up()
     {
         Schema::table('issue_comments', function (Blueprint $table) {
-            $table->bigInteger('contact_id');
-            $table->boolean('outbound')->default('1');
+            $table->bigInteger('contact_id')->default('0');
+            $table->integer('direction')->default('0');
+            $table->integer('type')->default('0');
+            $table->dropColumn('comment_external');
+            $table->renameColumn('comment_internal', 'comment');
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *
@@ -28,7 +31,10 @@ class AddContactAndDirectionToCommentsTable extends Migration
     {
         Schema::table('issue_comments', function (Blueprint $table) {
             $table->dropColumn('contact_id');
-            $table->dropColumn('outbound');
+            $table->dropColumn('direction');
+            $table->dropColumn('type');
+            $table->text('comment_external')->nullable();
+            $table->renameColumn('comment', 'comment_internal');
         });
     }
 }

@@ -82,20 +82,20 @@
 		<hr>
 		<b>Händelselogg</b>
 		@foreach($issue->issueComments as $comment)
-			@if (isset($comment->comment_internal))
+			@if (isset($comment->comment))
 			<hr>
 				{{ date('Y-m-d H:i', strtotime($comment->checkin))  
 				.' '. $comment->user->name . ' ' . $comment->user->surname }} 
 				<i>(Intern kommentar)</i><br>
-				{!! nl2br(e($comment->comment_internal)) !!}
+				{!! nl2br(e($comment->comment)) !!}
 			@endif
-			@if (isset($comment->comment_external))
+			{{-- @if (isset($comment->comment_external))
 			<hr>
 				{{ date('Y-m-d H:i', strtotime($comment->checkin))  
 				.' '. $comment->user->name . ' ' . $comment->user->surname }} 
 				<i>(Meddelande skickat till kund)</i><br>
 				{!! nl2br(e($comment->comment_external)) !!} 
-			@endif
+			@endif --}}
 		@endforeach
 		<p>&nbsp;</p>
 
