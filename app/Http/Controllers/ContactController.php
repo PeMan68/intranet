@@ -27,10 +27,10 @@ class ContactController extends Controller
         //
     }
 
-    public function getContacts()
+    public function get(Request $request)
     {
         $contacts=Contact::where('external', 1)->get();
-        response()->json($contacts);
+        return response()->json($contacts);
     }
     /**
      * Store a newly created resource in storage.
@@ -42,9 +42,14 @@ class ContactController extends Controller
     {
         //TODO Validate request first! this was just to test the function
 
-        Contact::create($request->all());
-        
-        return response()->json(null, 200);
+        $contact = Contact::create($request->all());
+        return response()->json($contact);
+    }
+
+    public function delete($id)
+    {
+        Contact::destroy($id);
+        return response()->json("ok");
     }
 
     /**
