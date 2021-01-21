@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
 {
-
+    protected $guarded = [];
+    
     public function issueComments()
     {
         return $this->hasMany('App\IssueComment');

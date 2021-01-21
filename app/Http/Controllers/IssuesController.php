@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Issue;
 use App\Area;
+use App\Contact;
 use App\Task;
 use App\User;
 use App\Priority;
@@ -19,6 +20,7 @@ use App\Events\Issues\IssueReopened;
 use App\Events\Issues\UpdatedIssue;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Arr;
 class IssuesController extends Controller
 {
 	
@@ -188,11 +190,11 @@ class IssuesController extends Controller
      */
     public function show(Issue $issue)
     {
-		$Comments = IssueComment::
+		$comments = IssueComment::
 			where('issue_id',$issue->id)
 			->hasComments()
 			->get();
-				
+		$contacts = Contact::where('external', 1)->get();		
         $areas = Area::all();
         $tasks = Task::all();
 		$users = User::where('active', 1)->get();
@@ -209,9 +211,16 @@ class IssuesController extends Controller
 		$issue->refresh();
 		$new_comment = check_out_issue($issue);
 		$issue->refresh();
+		$selected = $contacts->map(function ( $contact ) {
+			return [
+				'value' => $contact->id,
+				'text' => $contact->name,
+			];
+		});
+
 		return view('issues.show')->with([
 			'issue' => $issue, 
-			'comments' => $Comments,
+			'comments' => $comments,
 			'areas' => $areas, 
 			'tasks' => $tasks, 
 			'users' => $users,
@@ -219,6 +228,7 @@ class IssuesController extends Controller
 			'followers' => $followers,
 			'follow' => $follow,
 			'new_comment' => $new_comment,
+			'contacts' => $selected,
 			]);
     }
 
@@ -299,7 +309,7 @@ class IssuesController extends Controller
 		$issue = Issue::find($id);
 		Issue::whereId($id)->update(['timeClosed' => null]);
 		event(new IssueReopened($issue));
-		event(new UpdatedIssue($issue, $type='comment'), []);
+		event(new UpdatedIssue($issue, $type='comment', []));
 		return redirect()->back();
 	}
 	

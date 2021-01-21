@@ -222,52 +222,87 @@
             </form>
         </div>
 
+        <div class="container-fluid">
+            @foreach ($comments as $comment)
+                <issue-comment>
+                    <template #date>
+                        {{ date('Y-m-d H:i', strtotime($comment->checkin)) }}
+                    </template>
+                    <template #type>
+                        @switch($comment->type)
+                            @case(0)
+                            <i class="material-icons">info</i>
+                            @break
+                            @case(1)
+                            <i class="material-icons">phone</i>
+                            @break
+                            @case(2)
+                            <i class="material-icons">mail</i>
+                            @break
+                        @endswitch
+					</template>
+                    @switch($comment->direction)
+					{{--
+                        direction==0 > internal note
+                        direction==1 > outbound message
+                        direction==2 > inbound message
+                        --}}
+                        @case(0)
+                        <template #from>
+							{{ $comment->user->name . ' ' . $comment->user->surname }}
+                        </template>
+                        @break
+						
+                        @case(1)
+                        <template #from>
+							{{ $comment->user->name . ' ' . $comment->user->surname }}
+                        </template>
+                        <template #to>
+							<i class="material-icons">forward</i>
+                            {{ $comment->contact_id == 0 ? $comment->issue->customerName : $comment->contact->name }}
+                        </template>
+                        @break
 
-        @foreach ($comments as $comment)
-            <issue-comment>
-                <template #date>
-                    {{ date('Y-m-d H:i', strtotime($comment->checkin)) }}
-                </template>
-                <template #type>
-                    <i class="material-icons">info</i>
-                </template>
-                <template #from>
-                    {{ $comment->user->name . ' ' . $comment->user->surname }}
-                </template>
-                <template #to>
-                    <i class="material-icons">forward</i>
-                    Matteo
-                </template>
-                <b-card border-variant="danger">
-                    <b-card-text>
-                        {!! nl2br(e($comment->comment)) !!}
-                    </b-card-text>
-                </b-card>
-            </issue-comment>
-        @endforeach
-        <strong>Händelselogg</strong>
+                        @case(2)
+                        <template #to>
+							<i class="material-icons">forward</i>
+                            {{ $comment->user->name . ' ' . $comment->user->surname }}
+                        </template>
+                        <template #from>
+                            {{ $comment->contact_id == 0 ? $comment->issue->customerName : $comment->contact->name }}
+                        </template>
+                        @break
+						
+                        @default
+						
+						@endswitch
 
-        <form action="{{ route('issuecomments.update', $new_comment->id) }}" method="post">
-            <table class="table-responsive table-sm table-bordered">
-
-                @if (is_null($issue->timeClosed))
-                    @method('PUT')
-                    @csrf
-                    <input type="hidden" name="follow" value="{{ $follow }}">
-                    <tr>
-                        <td>
-                        </td>
-                        <td>
+						{{-- Change border depending on type of note. TODO not ok --}}
+						<b-card border-variant="{{ $comment->contact_id == 0 ? 'info' : 'danger' }}">
+							<b-card-text>
+                            {!! nl2br(e($comment->comment)) !!}
+                        </b-card-text>
+                    </b-card>
+                </issue-comment>
+            @endforeach
+        </div>
+		@if (is_null($issue->timeClosed))
+		{{ $contacts }}
+			<issue-comment-form 
+				:contacts = "{{ $contacts }}"
+				{{-- :customer = "{{ $comment->issue->customerName }}" --}}
+				></issue-comment-form>
+            <div class="container-fluid">
+                <div class="row">
+                    <form action="{{ route('issuecomments.update', $new_comment->id) }}" method="post">
+                        <div class="col-8">
+                            @method('PUT')
+                            @csrf
+                            <input type="hidden" name="follow" value="{{ $follow }}">
                             <textarea class="form-control" id="comment" name="comment"
                                 rows="3">{{ old('comment') }}</textarea>
                             <small class="text-muted">Intern anteckning</small>
-                        </td>
 
-                    </tr>
-                    <tr>
-                        <td>
-                        </td>
-                        <td>
                             <button type="submit" class="btn btn-primary mr-2" name="save">
                                 Spara kommentar
                             </button>
@@ -276,12 +311,11 @@
                                     Spara och avsluta ärende
                                 </button>
                             @endif
-                        </td>
-                    </tr>
-                @endif
-            </table>
-        </form>
+                        </div>
 
+                    </form>
+                </div>
 
-    </div>
-@endsection
+            </div>
+        @endif
+    @endsection

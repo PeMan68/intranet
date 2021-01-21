@@ -22,7 +22,11 @@ class IssueComment extends Model
     //
 	public function user() {
 		return $this->belongsTo('App\User');
-	}
+    }
+    
+    public function contact() {
+        return $this->belongsTo('App\Contact');
+    }
 	/**
      * Scope a query exclude models without any comment.
      *

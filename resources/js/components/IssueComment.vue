@@ -1,17 +1,14 @@
 <template>
-<div class="container-fluid">
+<div>
     <small>
         <strong>
             <slot name="date"></slot>
             <slot name="type"></slot>
             <slot name="from"></slot>
-                <slot name="to"></slot>
-            </span>
+            <slot name="to"></slot>
         </strong>
     </small>
-
-            <slot></slot>
-
+    <slot></slot>
 </div>
 </template>
 
@@ -19,15 +16,9 @@
 export default {
     data() {
         return {
-
-			icon: 'info',
-			to: '',
-
+            icon: 'info',
+            to: '',
         }
-
-    },
-    mounted() {
-        console.log("Component mounted.");
     },
 };
 </script>
