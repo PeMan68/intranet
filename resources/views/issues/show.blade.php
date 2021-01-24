@@ -278,7 +278,7 @@
 						@endswitch
 
 						{{-- Change border depending on type of note. TODO not ok --}}
-						<b-card border-variant="{{ $comment->contact_id == 0 ? 'info' : 'danger' }}">
+						<b-card style="max-width: 50rem;" border-variant="{{ $comment->contact_id == 0 ? 'info' : 'danger' }}">
 							<b-card-text>
                             {!! nl2br(e($comment->comment)) !!}
                         </b-card-text>
@@ -287,7 +287,6 @@
             @endforeach
         </div>
 		@if (is_null($issue->timeClosed))
-		{{ $contacts }}
 			<issue-comment-form 
 				:contacts = "{{ $contacts }}"
 				{{-- :customer = "{{ $comment->issue->customerName }}" --}}

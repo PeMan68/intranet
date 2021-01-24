@@ -6,27 +6,29 @@
         <b-form-radio value='out'>Utgående meddelande</b-form-radio>
     </b-form-radio-group>
 
-    <b-form-textarea class="my-1" id="textarea" v-model="message" placeholder="Meddelande" rows="3" max-rows="30"></b-form-textarea>
+    <b-form-textarea class="form-style my-1" id="textarea" v-model="message" placeholder="Meddelande" rows="3" max-rows="30"></b-form-textarea>
 
-    <b-form-group class="my-1" v-show="direction != 'internal'" :label="direction == 'out' ? 'Till' : 'Från'" label-for="selected-contact">
-        <b-form-select id="selected-contact" v-model="selected" :options="testcontacts">
+    <b-form-group class="form-style my-1" v-show="direction != 'internal'" :label="direction == 'out' ? 'Till' : 'Från'" label-for="selected-contact">
+        <b-form-select id="selected-contact" v-model="selected" :options="contacts">
             <template #first>
                 <b-form-select-option value="0">Kundkontakt</b-form-select-option>
             </template>
         </b-form-select>
     </b-form-group>
-    <b-form @submit.prevent="submit">
-        <b-form-group class="my-2" label="Skapa ny kontakt">
-            <b-form-input name="name" v-model="newcontactfields.name" placeholder="Namn"></b-form-input>
-            <b-form-input name="email" v-model="newcontactfields.email" placeholder="E-postadress"></b-form-input>
-            <b-form-input name="telephone" v-model="newcontactfields.telephone" placeholder="Telefonnummer"></b-form-input>
-            <b-form-input name="company" v-model="newcontactfields.company" placeholder="Företag"></b-form-input>
-        </b-form-group>
 
-        <b-button type="submit">Spara</b-button>
-    </b-form>
+    <b-form-radio-group v-show="direction != 'internal'" class="my-1" id="type" v-model="type">
+        <b-form-radio value='mail'>E-post</b-form-radio>
+        <b-form-radio value='phone'>Telefon</b-form-radio>
+    </b-form-radio-group>
+
 </div>
 </template>
+
+<style>
+    .form-style {
+        max-width: 50rem;
+    }
+</style>
 
 <script>
 export default {
@@ -38,24 +40,14 @@ export default {
     data() {
         return {
             direction: 'internal',
+            type: 'mail',
             message: '',
             selected: 0,
             name: '',
-            newcontactfields: {},
             errors: {},
             loaded: true,
             success: false,
-            testcontacts: {},
         }
-    },
-
-    mounted() {
-        axios.get('/getContacts')
-            .then(({
-                data
-            }) => {
-                this.testcontacts = data.data;
-            });
     },
 
     methods: {
