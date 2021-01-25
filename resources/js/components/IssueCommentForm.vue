@@ -1,6 +1,6 @@
 <template>
 <div class="container-fluid">
-    <b-form-radio-group class="my-1" id="radio" v-model="fields.direction" >
+    <b-form-radio-group class="my-1" id="radio" v-model="fields.direction">
         <b-form-radio value=0>Intern kommentar</b-form-radio>
         <b-form-radio value=2>Inkommande meddelande</b-form-radio>
         <b-form-radio value=1>Utgående meddelande</b-form-radio>
@@ -27,9 +27,9 @@
 </template>
 
 <style>
-    .form-style {
-        max-width: 50rem;
-    }
+.form-style {
+    max-width: 50rem;
+}
 </style>
 
 <script>
@@ -49,7 +49,7 @@ export default {
                 type: 0,
                 message: '',
                 selected: 0,
-                
+
             },
             errors: {},
             loaded: true,
@@ -68,20 +68,23 @@ export default {
                 this.loaded = false;
                 this.success = false;
                 this.errors = {};
-                axios.post('/api/comment', this.fields).then(response => {
-                    //Clear input fields.
-                    this.fields.direction = 0; 
-                    this.fields.type = 0; 
-                    this.fields.message = ''; 
-                    this.fields.selected = 0; 
-                    this.loaded = true;
-                    this.success = true;
-                }).catch(error => {
+                axios.post('/api/comment', this.fields).then(
+                    response => {
+                        // Clear input fields.
+                        this.fields.direction = 0;
+                        this.fields.type = 0;
+                        this.fields.message = '';
+                        this.fields.selected = 0;
+                        this.loaded = true;
+                        this.success = true;
+                    }
+                ).catch(error => {
                     this.loaded = true;
                     if (error.response.status === 422) {
                         this.errors = error.response.data.errors || {};
                     }
                 });
+                window.location.href = '/issues/' + this.comment.issue_id;
             }
         },
 
