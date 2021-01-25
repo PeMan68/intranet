@@ -218,11 +218,20 @@
                             @endif
                         </div>
                     </div>
-                @endif
-            </form>
-        </div>
-
-        <div class="container-fluid">
+					@endif
+				</form>
+			</div>
+			
+			<div class="container-fluid">
+				@if (is_null($issue->timeClosed))
+							<issue-comment-form 
+				:contacts = "{{ $contacts }}"
+				:comment = "{{ $new_comment }}"
+				:follow = "{{ $follow }}"
+				{{-- :customer = "{{ $comment->issue->customerName }}" --}}
+				></issue-comment-form>
+				@endif
+				
             @foreach ($comments as $comment)
                 <issue-comment>
                     <template #date>
@@ -287,10 +296,6 @@
             @endforeach
         </div>
 		@if (is_null($issue->timeClosed))
-			<issue-comment-form 
-				:contacts = "{{ $contacts }}"
-				{{-- :customer = "{{ $comment->issue->customerName }}" --}}
-				></issue-comment-form>
             <div class="container-fluid">
                 <div class="row">
                     <form action="{{ route('issuecomments.update', $new_comment->id) }}" method="post">

@@ -43,6 +43,50 @@ class IssueCommentController extends Controller
         //
 	}
 
+    // !Test store from axios
+    public function storenew(Request $request)
+    {
+        $issuecomment = IssueComment::find($request->id);
+        $issue = Issue::find($issuecomment->issue_id);
+		if (!is_null($request->message))
+		{
+			IssueComment::find($issuecomment->id)->update([
+				'checkin' => date('Y-m-d H:i:s',strtotime(now())),
+                'comment' => $request->message,
+                'contact_id' => $request->selected,
+                'type' => $request->type,
+                'direction' => $request->direction,
+			]);
+			//Send mail to creator if another user and this is first comment
+			if ($issue->userCreate_id <> Auth::id())
+			{
+				if (IssueComment::where('issue_id', $issuecomment->issue_id)
+					->count() == 1) 
+				{
+					event(new IssueCommentedFirstTime($issue));
+				}
+			}
+			//Send mail to staff who is following
+			//Add commenter as follower if not already
+			if (!$request->follow) {
+                $issue->followers()->attach(Auth::id());
+			}
+            event(new UpdatedIssue($issue, $type='comment',[]));
+		}
+        if ($request->has('saveAndClose')) {
+			$validatedData['timeClosed'] = date('Y-m-d H:i:s');
+			Issue::whereId($issuecomment->issue_id)->update([
+			'timeClosed' => date('Y-m-d H:i')
+			]);
+			event(new IssueClosed($issue));
+			event(new UpdatedIssue($issue, $type='comment',[]));
+			return redirect('/issues');
+			
+		}
+        return redirect('/issues/'.$issuecomment->issue_id);
+        return response()->json($issuecomment, 200);
+		
+    }
     /**
      * Display the specified resource.
      *

@@ -12,7 +12,7 @@ class IssueComment extends Model
      * @var array
      */
     protected $fillable = [
-        'issue_id', 'user_id', 'comment', 'checkin', 'checkout'
+        'issue_id', 'user_id', 'comment', 'checkin', 'checkout', 'contact_id', 'direction', 'type'
     ];
 
     //

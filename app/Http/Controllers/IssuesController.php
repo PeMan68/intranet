@@ -193,6 +193,7 @@ class IssuesController extends Controller
 		$comments = IssueComment::
 			where('issue_id',$issue->id)
 			->hasComments()
+			->orderBy('checkin', 'desc')
 			->get();
 		$contacts = Contact::where('external', 1)->get();		
         $areas = Area::all();
