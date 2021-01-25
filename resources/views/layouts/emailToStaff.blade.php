@@ -81,7 +81,7 @@
 		</p>
 		<hr>
 		<b>Händelselogg</b>
-		@foreach($issue->issueComments as $comment)
+		@foreach($issue->issueComments()->orderBy('checkin', 'desc')->get() as $comment)
 			@if (isset($comment->comment))
 			<hr>
 				{{ date('Y-m-d H:i', strtotime($comment->checkin))  
@@ -89,13 +89,6 @@
 				<i>(Intern kommentar)</i><br>
 				{!! nl2br(e($comment->comment)) !!}
 			@endif
-			{{-- @if (isset($comment->comment_external))
-			<hr>
-				{{ date('Y-m-d H:i', strtotime($comment->checkin))  
-				.' '. $comment->user->name . ' ' . $comment->user->surname }} 
-				<i>(Meddelande skickat till kund)</i><br>
-				{!! nl2br(e($comment->comment_external)) !!} 
-			@endif --}}
 		@endforeach
 		<p>&nbsp;</p>
 
