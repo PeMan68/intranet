@@ -45,7 +45,6 @@ export default {
 
     data() {
         return {
-            name: '',
             fields: {
                 direction: 0,
                 type: 0,
