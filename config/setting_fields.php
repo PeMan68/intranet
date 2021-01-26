@@ -110,7 +110,7 @@ return [
                 'label' => 'Ärendenummer byggs av "prefix" + ÅÅxxx, xxx är löpnummer per år', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'I-' // default value if you want
+                'value' => 'S-' // default value if you want
             ],
             [
                 'type' => 'text', // input fields type
