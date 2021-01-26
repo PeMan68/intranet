@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/posten', 'PagesController@posten');
 Route::get('/reception', 'PagesController@reception');
@@ -45,6 +46,7 @@ Route::get('/issues/{id}/follow','IssuesController@follow')->name('issues.follow
 Route::get('/issues/{id}/unfollow','IssuesController@unfollow')->name('issues.unfollow')->middleware('auth');
 Route::get('/issues/{id}/contacted','IssuesController@contacted')->name('issues.contacted')->middleware('auth');
 Route::get('/issues/{id}/uncontacted','IssuesController@uncontacted')->name('issues.uncontacted')->middleware('auth');
+Route::get('/issues/{id}/close','IssuesController@close')->name('issues.close')->middleware('auth');
 Route::get('/issues/{id}/reopen','IssuesController@reopen')->name('issues.reopen')->middleware('auth');
 
 Route::resource('/visitors','VisitorsController');
@@ -59,4 +61,6 @@ Route::get('/locations/delete/{id}', 'LocationController@destroy')->name('locati
 
 Route::get('/posts', 'PostController@index')->name('posts.index')->middleware('auth');
 
+Route::resource('/contacts', 'ContactController')->middleware('auth');
+Route::get('/getContacts', 'ContactController@getContacts');
 

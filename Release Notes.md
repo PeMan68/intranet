@@ -13,9 +13,6 @@
 * 210109-10 Ability to edit comments in Issues.
 * 210109-11 Pickup incoming emails, automatic adding comments and notification to followers.
 * 210111    Edit links in menu from Settings-db
-* 210112-1  Change to nicer layout of Issue Comments. 
-    * Add fields for from/to, choose from customer contact and Internal/Enterprise contacts
-    * Table for Enterprise contactpersons (outside office, but within Enterprise)
 * 210112-2  Save customer details for autofill
 
 ### ***Working on***
@@ -31,6 +28,9 @@
 * All emailing is moved to queues and handled by workers
 * Jobs created for reminders to First line and Second Line of unattended Issues
 * Updated Email templates
+* 210112-1  Change to nicer layout of Issue Comments. 
+    * Add fields for from/to, choose from customer contact and Internal/Enterprise contacts
+    * Table for contactpersons outside office. Contacts outside Enterprise tagged with 'external' in contacts table.
 
 *Bug fixes:*
 * 2020-12-30 Fixed Cancel on calendar form from being validated

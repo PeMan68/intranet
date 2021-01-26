@@ -19,7 +19,6 @@
                     <b-input-group-append>
                     </b-input-group-append>
                 </b-input-group>
-                </b-form-group>
             </b-col>
 
             <b-col class="my-1" cols="12" lg="4" order-lg="2">

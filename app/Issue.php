@@ -55,7 +55,7 @@ class Issue extends Model
 	}
 	
 	public function latestComment() {
-		return $this->hasOne('App\IssueComment')->where('comment_internal','!=',null)->latest();
+		return $this->hasOne('App\IssueComment')->where('comment','!=',null)->latest();
 	}
 
 	public function task() {

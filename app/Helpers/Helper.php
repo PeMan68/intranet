@@ -108,7 +108,7 @@ if (!function_exists('check_out_issue')){
 		$new_comment = new IssueComment;
 		$new_comment->issue_id = $issue->id;
 		$new_comment->user_id = Auth::id();
-		$new_comment->checkout = date('Y-m-d H:i',strtotime(now()));
+		$new_comment->checkout = date('Y-m-d H:i:s',strtotime(now()));
 		$new_comment->Save();
 		
 		return $new_comment;
