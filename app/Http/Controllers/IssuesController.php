@@ -196,7 +196,8 @@ class IssuesController extends Controller
 			->hasComments()
 			->orderBy('checkin', 'desc')
 			->get();
-		$contacts = Contact::where('external', 1)->get();		
+			// external contact means outside Enterprise, ie customers
+		$contacts = Contact::where('external', 0)->get();		
         $areas = Area::all();
         $tasks = Task::all();
 		$users = User::where('active', 1)->get();
