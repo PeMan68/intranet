@@ -33,8 +33,8 @@ class GenerateReopenedComment
 		$new_comment->issue_id = $event->issue->id;
 		$new_comment->user_id = Auth::id();
 		$new_comment->comment = 'Ärendet öppnat igen';
-		$new_comment->checkout = date('Y-m-d H:i',strtotime(now()));
-		$new_comment->checkin = date('Y-m-d H:i',strtotime(now()));
+		$new_comment->checkout = date('Y-m-d H:i:s',strtotime(now()));
+		$new_comment->checkin = date('Y-m-d H:i:s',strtotime(now()));
 		$new_comment->Save();
     }
 }

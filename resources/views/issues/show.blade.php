@@ -47,7 +47,12 @@
                     <a class="btn btn-danger btn-sm m-2" href="{{ route('issues.reopen', $issue->id) }}" role="button">Öppna
                         ärende igen</a>
                 </div>
-
+            @else
+                <div class="alert alert-success">
+                    Klicka här när ärendet är klart.
+                    <a class="btn btn-success btn-sm m-2" href="{{ route('issues.close', $issue->id) }}"
+                        role="button">Avsluta ärende</a>
+                </div>
             @endif
             <form action="{{ url('issues', [$issue->id]) }}" method="post" id="issueheader">
                 @method('PUT')
@@ -217,21 +222,22 @@
                                 </div>
                             @endif
                         </div>
+
                     </div>
-					@endif
-				</form>
-			</div>
-			
-			<div class="container-fluid">
-				@if (is_null($issue->timeClosed))
-							<issue-comment-form 
-				:contacts = "{{ $contacts }}"
-				:comment = "{{ $new_comment }}"
-				:follow = "{{ $follow }}"
-				{{-- :customer = "{{ $comment->issue->customerName }}" --}}
-				></issue-comment-form>
-				@endif
-				
+                @endif
+            </form>
+        </div>
+    </div>
+
+    <div class="container-fluid py-3 my-3" style="background-color: rgb(240, 240, 240)">
+        <div>
+            <h3>Lägg till anteckning</h3>
+            @if (is_null($issue->timeClosed))
+			<issue-comment-form :contacts="{{ $contacts }}" :comment="{{ $new_comment }}" :follow="{{ $follow }}">
+			</issue-comment-form>
+            @endif
+			<h3>Historik</h3>
+            <hr>
             @foreach ($comments as $comment)
                 <issue-comment>
                     <template #date>
@@ -249,77 +255,51 @@
                             <i class="material-icons">mail</i>
                             @break
                         @endswitch
-					</template>
+                    </template>
                     @switch($comment->direction)
-					{{--
+                        {{--
                         direction==0 > internal note
                         direction==1 > outbound message
                         direction==2 > inbound message
                         --}}
                         @case(0)
                         <template #from>
-							{{ $comment->user->name . ' ' . $comment->user->surname }}
+                            {{ $comment->user->name . ' ' . $comment->user->surname }}
                         </template>
                         @break
-						
+
                         @case(1)
                         <template #from>
-							{{ $comment->user->name . ' ' . $comment->user->surname }}
+                            {{ $comment->user->name . ' ' . $comment->user->surname }}
                         </template>
                         <template #to>
-							<i class="material-icons">forward</i>
+                            <i class="material-icons">forward</i>
                             {{ $comment->contact_id == 0 ? $comment->issue->customerName : $comment->contact->name }}
                         </template>
                         @break
 
                         @case(2)
                         <template #to>
-							<i class="material-icons">forward</i>
+                            <i class="material-icons">forward</i>
                             {{ $comment->user->name . ' ' . $comment->user->surname }}
                         </template>
                         <template #from>
                             {{ $comment->contact_id == 0 ? $comment->issue->customerName : $comment->contact->name }}
                         </template>
                         @break
-						
-                        @default
-						
-						@endswitch
 
-						{{-- Change border depending on type of note. TODO not ok --}}
-						<b-card style="max-width: 50rem;" border-variant="{{ $comment->contact_id == 0 ? 'info' : 'danger' }}">
-							<b-card-text>
+                        @default
+
+                    @endswitch
+
+                    <b-card style="max-width: 50rem;"
+                        border-variant="{{ $comment->direction == 0 ? 'info' : ($comment->contact_id == 0 ? 'success' : 'warning') }}">
+                        <b-card-text>
                             {!! nl2br(e($comment->comment)) !!}
                         </b-card-text>
                     </b-card>
                 </issue-comment>
             @endforeach
         </div>
-		@if (is_null($issue->timeClosed))
-            <div class="container-fluid">
-                <div class="row">
-                    <form action="{{ route('issuecomments.update', $new_comment->id) }}" method="post">
-                        <div class="col-8">
-                            @method('PUT')
-                            @csrf
-                            <input type="hidden" name="follow" value="{{ $follow }}">
-                            <textarea class="form-control" id="comment" name="comment"
-                                rows="3">{{ old('comment') }}</textarea>
-                            <small class="text-muted">Intern anteckning</small>
-
-                            <button type="submit" class="btn btn-primary mr-2" name="save">
-                                Spara kommentar
-                            </button>
-                            @if ($auth_user->id == $issue->userCurrent_id)
-                                <button type="submit" class="btn btn-success mr-2" name="saveAndClose">
-                                    Spara och avsluta ärende
-                                </button>
-                            @endif
-                        </div>
-
-                    </form>
-                </div>
-
-            </div>
-        @endif
-    @endsection
+    </div>
+@endsection

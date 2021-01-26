@@ -46,6 +46,7 @@ Route::get('/issues/{id}/follow','IssuesController@follow')->name('issues.follow
 Route::get('/issues/{id}/unfollow','IssuesController@unfollow')->name('issues.unfollow')->middleware('auth');
 Route::get('/issues/{id}/contacted','IssuesController@contacted')->name('issues.contacted')->middleware('auth');
 Route::get('/issues/{id}/uncontacted','IssuesController@uncontacted')->name('issues.uncontacted')->middleware('auth');
+Route::get('/issues/{id}/close','IssuesController@close')->name('issues.close')->middleware('auth');
 Route::get('/issues/{id}/reopen','IssuesController@reopen')->name('issues.reopen')->middleware('auth');
 
 Route::resource('/visitors','VisitorsController');

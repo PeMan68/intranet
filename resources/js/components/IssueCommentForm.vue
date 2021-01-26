@@ -1,12 +1,17 @@
 <template>
-<div class="container-fluid">
-    <b-form-radio-group class="my-1" id="radio" v-model="fields.direction">
-        <b-form-radio value=0>Intern kommentar</b-form-radio>
+<div class="my-3">
+    <b-form-radio-group v-on:change="changeType" class="my-1" id="direction" v-model="fields.direction">
+        <b-form-radio value=0>Anteckning</b-form-radio>
         <b-form-radio value=2>Inkommande meddelande</b-form-radio>
         <b-form-radio value=1>Utgående meddelande</b-form-radio>
     </b-form-radio-group>
 
-    <b-form-textarea class="form-style my-1" id="textarea" v-model="fields.message" placeholder="Meddelande" rows="3" max-rows="30"></b-form-textarea>
+    <b-form-radio-group v-show="showType" class="my-1" id="type" v-model="fields.type">
+
+        <b-form-radio v-show=false value=0>Intern</b-form-radio>
+        <b-form-radio value=2>E-post</b-form-radio>
+        <b-form-radio value=1>Telefon</b-form-radio>
+    </b-form-radio-group>
 
     <b-form-group class="form-style my-1" v-show="fields.direction != 0" :label="fields.direction == 1 ? 'Till' : 'Från'" label-for="selected-contact">
         <b-form-select id="selected-contact" v-model="fields.selected" :options="contacts">
@@ -16,12 +21,9 @@
         </b-form-select>
     </b-form-group>
 
-    <b-form-radio-group v-show="fields.direction != 0" class="my-1" id="type" v-model="fields.type">
-        <b-form-radio value=2>E-post</b-form-radio>
-        <b-form-radio value=1>Telefon</b-form-radio>
-    </b-form-radio-group>
+    <b-form-textarea class="form-style my-1" id="textarea" v-model="fields.message" placeholder="Meddelande" rows="3" max-rows="30"></b-form-textarea>
 
-    <button @click="submit">Spara</button>
+    <b-button @click="submit">Spara</b-button>
 
 </div>
 </template>
@@ -54,6 +56,7 @@ export default {
             errors: {},
             loaded: true,
             success: false,
+            showType: false,
         }
     },
 
@@ -88,6 +91,19 @@ export default {
             }
         },
 
+        changeType() {
+            this.$nextTick(() => {
+                console.log(this.fields.direction);
+                if (this.fields.direction == '0') {
+                    this.fields.type = 0;
+                    this.fields.selected = 0;
+                    this.showType = false;
+                } else {
+                    this.showType = true;
+                }
+            });
+        },
     },
-};
+
+    };
 </script>

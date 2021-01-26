@@ -73,16 +73,7 @@ class IssueCommentController extends Controller
 			}
             event(new UpdatedIssue($issue, $type='comment',[]));
 		}
-        if ($request->has('saveAndClose')) {
-			$validatedData['timeClosed'] = date('Y-m-d H:i:s');
-			Issue::whereId($issuecomment->issue_id)->update([
-			'timeClosed' => date('Y-m-d H:i')
-			]);
-			event(new IssueClosed($issue));
-			event(new UpdatedIssue($issue, $type='comment',[]));
-			return redirect('/issues');
-			
-		}
+        
         return redirect('/issues/'.$issuecomment->issue_id);
         return response()->json($issuecomment, 200);
 		

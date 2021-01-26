@@ -16,8 +16,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Mail\IssueCreated;
 use Illuminate\Support\Facades\Mail;
 use App\Events\Issues\NewIssue;
-use App\Events\Issues\IssueReopened;
 use App\Events\Issues\UpdatedIssue;
+use App\Events\Issues\IssueClosed;
+use App\Events\Issues\IssueReopened;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Arr;
@@ -305,6 +306,20 @@ class IssuesController extends Controller
 		return redirect()->back();
 	}
 	
+	public function close($id)
+	{
+
+		// $validatedData['timeClosed'] = date('Y-m-d H:i:s');
+		$issue = Issue::find($id);
+		$issue->update([
+		'timeClosed' => date('Y-m-d H:i:s')
+		]);
+		event(new IssueClosed($issue));
+		event(new UpdatedIssue($issue, $type='comment',[]));
+		return redirect('/issues');
+		
+	}
+
 	public function reopen($id)
 	{
 		$issue = Issue::find($id);
