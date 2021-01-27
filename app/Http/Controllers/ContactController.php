@@ -14,7 +14,31 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $contacts = Contact::all()->map(function($item) {
+            return [
+                'Id' => $item->id,
+                'Namn' => $item->name,
+                'Företag' => $item->company,
+                'E-post' => $item->mail,
+                'Telefon' => $item->telephone,
+                'Adress_1' => $item->adress1,
+                'Adress_2' => $item->adress2,
+                'Postnummer' => $item->zip_city,
+                'Kundnummer' => $item->customer_number,
+                'Intern' => $item->external,
+            ];
+        });
+
+        $fields = collect([]);
+        $fields->push(['key' => 'Namn']);
+        $fields->push(['key' => 'Företag']);
+        $fields->push(['key' => 'E-post']);
+        $fields->push(['key' => 'Telefon']);
+        $fields->push(['key' => 'Intern']);
+        $fields->push(['key' => 'Ändra']);
+
+
+        return view('contacts.index', ['contacts' => $contacts, 'fields' => $fields]);
     }
 
     /**

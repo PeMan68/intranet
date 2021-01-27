@@ -14,11 +14,12 @@
 * 210109-11 Pickup incoming emails, automatic adding comments and notification to followers.
 * 210111    Edit links in menu from Settings-db
 * 210112-2  Save customer details for autofill
-* 210126-01 CRUD for contacts
+
 
 ### ***Working on***
 *Features:*
 * Attachments stored in Issues
+* 210126-01 CRUD for contacts
 
 *Bug fixes:*
 ## Finsihed for next release
