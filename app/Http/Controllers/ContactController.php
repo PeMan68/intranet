@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\Http\Requests\StoreContact;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -48,26 +49,19 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('contacts.create');
     }
 
-    public function get(Request $request)
-    {
-        $contacts=Contact::where('external', 1)->get();
-        return response()->json($contacts);
-    }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreContact $request)
     {
-        //TODO Validate request first! this was just to test the function
-
-        $contact = Contact::create($request->all());
-        return response()->json($contact);
+        $validatedData = $request->validated();
+        
     }
 
     public function delete($id)
