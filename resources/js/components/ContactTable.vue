@@ -33,6 +33,10 @@
         hover
 
         >
+    <template #cell(intern)="data">
+        <template v-if="data.item.Intern"></template>
+        <template v-else>Ja</template>
+    </template>
     <template #cell(ändra)="data">
         <a :href="'/contacts/' + data.item.Id + '/edit'"><i class="material-icons">edit</i></a>
     </template>

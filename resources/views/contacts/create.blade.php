@@ -15,9 +15,9 @@
                         <form action="/contacts" method="post">
                             @csrf
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="external" id="external" value="1"
-                                    {{ old('external') == '1' ? 'checked' : '' }}>
-                                <label class="form-check-label" for="external">Hör inte till organisationen</label>
+                                <input class="form-check-input" type="checkbox" name="internal" id="internal" value="1"
+                                    {{ old('internal') == '1' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="internal">Hör till organisationen</label>
                             </div>
 
                             <div class="form-group">

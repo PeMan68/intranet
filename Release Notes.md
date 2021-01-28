@@ -32,7 +32,7 @@
 * Updated Email templates
 * 210112-1  Change to nicer layout of Issue Comments. 
     * Add fields for from/to, choose from customer contact and Internal/Enterprise contacts
-    * Table for contactpersons outside office. Contacts outside Enterprise tagged with 'external' in contacts table.
+    * Table for contactpersons outside app-users. Contacts inside Enterprise tagged with 'internal' in contacts table.
 
 *Bug fixes:*
 * 2020-12-30 Fixed Cancel on calendar form from being validated

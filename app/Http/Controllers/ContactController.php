@@ -26,7 +26,7 @@ class ContactController extends Controller
                 'Adress_2' => $item->adress2,
                 'Postnummer' => $item->zip_city,
                 'Kundnummer' => $item->customer_number,
-                'Intern' => $item->external,
+                'Intern' => $item->internal,
             ];
         });
 
@@ -61,7 +61,7 @@ class ContactController extends Controller
     public function store(StoreContact $request)
     {
         $validatedData = $request->validated();
-        
+
     }
 
     public function delete($id)
