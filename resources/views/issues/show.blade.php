@@ -105,8 +105,7 @@
                                         <option value="-">---</option>
 
                                         @foreach ($tasks as $task)
-                                            <option value="{{ $task->id }}" @if ($task->id == $issue->task_id) selected
-                                        @endif>{{ $task->name }}</option>
+                                            <option value="{{ $task->id }}" {{ $task->id == $issue->task_id ? 'selected' : '' }}> {{ $task->name }}</option>
                                         @endforeach
                                     </select></td>
                             </tr>
