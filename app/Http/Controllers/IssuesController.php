@@ -197,7 +197,7 @@ class IssuesController extends Controller
 			->orderBy('checkin', 'desc')
 			->get();
 			// internal contact means inside Enterprise, ie not customers
-		$contacts = Contact::where('internal', 0)->get();		
+		$contacts = Contact::where('internal', 1)->get();		
         $areas = Area::all();
         $tasks = Task::all();
 		$users = User::where('active', 1)->get();

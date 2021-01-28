@@ -20,10 +20,10 @@ class ContactController extends Controller
                 'Id' => $item->id,
                 'Namn' => $item->name,
                 'Företag' => $item->company,
-                'E-post' => $item->mail,
+                'E-post' => $item->email,
                 'Telefon' => $item->telephone,
-                'Adress_1' => $item->adress1,
-                'Adress_2' => $item->adress2,
+                'Adress_1' => $item->address1,
+                'Adress_2' => $item->address2,
                 'Postnummer' => $item->zip_city,
                 'Kundnummer' => $item->customer_number,
                 'Intern' => $item->internal,
@@ -61,13 +61,8 @@ class ContactController extends Controller
     public function store(StoreContact $request)
     {
         $validatedData = $request->validated();
-
-    }
-
-    public function delete($id)
-    {
-        Contact::destroy($id);
-        return response()->json("ok");
+        $contact = Contact::create($validatedData);
+        return redirect('/contacts')->with('message', 'Kontakt tillagd ('.$contact->name.')');
     }
 
     /**
@@ -89,7 +84,7 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        //
+        return view('contacts.edit', ['contact' => $contact]);
     }
 
     /**
@@ -99,19 +94,23 @@ class ContactController extends Controller
      * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
+    public function update(StoreContact $request, Contact $contact)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Contact $contact)
-    {
-        //
+        if ($request->has('delete')) {
+            Contact::find($contact->id)->delete();
+            return redirect('/contacts')->with('message', $contact->name.' raderad');
+        }
+        if ($request->has('abort')) {
+            return redirect('/contacts');
+        }
+        if ($request->has('save')) {
+            $validatedData = $request->validated();
+            if (!$request->has('internal')) {
+                $validatedData['internal'] = 0;
+            }
+            Contact::whereId($contact->id)->update($validatedData);
+            return redirect('/contacts')->with('message', $contact->name.' uppdaterad');
+        }
+        return redirect('/contacts');
     }
 }

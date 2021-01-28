@@ -25,7 +25,14 @@ class StoreContact extends FormRequest
     {
         return [
             'name' => 'required',
+            'company' => 'nullable',
+            'telephone' => 'nullable',
+            'address1' => 'nullable',
+            'address2' => 'nullable',
+            'zip_city' => 'nullable',
+            'customer_number' => 'nullable',
             'email' => 'nullable|email',
+            'internal' => 'nullable',
 
         ];
     }
