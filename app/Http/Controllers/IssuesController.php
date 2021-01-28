@@ -220,6 +220,7 @@ class IssuesController extends Controller
 				'text' => $contact->name,
 			];
 		});
+		$selected->push(['value' => 0, 'text' => $issue->customerName]);
 
 		return view('issues.show')->with([
 			'issue' => $issue, 
