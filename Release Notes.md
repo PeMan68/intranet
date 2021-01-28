@@ -29,10 +29,10 @@
 * All emailing is moved to queues and handled by workers
 * Jobs created for reminders to First line and Second Line of unattended Issues
 * Updated Email templates
-* 210112-1  Change to nicer layout of Issue Comments. 
+* 210112-1  Change to nicer layout of Issue Comments. (**run migration**)
     * Add fields for from/to, choose from customer contact and Internal/Enterprise contacts
     * Table for contactpersons outside app-users. Contacts inside Enterprise tagged with 'internal' in contacts table.
-* 210126-01 CRUD for contacts
+* 210126-01 CRUD for contacts (**run migration**)
 
 *Bug fixes:*
 * 2020-12-30 Fixed Cancel on calendar form from being validated

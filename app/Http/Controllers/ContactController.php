@@ -32,10 +32,10 @@ class ContactController extends Controller
 
         $fields = collect([]);
         $fields->push(['key' => 'Namn']);
-        $fields->push(['key' => 'Företag']);
+        $fields->push(['key' => 'Företag', 'sortable' => true]);
         $fields->push(['key' => 'E-post']);
         $fields->push(['key' => 'Telefon']);
-        $fields->push(['key' => 'Intern']);
+        $fields->push(['key' => 'Intern', 'sortable' => true]);
         $fields->push(['key' => 'Ändra']);
 
 
