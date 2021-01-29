@@ -25,7 +25,7 @@ class IssueComment extends Model
     }
     
     public function contact() {
-        return $this->belongsTo('App\Contact');
+        return $this->belongsTo('App\Contact')->withDefault(['name'=>'*anonym*']);
     }
 	/**
      * Scope a query exclude models without any comment.
