@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\Http\Requests\StoreContact;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -14,7 +15,31 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $contacts = Contact::all()->map(function($item) {
+            return [
+                'Id' => $item->id,
+                'Namn' => $item->name,
+                'Företag' => $item->company,
+                'E-post' => $item->email,
+                'Telefon' => $item->telephone,
+                'Adress_1' => $item->address1,
+                'Adress_2' => $item->address2,
+                'Postnummer' => $item->zip_city,
+                'Kundnummer' => $item->customer_number,
+                'Intern' => $item->internal,
+            ];
+        });
+
+        $fields = collect([]);
+        $fields->push(['key' => 'Namn']);
+        $fields->push(['key' => 'Företag', 'sortable' => true]);
+        $fields->push(['key' => 'E-post']);
+        $fields->push(['key' => 'Telefon']);
+        $fields->push(['key' => 'Intern', 'sortable' => true]);
+        $fields->push(['key' => 'Ändra']);
+
+
+        return view('contacts.index', ['contacts' => $contacts, 'fields' => $fields]);
     }
 
     /**
@@ -24,32 +49,20 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('contacts.create');
     }
 
-    public function get(Request $request)
-    {
-        $contacts=Contact::where('external', 1)->get();
-        return response()->json($contacts);
-    }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreContact $request)
     {
-        //TODO Validate request first! this was just to test the function
-
-        $contact = Contact::create($request->all());
-        return response()->json($contact);
-    }
-
-    public function delete($id)
-    {
-        Contact::destroy($id);
-        return response()->json("ok");
+        $validatedData = $request->validated();
+        $contact = Contact::create($validatedData);
+        return redirect('/contacts')->with('message', 'Kontakt tillagd ('.$contact->name.')');
     }
 
     /**
@@ -71,7 +84,7 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        //
+        return view('contacts.edit', ['contact' => $contact]);
     }
 
     /**
@@ -81,19 +94,23 @@ class ContactController extends Controller
      * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
+    public function update(StoreContact $request, Contact $contact)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Contact $contact)
-    {
-        //
+        if ($request->has('delete')) {
+            Contact::find($contact->id)->delete();
+            return redirect('/contacts')->with('message', $contact->name.' raderad');
+        }
+        if ($request->has('abort')) {
+            return redirect('/contacts');
+        }
+        if ($request->has('save')) {
+            $validatedData = $request->validated();
+            if (!$request->has('internal')) {
+                $validatedData['internal'] = 0;
+            }
+            Contact::whereId($contact->id)->update($validatedData);
+            return redirect('/contacts')->with('message', $contact->name.' uppdaterad');
+        }
+        return redirect('/contacts');
     }
 }

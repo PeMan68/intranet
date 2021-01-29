@@ -13,11 +13,8 @@
         <b-form-radio value=1>Telefon</b-form-radio>
     </b-form-radio-group>
 
-    <b-form-group class="form-style my-1" v-show="fields.direction != 0" :label="fields.direction == 1 ? 'Till' : 'Från'" label-for="selected-contact">
+    <b-form-group v-b-popover.hover.right="'Saknar du en kontakt? Lägg till via menyn Hantera kontakter'" class="form-style my-1" v-show="fields.direction != 0" :label="fields.direction == 1 ? 'Till' : 'Från'" label-for="selected-contact">
         <b-form-select id="selected-contact" v-model="fields.selected" :options="contacts">
-            <template #first>
-                <b-form-select-option value="0">Kundkontakt</b-form-select-option>
-            </template>
         </b-form-select>
     </b-form-group>
 

@@ -62,5 +62,4 @@ Route::get('/locations/delete/{id}', 'LocationController@destroy')->name('locati
 Route::get('/posts', 'PostController@index')->name('posts.index')->middleware('auth');
 
 Route::resource('/contacts', 'ContactController')->middleware('auth');
-Route::get('/getContacts', 'ContactController@getContacts');
 

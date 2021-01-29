@@ -196,8 +196,8 @@ class IssuesController extends Controller
 			->hasComments()
 			->orderBy('checkin', 'desc')
 			->get();
-			// external contact means outside Enterprise, ie customers
-		$contacts = Contact::where('external', 0)->get();		
+			// internal contact means inside Enterprise, ie not customers
+		$contacts = Contact::where('internal', 1)->get();		
         $areas = Area::all();
         $tasks = Task::all();
 		$users = User::where('active', 1)->get();
@@ -220,6 +220,7 @@ class IssuesController extends Controller
 				'text' => $contact->name,
 			];
 		});
+		$selected->push(['value' => 0, 'text' => $issue->customerName]);
 
 		return view('issues.show')->with([
 			'issue' => $issue, 

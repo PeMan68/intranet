@@ -14,7 +14,7 @@
 * 210109-11 Pickup incoming emails, automatic adding comments and notification to followers.
 * 210111    Edit links in menu from Settings-db
 * 210112-2  Save customer details for autofill
-* 210126-01 CRUD for contacts
+
 
 ### ***Working on***
 *Features:*
@@ -24,14 +24,16 @@
 ## Finsihed for next release
 *Features*
 * 210109-3 Automatic selection for viewing all Issues or only the latest
-    * Default should be less records, while search should include all
+    * Default is latest records, while search should include all
 * 210109-6  Add email to customer for registered Issue
-* All emailing is moved to queues and handled by workers
-* Jobs created for reminders to First line and Second Line of unattended Issues
+* All emailing is moved to queues and handled by workers (**requires workers on server**)
+* Jobs created for reminders to First line and Second Line of unattended Issues (**requires check of timers in Settings**)
 * Updated Email templates
-* 210112-1  Change to nicer layout of Issue Comments. 
+* 210112-1  Change to nicer layout of Issue Comments. (**requires migration**)
     * Add fields for from/to, choose from customer contact and Internal/Enterprise contacts
-    * Table for contactpersons outside office. Contacts outside Enterprise tagged with 'external' in contacts table.
+    * Table for contactpersons outside app-users. Contacts inside Enterprise tagged with 'internal' in contacts table.
+* 210126-01 CRUD for contacts (**requires migration**)
+* Added prefix for Issues numers to Settings (default 'S-')
 
 *Bug fixes:*
 * 2020-12-30 Fixed Cancel on calendar form from being validated

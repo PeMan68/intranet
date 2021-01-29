@@ -29,7 +29,12 @@
                         title="Checka tillbaks ärendet när du är klar så det inte är blockerat för andra användare"
                         style="vertical-align: middle;">help</i>
                 </a>
+                @if (is_null($issue->timeClosed))
+                    <a class="btn btn-success btn-sm m-2" href="{{ route('issues.close', $issue->id) }}"
+                        role="button">Avsluta ärende</a>
+                @endif
             @endif
+
         </div>
         <div class="card-body">
             @if ($auth_user->id != $issue->userCurrent_id)
@@ -46,12 +51,6 @@
                     Ärendet är avslutat.
                     <a class="btn btn-danger btn-sm m-2" href="{{ route('issues.reopen', $issue->id) }}" role="button">Öppna
                         ärende igen</a>
-                </div>
-            @else
-                <div class="alert alert-success">
-                    Klicka här när ärendet är klart.
-                    <a class="btn btn-success btn-sm m-2" href="{{ route('issues.close', $issue->id) }}"
-                        role="button">Avsluta ärende</a>
                 </div>
             @endif
             <form action="{{ url('issues', [$issue->id]) }}" method="post" id="issueheader">
@@ -106,8 +105,7 @@
                                         <option value="-">---</option>
 
                                         @foreach ($tasks as $task)
-                                            <option value="{{ $task->id }}" @if ($task->id == $issue->task_id) selected
-                                        @endif>{{ $task->name }}</option>
+                                            <option value="{{ $task->id }}" {{ $task->id == $issue->task_id ? 'selected' : '' }}> {{ $task->name }}</option>
                                         @endforeach
                                     </select></td>
                             </tr>
@@ -233,10 +231,10 @@
         <div>
             <h3>Lägg till anteckning</h3>
             @if (is_null($issue->timeClosed))
-			<issue-comment-form :contacts="{{ $contacts }}" :comment="{{ $new_comment }}" :follow="{{ $follow }}">
-			</issue-comment-form>
+                <issue-comment-form :contacts="{{ $contacts }}" :comment="{{ $new_comment }}" :follow="{{ $follow }}">
+                </issue-comment-form>
             @endif
-			<h3>Historik</h3>
+            <h3>Historik</h3>
             <hr>
             @foreach ($comments as $comment)
                 <issue-comment>
