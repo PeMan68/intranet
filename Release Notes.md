@@ -19,6 +19,7 @@
 ### ***Working on***
 *Features:*
 * Attachments stored in Issues
+* delay jobs for emails to be sent during working hours only
 
 *Bug fixes:*
 ## Finsihed for next release
