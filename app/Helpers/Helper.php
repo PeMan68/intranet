@@ -216,3 +216,19 @@ if (! function_exists('expiredIssues')) {
 		return $data->count();
 	}
 }
+
+if (!function_exists('workingHours')) {
+	function workingHours()
+	{
+		$currentTime=now();	
+		//Check for weekdays mon-fri
+		if($currentTime->dayOfWeek > 5){
+			return 'fel dag'.$currentTime;
+		}
+		//Check for normal working hours 8-16
+		if($currentTime->hour < 8 || $currentTime->hour > 15){
+			return "fel timme".$currentTime ;
+		}
+		return true;
+	}
+}
