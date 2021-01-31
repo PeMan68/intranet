@@ -45,7 +45,7 @@ class ProductStatusController extends Controller
         ]);
         $productStatus = ProductStatus::create($validatedData);
         return redirect('admin/productstatus')
-            ->with('success', 'Ny status tillagd');
+            ->with('message', 'Ny status tillagd');
     }
 
     /**

@@ -71,9 +71,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     Spara
                                 </button>
-								<button class="btn btn-secondary" type="submit" name="reset" value="reset">
-									Avbryt
-								</button>                            
+								<a class="btn btn-secondary" href="{{ route('home') }}">Avbryt</a>                         
                             </div>
                         </div>
                     </form>

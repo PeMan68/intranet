@@ -1,15 +1,26 @@
 # intranet
 
+## Version 2.5
+(2021-01-31)
+
+*Nyheter*
+* **Ärenden**
+    * Ärenden visar endast öppna ärenden plus nyligen stängda för att minska storleken på tabellen. Börjar man skriva i sökrutan inkluderas alla ärenden i resultatet, så man kan söka i all historik.
+    * Vid registrering av nytt ärende skickas mail till kunden med information om ärendet, så den vet vad vi registrerat. Avsändarmail är support@carlogavazzi.se så kunden kan svara direkt på ärendet om den vill uppdatera något.
+    * Om inte kund kontaktas inom given tid skickas ett påminnelsemail till både Första- och Andrahands hanterare för att kunden ska få feedback från oss så snart som möjligt. Påminnelser skickas tills ärendet markerats som kontaktad.
+    * Anteckningar i ärendet sorteras nu med nyast överst och har ett mycket tydligare utseende.
+    * Anteckningar kan vara interna, utgående eller inkommande meddelanden.
+    * Ny meny för att hantera kontakter för ärenden. Framförallt för att lägga till interna kontakter inom koncernen så de kan taggas vid när man lägger in anteckning, vem som kontaktat vem visas vid varje anteckning. 
 ## Version 2.4.3  
 (2020-12-10)
 
 *Nyheter*
 * Supportartiklar importerade. 
-    * Sökbara i dynamisk tabell. Varje aritkel kan öppnas upp i detalj-läge där all text visas med html-formateringen i orginal. Det innebär att interna länkar mellan filer på supportsidan inte funkar t ex, men att de sidor där man gjort egen HTML-kod ändå visas skapligt bra, som tabeller m.m.
+    * Sökbara i dynamisk tabell. Varje artikel kan öppnas upp i detalj-läge där all text visas med html-formateringen i orginal. Det innebär att interna länkar mellan filer på supportsidan inte funkar t ex, men att de sidor där man gjort egen HTML-kod ändå visas skapligt bra, som tabeller m.m.
 
 *bugfixar*
 * Fixat Dokument så den fungerar med uppladdning och nedladdning, sökbarhet med ny layout
-* Vänstermenyn mer dynamisk för att pass fler skärmstorlekar
+* Vänstermenyn mer dynamisk för att passa fler skärmstorlekar
 
 
 ## Version 2.4.2 ##

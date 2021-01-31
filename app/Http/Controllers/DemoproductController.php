@@ -107,7 +107,7 @@ class DemoproductController extends Controller
         $validatedData = $request->validated();
         $validatedData['userUpdate_id'] = Auth::id();
         $demoProduct = Demoproduct::create($validatedData);
-        return redirect('/demoproducts')->with('success', $demoProduct->product->item . ' registrerad, plats ' . $demoProduct->location->name);
+        return redirect('/demoproducts')->with('message', $demoProduct->product->item . ' registrerad, plats ' . $demoProduct->location->name);
     }
 
     /**

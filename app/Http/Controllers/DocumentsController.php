@@ -78,7 +78,7 @@ class DocumentsController extends Controller
 			$validatedData['version'] = 1;
 		}
 		$document = Documents::create($validatedData);
-		return redirect('/documents')->with('success','Fil uppladdad');
+		return redirect('/documents')->with('message','Fil uppladdad');
     }
 
     /**
