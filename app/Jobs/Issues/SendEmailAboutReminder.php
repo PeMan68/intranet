@@ -40,7 +40,7 @@ class SendEmailAboutReminder implements ShouldQueue
      */
     public function handle()
     {
-        if (!is_null($this->issue->timeCustomercallback)) {
+        if (!is_null($this->issue->timeCustomercallback) || !is_null($this->issue->timeClosed)) {
             return;
         }
         Mail::to($this->email)->send(new MailReminder($this->issue, $this->urgent));
