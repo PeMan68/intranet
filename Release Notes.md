@@ -34,7 +34,7 @@
     * Add fields for from/to, choose from customer contact and Internal/Enterprise contacts
     * Table for contactpersons outside app-users. Contacts inside Enterprise tagged with 'internal' in contacts table.
 * 210126-01 CRUD for contacts (**requires migration**)
-* Added prefix for Issues numers to Settings (default 'S-')
+* Added prefix for Issues numbers to Settings (default 'S-')
 
 *Bug fixes:*
 * 2020-12-30 Fixed Cancel on calendar form from being validated
