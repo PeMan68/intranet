@@ -19,11 +19,10 @@
 ### ***Working on***
 *Features:*
 * Attachments stored in Issues
-* delay jobs for emails to be sent during working hours only
 
 *Bug fixes:*
 ## Finsihed for next release
-*Features*
+## **Release 2.5 (2021-01-31)**
 * 210109-3 Automatic selection for viewing all Issues or only the latest
     * Default is latest records, while search should include all
 * 210109-6  Add email to customer for registered Issue
@@ -35,6 +34,7 @@
     * Table for contactpersons outside app-users. Contacts inside Enterprise tagged with 'internal' in contacts table.
 * 210126-01 CRUD for contacts (**requires migration**)
 * Added prefix for Issues numbers to Settings (default 'S-')
+* Delay jobs for emails to be sent during working hours only
 
 *Bug fixes:*
 * 2020-12-30 Fixed Cancel on calendar form from being validated
