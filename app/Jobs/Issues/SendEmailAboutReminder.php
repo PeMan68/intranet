@@ -16,10 +16,10 @@ class SendEmailAboutReminder implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $tries = 3;
-	public $retryAfter = 60;
-	private $issue;
-	private $email;
-	private $urgent;
+    public $retryAfter = 60;
+    private $issue;
+    private $email;
+    private $urgent;
     /**
      * Create a new job instance.
      *
@@ -28,9 +28,9 @@ class SendEmailAboutReminder implements ShouldQueue
     public function __construct(Issue $issue, $email, $urgent)
     {
         $this->issue = $issue;
-		$this->email = $email;
-		$this->urgent = $urgent;
-		$this->queue = 'emails';
+        $this->email = $email;
+        $this->urgent = $urgent;
+        $this->queue = 'emails';
     }
 
     /**
@@ -40,18 +40,17 @@ class SendEmailAboutReminder implements ShouldQueue
      */
     public function handle()
     {
-		if (!is_null($this->issue->timeCustomercallback)) {
-			return;
-		}
-		Mail::to($this->email)->send(new MailReminder($this->issue, $this->urgent));
+        if (!is_null($this->issue->timeCustomercallback)) {
+            return;
+        }
+        Mail::to($this->email)->send(new MailReminder($this->issue, $this->urgent));
 
-		// add to queue again as a reminder
+        // add to queue again as a reminder
         if ($this->urgent) {
-            $delayReminder = now()->addMinutes(setting('time_reminder_urgent_issue'));
+            $delayReminder = nextWorkingHour(now()->addMinutes(setting('time_reminder_urgent_issue')));
         } else {
-            $delayReminder = now()->addHours($this->issue->task->priority->hours);
-		}
-		$this->release($delayReminder);
+            $delayReminder = nextWorkingHour(now()->addHours($this->issue->task->priority->hours));
+        }
+        $this->release($delayReminder);
     }
-
 }

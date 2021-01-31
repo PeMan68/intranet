@@ -14,36 +14,36 @@ use App\Mail\IssueCreated;
 
 class SendEmailAboutNewIssue implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-	
-	public $tries = 3;
-	public $retryAfter = 60;
-	private $issue;
-	private $email;
-	private $urgent;
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct(Issue $issue, $email, $urgent)
-    {
-		$this->issue = $issue;
-		$this->email = $email;
-		$this->urgent = $urgent;
-		$this->queue = 'emails';
-    }
+  use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
-    public function handle()
-    {
-		if (!is_null($this->issue->timeCustomercallback)) {
-			return;
-		}
-		Mail::to($this->email)->send(new issueCreated($this->issue, $this->urgent));
+  public $tries = 3;
+  public $retryAfter = 60;
+  private $issue;
+  private $email;
+  private $urgent;
+  /**
+   * Create a new job instance.
+   *
+   * @return void
+   */
+  public function __construct(Issue $issue, $email, $urgent)
+  {
+    $this->issue = $issue;
+    $this->email = $email;
+    $this->urgent = $urgent;
+    $this->queue = 'emails';
+  }
+
+  /**
+   * Execute the job.
+   *
+   * @return void
+   */
+  public function handle()
+  {
+    if (!is_null($this->issue->timeCustomercallback)) {
+      return;
     }
+      Mail::to($this->email)->send(new issueCreated($this->issue, $this->urgent));
+  }
 }

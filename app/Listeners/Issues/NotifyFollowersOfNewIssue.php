@@ -35,13 +35,13 @@ class NotifyFollowersOfNewIssue
 
 		$followers = $event->issue->followers;
         if ($event->urgent) {
-            $delayReminder = now()->addMinutes(setting('time_reminder_urgent_issue'));
+            $delayReminder = nextWorkingHour(now()->addMinutes(setting('time_reminder_urgent_issue')));
         } else {
-            $delayReminder = now()->addHours($event->issue->task->priority->hours);
+            $delayReminder = nextWorkingHour(now()->addHours($event->issue->task->priority->hours));
         }
-        $delay=0;
+        $delay=nextWorkingHour();
         if (cache($event->issue->ticketNumber)) {
-            $delay = now()->addMinutes(setting('time_disable_update_job'));
+            $delay = nextWorkingHour($delay->addMinutes(setting('time_disable_update_job')));
         }
         foreach ($followers as $user) {
             SendEmailAboutNewIssue::dispatch($event->issue, $user->email, $event->urgent)->delay($delay);
