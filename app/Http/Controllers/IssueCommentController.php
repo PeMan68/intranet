@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class IssueCommentController extends Controller
 {
-    // !Test store from axios
     public function store(Request $request)
     {
         $issuecomment = IssueComment::find($request->id);
@@ -30,7 +29,7 @@ class IssueCommentController extends Controller
 			if ($issue->userCreate_id <> Auth::id())
 			{
 				if (IssueComment::where('issue_id', $issuecomment->issue_id)
-					->count() == 1) 
+				->count() == 1) 
 				{
 					event(new IssueCommentedFirstTime($issue));
 				}
@@ -38,7 +37,7 @@ class IssueCommentController extends Controller
 			//Send mail to staff who is following
 			//Add commenter as follower if not already
 			if (!$request->follow) {
-                $issue->followers()->attach(Auth::id());
+				$issue->followers()->attach(Auth::id());
 			}
             event(new UpdatedIssue($issue, $type='comment',[]));
 		}
@@ -47,6 +46,7 @@ class IssueCommentController extends Controller
         // istället för redirect, borde det vara
         // return response()->json($issuecomment, 200);
         // men då måste data hanteras med vuex, så sidan uppdateras med nya meddelanden
+		$issuecomment->refresh();
         return redirect('/issues/'.$issuecomment->issue_id);		
     }
 }

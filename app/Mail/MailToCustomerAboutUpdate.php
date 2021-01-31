@@ -35,7 +35,7 @@ class MailToCustomerAboutUpdate extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->ticketNumber.' Ny uppdatering i ärende: "'.$this->header.'"')
+        return $this->subject('Uppdaterat ärende '.$this->ticketNumber.', '.$this->header)
 					->view('emails.toCustomerAboutUpdatedIssue');
     }
 }
