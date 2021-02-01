@@ -1,6 +1,6 @@
 # intranet
 
-## Version 2.5.2
+## Version 2.5
 (2021-01-31)
 
 *Nyheter*
