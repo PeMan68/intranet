@@ -13,7 +13,7 @@
             @yield('header')
         </p>
     </span>
-    @if (is_null($issue->timeCustomercallback))
+    @if (is_null($issue->timeCustomercallback) && is_null($issue->timeClosed))
         <span style='font-size: 0.8em; font-family: Verdana,Arial,sans-serif;'>
             <b><i>
                     Kunden har inte fått någon återkoppling ännu!<br><br>
