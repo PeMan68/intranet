@@ -14,6 +14,7 @@
 * 210109-11 Pickup incoming emails, automatic adding comments and notification to followers.
 * 210111    Edit links in menu from Settings-db
 * 210112-2  Save customer details for autofill
+* 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
 
 
 ### ***Working on***
