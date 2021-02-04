@@ -4,8 +4,6 @@
 * 210109-1 Fix rendering of navbar. If a big table is loaded(i.e. Issues), the page seems to wait for the table before the navbar is rendered correct.
     * navbar is not correct for users handling
 * 210109-2 The side-menu is not handled well when window height gets smaller
-* 210109-4 Demoproducts, primary key must be itemnumber!
-* 210202-1 Links in issuemail is not correct, link start with "localhost"
 
 *Features*
 * 210109-5  Add status Pause, WaitingForInternal, WaitingForCustomer to Issues
@@ -22,6 +20,7 @@
 ### ***Working on***
 *Features:*
 * Attachments stored in Issues
+* 210109-4 Demoproducts, primary key must be itemnumber!
 
 *Bug fixes:*
 ## Finsihed for next release
