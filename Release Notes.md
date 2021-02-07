@@ -20,10 +20,10 @@
 ### ***Working on***
 *Features:*
 * Attachments stored in Issues
-* 210109-4 Demoproducts, primary key must be itemnumber!
 
 *Bug fixes:*
 ## Finsihed for next release
+* 210109-4 Productimport updates items instead of truncating and import all from scratch
 ## **Release 2.5 (2021-01-31)**
 * 210109-3 Automatic selection for viewing all Issues or only the latest
     * Default is latest records, while search should include all
