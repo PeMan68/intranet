@@ -162,6 +162,33 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="paused" name="paused" value="1"
+                                {{ $issue->paused == '1' ? 'checked' : '' }}>
+                            <label for="vip" class="font-weight-bold m-0">Ärendet Pausat</label>
+                        </div> 
+                    </div>
+                </div>               
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="waitingForCustomer" name="waitingForCustomer" value="1"
+                                {{ $issue->waitingForCustomer == '1' ? 'checked' : '' }}>
+                            <label for="vip" class="font-weight-bold m-0">Väntar på svar från kund</label>
+                        </div> 
+                    </div>
+                </div>               
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="waitingForInternal" name="waitingForInternal" value="1"
+                                {{ $issue->waitingForInternal == '1' ? 'checked' : '' }}>
+                            <label for="vip" class="font-weight-bold m-0">Väntar på svar från kollega</label>
+                        </div> 
+                    </div>
+                </div>               
+                <div class="row">
                     <div class="col-md-6" id="buttons">
                         <button type="submit" class="btn btn-primary m-2" name="save">
                             Spara ändringarna

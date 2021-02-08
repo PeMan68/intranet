@@ -106,7 +106,6 @@ class IssuesController extends Controller
 				'finish' => $item->timeClosed,
 				'vip' => $item->vip,
 				'prio' => $item->prio,
-				'wait' => $item->waitingForReply,
 				'pause' => $item->paused,
 				'contacted' => $item->timeCustomercallback,
 				'Kund' => $item->customer,
@@ -117,6 +116,8 @@ class IssuesController extends Controller
 				'Telefon' => $item->customerTel,
 				'Skapad_av' => $item->userCreate->fullName(),
 				'Senaste_kommentar' => $item->latestComment['comment'],
+				'wait_Customer' => $item->waitingForCustomer,
+				'wait_Internal' => $item->waitingForInternal,
 
 				'_rowVariant' => $rowVariant,
             ];
@@ -263,6 +264,13 @@ class IssuesController extends Controller
         if ($request->has('save')) {
 			$validatedData = $request->validated();
 			$validatedData['vip'] = $request->has('vip');
+			//? Ska vi hantera pausad som att skjuta upp estimatedCallback 1 vecka?
+			// Skapa ett job som skickar ett mail till följare om pausningen +1vecka
+			$validatedData['paused'] = $request->has('paused');
+			// Skapa ett job som skickar ett mail till följare om kundbesked +1vecka
+			$validatedData['waitingForCustomer'] = $request->has('waitingForCustomer');
+			// Skapa ett job som skickar ett mail till följare om internbesked +1dag
+			$validatedData['waitingForInternal'] = $request->has('waitingForInternal');
 			$issue->update($validatedData);
 			event(new UpdatedIssue($issue, $type='header', $issue->getChanges()));
 		}

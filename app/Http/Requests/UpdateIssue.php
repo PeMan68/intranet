@@ -37,7 +37,7 @@ class UpdateIssue extends FormRequest
 			'vip' => 'nullable',
 			'prio' => 'nullable',
 			'descriptionInternal' => 'nullable',
-			'waitingForReply' => 'nullable',
+			'waitingForCustomer' => 'nullable',
         ];
     }
 

@@ -58,7 +58,8 @@
                 <i v-if="data.item.finish" class="material-icons">done_all</i>
                 <i v-if="data.item.prio == 2 && !data.item.finish" class="material-icons">grade</i>
                 <i v-if="data.item.vip && !data.item.finish" class="material-icons">favorite</i>
-                <i v-if="data.item.wait && !data.item.finish" class="material-icons">snooze</i>
+                <i v-if="data.item.wait_Customer && !data.item.finish" class="material-icons">person_off</i>
+                <i v-if="data.item.wait_Internal && !data.item.finish" class="material-icons">support_agent</i>
                 <i v-if="data.item.pause && !data.item.finish" class="material-icons">pause_circle_filled</i>
                 <i v-if="data.item.contacted && !data.item.finish" class="material-icons">how_to_reg</i>
                 </span>
@@ -95,14 +96,17 @@
                             <template v-if="row.item.vip">
                                 <i class="material-icons">favorite</i> = VIP-kund<br>
                             </template>
+                            <template v-if="row.item.wait_Internal">
+                                <i class="material-icons">support_agent</i> = Väntar på kollega<br>
+                            </template>
+                            <template v-if="row.item.wait_Customer">
+                                <i class="material-icons">person_off</i> = Väntar på kund<br>
+                            </template>
                             <template v-if="row.item.prio == 2">
                                 <i class="material-icons">grade</i> = Hög prio<br>
                             </template>
                             <template v-if="row.item.contacted">
                                 <i class="material-icons">how_to_reg</i> = Första kontakt gjord<br>
-                            </template>
-                            <template v-if="row.item.wait">
-                                <i class="material-icons">snooze</i> = Väntar på svar<br>
                             </template>
                             <template v-if="row.item.pause">
                                 <i class="material-icons">pause_circle_filled</i> = Pausad<br>
