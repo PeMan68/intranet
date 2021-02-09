@@ -18,7 +18,10 @@ use Illuminate\Support\Facades\Mail;
 use App\Events\Issues\NewIssue;
 use App\Events\Issues\UpdatedIssue;
 use App\Events\Issues\IssueClosed;
+use App\Events\Issues\IssuePaused;
 use App\Events\Issues\IssueReopened;
+use App\Events\Issues\IssueWaitingForExternal;
+use App\Events\Issues\IssueWaitingForInternal;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Arr;
@@ -264,15 +267,20 @@ class IssuesController extends Controller
         if ($request->has('save')) {
 			$validatedData = $request->validated();
 			$validatedData['vip'] = $request->has('vip');
-			//? Ska vi hantera pausad som att skjuta upp estimatedCallback 1 vecka?
-			// Skapa ett job som skickar ett mail till följare om pausningen +1vecka
 			$validatedData['paused'] = $request->has('paused');
-			// Skapa ett job som skickar ett mail till följare om kundbesked +1vecka
+			if ($request->has('paused')) {
+				event(new IssuePaused($issue, 'paused'));
+			}
 			$validatedData['waitingForCustomer'] = $request->has('waitingForCustomer');
-			// Skapa ett job som skickar ett mail till följare om internbesked +1dag
+			if ($request->has('waitingForCustomer')) {
+				event(new IssueWaitingForExternal($issue, 'waitingForExternal'));
+			}
 			$validatedData['waitingForInternal'] = $request->has('waitingForInternal');
+			if ($request->has('waitingForInternal')) {
+				event(new IssueWaitingForInternal($issue, 'waitingForInternal'));
+			}
 			$issue->update($validatedData);
-			event(new UpdatedIssue($issue, $type='header', $issue->getChanges()));
+			// event(new UpdatedIssue($issue, $type='header', $issue->getChanges()));
 		}
 		return redirect('/issues/'.$issue->id);
     }

@@ -8,18 +8,13 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class MailToFollowersAboutUpdate extends Mailable
+class MailToFollowersAboutReminder extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * The issue instance.
-     *
-     * @var Issue
-     */
     public $issue;
-    public $type; // type of email
-	
+    public $type;
+
     /**
      * Create a new message instance.
      *
@@ -28,10 +23,9 @@ class MailToFollowersAboutUpdate extends Mailable
     public function __construct(Issue $issue, $type)
     {
         $this->issue = $issue;
-		$this->ticketNumber = $issue->ticketNumber;
-		$this->customer = $issue->customer;
+        $this->ticketNumber = $issue->ticketNumber;
         $this->header = $issue->header;
-        $this->type= $type;
+        $this->type = $type;
     }
 
     /**
@@ -41,7 +35,12 @@ class MailToFollowersAboutUpdate extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->ticketNumber.' Ny uppdatering i ärende: "'.$this->header.'"')
-					->view('emails.toFollowersAboutUpdatedIssue');
+        if ($this->type == 'paused'){
+            $subject = ' Påminnelse, ärendet är pausat.';
+        } else {
+            $subject = ' Påminnelse, väntar på svar.';
+        }
+        return $this->subject($this->ticketNumber . $subject . ' Ärende: "' . $this->header. '"')
+            ->view('emails.toFollowersAboutReminder');
     }
 }
