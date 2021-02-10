@@ -3,6 +3,7 @@
 namespace App\Listeners\Issues;
 
 use App\Events\Issues\IssuePaused;
+use App\Jobs\Issues\CreateNewReminder;
 use App\Jobs\Issues\SendEmailToFollowersAboutReminder;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -32,5 +33,6 @@ class NotifyFollowersOfPaused
         foreach ($followers as $follower) {
             SendEmailToFollowersAboutReminder::dispatch($event->issue, $follower->email, $event->typeOfReminder)->delay($delay);
         }
+        CreateNewReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delay);
     }
 }

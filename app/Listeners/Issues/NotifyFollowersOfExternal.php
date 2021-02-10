@@ -3,6 +3,7 @@
 namespace App\Listeners\Issues;
 
 use App\Events\Issues\IssueWaitingForExternal;
+use App\Jobs\Issues\CreateNewReminder;
 use App\Jobs\Issues\SendEmailToFollowersAboutReminder;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -27,10 +28,12 @@ class NotifyFollowersOfExternal
      */
     public function handle(IssueWaitingForExternal $event)
     {
-        $delay = nextWorkingHour(now()->addDays(setting('days_reminder_waiting_for_external')));
+        // $delay = nextWorkingHour(now()->addDays(setting('days_reminder_waiting_for_external')));
+        $delay = now()->addMinutes(setting('days_reminder_waiting_for_external'));
         $followers = $event->issue->followers;
         foreach ($followers as $follower) {
             SendEmailToFollowersAboutReminder::dispatch($event->issue, $follower->email, $event->typeOfReminder)->delay($delay);
         }
+        CreateNewReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delay);
     }
 }
