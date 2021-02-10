@@ -50,8 +50,8 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
                 return null;
             }
         }
-        if ($this->typeOfReminder == 'waitingForExternal') {
-            if (!$this->issue->waitingForExternal) {
+        if ($this->typeOfReminder == 'waitingForCustomer') {
+            if (!$this->issue->waitingForCustomer) {
                 return null;
             }
         }

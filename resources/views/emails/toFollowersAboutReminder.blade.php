@@ -6,7 +6,7 @@
 Ärendet är markerat som pausat. Dags att ta tag idet igen?
 @elseif ($type=='waitingForInternal')
 Ärendet är markerat att vi väntar på svar från <strong>kollega</strong>. Dags för en påminnelse?
-@elseif ($type=='waitingForExternal')
+@elseif ($type=='waitingForCustomer')
 Ärendet är markerat att vi väntar på svar från <strong>kunden</strong>. Dags för en påminnelse?
 @endif
 <hr>

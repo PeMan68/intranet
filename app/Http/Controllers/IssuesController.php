@@ -20,7 +20,7 @@ use App\Events\Issues\UpdatedIssue;
 use App\Events\Issues\IssueClosed;
 use App\Events\Issues\IssuePaused;
 use App\Events\Issues\IssueReopened;
-use App\Events\Issues\IssueWaitingForExternal;
+use App\Events\Issues\IssueWaitingForCustomer;
 use App\Events\Issues\IssueWaitingForInternal;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
@@ -273,7 +273,7 @@ class IssuesController extends Controller
 			}
 			$validatedData['waitingForCustomer'] = $request->has('waitingForCustomer');
 			if ($request->has('waitingForCustomer')) {
-				event(new IssueWaitingForExternal($issue, 'waitingForExternal'));
+				event(new IssueWaitingForCustomer($issue, 'waitingForCustomer'));
 			}
 			$validatedData['waitingForInternal'] = $request->has('waitingForInternal');
 			if ($request->has('waitingForInternal')) {

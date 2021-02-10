@@ -28,7 +28,8 @@ class NotifyFollowersOfInternal
      */
     public function handle(IssueWaitingForInternal $event)
     {
-        $delay = nextWorkingHour(now()->addDays(setting('days_reminder_waiting_for_internal')));
+        // $delay = nextWorkingHour(now()->addDays(setting('days_reminder_waiting_for_internal')));
+        $delay = now()->addMinutes(setting('days_reminder_waiting_for_internal'));
         $followers = $event->issue->followers;
         foreach ($followers as $follower) {
             SendEmailToFollowersAboutReminder::dispatch($event->issue, $follower->email, $event->typeOfReminder)->delay($delay);

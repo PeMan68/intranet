@@ -11,7 +11,7 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use App\Issue;
 
-class IssueWaitingForExternal
+class IssueWaitingForCustomer
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 

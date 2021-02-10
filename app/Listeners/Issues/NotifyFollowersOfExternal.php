@@ -2,7 +2,7 @@
 
 namespace App\Listeners\Issues;
 
-use App\Events\Issues\IssueWaitingForExternal;
+use App\Events\Issues\IssueWaitingForCustomer;
 use App\Jobs\Issues\CreateNewReminder;
 use App\Jobs\Issues\SendEmailToFollowersAboutReminder;
 use Illuminate\Queue\InteractsWithQueue;
@@ -26,7 +26,7 @@ class NotifyFollowersOfExternal
      * @param  object  $event
      * @return void
      */
-    public function handle(IssueWaitingForExternal $event)
+    public function handle(IssueWaitingForCustomer $event)
     {
         // $delay = nextWorkingHour(now()->addDays(setting('days_reminder_waiting_for_external')));
         $delay = now()->addMinutes(setting('days_reminder_waiting_for_external'));

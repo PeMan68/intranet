@@ -40,7 +40,7 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Issues\IssuePaused' => [
             'App\Listeners\Issues\NotifyFollowersOfPaused',
         ],
-        'App\Events\Issues\IssueWaitingForExternal' => [
+        'App\Events\Issues\IssueWaitingForCustomer' => [
             'App\Listeners\Issues\NotifyFollowersOfExternal',
         ],
         'App\Events\Issues\IssueWaitingForInternal' => [

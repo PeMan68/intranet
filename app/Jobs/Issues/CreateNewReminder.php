@@ -3,7 +3,7 @@
 namespace App\Jobs\Issues;
 
 use App\Events\Issues\IssuePaused;
-use App\Events\Issues\IssueWaitingForExternal;
+use App\Events\Issues\IssueWaitingForCustomer;
 use App\Events\Issues\IssueWaitingForInternal;
 use App\Issue;
 use Illuminate\Bus\Queueable;
@@ -47,9 +47,9 @@ class CreateNewReminder implements ShouldQueue
                 event(new IssueWaitingForInternal($this->issue, 'waitingForInternal'));
             }
         }
-        if ($this->typeOfReminder == 'waitingForExternal') {
-            if ($this->issue->waitingForExternal) {
-                event(new IssueWaitingForExternal($this->issue, 'waitingForExternal'));
+        if ($this->typeOfReminder == 'waitingForCustomer') {
+            if ($this->issue->waitingForCustomer) {
+                event(new IssueWaitingForCustomer($this->issue, 'waitingForCustomer'));
             }
         }
     }
