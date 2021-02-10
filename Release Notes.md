@@ -15,6 +15,7 @@
 * 210111    Edit links in menu from Settings-db
 * 210112-2  Save customer details for autofill
 * 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
+* 210210.01 Job to check back issues, timeout set by settings
 
 
 ### ***Working on***
