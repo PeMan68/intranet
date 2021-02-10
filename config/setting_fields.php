@@ -130,6 +130,33 @@ return [
                 'class' => '', // any class for input
                 'value' => '30' // default value if you want
             ],
+            [
+                'type' => 'text', // input fields type
+                'data' => 'int', // data type, string, int, boolean
+                'name' => 'days_reminder_paused_issue', // unique name for field
+                'label' => 'Fördröjning av notifiering vid pausade ärenden (dagar)', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '7' // default value if you want
+            ],
+            [
+                'type' => 'text', // input fields type
+                'data' => 'int', // data type, string, int, boolean
+                'name' => 'days_reminder_waiting_for_external', // unique name for field
+                'label' => 'Fördröjning av notifiering av saknat svar från kund (dagar)', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '7' // default value if you want
+            ],
+            [
+                'type' => 'text', // input fields type
+                'data' => 'int', // data type, string, int, boolean
+                'name' => 'days_reminder_waiting_for_internal', // unique name for field
+                'label' => 'Fördröjning av notifiering av saknat svar från kollega (dagar)', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '2' // default value if you want
+            ],
         ]
     ],
 ];

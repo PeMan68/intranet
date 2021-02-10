@@ -18,7 +18,10 @@ use Illuminate\Support\Facades\Mail;
 use App\Events\Issues\NewIssue;
 use App\Events\Issues\UpdatedIssue;
 use App\Events\Issues\IssueClosed;
+use App\Events\Issues\IssuePaused;
 use App\Events\Issues\IssueReopened;
+use App\Events\Issues\IssueWaitingForCustomer;
+use App\Events\Issues\IssueWaitingForInternal;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Arr;
@@ -106,7 +109,6 @@ class IssuesController extends Controller
 				'finish' => $item->timeClosed,
 				'vip' => $item->vip,
 				'prio' => $item->prio,
-				'wait' => $item->waitingForReply,
 				'pause' => $item->paused,
 				'contacted' => $item->timeCustomercallback,
 				'Kund' => $item->customer,
@@ -117,6 +119,8 @@ class IssuesController extends Controller
 				'Telefon' => $item->customerTel,
 				'Skapad_av' => $item->userCreate->fullName(),
 				'Senaste_kommentar' => $item->latestComment['comment'],
+				'wait_Customer' => $item->waitingForCustomer,
+				'wait_Internal' => $item->waitingForInternal,
 
 				'_rowVariant' => $rowVariant,
             ];
@@ -263,8 +267,20 @@ class IssuesController extends Controller
         if ($request->has('save')) {
 			$validatedData = $request->validated();
 			$validatedData['vip'] = $request->has('vip');
+			$validatedData['paused'] = $request->has('paused');
+			if ($request->has('paused')) {
+				event(new IssuePaused($issue, 'paused'));
+			}
+			$validatedData['waitingForCustomer'] = $request->has('waitingForCustomer');
+			if ($request->has('waitingForCustomer')) {
+				event(new IssueWaitingForCustomer($issue, 'waitingForCustomer'));
+			}
+			$validatedData['waitingForInternal'] = $request->has('waitingForInternal');
+			if ($request->has('waitingForInternal')) {
+				event(new IssueWaitingForInternal($issue, 'waitingForInternal'));
+			}
 			$issue->update($validatedData);
-			event(new UpdatedIssue($issue, $type='header', $issue->getChanges()));
+			// event(new UpdatedIssue($issue, $type='header', $issue->getChanges()));
 		}
 		return redirect('/issues/'.$issue->id);
     }

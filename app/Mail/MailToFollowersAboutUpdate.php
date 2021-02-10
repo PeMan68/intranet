@@ -18,7 +18,7 @@ class MailToFollowersAboutUpdate extends Mailable
      * @var Issue
      */
     public $issue;
-    public $type;
+    public $type; // type of email
 	
     /**
      * Create a new message instance.
