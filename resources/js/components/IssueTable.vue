@@ -92,7 +92,7 @@
                         </div>
                     </template>
                     <b-row class="my-2 mx-0">
-                        <b-col sm="3" class="text-sm text-nowrap">
+                        <b-col sm="2" class="text-sm text-nowrap">
                             <template v-if="row.item.vip">
                                 <i class="material-icons">favorite</i> = VIP-kund<br>
                             </template>
@@ -112,7 +112,7 @@
                                 <i class="material-icons">pause_circle_filled</i> = Pausad<br>
                             </template>
                         </b-col>
-                        <b-col sm="3">
+                        <b-col sm="4">
                             <table class="table-sm">
                                 <tr>
                                     <td><b>Kontakt:</b></td><td>{{ row.item.Kontakt }}</td>
