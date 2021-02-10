@@ -15,7 +15,7 @@ class IssueWaitingForInternal
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    // public $typeOfReminder = 'waitingForInternal';
+    public $typeOfReminder;
 
     /**
      * Create a new event instance.

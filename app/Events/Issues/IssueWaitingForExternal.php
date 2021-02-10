@@ -15,7 +15,7 @@ class IssueWaitingForExternal
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $typeOfReminder = 'waitingForExternal';
+    public $typeOfReminder;
 
     /**
      * Create a new event instance.

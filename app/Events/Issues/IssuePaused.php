@@ -15,7 +15,7 @@ class IssuePaused
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $typeOfReminder = 'paused';
+    public $typeOfReminder;
 
     /**
      * Create a new event instance.
