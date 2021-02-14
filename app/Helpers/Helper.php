@@ -5,6 +5,7 @@ use App\User;
 use App\Issue;
 use App\IssueComment;
 use App\CalendarEntry;
+use Illuminate\Support\Facades\Cache;
 
 if (!function_exists('check_out_issue')) {
 	/**
@@ -18,7 +19,7 @@ if (!function_exists('check_out_issue')) {
 	function check_out_issue($issue)
 	{
 		//Checkout issue only if it is not already checked out
-		if (is_null($issue->userCurrent_id)) {
+		if (is_null($issue->userCurrent_id) || !Cache::has('user-is-online-' . $issue->userCurrent_id)) {
 			Issue::whereId($issue->id)
 				->update(['userCurrent_id' => Auth::user()->id]);
 		}

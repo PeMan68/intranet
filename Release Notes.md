@@ -14,13 +14,13 @@
 * 210111    Edit links in menu from Settings-db
 * 210112-2  Save customer details for autofill
 * 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
-* 210210.01 Job to check back issues, timeout set by settings
 * 210211.01 Edit/delete demoproducts. Transactions of products between places or statuses, track this? 
 
 
 ### ***Working on***
 *Features:*
 * Attachments stored in Issues
+* 210210.01 Job to check back issues, timeout set by settings
 
 *Bug fixes:*
 ## Finsihed for next release

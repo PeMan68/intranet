@@ -157,6 +157,15 @@ return [
                 'class' => '', // any class for input
                 'value' => '2' // default value if you want
             ],
+            [
+                'type' => 'text', // input fields type
+                'data' => 'int', // data type, string, int, boolean
+                'name' => 'minutes_checkin', // unique name for field
+                'label' => 'Checka tillbaks ärende när använadare varit inaktiv på intranätet i (min)', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '60' // default value if you want
+            ],
         ]
     ],
 ];
