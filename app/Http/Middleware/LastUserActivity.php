@@ -18,7 +18,7 @@ class LastUserActivity
     public function handle($request, Closure $next)
     {
         if (Auth::check()) {
-            $expiresAt = now()->addMinutes(60);
+            $expiresAt = now()->addMinutes(setting('minutes_checkin'));
             Cache::put('user-is-online-' . Auth::user()->id, true, $expiresAt);
         }return $next($request);
     }
