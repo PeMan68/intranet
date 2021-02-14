@@ -4,6 +4,7 @@
 * 210109-1 Fix rendering of navbar. If a big table is loaded(i.e. Issues), the page seems to wait for the table before the navbar is rendered correct.
     * navbar is not correct for users handling
 * 210109-2 The side-menu is not handled well when window height gets smaller
+* 210214.01 When adding comment to Issue it is not shown until another page reload in production. In development is is shown after the save.
 
 *Features*
 * 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails ar enot responded upon.
@@ -21,9 +22,11 @@
 *Features:*
 * Attachments stored in Issues
 
-*Bug fixes:*
 ## Finsihed for next release
+*Bug fixes:*
 * 210109-4 Productimport updates items instead of truncating and import all from scratch (**requires migration**)
+
+*Features:*
 * 210109-5  Add status Pause, WaitingForInternal, WaitingForCustomer to Issues (**requires migration**)
     * Added emails to followers for reminding of these statuses (**run settings to update database with the settings**)
 * 210210.01 Auto checkin issues from inactive users, timeout set by settings (**run settings to update database with the settings**)
