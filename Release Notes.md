@@ -24,13 +24,15 @@
 * Attachments stored in Issues
 
 ## Finsihed for next release
-*Bug fixes:*
-* 210109-4 Productimport updates items instead of truncating and import all from scratch (**requires migration**)
-
+## **Release 2.5.32 (2021-02-15)**
 *Features:*
 * 210109-5  Add status Pause, WaitingForInternal, WaitingForCustomer to Issues (**requires migration**)
     * Added emails to followers for reminding of these statuses (**run settings to update database with the settings**)
 * 210210.01 Auto checkin issues from inactive users, timeout set by settings (**run settings to update database with the settings**)
+
+*Bug fixes:*
+* 210109-4 Productimport updates items instead of truncating and import all from scratch (**requires migration**)
+
 ## **Release 2.5 (2021-01-31)**
 * 210109-3 Automatic selection for viewing all Issues or only the latest
     * Default is latest records, while search should include all
