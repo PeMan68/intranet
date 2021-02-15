@@ -23,9 +23,7 @@ class ProductController extends Controller
       
     public function import() 
     {
-        Product::truncate(); // deletes all rows before inserting new data
 		Excel::import(new ProductsImport,request()->file('file'));
-		//return redirect('/products');
 		return redirect('/admin/products');
 	}
 }

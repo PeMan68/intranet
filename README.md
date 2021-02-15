@@ -1,6 +1,16 @@
 # intranet
 
-## Version 2.5.2
+## Version 2.5.32 ##
+(2021-02-15)
+
+*Nyheter*
+* **Ärenden**
+    * Lagt till nya statusar för ärenden för att rangordna ärenden ytterligare. Nya statusar:  
+        * Pausa ärende
+        * Väntar på svar från kund
+        * Väntar på svar från kollega
+    
+## Version 2.5
 (2021-01-31)
 
 *Nyheter*

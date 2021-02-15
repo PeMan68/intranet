@@ -27,6 +27,8 @@ class NotifyFollowersOfUpdate
      */
     public function handle(UpdatedIssue $event)
     {
+        // Sync so all with level === 3 are followers.
+        // For example, task may have changed
 		foreach ($event->issue->task->users as $user) {
 			if ($user->pivot->level == 3) {
 				$event->issue->followers()->syncWithoutDetaching($user->id);

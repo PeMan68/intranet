@@ -37,6 +37,15 @@ class EventServiceProvider extends ServiceProvider
 			'App\Listeners\Issues\GenerateReopenedComment',
 			'App\Listeners\Issues\NotifyCustomerOfReopenedIssue',
 		],
+        'App\Events\Issues\IssuePaused' => [
+            'App\Listeners\Issues\NotifyFollowersOfPaused',
+        ],
+        'App\Events\Issues\IssueWaitingForCustomer' => [
+            'App\Listeners\Issues\NotifyFollowersOfExternal',
+        ],
+        'App\Events\Issues\IssueWaitingForInternal' => [
+            'App\Listeners\Issues\NotifyFollowersOfInternal',
+        ],
     ];
 
     /**

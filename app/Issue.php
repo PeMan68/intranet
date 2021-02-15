@@ -22,7 +22,8 @@ class Issue extends Model
 		'customerTel',
 		'customerMail',
 		'paused',
-		'waitingForReply',
+		'waitingForCustomer',
+		'waitingForInternal',
 		'vip',
 		'nextIssue_id',
 		'previousIssue_id',
@@ -35,6 +36,7 @@ class Issue extends Model
 		'prio',
 		'ticketNumber',
 		'header',
+
     ];
 	
 	public function namePersonalTask(){
@@ -92,18 +94,6 @@ class Issue extends Model
 		return $level;
 	}
 
-	// Ta bort om inte används
-
-	// public function hoursToCallback() {
-	// 	if (!is_null($this->timeCustomercallback)){
-	// 		$hours=0;
-	// 	} else {
-	// 		$hours = (strtotime($this->timeEstimatedcallback)-strtotime(date('Y-m-d H:i:s'))) / 3600;
-	// 	}
-	// 	return $hours;
-	// }
-
-
 	public function minutesToCallback() {
 		if (!is_null($this->timeCustomercallback)){
 			$minutes=0;
@@ -133,7 +123,7 @@ class Issue extends Model
 		if (!is_null($this->timeCustomercallback)) {
 			$prio /=6;
 		}
-		if ($this->waitingForReply) {
+		if ($this->waitingForCustomer) {
 			$prio /=9;
 		}
 		if ($this->paused) {

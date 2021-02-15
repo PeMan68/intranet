@@ -25,7 +25,7 @@ class IssueReminder extends Mailable
 		$this->ticketNumber = $issue->ticketNumber;
         $this->customer = $issue->customer;
         $this->header = $issue->header;
-        $this->urgent = '';
+        $this->urgent = ' ';
         if ($urgent) {
             $this->urgent = ' BRÅDSKANDE! ';
         }

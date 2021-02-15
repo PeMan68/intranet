@@ -49,7 +49,8 @@
             @if (!is_null($issue->timeClosed))
                 <div class="alert alert-danger">
                     Ärendet är avslutat.
-                    <a class="btn btn-danger btn-sm m-2" href="{{ route('issues.reopen', $issue->id) }}" role="button">Öppna
+                    <a class="btn btn-danger btn-sm m-2" href="{{ route('issues.reopen', $issue->id) }}"
+                        role="button">Öppna
                         ärende igen</a>
                 </div>
             @endif
@@ -105,17 +106,20 @@
                                         <option value="-">---</option>
 
                                         @foreach ($tasks as $task)
-                                            <option value="{{ $task->id }}" {{ $task->id == $issue->task_id ? 'selected' : '' }}> {{ $task->name }}</option>
+                                            <option value="{{ $task->id }}"
+                                                {{ $task->id == $issue->task_id ? 'selected' : '' }}>
+                                                {{ $task->name }}</option>
                                         @endforeach
                                     </select></td>
                             </tr>
                             <tr>
                                 <td><strong>Personligt eller grupp:</strong></td>
                                 <td><select class="form-control" id="taskPersonal_id" name="taskPersonal_id">
-                                        <option value="0" {{ old('taskPersonal_id') == '0' ? 'selected' : '' }}>Gruppärende
+                                        <option value="0" {{ old('taskPersonal_id') == '0' ? 'selected' : '' }}>
+                                            Gruppärende
                                         </option>
-                                        <option value="{{ $auth_user->id }}" @if (!old() && $auth_user->id == $issue->taskPersonal_id) selected
-                                            @endif>{{ $auth_user->name }} {{ $auth_user->surname }}
+                                        <option value="{{ $auth_user->id }}" @if (!old() && $auth_user->id == $issue->taskPersonal_id) selected @endif>{{ $auth_user->name }}
+                                            {{ $auth_user->surname }}
                                         </option>
                                     </select></td>
                             </tr>
@@ -145,11 +149,6 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-check form-check-inline">
-                            <input type="checkbox" class="form-check-input" id="vip" name="vip" value="1"
-                                {{ $issue->vip == '1' ? 'checked' : '' }}>
-                            <label for="vip" class="font-weight-bold m-0">VIP-kund</label>
-                        </div>
-                        <div class="form-check form-check-inline">
                             <input type="radio" class="form-check-input" id="prio1" name="prio" value="1"
                                 {{ $issue->prio == '1' ? 'checked' : '' }}>
                             <label for="prio1" class="font-weight-bold m-0">Prioritet Normal</label>
@@ -158,6 +157,44 @@
                             <input type="radio" class="form-check-input" id="prio2" name="prio" value="2"
                                 {{ $issue->prio == '2' ? 'checked' : '' }}>
                             <label for="prio2" class="font-weight-bold m-0">Prioritet Hög</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="vip" name="vip" value="1"
+                                {{ $issue->vip == '1' ? 'checked' : '' }}>
+                            <label for="vip" class="font-weight-bold m-0">VIP-kund</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="paused" name="paused" value="1"
+                                {{ $issue->paused == '1' ? 'checked' : '' }}>
+                            <label for="vip" class="font-weight-bold m-0">Ärendet Pausat</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="waitingForCustomer"
+                                name="waitingForCustomer" value="1"
+                                {{ $issue->waitingForCustomer == '1' ? 'checked' : '' }}>
+                            <label for="vip" class="font-weight-bold m-0">Väntar på svar från Kund</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="waitingForInternal"
+                                name="waitingForInternal" value="1"
+                                {{ $issue->waitingForInternal == '1' ? 'checked' : '' }}>
+                            <label for="vip" class="font-weight-bold m-0">Väntar på svar från Kollega</label>
                         </div>
                     </div>
                 </div>
@@ -183,10 +220,12 @@
                                         title="{{ $user->name . ' ' . $user->surname }}">{{ $user->initials() }}</span>
                                 @endforeach
                                 @if ($follow)
-                                    <a class="btn btn-primary btn-sm m-2" href="{{ route('issues.unfollow', $issue->id) }}"
-                                        role="button">Sluta följa ärende</a>
+                                    <a class="btn btn-primary btn-sm m-2"
+                                        href="{{ route('issues.unfollow', $issue->id) }}" role="button">Sluta följa
+                                        ärende</a>
                                 @else
-                                    <a class="btn btn-primary btn-sm m-2" href="{{ route('issues.follow', $issue->id) }}">
+                                    <a class="btn btn-primary btn-sm m-2"
+                                        href="{{ route('issues.follow', $issue->id) }}">
                                         Följ ärende<i class="material-icons white md-18 ml-1" data-toggle="tooltip"
                                             title="Följ ärendet för att få mail när det händer något"
                                             style="vertical-align: middle;">help</i>
@@ -231,7 +270,8 @@
         <div>
             <h3>Lägg till anteckning</h3>
             @if (is_null($issue->timeClosed))
-                <issue-comment-form :contacts="{{ $contacts }}" :comment="{{ $new_comment }}" :follow="{{ $follow }}">
+                <issue-comment-form :contacts="{{ $contacts }}" :comment="{{ $new_comment }}"
+                    :follow="{{ $follow }}">
                 </issue-comment-form>
             @endif
             <h3>Historik</h3>
@@ -255,11 +295,9 @@
                         @endswitch
                     </template>
                     @switch($comment->direction)
-                        {{--
-                        direction==0 > internal note
+                        {{-- direction==0 > internal note
                         direction==1 > outbound message
-                        direction==2 > inbound message
-                        --}}
+                        direction==2 > inbound message --}}
                         @case(0)
                         <template #from>
                             {{ $comment->user->name . ' ' . $comment->user->surname }}

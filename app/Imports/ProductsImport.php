@@ -3,16 +3,13 @@
 namespace App\Imports;
 
 use App\Product;
-use Maatwebsite\Excel\Concerns\ToModel;
-
-use Maatwebsite\Excel\Validators\Failure;
 use Maatwebsite\Excel\Concerns\Importable;
-use Maatwebsite\Excel\Concerns\SkipsOnError;
-use Maatwebsite\Excel\Concerns\WithValidation;
-use Maatwebsite\Excel\Concerns\SkipsErrors;
-use Maatwebsite\Excel\Concerns\WithStartRow;;
+use Maatwebsite\Excel\Concerns\WithStartRow;
+use Maatwebsite\Excel\Concerns\OnEachRow;
+use Maatwebsite\Excel\Row;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class ProductsImport implements ToModel, WithStartRow
+class ProductsImport implements WithStartRow, OnEachRow, WithChunkReading
 {
     use Importable;
     
@@ -20,20 +17,20 @@ class ProductsImport implements ToModel, WithStartRow
     {
         return 2;
     }
-   /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
-    public function model(array $row)
+
+    public function onRow(Row $row)
     {
-        return new Product([
-			'item'                  => $row[2],
-			'item_description_swe'  => $row[3],
-			'transferprice'         => $row[5],
-			'currency'              => $row[6],
+        $row = $row->toArray();
+
+        $product = Product::updateOrCreate([
+            'item' => $row[2]
+        ], [
+            'item'                  => $row[2],
+            'item_description_swe'  => $row[3],
+            'transferprice'         => $row[5],
+            'currency'              => $row[6],
             'listprice'             => $row[4],
-            'group'                 => $row[1],                
+            'group'                 => $row[1],
             'family'                => $row[10],
             'subfamily'             => $row[11],
             'safety'                => $row[7],
@@ -43,5 +40,10 @@ class ProductsImport implements ToModel, WithStartRow
             'ean'                   => $row[9],
             'enummer'               => $row[12],
         ]);
+    }
+
+    public function chunkSize(): int
+    {
+        return 1000;
     }
 }
