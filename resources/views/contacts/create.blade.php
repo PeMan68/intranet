@@ -16,7 +16,7 @@
                             @csrf
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="internal" id="internal" value="1"
-                                    {{ old('internal') <> '1' ? '' : 'checked' }}>
+                                    {{ old('internal') == '1' ? 'checked' : '' }}>
                                 <label class="form-check-label" for="internal">Hör till organisationen</label>
                             </div>
 

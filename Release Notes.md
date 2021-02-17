@@ -6,7 +6,6 @@
 * 210109-2 The side-menu is not handled well when window height gets smaller
 * 210214.01 When adding comment to Issue it is not shown until another page reload in production. In development is is shown after the save.
 * 210215.01 Change reminders so it reloads jobs like emails for statuses
-* 210216.01 Saving new contacts sets "Intern" regardless of the checkbox status
 
 *Features*
 * 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails ar enot responded upon.
@@ -24,7 +23,11 @@
 *Features:*
 * Attachments stored in Issues
 
-## Finsihed for next release
+*Fixes*
+
+## Finished for next release
+*Fixes*
+* 210216.01 Saving new contacts sets "Intern" regardless of the checkbox status
 ## **Release 2.5.32 (2021-02-15)**
 *Features:*
 * 210109-5  Add status Pause, WaitingForInternal, WaitingForCustomer to Issues (**requires migration**)
