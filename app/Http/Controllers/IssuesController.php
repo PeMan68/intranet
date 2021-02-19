@@ -330,7 +330,10 @@ class IssuesController extends Controller
 		// $validatedData['timeClosed'] = date('Y-m-d H:i:s');
 		$issue = Issue::find($id);
 		$issue->update([
-		'timeClosed' => date('Y-m-d H:i:s')
+		'timeClosed' => date('Y-m-d H:i:s'),
+		'paused' => null,
+		'waitingForCustomer' => null,
+		'waitingForInternal' => null,
 		]);
 		event(new IssueClosed($issue));
 		event(new UpdatedIssue($issue, $type='comment',[]));

@@ -40,6 +40,9 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
      */
     public function handle()
     {
+        if (!is_null($this->issue->timeClosed)) {
+            return;
+        }
         if ($this->typeOfReminder == 'paused') {
             if (!$this->issue->paused) {
                 return null;
