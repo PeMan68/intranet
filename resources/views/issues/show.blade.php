@@ -225,7 +225,7 @@
                         <table class="table table-sm table-borderless">
                         @foreach ($files as $file)
                             <tr>
-                            <td><a href="{{ '/storage/'.$file->url }}">{{ $file->filename }}</a></td>
+                            <td><a href="{{ '/issues/attachment/download/'.$file->id }}">{{ $file->filename }}</a></td>
                             <td>{{ $file->description }}</td>
                             </tr>
                         @endforeach

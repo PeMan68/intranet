@@ -176,12 +176,12 @@ class IssuesController extends Controller
     /**
      * Download the specified resource.
      *
-     * @param  \App\Documents  $id
+     * @param  \App\IssueAttachment  $id
      * @return \Illuminate\Http\Response
      */
-    public function download($id)
+    public function downloadFile($id)
     {
-        $document = Documents::find($id);
+        $document = IssueAttachment::find($id);
 		return Storage::download($document->path, $document->filename);
 	}
 	

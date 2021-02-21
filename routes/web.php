@@ -49,6 +49,7 @@ Route::get('/issues/{id}/uncontacted','IssuesController@uncontacted')->name('iss
 Route::get('/issues/{id}/close','IssuesController@close')->name('issues.close')->middleware('auth');
 Route::get('/issues/{id}/reopen','IssuesController@reopen')->name('issues.reopen')->middleware('auth');
 Route::post('/issues/attach','IssuesController@storeFile')->name('issues.attach')->middleware('auth');
+Route::get('/issues/attachment/download/{id}','IssuesController@downloadFile')->middleware('auth');
 
 Route::resource('/visitors','VisitorsController');
 
