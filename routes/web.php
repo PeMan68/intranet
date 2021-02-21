@@ -11,6 +11,9 @@
 |
 */
 
+use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\ContactController;
+
 Route::get('/posten', 'PagesController@posten');
 Route::get('/reception', 'PagesController@reception');
 Route::get('/reception2', 'PagesController@reception2');
@@ -43,6 +46,7 @@ Route::get('/issues/{id}/follow','IssuesController@follow')->name('issues.follow
 Route::get('/issues/{id}/unfollow','IssuesController@unfollow')->name('issues.unfollow')->middleware('auth');
 Route::get('/issues/{id}/contacted','IssuesController@contacted')->name('issues.contacted')->middleware('auth');
 Route::get('/issues/{id}/uncontacted','IssuesController@uncontacted')->name('issues.uncontacted')->middleware('auth');
+Route::get('/issues/{id}/close','IssuesController@close')->name('issues.close')->middleware('auth');
 Route::get('/issues/{id}/reopen','IssuesController@reopen')->name('issues.reopen')->middleware('auth');
 Route::post('/issues/attach','IssuesController@storeFile')->name('issues.attach')->middleware('auth');
 
@@ -56,4 +60,7 @@ Route::resource('/locations', 'LocationController', ['except' => ['show', 'creat
 Route::get('/locations/{id}', 'LocationController@create')->name('locations.create')->middleware('auth');
 Route::get('/locations/delete/{id}', 'LocationController@destroy')->name('locations.destroy')->middleware('auth');
 
+Route::get('/posts', 'PostController@index')->name('posts.index')->middleware('auth');
+
+Route::resource('/contacts', 'ContactController')->middleware('auth');
 

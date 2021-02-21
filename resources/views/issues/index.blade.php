@@ -11,10 +11,13 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="card-body">
 		<issue-table 
-			:items="{{ $products }}" 
-			:fields="{{ $fields }}" >
+			:items-all = "{{ $itemsAll }}" 
+			:items30 = "{{ $items30 }}" 
+			:fields = "{{ $fields }}"
+			>
 		</issue-table>
 	</div>
 </div>

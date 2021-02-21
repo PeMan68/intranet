@@ -10,7 +10,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-
 	@yield('scriptsHead')
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -43,7 +42,7 @@
 				<div class="col-md-9 col-sm-8 p-3">
 					@include('partials.alerts')
 					@if (Session::has('message'))
-					<div class="alert alert-info">{{ Session::get('message') }}</div>
+					<app-message>{{ Session::get('message') }}</app-message>
 					@endif
 					@yield('content')
 				</div>

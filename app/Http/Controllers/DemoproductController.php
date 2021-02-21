@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreDemoproduct;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-// use Arr;
 
 class DemoproductController extends Controller
 {
@@ -82,7 +81,6 @@ class DemoproductController extends Controller
         }
         $locationBreadcrumbList = collect($locationBreadcrumbList)->sortBy('name');
         $products = Product::limit(50)->get();
-        //dd($products);
         $items = $products->map(function ( $data ) {
             return [
                 'id' => $data->id,
@@ -90,7 +88,6 @@ class DemoproductController extends Controller
                 'beskr' => $data->item_description_swe,
             ];
         });
-        //  dd($items);
         return view('demoproducts.create', [
             'locations' => $locationBreadcrumbList, 
             'products' => Product::all(),
@@ -110,7 +107,7 @@ class DemoproductController extends Controller
         $validatedData = $request->validated();
         $validatedData['userUpdate_id'] = Auth::id();
         $demoProduct = Demoproduct::create($validatedData);
-        return redirect('/demoproducts')->with('success', $demoProduct->product->item . ' registrerad, plats ' . $demoProduct->location->name);
+        return redirect('/demoproducts')->with('message', $demoProduct->product->item . ' registrerad, plats ' . $demoProduct->location->name);
     }
 
     /**

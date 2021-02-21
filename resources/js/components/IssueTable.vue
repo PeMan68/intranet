@@ -2,43 +2,39 @@
 
     <b-container fluid>
         <b-row class="mb-2">
-            <b-col sm="2">
-                <b-button variant="primary" size="sm" href="issues/create"><i class="material-icons">add_circle</i> Nytt ärende</b-button>
+            <b-col class="my-1" cols="12" lg="3">
+                <b-button variant="primary" size="sm" href="/issues/create"><i class="material-icons">add_circle</i> Nytt ärende</b-button>
             </b-col>
-            <b-col sm="5">
+
+            <b-col class="my-1" cols="12" lg="5" order-lg="3">
+                <b-input-group size="sm">
+                    <b-form-input
+                    v-model="filter" 
+                    type="search"
+                    id="filterInput"
+                    placeholder="Sök i all historik"
+                    align="center"
+                    debounce="500"
+                    ></b-form-input>
+                    <b-input-group-append>
+                    </b-input-group-append>
+                </b-input-group>
+            </b-col>
+
+            <b-col class="my-1" cols="12" lg="4" order-lg="2">
                 <b-pagination
                     v-model="currentPage"
                     :total-rows="totalRows"
                     :per-page="perPage"
                     aria-controls="issue-table"
+                    align="center"
                 ></b-pagination>
-            </b-col>
-
-            <b-col sm="5">
-                <b-form-group
-                label="Filter"
-                label-cols-sm="3"
-                label-align-sm="right"
-                label-size="sm"
-                label-for="filterInput"
-                class="mb-0"
-                >
-                <b-input-group size="sm">
-                    <b-form-input
-                    v-model="filter"
-                    type="search"
-                    id="filterInput"
-                    placeholder="Sök i alla kolumner"
-                    ></b-form-input>
-                    <b-input-group-append>
-                    <b-button :disabled="!filter" @click="filter = ''">Rensa</b-button>
-                    </b-input-group-append>
-                </b-input-group>
-                </b-form-group>
-            </b-col>
+            </b-col>        
         </b-row>
+
         <b-table 
             id="issue-table"
+            ref="table"
             :items="items"
             :fields="fields"
             :per-page="perPage"
@@ -62,7 +58,8 @@
                 <i v-if="data.item.finish" class="material-icons">done_all</i>
                 <i v-if="data.item.prio == 2 && !data.item.finish" class="material-icons">grade</i>
                 <i v-if="data.item.vip && !data.item.finish" class="material-icons">favorite</i>
-                <i v-if="data.item.wait && !data.item.finish" class="material-icons">snooze</i>
+                <i v-if="data.item.wait_Customer && !data.item.finish" class="material-icons">person</i>
+                <i v-if="data.item.wait_Internal && !data.item.finish" class="material-icons">support_agent</i>
                 <i v-if="data.item.pause && !data.item.finish" class="material-icons">pause_circle_filled</i>
                 <i v-if="data.item.contacted && !data.item.finish" class="material-icons">how_to_reg</i>
                 </span>
@@ -95,9 +92,15 @@
                         </div>
                     </template>
                     <b-row class="my-2 mx-0">
-                        <b-col sm="3" class="text-sm text-nowrap">
+                        <b-col sm="2" class="text-sm text-nowrap">
                             <template v-if="row.item.vip">
                                 <i class="material-icons">favorite</i> = VIP-kund<br>
+                            </template>
+                            <template v-if="row.item.wait_Internal">
+                                <i class="material-icons">support_agent</i> = Väntar på kollega<br>
+                            </template>
+                            <template v-if="row.item.wait_Customer">
+                                <i class="material-icons">person</i> = Väntar på kund<br>
                             </template>
                             <template v-if="row.item.prio == 2">
                                 <i class="material-icons">grade</i> = Hög prio<br>
@@ -105,14 +108,11 @@
                             <template v-if="row.item.contacted">
                                 <i class="material-icons">how_to_reg</i> = Första kontakt gjord<br>
                             </template>
-                            <template v-if="row.item.wait">
-                                <i class="material-icons">snooze</i> = Väntar på svar<br>
-                            </template>
                             <template v-if="row.item.pause">
                                 <i class="material-icons">pause_circle_filled</i> = Pausad<br>
                             </template>
                         </b-col>
-                        <b-col sm="3">
+                        <b-col sm="4">
                             <table class="table-sm">
                                 <tr>
                                     <td><b>Kontakt:</b></td><td>{{ row.item.Kontakt }}</td>
@@ -145,9 +145,14 @@
 </template>
 
 <script>
+/**
+ * * Table is loaded with open items plus items 30 days old
+ * * when search is made with the filter table loads another dataset with all items
+ */
     export default {
         props: [
-            'items',
+            'itemsAll',
+            'items30',
             'fields',
          ],
 
@@ -157,21 +162,30 @@
                 currentPage: 1,
                 totalRows: 1,
                 filter: null,
-            }
+                items: [],
+              }
         },
 
         mounted() {
             // Set the initial number of items
+            this.items = this.items30
             this.totalRows = this.items.length
         },
+                
         methods: {
 
             onFiltered(filteredItems) {
-            // Trigger pagination to update the number of buttons/pages due to filtering
-            this.totalRows = filteredItems.length
-            this.currentPage = 1
-            }
+                // Trigger pagination to update the number of buttons/pages due to filtering
+                if (this.filter == '' || this.filter == null) {
+                    this.items = this.items30
+                    this.totalRows = this.items.length
+                } else {
+                    this.items = this.itemsAll
+                    this.totalRows = filteredItems.length
+                }
+                    this.currentPage = 1
+            },
         },
-    
+ 
     }
 </script>

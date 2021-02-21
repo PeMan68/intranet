@@ -1,0 +1,20 @@
+"1","Dupline","Grunder i Dupline®","Adressering","2005-04-22","[p,991,1266,2]
+Varje ingång eller utgång måste tilldelas en av de 128 adresserna. Adressen definierar vilket pulsnummer i Dupline®-pulståget som I/O-punkten ska använda för att överföra eller ta emot sin signal. De 128 adresserna delas in i 16 grupper (A-P) med 8 adresser vardera (1-8), så att en adressreferens är en kombination av en bokstav och en siffra, t.ex. B3. Adresserna tilldelas till noder med en enkel bärbar kodningsenhet.","images/katalog/adressering.gif"
+"2","Dupline","Grunder i Dupline®","Dupline ASIC","2005-04-22","[p,1,1266,3]
+Den elektroniska nyckelkomponenten i varje I/Omodul är Dupline ASIC-chip. En utveckling av Carlo Gavazzi som använder den senaste tekniken för att komprimera åratals industriell kommunikationserfarenhet i ett enda chip. ASIC-chipets litenhet och låga spänningsförbrukning gör det möjligt att ta fram mycket kompakta bussdrivna komponenter, som givare eller ljusbrytare.","images/katalog/dupline_asic.gif"
+"3","Dupline","Grunder i Dupline®","Kodning och testning","2005-04-22","[p,2,1266,4]
+Adresser tilldelas till Dupline®-modulerna med det bärbara kodningsverktyget GAP1605. 
+Modulerna behöver inte vara spänningsanslutna eller anslutna till Dupline®-bussen för att kodas. 
+Den aktuella adressen kan läsas tillbaka in i GAP1605 för verifikation. 
+
+Kodning av en adress är lika enkelt som att slå ett telefonnummer. 
+
+GTU8 är ett testverktyg som gör det möjligt att avläsa faktisk status och kontrollera alla 128 adresser i ett aktivt system. 
+
+Verktyget är användbart vid driftssättning av ett system och för att isolera ett problem med en feldragen ingångs- eller utgångsmodul. 
+
+GTU8 kan anslutas till tvåtråds-Dupline® när som helst under installationen.<h1>f</h1>","images/katalog/kodning_och_testning.gif"
+"9","Dupline","Felsökning","Felmeddelande G3890","2006-11-29","Felmeddelande som visas fönstret på Mastergenerator G3890:
+
+<table><tr><td>E12</td><td>Felaktig tid</td></tr><tr><td>E20</td><td>Ingen skrivare ansluten</td></tr><tr><td>E42</td><td>Internt hårdvarufel</td></tr></table>",""
+

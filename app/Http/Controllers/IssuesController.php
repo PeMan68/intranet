@@ -4,26 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Issue;
 use App\Area;
+use App\Contact;
 use App\Task;
 use App\User;
 use App\Priority;
 use App\IssueComment;
 use App\IssueAttachment;
+use App\Mail\IssueCreated;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use App\Http\Requests\StoreIssue;
 use App\Http\Requests\UpdateIssue;
-use Illuminate\Support\Facades\Auth;
-use App\Mail\IssueCreated;
-use Illuminate\Support\Facades\Mail;
-use App\Events\NewIssue;
-use App\Events\IssueReopened;
-use App\Events\NewIssueComment;
+use App\Http\Requests\StoreDocument;
 use App\Http\Requests\StoreAttachment;
-use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use App\Http\Requests\StoreDocument;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Arr;
 
+use App\Events\Issues\NewIssue;
+use App\Events\Issues\UpdatedIssue;
+use App\Events\Issues\IssueClosed;
+use App\Events\Issues\IssuePaused;
+use App\Events\Issues\IssueReopened;
+use App\Events\Issues\IssueWaitingForCustomer;
+use App\Events\Issues\IssueWaitingForInternal;
 class IssuesController extends Controller
 {
 	
@@ -39,15 +46,38 @@ class IssuesController extends Controller
 		// cleanup task_user table for current user
 		$tasks = Task::all();
 		Auth::user()->tasks()->sync($tasks);
+		$itemsAll = $this->createTableData(
+			Issue::with('task','latestComment','userCreate')
+				->get()
+				->sortByDesc('calculated_prio')
+				->flatten()
+		);
 
-        $issues = Issue::with('task','latestComment','userCreate')
-					->whereNull('timeClosed')
-					->orWhere('timeClosed','>',date('Y-m-d',strtotime('-1 year')))
-					->get()
-					->sortByDesc('calculated_prio')
-					->flatten()
-					;
-					
+		$items30 = $this->createTableData(
+			Issue::with('task','latestComment','userCreate')
+				->whereNull('timeClosed')
+				->orWhere('timeClosed','>',date('Y-m-d',strtotime('-1 month')))
+				->get()
+				->sortByDesc('calculated_prio')
+				->flatten()
+		);
+
+		$fields = collect([]);
+		$fields->push(['key'=> 'Info']);
+		$fields->push(['key'=> 'Ärende', 'sortable' => true]);
+		$fields->push(['key'=> 'Registrerat', 'sortable' => true]);
+		$fields->push(['key'=> 'Senaste_kontakt', 'sortable' => true]);
+		$fields->push(['key'=> 'Område', 'sortable' => true]);
+		$fields->push(['key'=> '.', 'class' => 'text-right']);
+		$fields->push(['key'=> 'Kund']);
+		$fields->push(['key'=> 'Kontakt']);
+		$fields->push(['key'=> 'Rubrik']);
+
+        return view('issues.index', ['itemsAll' => $itemsAll, 'items30' => $items30, 'fields' => $fields]);
+	}
+
+	private function createTableData($issues) 
+	{					
         $selected = $issues->map(function ( $item ) {
 			if (!is_null($item->latestComment)) {
 				$latest_days = date_diff($item->latestComment->updated_at, now())->format('%a');
@@ -78,13 +108,13 @@ class IssuesController extends Controller
 				'Id' => $item->id,
                 'Ärende' => $item->ticketNumber,
 				'Registrerat' => date('y-m-d',strtotime($item->timeInit)),
+				'Avslutat' => date('y-m-d', strtotime($item->timeClosed)),
 				'Senaste_kontakt' => $latest_days,
 				'Senaste' => $latest_date,
 				'Område' => $item->task->name,
 				'finish' => $item->timeClosed,
 				'vip' => $item->vip,
 				'prio' => $item->prio,
-				'wait' => $item->waitingForReply,
 				'pause' => $item->paused,
 				'contacted' => $item->timeCustomercallback,
 				'Kund' => $item->customer,
@@ -94,24 +124,14 @@ class IssuesController extends Controller
 				'E_post' => $item->customerMail,
 				'Telefon' => $item->customerTel,
 				'Skapad_av' => $item->userCreate->fullName(),
-				'Senaste_kommentar' => $item->latestComment['comment_internal'],
+				'Senaste_kommentar' => $item->latestComment['comment'],
+				'wait_Customer' => $item->waitingForCustomer,
+				'wait_Internal' => $item->waitingForInternal,
 
 				'_rowVariant' => $rowVariant,
             ];
 		});
-
-		$fields = collect([]);
-		$fields->push(['key'=> 'Info']);
-		$fields->push(['key'=> 'Ärende', 'sortable' => true]);
-		$fields->push(['key'=> 'Registrerat', 'sortable' => true]);
-		$fields->push(['key'=> 'Senaste_kontakt', 'sortable' => true]);
-		$fields->push(['key'=> 'Område', 'sortable' => true]);
-		$fields->push(['key'=> '.', 'class' => 'text-right']);
-		$fields->push(['key'=> 'Kund']);
-		$fields->push(['key'=> 'Kontakt']);
-		$fields->push(['key'=> 'Rubrik']);
-
-        return view('issues.index', ['products' => $selected, 'fields' => $fields]);
+		return $selected;
 	}
 
     /**
@@ -183,10 +203,10 @@ class IssuesController extends Controller
 			$prio = Task::find($request->task_id)->prio_id;
 			$hours = Priority::find($prio)->hours;
 		}
-		$validatedData['timeEstimatedcallback'] = date('Y-m-d H:i', strtotime(sprintf("+%d hours", $hours)));
+		$validatedData['timeEstimatedcallback'] = date('Y-m-d H:i', strtotime(sprintf("+%d hours", $hours))); //Enhancement, adjust to working hours according to calendar
 		$validatedData['vip'] = $request->has('vip');
 		//build ticketnumber, S+year+number of issues currentyear.
-		$validatedData['ticketNumber'] = 'S-' . date('y') . sprintf('%03d',Issue::whereYear('created_at', date('Y'))->count() +1);
+		$validatedData['ticketNumber'] = setting('issue_prefix') . date('y') . sprintf('%03d',Issue::whereYear('created_at', date('Y'))->count() +1);
 		
 		$issue = Issue::create($validatedData);
 		$files = $request->file('files');
@@ -209,15 +229,18 @@ class IssuesController extends Controller
 		if ($request->has('follow')) {
 			$issue->followers()->attach(Auth::id());
 		}
-		$task = Task::find($request->task_id);
-		//Send mail to responsible staff
-		event(new NewIssue($issue, $hours));
 
+		//Send mail to responsible staff and other stuff
+		
         if ($request->has('save')) {
-			return redirect('/issues')->with('success','Nytt ärende skapat: '.$validatedData['ticketNumber']);
+			event(new NewIssue($issue, $hours));
+			return redirect('/issues')->with('success','Nytt ärende skapat: '.$issue->ticketNumber);
 		}
         if ($request->has('saveOpen')) {
-			return redirect('/issues/'.$issue->id)->with('success','Nytt ärende '.$validatedData['ticketNumber']);
+			// Key is used to delay email of New Issue and Block mails about updates until key is expired
+			cache([$issue->ticketNumber => true], now()->addMinutes(setting('time_disable_update_job')));
+			event(new NewIssue($issue, $hours));
+			return redirect('/issues/'.$issue->id)->with('message','Nytt ärende '.$issue->ticketNumber);
 		}
 		
     }
@@ -230,11 +253,13 @@ class IssuesController extends Controller
      */
     public function show(Issue $issue)
     {
-		$Comments = IssueComment::
+		$comments = IssueComment::
 			where('issue_id',$issue->id)
 			->hasComments()
+			->orderBy('checkin', 'desc')
 			->get();
-				
+			// internal contact means inside Enterprise, ie not customers
+		$contacts = Contact::where('internal', 1)->get();		
         $areas = Area::all();
         $tasks = Task::all();
 		$users = User::where('active', 1)->get();
@@ -254,9 +279,17 @@ class IssuesController extends Controller
 		$issue->refresh();
 		$new_comment = check_out_issue($issue);
 		$issue->refresh();
+		$selected = $contacts->map(function ( $contact ) {
+			return [
+				'value' => $contact->id,
+				'text' => $contact->name,
+			];
+		});
+		$selected->push(['value' => 0, 'text' => $issue->customerName]);
+
 		return view('issues.show')->with([
 			'issue' => $issue, 
-			'comments' => $Comments,
+			'comments' => $comments,
 			'areas' => $areas, 
 			'tasks' => $tasks, 
 			'users' => $users,
@@ -265,6 +298,7 @@ class IssuesController extends Controller
 			'follow' => $follow,
 			'new_comment' => $new_comment,
 			'files' => $files,
+			'contacts' => $selected,
 			]);
     }
 
@@ -292,12 +326,26 @@ class IssuesController extends Controller
 		if ($request->has('cancel')) {
 			return redirect('/issues/'.$issue->id);
 		}
-		$validatedData = $request->validated();
-		$validatedData['vip'] = $request->has('vip');
-		Issue::whereId($issue->id)->update($validatedData);
+		
         if ($request->has('save')) {
-			return redirect('/issues/'.$issue->id);
+			$validatedData = $request->validated();
+			$validatedData['vip'] = $request->has('vip');
+			$validatedData['paused'] = $request->has('paused');
+			if ($request->has('paused')) {
+				event(new IssuePaused($issue, 'paused'));
+			}
+			$validatedData['waitingForCustomer'] = $request->has('waitingForCustomer');
+			if ($request->has('waitingForCustomer')) {
+				event(new IssueWaitingForCustomer($issue, 'waitingForCustomer'));
+			}
+			$validatedData['waitingForInternal'] = $request->has('waitingForInternal');
+			if ($request->has('waitingForInternal')) {
+				event(new IssueWaitingForInternal($issue, 'waitingForInternal'));
+			}
+			$issue->update($validatedData);
+			// event(new UpdatedIssue($issue, $type='header', $issue->getChanges()));
 		}
+		return redirect('/issues/'.$issue->id);
     }
 
     /**
@@ -339,12 +387,29 @@ class IssuesController extends Controller
 		return redirect()->back();
 	}
 	
+	public function close($id)
+	{
+
+		// $validatedData['timeClosed'] = date('Y-m-d H:i:s');
+		$issue = Issue::find($id);
+		$issue->update([
+		'timeClosed' => date('Y-m-d H:i:s'),
+		'paused' => null,
+		'waitingForCustomer' => null,
+		'waitingForInternal' => null,
+		]);
+		event(new IssueClosed($issue));
+		event(new UpdatedIssue($issue, $type='comment',[]));
+		return redirect('/issues');
+		
+	}
+
 	public function reopen($id)
 	{
 		$issue = Issue::find($id);
 		Issue::whereId($id)->update(['timeClosed' => null]);
 		event(new IssueReopened($issue));
-		event(new NewIssueComment($issue));
+		event(new UpdatedIssue($issue, $type='comment', []));
 		return redirect()->back();
 	}
 	

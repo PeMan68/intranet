@@ -58,9 +58,6 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-       // if(Auth::user()->id == $id){
-			// return redirect()->route('admin.users.index')->with('warning', 'Det är inte tillåtet att ändra sig själv.');
-		// }
 		if ($request->has('delete')) {
 			$entry = User::find($id);
 			$entry->delete();
@@ -85,12 +82,11 @@ class UserController extends Controller
 		//loop through each task and assign level
 		$levels = $request->levels;
 		foreach ($tasks as $task){
-			//dd($levels);
 			$level=$levels[$task];
 			$user->tasks()->updateExistingPivot($task, ['level' => $level]);
 		}
 
-		return redirect()->route('admin.users.index')->with('success', 'Användaren uppdaterad.');
+		return redirect()->route('admin.users.index')->with('message', 'Användaren uppdaterad.');
     }
 
     /**
@@ -112,7 +108,7 @@ class UserController extends Controller
 			$user->departments()->detach();
 			$user->tasks()->detach();
 			$user->destroy($id);
-			return redirect()->route('admin.users.index')->with('success', 'Användaren raderad.');
+			return redirect()->route('admin.users.index')->with('message', 'Användaren raderad.');
 		}
 			
 		return redirect()->route('admin.users.index')->with('warning', 'Denna användaren kan inte raderas.');
