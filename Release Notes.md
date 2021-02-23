@@ -8,6 +8,8 @@
 * 210215.01 Change reminders so it reloads jobs like emails for statuses
 * 210218.01 URL in mails is back to 'localhost'!
 * 210223.01 Is it possible to collect more messages from issues, so if many posts are done in short time it will not generate separate emails
+* 210223.02 Add reminder for issues where we own the issue and a setting for this time.
+* 210223.03 Show the remindertime for the diiferent options in Issues (eg. Pause (2 weeks))
 
 *Features*
 * 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails ar enot responded upon.
