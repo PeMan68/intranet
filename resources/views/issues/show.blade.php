@@ -16,25 +16,28 @@
     </script>
 @endsection
 
-@section('scriptsBody')
-<script type="text/javascript">
-    $(document).ready(function(){      
-		var i=1;  
-		$('#form-table').hide();
+{{-- @section('scriptsBody')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var i = 1;
+            $('#form-table').hide();
 
-		$('#add').click(function(){  
-			i++; 
-			$('#form-table').show();
-			$('#form-table').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="file" class="form-control-file" name="files[]"></td><td><input type="text" class="form-control form-control-sm" id="fileDescription"  name="fileDescriptions[]" value="{{ old('fileDescription') }}"></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove btn-sm">X</button></td></tr>');  
-		});  
+            $('#add').click(function() {
+                i++;
+                $('#form-table').show();
+                $('#form-table').append('<tr id="row' + i +
+                    '" class="dynamic-added"><td><input type="file" class="form-control-file" name="files[]"></td><td><input type="text" class="form-control form-control-sm" id="fileDescription"  name="fileDescriptions[]" value="{{ old('fileDescription') }}"></td><td><button type="button" name="remove" id="' +
+                    i + '" class="btn btn-danger btn_remove btn-sm">X</button></td></tr>');
+            });
 
-		$(document).on('click', '.btn_remove', function(){  
-			var button_id = $(this).attr("id");   
-			$('#row'+button_id+'').remove();  
-		});
-	});
-</script>
-@endsection
+            $(document).on('click', '.btn_remove', function() {
+                var button_id = $(this).attr("id");
+                $('#row' + button_id + '').remove();
+            });
+        });
+
+    </script>
+@endsection --}}
 
 @section('content')
     <div class="card">
@@ -218,33 +221,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <br>
-                        <label for="file" class="font-weight-bold">Bilagor:</label>
-                        <table class="table table-sm table-borderless">
-                        @foreach ($files as $file)
-                            <tr>
-                            <td><a href="{{ '/issues/attachment/download/'.$file->id }}">{{ $file->filename }}</a></td>
-                            <td>{{ $file->description }}</td>
-                            </tr>
-                        @endforeach
-                        </table>
-                    </div>
-                </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <br>
-                    <table id="form-table" class="table">
-                        <tr>
-                        <th width="30%">Fil</th>
-                        <th width="70%">Beskrivning</th>
-                        </tr>
-                    </table>
-                    <br>
-                </div>
-            </div>
-            <div class="row">
+                <div class="row">
                     <div class="col-md-6" id="buttons">
                         <button type="submit" class="btn btn-primary m-2" name="save">
                             Spara ändringarna
@@ -309,11 +286,21 @@
                     </div>
                 @endif
             </form>
-            {{-- <form action="{{ route('issues.attach', [$issue->id]) }}" method="post"> --}}
-			
-			<form-file :id={{ $issue->id }}></form-file>
-
-            {{-- </form> --}}
+            <div class="row py-1">
+                <div class="col-md-8">
+                    <div class="font-weight-bold">Bilagor:</div>
+                    @foreach ($files as $file)
+                    <a href="{{ '/issues/attachment/download/' . $file->id }}">{{ $file->filename }}</a>
+                    &nbsp;
+                    &nbsp;
+                    @endforeach
+                </div>
+            </div>
+            <div class="row py-2">
+                <div class="col-md-8">
+                    <form-file :id={{ $issue->id }}></form-file>
+                </div>
+            </div>
         </div>
     </div>
 

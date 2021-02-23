@@ -158,19 +158,19 @@ class IssuesController extends Controller
      */
 	public function storeFile(Request $request)
 	{
-		// $data = $request;
 		$tmpFileName=$request->file;
-		
-		$realFileName=$tmpFileName->getClientOriginalName();
-		$documentExtension = $tmpFileName->getClientOriginalExtension();
-		$pathToFile = $request->file->store('public/documents');
-		$data['path'] = $pathToFile;
-		$data['filename'] = $realFileName;
-		$data['user_id'] = Auth::id();
-		$data['issue_id'] = $request->id;
-		$document = IssueAttachment::create($data);
-		// dd($data);
-		return redirect('/issues/', $request->id)->with('success','Fil uppladdad');
+		$issue_id = $request->id;
+			
+			$realFileName=$tmpFileName->getClientOriginalName();
+			// $documentExtension = $request->file->getClientOriginalExtension();
+			$pathToFile = $tmpFileName->store('public/documents');
+			$data['path'] = $pathToFile;
+			$data['filename'] = $realFileName;
+			$data['user_id'] = Auth::id();
+			$data['issue_id'] = $issue_id;
+			$document = IssueAttachment::create($data);
+		return response()->json($document);
+		// return redirect('/issues/', $issue_id)->with('success','Fil uppladdad');
 	}
 
     /**
