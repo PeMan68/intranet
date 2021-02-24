@@ -3,6 +3,8 @@
 *Fixes*
 * 210109-1 Fix rendering of navbar. If a big table is loaded(i.e. Issues), the page seems to wait for the table before the navbar is rendered correct.
     * navbar is not correct for users handling
+    * navbar is not correct for page posten
+    * 
 * 210109-2 The side-menu is not handled well when window height gets smaller
 * 210214.01 When adding comment to Issue it is not shown until another page reload in production. In development is is shown after the save.
 * 210215.01 Change reminders so it reloads jobs like emails for statuses
