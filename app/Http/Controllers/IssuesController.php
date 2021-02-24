@@ -9,12 +9,21 @@ use App\Task;
 use App\User;
 use App\Priority;
 use App\IssueComment;
+use App\IssueAttachment;
+use App\Mail\IssueCreated;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use App\Http\Requests\StoreIssue;
 use App\Http\Requests\UpdateIssue;
+use App\Http\Requests\StoreDocument;
+use App\Http\Requests\StoreAttachment;
 use Illuminate\Support\Facades\Auth;
-use App\Mail\IssueCreated;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Arr;
+
 use App\Events\Issues\NewIssue;
 use App\Events\Issues\UpdatedIssue;
 use App\Events\Issues\IssueClosed;
@@ -22,9 +31,6 @@ use App\Events\Issues\IssuePaused;
 use App\Events\Issues\IssueReopened;
 use App\Events\Issues\IssueWaitingForCustomer;
 use App\Events\Issues\IssueWaitingForInternal;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Arr;
 class IssuesController extends Controller
 {
 	
@@ -150,6 +156,41 @@ class IssuesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+	public function storeFile(Request $request)
+	{
+		$tmpFileName=$request->file;
+		$issue_id = $request->id;
+			
+			$realFileName=$tmpFileName->getClientOriginalName();
+			// $documentExtension = $request->file->getClientOriginalExtension();
+			$pathToFile = $tmpFileName->store('public/documents');
+			$data['path'] = $pathToFile;
+			$data['filename'] = $realFileName;
+			$data['user_id'] = Auth::id();
+			$data['issue_id'] = $issue_id;
+			$document = IssueAttachment::create($data);
+		return response()->json($document);
+		// return redirect('/issues/', $issue_id)->with('success','Fil uppladdad');
+	}
+
+    /**
+     * Download the specified resource.
+     *
+     * @param  \App\IssueAttachment  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function downloadFile($id)
+    {
+        $document = IssueAttachment::find($id);
+		return Storage::download($document->path, $document->filename);
+	}
+	
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(StoreIssue $request)
     {
 		$validatedData = $request->validated();
@@ -166,8 +207,25 @@ class IssuesController extends Controller
 		$validatedData['vip'] = $request->has('vip');
 		//build ticketnumber, S+year+number of issues currentyear.
 		$validatedData['ticketNumber'] = setting('issue_prefix') . date('y') . sprintf('%03d',Issue::whereYear('created_at', date('Y'))->count() +1);
-        $issue = Issue::create($validatedData);
 		
+		$issue = Issue::create($validatedData);
+		$files = $request->file('files');
+		if (!is_null($files))
+		{
+			{
+			foreach ($files as $key=>$file) {
+				$fileName = $validatedData['ticketNumber'].'-'.$file->getClientOriginalName();
+
+				$filePath = $file->storeAs('issues', $fileName, 'public');
+				$attachment = new IssueAttachment;
+				$attachment->issue_id = $issue->id;
+				$attachment->filename = $file->getClientOriginalName();
+				$attachment->url = $filePath;
+				$attachment->description = $request->fileDescriptions[$key];
+				$attachment->save();
+				}
+			}
+		}
 		if ($request->has('follow')) {
 			$issue->followers()->attach(Auth::id());
 		}
@@ -208,6 +266,9 @@ class IssuesController extends Controller
 		$auth_user = Auth::user();
 		$followers = $issue->followers;
 		$follow = 0;
+		$files = IssueAttachment::
+			where('issue_id',$issue->id)
+			->get();
 		foreach ($followers as $follower) {
 			if ($follower->id == Auth::id()) {
 				$follow = 1;
@@ -236,6 +297,7 @@ class IssuesController extends Controller
 			'followers' => $followers,
 			'follow' => $follow,
 			'new_comment' => $new_comment,
+			'files' => $files,
 			'contacts' => $selected,
 			]);
     }
@@ -260,7 +322,8 @@ class IssuesController extends Controller
      */
     public function update(UpdateIssue $request, Issue $issue)
     {
-        if ($request->has('cancel')) {
+		dd('fel');
+		if ($request->has('cancel')) {
 			return redirect('/issues/'.$issue->id);
 		}
 		

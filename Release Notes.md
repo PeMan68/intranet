@@ -28,13 +28,15 @@
 
 ### ***Working on***
 *Features:*
-* Attachments stored in Issues
 
 *Fixes*
 
 ## Finished for next release
 *Fixes*
 * 210216.01 Saving new contacts sets "Intern" regardless of the checkbox status
+
+*Features:*
+* F200214-4 Attachments stored in Issues
 ## **Release 2.5.32 (2021-02-15)**
 *Features:*
 * 210109-5  Add status Pause, WaitingForInternal, WaitingForCustomer to Issues (**requires migration**)
