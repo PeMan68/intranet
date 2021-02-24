@@ -43,6 +43,7 @@
             .then((response) => {
                 console.log(response);
                 this.file = null;
+                window.location.href = '/issues/' + this.id;
             })
             .catch(function (error) {
                 console.log(error);

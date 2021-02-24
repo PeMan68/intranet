@@ -76,6 +76,7 @@ export default {
                         this.fields.selected = 0;
                         this.loaded = true;
                         this.success = true;
+                        window.location.href = '/issues/' + this.comment.issue_id;
                     }
                 ).catch(error => {
                     this.loaded = true;
@@ -83,7 +84,6 @@ export default {
                         this.errors = error.response.data.errors || {};
                     }
                 });
-                window.location.href = '/issues/' + this.comment.issue_id;
             }
         },
 
