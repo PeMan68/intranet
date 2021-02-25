@@ -15,28 +15,24 @@ use App\Jobs\Issues\SendEmailToCreatorAboutComment;
 
 class NotifyCreator
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
+	/**
+	 * Create the event listener.
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+		//
+	}
 
-    /**
-     * Handle the event.
-     *
-     * @param  IssueCommentedFirstTime $event
-     * @return void
-     */
-    public function handle(IssueCommentedFirstTime $event)
-    {
-		//$issueID = $event->issuecomment->issue_id;
-		// $issue = Issue::find($event->issue->id);
-    // $user = User::find($issue->userCreate_id);
-    SendEmailToCreatorAboutComment::dispatch($event->issue, $event->issue->userCreate->email);
-		
-    }
+	/**
+	 * Handle the event.
+	 *
+	 * @param  IssueCommentedFirstTime $event
+	 * @return void
+	 */
+	public function handle(IssueCommentedFirstTime $event)
+	{
+		SendEmailToCreatorAboutComment::dispatch($event->issue, $event->issue->userCreate->email);
+	}
 }
