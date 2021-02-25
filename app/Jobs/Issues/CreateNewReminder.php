@@ -3,6 +3,7 @@
 namespace App\Jobs\Issues;
 
 use App\Events\Issues\IssuePaused;
+use App\Events\Issues\IssueWaitingForComment;
 use App\Events\Issues\IssueWaitingForCustomer;
 use App\Events\Issues\IssueWaitingForInternal;
 use App\Issue;
@@ -51,6 +52,9 @@ class CreateNewReminder implements ShouldQueue
             if ($this->issue->waitingForCustomer) {
                 event(new IssueWaitingForCustomer($this->issue, 'waitingForCustomer'));
             }
+        }
+        if ($this->typeOfReminder == null) {
+                event(new IssueWaitingForComment($this->issue, null));
         }
     }
 }

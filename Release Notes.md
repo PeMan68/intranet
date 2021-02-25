@@ -26,6 +26,7 @@
 
 *Fixes*
 * 210215.01 Change reminders so it reloads jobs like emails for statuses
+    * New field in settings added: 'Fördröjning av notifiering av saknad kommentar (dagar)'
 
 ## Finished for next release
 *Fixes*

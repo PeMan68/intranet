@@ -3,6 +3,7 @@
 namespace App\Listeners\Issues;
 
 use App\Events\Issues\UpdatedIssue;
+use App\Jobs\Issues\CreateNewReminder;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Jobs\Issues\SendEmailToFollowersAboutUpdate;
@@ -40,6 +41,8 @@ class NotifyFollowersOfUpdate
 			foreach ($followers as $user) {
 				SendEmailToFollowersAboutUpdate::dispatch($event->issue, $user->email, $event->type);
 			}
+            $delay = nextWorkingHour(now()->addDays(setting('days_reminder_waiting_for_comment')));
+            CreateNewReminder::dispatch($event->issue, null)->delay($delay);
 		}
 	}
 }

@@ -46,6 +46,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Issues\IssueWaitingForInternal' => [
             'App\Listeners\Issues\NotifyFollowersOfInternal',
         ],
+        'App\Events\Issues\IssueWaitingForComment' => [
+            'App\Listeners\Issues\NotifyFollowersOfComment',
+        ],
     ];
 
     /**
