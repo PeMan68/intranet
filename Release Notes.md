@@ -27,6 +27,16 @@
 *Fixes*
 * 210215.01 Change reminders so it reloads jobs like emails for statuses
     * New field in settings added: 'Fördröjning av notifiering av saknad kommentar (dagar)'
+    * Changes in reminders:
+        * Reminder-jobs are setup with independent intervalls for these situations:
+            * Paused
+            * Waiting for internal answer
+            * Waiting for customer feedback
+            * New Issue or new Comment (via event UpdatedIssue)
+        * When the job executes:
+            * Check if the Issue is closed -> return
+            * Create a new job with the same interval
+            * If there has been no comments since last check of this situation, an email is sent to all the followers notifying of this.
 
 ## Finished for next release
 *Fixes*

@@ -49,46 +49,30 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
                 if (!$this->issue->paused) {
                     return null;
                 }
-                $delayDays=setting('days_reminder_paused_issue');
+                $delayDays = setting('days_reminder_paused_issue');
                 break;
             case 'waitingForInternal':
                 if (!$this->issue->waitingForInternal) {
                     return null;
                 }
-                $delayDays=setting('days_reminder_waiting_for_internal');
+                $delayDays = setting('days_reminder_waiting_for_internal');
                 break;
             case 'waitingForCustomer':
                 if (!$this->issue->waitingForCustomer) {
                     return null;
                 }
-                $delayDays=setting('days_reminder_waiting_for_customer');
+                $delayDays = setting('days_reminder_waiting_for_customer');
                 break;
-                
+
             default:
-                $delayDays=setting('days_reminder_issue');
+                $delayDays = setting('days_reminder_waiting_for_comment');
+                if ($this->issue->latestComment->updated_at->addDays($delayDays) > now()) {
+                    return null;
+                }
                 break;
         }
-        // if ($this->typeOfReminder == 'paused') {
-        //     if (!$this->issue->paused) {
-        //         return null;
-        //     }
-            // Has there been comments since the job was created, don't send mail, just add new reminder
-            if ($this->issue->latestComment->updated_at->addDays($delayDays) > now()) {
-                $delay = nextWorkingHour(now()->addDays($delayDays));
-                CreateNewReminder::dispatch($this->issue, $this->typeOfReminder)->delay($delay);
-                return null;
-            }
-        }
-        // if ($this->typeOfReminder == 'waitingForInternal') {
-        //     if (!$this->issue->waitingForInternal) {
-        //         return null;
-        //     }
-        // }
-        // if ($this->typeOfReminder == 'waitingForCustomer') {
-        //     if (!$this->issue->waitingForCustomer) {
-        //         return null;
-        //     }
-        // }
+        // $delay = nextWorkingHour(now()->addDays($delayDays));
+        // CreateNewReminder::dispatch($this->issue, $this->typeOfReminder)->delay($delay);
         Mail::to($this->email)->send(new MailToFollowersAboutReminder($this->issue, $this->typeOfReminder));
     }
 }
