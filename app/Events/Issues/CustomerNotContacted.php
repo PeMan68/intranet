@@ -2,6 +2,7 @@
 
 namespace App\Events\Issues;
 
+use App\Issue;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -9,29 +10,20 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use App\Issue;
-class NewIssue
+
+class CustomerNotContacted
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      *
-     * @param \App\Issue $issue
-     * 
-     * @param mixed $hours
-     * 
-     * @param mixed $delayJob
-     * 
      * @return void
      */
-    public function __construct(Issue $issue, $hours)
+    public function __construct(Issue $issue, $urgent)
     {
         $this->issue = $issue;
-        $this->urgent = false;
-        if ($hours==0) {
-            $this->urgent = true;
-        }
+        $this->urgent = $urgent;
     }
 
     /**

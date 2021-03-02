@@ -225,7 +225,7 @@ if (!function_exists('nextWorkingHour')) {
 	function nextWorkingHour($dateTimeValue = null)
 	{
 		$timeStart=8; // starthour of working day
-		$timeStop=16; // stophour of working day
+		$timeStop=23; // stophour of working day
 
 		if (is_null($dateTimeValue)) {
 			$dateTimeValue = now();

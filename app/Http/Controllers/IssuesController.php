@@ -322,7 +322,6 @@ class IssuesController extends Controller
      */
     public function update(UpdateIssue $request, Issue $issue)
     {
-		dd('fel');
 		if ($request->has('cancel')) {
 			return redirect('/issues/'.$issue->id);
 		}

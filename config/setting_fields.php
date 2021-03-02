@@ -160,6 +160,15 @@ return [
             [
                 'type' => 'text', // input fields type
                 'data' => 'int', // data type, string, int, boolean
+                'name' => 'days_reminder_waiting_for_comment', // unique name for field
+                'label' => 'Fördröjning av notifiering av saknad kommentar (dagar)', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '2' // default value if you want
+            ],
+            [
+                'type' => 'text', // input fields type
+                'data' => 'int', // data type, string, int, boolean
                 'name' => 'minutes_checkin', // unique name for field
                 'label' => 'Checka tillbaks ärende när användare varit inaktiv på intranätet i (min)', // you know what label it is
                 'rules' => 'required', // validation rule of laravel

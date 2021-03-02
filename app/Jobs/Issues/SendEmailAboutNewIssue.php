@@ -10,8 +10,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use App\Issue;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\IssueCreated;
-
-
 class SendEmailAboutNewIssue implements ShouldQueue
 {
   use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;

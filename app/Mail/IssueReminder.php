@@ -39,7 +39,7 @@ class IssueReminder extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->ticketNumber.$this->urgent.$this->header.' Påminnelse, kunden har inte blivit kontaktad ännu!')
+        return $this->subject($this->ticketNumber.$this->urgent.$this->header.' Kunden har inte blivit kontaktad ännu!')
                     ->view('emails.issueCreated');
     }
 }
