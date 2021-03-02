@@ -3,10 +3,9 @@
 namespace App\Listeners\Issues;
 
 use App\Events\Issues\NewIssue;
+use App\Jobs\Issues\CreateNewReminder;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Jobs\Issues\SendEmailAboutNewIssue;
-use App\Jobs\Issues\SendEmailAboutReminder;
-
 class NotifyFollowersOfNewIssue
 {
     /**
@@ -35,18 +34,26 @@ class NotifyFollowersOfNewIssue
         }
 
         $followers = $event->issue->followers;
-        if ($event->urgent) {
-            $delayReminder = nextWorkingHour(now()->addMinutes(setting('time_reminder_urgent_issue')));
-        } else {
-            $delayReminder = nextWorkingHour(now()->addHours($event->issue->task->priority->hours));
-        }
+
         $delay = nextWorkingHour();
         if (cache($event->issue->ticketNumber)) {
             $delay = nextWorkingHour($delay->addMinutes(setting('time_disable_update_job')));
         }
         foreach ($followers as $user) {
             SendEmailAboutNewIssue::dispatch($event->issue, $user->email, $event->urgent)->delay($delay);
-            SendEmailAboutReminder::dispatch($event->issue, $user->email, $event->urgent)->delay($delayReminder);
         }
+
+        if ($event->urgent) {
+            $minutes = setting('time_reminder_urgent_issue');
+        } else {
+            $minutes = $event->issue->task->priority->hours * 60;
+        }
+        $delay = nextWorkingHour(now()->addMinutes($minutes));
+
+        // Reminder to contact customer
+        CreateNewReminder::dispatch($event->issue, 'customerNotContacted', $event->urgent)->delay($delay);
+
+        // General reminder for issues without comments
+        CreateNewReminder::dispatch($event->issue, null)->delay($delay);
     }
 }
