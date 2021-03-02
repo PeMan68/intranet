@@ -25,6 +25,13 @@
 *Features:*
 
 *Fixes*
+
+## Finished for next release
+*Fixes*
+* 210216.01 Saving new contacts sets "Intern" regardless of the checkbox status
+* 210109-1 Fix rendering of navbar. If a big table is loaded(i.e. Issues), the page seems to wait for the table before the navbar is rendered correct.
+    * navbar is not correct for users handling
+    * navbar is not correct for page posten
 * 210215.01 Change reminders so it reloads jobs like emails for statuses
     * New field in settings added: 'Fördröjning av notifiering av saknad kommentar (dagar)'
     * Changes in reminders:
@@ -37,13 +44,6 @@
             * Check if the Issue is closed -> return
             * Create a new job with the same interval
             * If there has been no comments since last check of this situation, an email is sent to all the followers notifying of this.
-
-## Finished for next release
-*Fixes*
-* 210216.01 Saving new contacts sets "Intern" regardless of the checkbox status
-* 210109-1 Fix rendering of navbar. If a big table is loaded(i.e. Issues), the page seems to wait for the table before the navbar is rendered correct.
-    * navbar is not correct for users handling
-    * navbar is not correct for page posten
 
 *Features:*
 * F200214-4 Attachments stored in Issues
