@@ -221,47 +221,15 @@ if (!function_exists('expiredIssues')) {
 	}
 }
 
-if (!function_exists('workingTime')) {
-	function workingTime($dateTimeValue = null)
-	/**
-	 * Check if time is within working hours
-	 * 
-	 * @return string
-	 * 
-	 *  
-	 */
-	{
-		if (is_null($dateTimeValue)) {
-			$dateTimeValue = now();
-		}
-
-		// check if time is before workhours
-		if ($dateTimeValue->hour < setting('start_hour_workingday')) {
-			return 'beforeHour';
-		}
-
-		// check if time is after workhours
-		if ($dateTimeValue->hour >= setting('stop_hour_workingday')) {
-			return 'afterHour';
-		}
-
-		// check if weekday is weekend
-		if ($dateTimeValue->dayOfWeek == 0 || $dateTimeValue->dayOfWeek == 6) {
-			return 'weekend';
-		}
-
-		return 'OK';
-	}
-}
 if (!function_exists('nextWorkingDateTime')) {
 	/**
 	 * Calculate the DateTime a number of working-minutes from now
 	 * 
-	 * @param  $minutes
+	 * @param int $minutes
 	 * 
 	 * @return DateTime $datetimeValue
 	 */
-	function nextWorkingDateTime($minutes = 0){
+	function nextWorkingDateTime(int $minutes = 0){
 		
 		// $hourWorkStart = 8;
 		// $hourWorkStop = 16;
@@ -329,116 +297,5 @@ if (!function_exists('nextWorkingDay')) {
 			$datetime = $datetime->addDay();
 		}
 		return $datetime;
-	}
-}
-
-if (!function_exists('nextWorkingHour')) {
-	function nextWorkingHour($dateTimeWanted = null)
-	{
-		// $hourWorkStart = setting('start_hour_workingday');
-		// $hourWorkStop = setting('stop_hour_workingday');
-		$hourWorkStart = 7;
-		$hourWorkStop = 15;
-		
-		$dateTimeNow = now();
-		
-		if (is_null($dateTimeWanted)) {
-			$dateTimeWanted = $dateTimeNow;
-		}
-		$dateTimeWorkdayStart = now()->setDateTime(
-			$dateTimeNow->year,
-			$dateTimeNow->month,
-			$dateTimeNow->day,
-			$hourWorkStart,
-			$dateTimeNow->minute,
-		);
-		$dateTimeWorkdayStop = now()->setDateTime(
-			$dateTimeNow->year,
-			$dateTimeNow->month,
-			$dateTimeNow->day,
-			$hourWorkStop,
-			$dateTimeNow->minute,
-		);
-
-		$hourOffset = $dateTimeWanted->hour - $dateTimeNow->hour;
-		$hourWanted = $dateTimeWanted->hour;
-
-		if ($dateTimeNow->hour < $hourWorkStart) {
-			$hourStart = $hourWorkStart;
-		} else {
-			$hourStart = $dateTimeNow->hour;
-		}
-		$hourDiff = $hourStart + $hourOffset - $hourWorkStop;
-		// $hourDiff = $dateTimeWanted->diffInHours($dateTimeNow);
-		dump('hourDiff: '.$hourDiff);
-		
-		if ( $hourDiff >= 0) {
-			$dayDiff = 1;
-		} else {
-			$dayDiff = 0;
-			$hourDiff = $hourOffset;
-		}
-		
-		dump('hourStart: '.$hourStart);
-		dump('hourOffset: '.$hourOffset);
-		dump('hourDiff: '.$hourDiff);
-		// lägg på $h timmar till kl 0 idag
-
-		$dateTimeValue = now()->setDateTime(
-			$dateTimeWanted->year,
-			$dateTimeWanted->month,
-			$dateTimeWanted->day + $dayDiff,
-			$hourStart + $hourDiff,
-			$dateTimeWanted->minute,
-		);
-		return $dateTimeValue;
-
-
-		$checkWantedTime = workingTime($dateTimeValue);
-		$checkNow = workingTime(now());
-
-		// wanted är innan arbetstid
-			// now är innan arbetstid  -> TIMDIFF (wanted - now) + start wanted dag
-			// now är efter arbetstid -> TIMDIFF (wanted - now) + start wanted dag
-		
-		// wanted är efter arbetstid
-			// now är innan arbetstid  -> TIMDIFF (wanted - now) + start wanted dag
-
-			if ($checkTime == 'afterHour') {
-			if (workingTime(now()) == 'OK') {
-				// If now() is within working hours -> Add number of hours exceeding end of day to starthour
-				$setHour = $hourStart + ($dateTimeValue->hour - $hourWorkStop);
-			} else {
-				// If now() is after workingday -> Add number of hours exceeding now() to starthour
-				$setHour = $hourStart + ($dateTimeValue->hour - now()->hour);
-			}
-			$dateTimeValue->addDay();
-		
-		}
-
-		if ($checkTime == 'beforeHour') {
-			if (workingTime(now()) == 'OK') {
-				// If now() is within working hours -> Add number of hours exceeding end of day to starthour
-				$setHour = $hourStart + ($dateTimeValue->hour - $hourWorkStop);
-			} else {
-				// If now() is after workingday -> Add number of hours exceeding now() to starthour
-				$setHour = $hourStart + ($dateTimeValue->hour - now()->hour);
-			}
-		}
-		$dateTimeValue = now()->setDateTime(
-			$dateTimeValue->year,
-			$dateTimeValue->month,
-			$dateTimeValue->day,
-			$setHour,
-			$dateTimeValue->minute,
-		);
-		
-		// While day is not workday, add one day to datetime
-		while ($dateTimeValue->dayOfWeek > 5 || $dateTimeValue->dayOfWeek == 0) {
-			echo $dateTimeValue->dayOfWeek;
-			$dateTimeValue = $dateTimeValue->addDay();
-			echo ('date: '.$dateTimeValue);
-		}
-		return $dateTimeValue;
 	}
 }

@@ -41,7 +41,6 @@ class NotifyFollowersOfUpdate
 			foreach ($followers as $user) {
 				SendEmailToFollowersAboutUpdate::dispatch($event->issue, $user->email, $event->type);
 			}
-            // $delay = nextWorkingHour(now()->addDays(setting('days_reminder_waiting_for_comment')));
             $delay = nextWorkingDateTime(setting('days_reminder_waiting_for_comment') * (setting('stop_hour_workingday') - setting('start_hour_workingday')) * 60);
             CreateNewReminder::dispatch($event->issue, null)->delay($delay);
 		}

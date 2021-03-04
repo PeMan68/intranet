@@ -37,7 +37,6 @@ class NotifyFollowersOfNewIssue
 
         $delay = nextWorkingDateTime();
         if (cache($event->issue->ticketNumber)) {
-            // $delay = nextWorkingHour($delay->addMinutes(setting('time_disable_update_job')));
             $delay = nextWorkingDateTime(setting('time_disable_update_job'));
 
         }
