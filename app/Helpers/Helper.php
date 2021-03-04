@@ -236,12 +236,12 @@ if (!function_exists('workingTime')) {
 		}
 
 		// check if time is before workhours
-		if ($dateTimeValue->hour < setting('start_hour_workday')) {
+		if ($dateTimeValue->hour < setting('start_hour_workingday')) {
 			return 'beforeHour';
 		}
 
 		// check if time is after workhours
-		if ($dateTimeValue->hour >= setting('stop_hour_workday')) {
+		if ($dateTimeValue->hour >= setting('stop_hour_workingday')) {
 			return 'afterHour';
 		}
 
@@ -257,16 +257,16 @@ if (!function_exists('nextWorkingDateTime')) {
 	/**
 	 * Calculate the DateTime a number of working-minutes from now
 	 * 
-	 * @param int $minutes
+	 * @param  $minutes
 	 * 
 	 * @return DateTime $datetimeValue
 	 */
-	function nextWorkingDateTime(int $minutes = 0){
+	function nextWorkingDateTime($minutes = 0){
 		
 		// $hourWorkStart = 8;
 		// $hourWorkStop = 16;
-		$hourWorkStart = setting('start_hour_workday');
-		$hourWorkStop = setting('stop_hour_workday');
+		$hourWorkStart = setting('start_hour_workingday');
+		$hourWorkStop = setting('stop_hour_workingday');
 		
 		$dateTimeNow = now();
 		
@@ -335,8 +335,8 @@ if (!function_exists('nextWorkingDay')) {
 if (!function_exists('nextWorkingHour')) {
 	function nextWorkingHour($dateTimeWanted = null)
 	{
-		// $hourWorkStart = setting('start_hour_workday');
-		// $hourWorkStop = setting('stop_hour_workday');
+		// $hourWorkStart = setting('start_hour_workingday');
+		// $hourWorkStop = setting('stop_hour_workingday');
 		$hourWorkStart = 7;
 		$hourWorkStop = 15;
 		

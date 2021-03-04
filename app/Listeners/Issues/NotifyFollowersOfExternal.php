@@ -29,7 +29,7 @@ class NotifyFollowersOfExternal
     public function handle(IssueWaitingForCustomer $event)
     {
         // $delay = nextWorkingHour(now()->addDays(setting('days_reminder_waiting_for_external')));
-        $delay = nextWorkingDateTime(setting('days_reminder_waiting_for_external') * (setting('stop_hour_workday') - setting('start_hour_workday')) * 60);
+        $delay = nextWorkingDateTime(setting('days_reminder_waiting_for_external') * (setting('stop_hour_workingday') - setting('start_hour_workingday')) * 60);
         $followers = $event->issue->followers;
         foreach ($followers as $follower) {
             SendEmailToFollowersAboutReminder::dispatch($event->issue, $follower->email, $event->typeOfReminder)->delay($delay);

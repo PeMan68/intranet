@@ -29,7 +29,7 @@ class NotifyFollowersOfPaused
     public function handle(IssuePaused $event)
     {
         // $delay = nextWorkingHour(now()->addDays(setting('days_reminder_paused_issue')));
-        $delay = nextWorkingDateTime(setting('days_reminder_paused_issue') * (setting('stop_hour_workday') - setting('start_hour_workday')) * 60);
+        $delay = nextWorkingDateTime(setting('days_reminder_paused_issue') * (setting('stop_hour_workingday') - setting('start_hour_workingday')) * 60);
 
         $followers = $event->issue->followers;
         foreach ($followers as $follower) {
