@@ -71,8 +71,6 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
                 }
                 break;
         }
-        // $delay = nextWorkingHour(now()->addDays($delayDays));
-        // CreateNewReminder::dispatch($this->issue, $this->typeOfReminder)->delay($delay);
         Mail::to($this->email)->send(new MailToFollowersAboutReminder($this->issue, $this->typeOfReminder));
     }
 }
