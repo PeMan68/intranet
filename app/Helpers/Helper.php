@@ -256,7 +256,7 @@ if (!function_exists('nextWorkingDateTime')) {
 		// Move the Starttime depending on if we are before, within or after the workinghours
 		if ($dateTimeNow < $dateTimeWorkdayStart) {
 			$dateTimeTemporary = $dateTimeWorkdayStart;
-		} elseif ($dateTimeNow > $dateTimeWorkdayStop) {
+		} elseif ($dateTimeNow >= $dateTimeWorkdayStop) {
 			$dateTimeTemporary = $dateTimeWorkdayStart->addDay();
 		} else {
 			$dateTimeTemporary = $dateTimeNow;
@@ -264,9 +264,9 @@ if (!function_exists('nextWorkingDateTime')) {
 
 		$dateTimeTemporary = nextWorkingDay($dateTimeTemporary);
 		
-		// Move time ahead workinghours while counting down remaining time
+		// Move time ahead within workingtime while counting down remaining time
 		$minutesDiff = $minutes;
-		while ($dateTimeTemporary->hour + $minutesDiff/60 > $hourWorkStop) {
+		while ($dateTimeTemporary->hour + $minutesDiff/60 >= $hourWorkStop) {
 			$minutesDiff = ($dateTimeTemporary->hour + $minutesDiff/60 - $hourWorkStop) * 60;
 			$dateTimeTemporary = now()->setDateTime(
 				$dateTimeTemporary->year,
