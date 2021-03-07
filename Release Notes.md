@@ -1,11 +1,12 @@
 # Release notes
 ## To-do
 *Fixes*
-* 210109-1 Fix rendering of navbar. If a big table is loaded(i.e. Issues), the page seems to wait for the table before the navbar is rendered correct.
-    * navbar is not correct for users handling
+    * 
 * 210109-2 The side-menu is not handled well when window height gets smaller
 * 210214.01 When adding comment to Issue it is not shown until another page reload in production. In development is is shown after the save.
-* 210215.01 Change reminders so it reloads jobs like emails for statuses
+* 210223.01 Is it possible to collect more messages from issues, so if many posts are done in short time it will not generate separate emails
+* 210223.02 Add reminder for issues where we own the issue and a setting for this time.
+* 210223.03 Show the remindertime for the different options in Issues (eg. Pause (2 weeks))
 
 *Features*
 * 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails ar enot responded upon.
@@ -17,13 +18,40 @@
 * 210112-2  Save customer details for autofill
 * 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
 * 210211.01 Edit/delete demoproducts. Transactions of products between places or statuses, track this? 
+* 210223.04 Add other users as followers manually, to have them notified autmatically
 
 
 ### ***Working on***
 *Features:*
-* Attachments stored in Issues
 
-## Finsihed for next release
+*Fixes*
+## Finished for next release
+
+
+## **Release 2.5.35 (2021-03-07)**
+*Fixes*
+* 210216.01 Saving new contacts sets "Intern" regardless of the checkbox status
+* 210109-1 Fix rendering of navbar. If a big table is loaded(i.e. Issues), the page seems to wait for the table before the navbar is rendered correct.
+    * navbar is not correct for users handling
+    * navbar is not correct for page posten
+* 210215.01 Change reminders so it reloads jobs like emails for statuses
+    * New field in settings added: 'Fördröjning av notifiering av saknad kommentar (dagar)'
+    * Changes in reminders:
+        * Reminder-jobs are setup with independent intervalls for these situations:
+            * Paused
+            * Waiting for internal answer
+            * Waiting for customer feedback
+            * New Issue or new Comment (via event UpdatedIssue)
+        * When the job executes:
+            * Check if the Issue is closed -> return
+            * Create a new job with the same interval
+            * If there has been no comments since last check of this situation, an email is sent to all the followers notifying of this.
+* Add workhours settings to settings field (**run settings to update database with the settings**)
+* Improved algorithm for workinghours (**Change the hours in the table 'Priorities', it should reflect working hours rather that calendar hours**)
+
+*Features:*
+* F200214-4 Attachments stored in Issues (**requires migration**)
+
 ## **Release 2.5.32 (2021-02-15)**
 *Features:*
 * 210109-5  Add status Pause, WaitingForInternal, WaitingForCustomer to Issues (**requires migration**)

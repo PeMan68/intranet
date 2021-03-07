@@ -61,6 +61,9 @@ class ContactController extends Controller
     public function store(StoreContact $request)
     {
         $validatedData = $request->validated();
+        if (!$request->has('internal')) {
+            $validatedData['internal'] = 0;
+        }
         $contact = Contact::create($validatedData);
         return redirect('/contacts')->with('message', 'Kontakt tillagd ('.$contact->name.')');
     }

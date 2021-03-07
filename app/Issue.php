@@ -56,6 +56,10 @@ class Issue extends Model
 		return $this->hasMany('App\IssueComment');
 	}
 	
+	public function Attachments()	{
+		return $this->hasMany('App\IssueAttachment');
+	}
+	
 	public function latestComment() {
 		return $this->hasOne('App\IssueComment')->where('comment','!=',null)->latest();
 	}

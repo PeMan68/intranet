@@ -37,10 +37,12 @@ class MailToFollowersAboutReminder extends Mailable
     {
         if ($this->type == 'paused'){
             $subject = ' Påminnelse, ärendet är pausat.';
+        } elseif ($this->type == null) {
+            $subject = ' Påminnelse, ärendet börjar bli kallt.';
         } else {
             $subject = ' Påminnelse, väntar på svar.';
         }
-        return $this->subject($this->ticketNumber . $subject . ' Ärende: "' . $this->header. '"')
+        return $this->subject($this->ticketNumber . ': ' . $this->header . $subject )
             ->view('emails.toFollowersAboutReminder');
     }
 }

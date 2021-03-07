@@ -2,7 +2,9 @@
 
 namespace App\Jobs\Issues;
 
+use App\Events\Issues\CustomerNotContacted;
 use App\Events\Issues\IssuePaused;
+use App\Events\Issues\IssueWaitingForComment;
 use App\Events\Issues\IssueWaitingForCustomer;
 use App\Events\Issues\IssueWaitingForInternal;
 use App\Issue;
@@ -18,18 +20,20 @@ class CreateNewReminder implements ShouldQueue
 
     private $issue;
     private $typeOfReminder;
+    private $urgent;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Issue $issue, $typeOfReminder)
+    public function __construct(Issue $issue, $typeOfReminder, $urgent = false)
     {
         $this->issue = $issue;
         $this->typeOfReminder = $typeOfReminder;
         $this->queue = 'emails';
+        $this->urgent = $urgent;
     }
-
+    
     /**
      * Execute the job.
      *
@@ -37,6 +41,9 @@ class CreateNewReminder implements ShouldQueue
      */
     public function handle()
     {
+        if (!is_null($this->issue->timeClosed)) {
+            return;
+        }
         if ($this->typeOfReminder == 'paused') {
             if ($this->issue->paused) {
                 event(new IssuePaused($this->issue, 'paused'));
@@ -51,6 +58,14 @@ class CreateNewReminder implements ShouldQueue
             if ($this->issue->waitingForCustomer) {
                 event(new IssueWaitingForCustomer($this->issue, 'waitingForCustomer'));
             }
+        }
+        if ($this->typeOfReminder == 'customerNotContacted') {
+            if (is_null($this->issue->timeCustomercallback)) {
+                event(new CustomerNotContacted($this->issue, $this->urgent));
+            }
+        }
+        if ($this->typeOfReminder == null) {
+                event(new IssueWaitingForComment($this->issue, null));
         }
     }
 }

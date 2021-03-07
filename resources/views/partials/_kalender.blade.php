@@ -34,68 +34,68 @@
             @for ($date = $start; $date <= $stop; $date = strtotime('+1 day', $date))
                 @if ($date == $start) <div class="calendar-item">
                 <div class="names">
-                @if (Cache::has('user-is-online-' . $user->id))
-                    <span class="text-success">
-                    {{ $user->name }} {{ $user->surname[0] }}
-                    </span>
-                @else
-                    {{ $user->name }} {{ $user->surname[0] }} @endif
-    </div>
-@else
-    @if (date('Ymd') == date('Ymd', $date))
-        <div class="calendar-item-today">
-        @elseif (date('w', $date)==0 or date('w', $date)==6)
-            <div class="calendar-item-weekend">
+                {{ $user->name }} {{ $user->surname[0] }}
+                </div>
             @else
-                <div class="calendar-item">
-    @endif
-    @foreach ($activities as $activity)
-        @if ($activity->start <= date('Y-m-d', $date) and $activity->stop >= date('Y-m-d', $date) and $user->id == $activity->user_id)
-            @switch ($activity->calendarcategory_id)
-                @case(1)
-                <a href="{{ route('calendar.edit', $activity->id) }}" data-toggle="tooltip"
-                    title="{{ $activity->description }}">
-                    <div class="activity text-truncate bg-activity-info">{{ $activity->description }}</div>
-                </a>
-                @break
-                @case(2)
-                <a href="{{ route('calendar.edit', $activity->id) }}" data-toggle="tooltip"
-                    title="{{ $activity->description }}">
-                    <div class="activity text-truncate bg-activity-ledig">{{ $activity->description }}</div>
-                </a>
-                @break
-                @case(3)
-                <a href="{{ route('calendar.edit', $activity->id) }}" data-toggle="tooltip"
-                    title="{{ $activity->description }}">
-                    <div class="activity text-truncate  bg-activity-prel">{{ $activity->description }}</div>
-                </a>
-                @break
-                @case(4)
-                <a href="{{ route('calendar.edit', $activity->id) }}" data-toggle="tooltip"
-                    title="{{ $activity->description }}">
-                    <div class="activity text-truncate bg-activity-resa">{{ $activity->description }}</div>
-                </a>
-                @break
-                @case(5)
-                <a href="{{ route('calendar.edit', $activity->id) }}" data-toggle="tooltip"
-                    title="{{ $activity->description }}">
-                    <div class="activity text-truncate bg-activity-sjuk">{{ $activity->description }}</div>
-                </a>
-                @break
-                @case(6)
-                <a href="{{ route('calendar.edit', $activity->id) }}" data-toggle="tooltip"
-                    title="{{ $activity->description }}">
-                    <div class="activity text-truncate bg-activity-permit">{{ $activity->description }}</div>
-                </a>
-                @break
-            @endswitch
-        @else
-        @endif
+                @if (date('Ymd') == date('Ymd', $date))
+                    <div class="calendar-item-today">
+                @elseif (date('w', $date)==0 or date('w', $date)==6)
+                    <div class="calendar-item-weekend">
+                @else
+                    <div class="calendar-item"> @endif
+                    @foreach ($activities as $activity)
+                        @if ($activity->start <= date('Y-m-d', $date) and $activity->stop >= date('Y-m-d', $date) and $user->id == $activity->user_id)
+                            @switch ($activity->calendarcategory_id)
+                                @case(1)
+                                <a href="{{ route('calendar.edit', $activity->id) }}" data-toggle="tooltip"
+                                    title="{{ $activity->description }}">
+                                    <div class="activity text-truncate bg-activity-info">{{ $activity->description }}
+                                    </div>
+                                </a>
+                                @break
+                                @case(2)
+                                <a href="{{ route('calendar.edit', $activity->id) }}" data-toggle="tooltip"
+                                    title="{{ $activity->description }}">
+                                    <div class="activity text-truncate bg-activity-ledig">{{ $activity->description }}
+                                    </div>
+                                </a>
+                                @break
+                                @case(3)
+                                <a href="{{ route('calendar.edit', $activity->id) }}" data-toggle="tooltip"
+                                    title="{{ $activity->description }}">
+                                    <div class="activity text-truncate  bg-activity-prel">{{ $activity->description }}
+                                    </div>
+                                </a>
+                                @break
+                                @case(4)
+                                <a href="{{ route('calendar.edit', $activity->id) }}" data-toggle="tooltip"
+                                    title="{{ $activity->description }}">
+                                    <div class="activity text-truncate bg-activity-resa">{{ $activity->description }}
+                                    </div>
+                                </a>
+                                @break
+                                @case(5)
+                                <a href="{{ route('calendar.edit', $activity->id) }}" data-toggle="tooltip"
+                                    title="{{ $activity->description }}">
+                                    <div class="activity text-truncate bg-activity-sjuk">{{ $activity->description }}
+                                    </div>
+                                </a>
+                                @break
+                                @case(6)
+                                <a href="{{ route('calendar.edit', $activity->id) }}" data-toggle="tooltip"
+                                    title="{{ $activity->description }}">
+                                    <div class="activity text-truncate bg-activity-permit">{{ $activity->description }}
+                                    </div>
+                                </a>
+                                @break
+                            @endswitch
+                        @else
+                        @endif
+                    @endforeach
+                @endif
+    </div>
+    @endfor
     @endforeach
-    @endif
-</div>
-@endfor
-@endforeach
 </div>
 </div>
 </div>

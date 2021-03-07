@@ -221,36 +221,81 @@ if (!function_exists('expiredIssues')) {
 	}
 }
 
-if (!function_exists('nextWorkingHour')) {
-	function nextWorkingHour($dateTimeValue = null)
-	{
-		$timeStart=8; // starthour of working day
-		$timeStop=16; // stophour of working day
-
-		if (is_null($dateTimeValue)) {
-			$dateTimeValue = now();
+if (!function_exists('nextWorkingDateTime')) {
+	/**
+	 * Calculate the DateTime a number of working-minutes from now
+	 * 
+	 * @param int $minutes
+	 * 
+	 * @return DateTime $datetimeValue
+	 */
+	function nextWorkingDateTime(int $minutes = 0){
+		
+		// $hourWorkStart = 8;
+		// $hourWorkStop = 16;
+		$hourWorkStart = setting('start_hour_workingday');
+		$hourWorkStop = setting('stop_hour_workingday');
+		
+		$dateTimeNow = now();
+		
+		$dateTimeWorkdayStart = now()->setDateTime(
+			$dateTimeNow->year,
+			$dateTimeNow->month,
+			$dateTimeNow->day,
+			$hourWorkStart,
+			0
+		);
+		$dateTimeWorkdayStop = now()->setDateTime(
+			$dateTimeNow->year,
+			$dateTimeNow->month,
+			$dateTimeNow->day,
+			$hourWorkStop,
+			0
+		);
+		
+		// Move the Starttime depending on if we are before, within or after the workinghours
+		if ($dateTimeNow < $dateTimeWorkdayStart) {
+			$dateTimeTemporary = $dateTimeWorkdayStart;
+		} elseif ($dateTimeNow >= $dateTimeWorkdayStop) {
+			$dateTimeTemporary = $dateTimeWorkdayStart->addDay();
+		} else {
+			$dateTimeTemporary = $dateTimeNow;
 		}
 
-		// If time is after working hours:
-		// Add 1 day
-		// Add number of hours exceeding end of day to starthour
-		if ($dateTimeValue->hour >= $timeStop) {
-			$dateTimeValue->addDay();
-			$dateTimeValue = now()->setDateTime(
-				$dateTimeValue->year,
-				$dateTimeValue->month,
-				$dateTimeValue->day,
-				$timeStart + ($dateTimeValue->hour - $timeStop),
-				$dateTimeValue->minute,
+		$dateTimeTemporary = nextWorkingDay($dateTimeTemporary);
+		
+		// Move time ahead within workingtime while counting down remaining time
+		$minutesDiff = $minutes;
+		while ($dateTimeTemporary->hour + $minutesDiff/60 >= $hourWorkStop) {
+			$minutesDiff = ($dateTimeTemporary->hour + $minutesDiff/60 - $hourWorkStop) * 60;
+			$dateTimeTemporary = now()->setDateTime(
+				$dateTimeTemporary->year,
+				$dateTimeTemporary->month,
+				$dateTimeTemporary->day+1,
+				$hourWorkStart,
+				$dateTimeTemporary->minute,
 			);
+			$dateTimeTemporary = nextWorkingDay($dateTimeTemporary);
 		}
 		
+		// Add the reamining minutes
+		$datetimeValue = $dateTimeTemporary->addMinutes($minutesDiff);
+
+		return $datetimeValue;
+	}
+}
+
+if (!function_exists('nextWorkingDay')) {
+	/**
+	 * @param DateTime $datetime
+	 * 
+	 * @return DateTime $datetime
+	 */
+	function nextWorkingDay(DateTime $datetime) {
 		// While day is not workday, add one day to datetime
-		while ($dateTimeValue->dayOfWeek > 5 || $dateTimeValue->dayOfWeek == 0) {
-			echo $dateTimeValue->dayOfWeek;
-			$dateTimeValue = $dateTimeValue->addDay();
-			echo ('date: '.$dateTimeValue);
+		while ($datetime->dayOfWeek > 5 || $datetime->dayOfWeek == 0) {
+			$datetime = $datetime->addDay();
 		}
-		return $dateTimeValue;
+		return $datetime;
 	}
 }

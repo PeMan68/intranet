@@ -10,7 +10,6 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use App\Issue;
-
 class NewIssue
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;

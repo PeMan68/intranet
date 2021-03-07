@@ -10,7 +10,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use App\Issue;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\IssueReminder as MailReminder;
-
 class SendEmailAboutReminder implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -44,13 +43,5 @@ class SendEmailAboutReminder implements ShouldQueue
             return;
         }
         Mail::to($this->email)->send(new MailReminder($this->issue, $this->urgent));
-
-        // add to queue again as a reminder
-        if ($this->urgent) {
-            $delayReminder = nextWorkingHour(now()->addMinutes(setting('time_reminder_urgent_issue')));
-        } else {
-            $delayReminder = nextWorkingHour(now()->addHours($this->issue->task->priority->hours));
-        }
-        $this->release($delayReminder);
     }
 }
