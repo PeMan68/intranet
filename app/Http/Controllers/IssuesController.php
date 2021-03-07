@@ -209,23 +209,7 @@ class IssuesController extends Controller
 		$validatedData['ticketNumber'] = setting('issue_prefix') . date('y') . sprintf('%03d',Issue::whereYear('created_at', date('Y'))->count() +1);
 		
 		$issue = Issue::create($validatedData);
-		$files = $request->file('files');
-		if (!is_null($files))
-		{
-			{
-			foreach ($files as $key=>$file) {
-				$fileName = $validatedData['ticketNumber'].'-'.$file->getClientOriginalName();
 
-				$filePath = $file->storeAs('issues', $fileName, 'public');
-				$attachment = new IssueAttachment;
-				$attachment->issue_id = $issue->id;
-				$attachment->filename = $file->getClientOriginalName();
-				$attachment->url = $filePath;
-				$attachment->description = $request->fileDescriptions[$key];
-				$attachment->save();
-				}
-			}
-		}
 		if ($request->has('follow')) {
 			$issue->followers()->attach(Auth::id());
 		}
