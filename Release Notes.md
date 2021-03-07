@@ -26,6 +26,9 @@
 
 *Fixes*
 ## Finished for next release
+
+
+## **Release 2.5.35 (2021-03-07)**
 *Fixes*
 * 210216.01 Saving new contacts sets "Intern" regardless of the checkbox status
 * 210109-1 Fix rendering of navbar. If a big table is loaded(i.e. Issues), the page seems to wait for the table before the navbar is rendered correct.
