@@ -25,8 +25,7 @@
 *Features:*
 
 *Fixes*
-* Add workhours settings to settings field (**run settings to update database with the settings**)
-* Improved algorithm for workinghours (**Change the hours in the table 'Priorities', it should reflect working hours rather that calendar hours**)
+* Add files for new issue samae as editing Issue
 ## Finished for next release
 *Fixes*
 * 210216.01 Saving new contacts sets "Intern" regardless of the checkbox status
@@ -45,6 +44,8 @@
             * Check if the Issue is closed -> return
             * Create a new job with the same interval
             * If there has been no comments since last check of this situation, an email is sent to all the followers notifying of this.
+* Add workhours settings to settings field (**run settings to update database with the settings**)
+* Improved algorithm for workinghours (**Change the hours in the table 'Priorities', it should reflect working hours rather that calendar hours**)
 
 *Features:*
 * F200214-4 Attachments stored in Issues

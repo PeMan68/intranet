@@ -239,46 +239,47 @@
                         <div class="col-md-6">
                             <div class="alert alert-info">
                                 @foreach ($followers as $user)
-                                    <span class="badge badge-pill circle badge-dark font-weight-light" data-toggle="tooltip"
-                                        title="{{ $user->name . ' ' . $user->surname }}">{{ $user->initials() }}</span>
+                                    <b-avatar v-b-tooltip.hover text="{{ $user->initials() }}"
+                                        size="2em"
+                                        title="{{ $user->name . ' ' . $user->surname }}"></b-avatar>
                                 @endforeach
                                 @if ($follow)
-                                    <a class="btn btn-primary btn-sm m-2"
-                                        href="{{ route('issues.unfollow', $issue->id) }}" role="button">Sluta följa
-                                        ärende</a>
+                                    <b-button size="sm" v-b-tooltip.hover
+                                        title="Du kan sluta följa ärendet om det inte är ditt primära område"
+                                        href="{{ route('issues.unfollow', $issue->id) }}" variant="primary">
+                                        Sluta följa ärende
+                                        <i class="material-icons white md-18 ml-1" style="vertical-align: middle;">help</i>
+                                    </b-button>
                                 @else
-                                    <a class="btn btn-primary btn-sm m-2"
-                                        href="{{ route('issues.follow', $issue->id) }}">
-                                        Följ ärende<i class="material-icons white md-18 ml-1" data-toggle="tooltip"
-                                            title="Följ ärendet för att få mail när det händer något"
-                                            style="vertical-align: middle;">help</i>
-                                    </a>
+                                    <b-button size="sm" v-b-tooltip.hover
+                                        title="Följ ärendet för att få mail när det händer något"
+                                        href="{{ route('issues.follow', $issue->id) }}" variant="primary">
+                                        Följ ärende
+                                        <i class="material-icons white md-18 ml-1" style="vertical-align: middle;">help</i>
+                                    </b-button>
                                 @endif
                             </div>
                         </div>
                         <div class="col-md-6">
                             @if (is_null($issue->timeCustomercallback))
                                 <div class="alert alert-primary">
-                                    <a class="btn btn-sm btn-primary m-1"
-                                        href="{{ route('issues.contacted', $issue->id) }}">
+                                    <b-button size="sm" v-b-tooltip.hover
+                                        title="Klicka här för att bekräfta att kunden har fått en första feedback"
+                                        href="{{ route('issues.contacted', $issue->id) }}" variant="primary">
                                         Klicka här när kunden är kontaktad
-                                        <i class="material-icons white md-18 ml-1" data-toggle="tooltip"
-                                            title="Klicka här för att bekräfta att kund är kontaktad"
-                                            style="vertical-align: middle;">help</i>
-                                    </a>
+                                        <i class="material-icons white md-18 ml-1" style="vertical-align: middle;">help</i>
+                                    </b-button>
                                 </div>
                             @else
                                 <div class="alert alert-success">
                                     <i class="material-icons align-middle" data-toggle="tooltip"
                                         title="Kund kontaktad">how_to_reg</i>
                                     Kund kontaktad: {{ date('Y-m-d H:i', strtotime($issue->timeCustomercallback)) }}
-                                    <a class="btn btn-sm btn-secondary m-1"
-                                        href="{{ route('issues.uncontacted', $issue->id) }}">
+                                    <b-button size="sm" v-b-tooltip.hover title="Klicka här för ta bort bekräftelsen"
+                                        href="{{ route('issues.uncontacted', $issue->id) }}" variant="secondary">
                                         Ångra kund kontaktad
-                                        <i class="material-icons white md-18 m-1" data-toggle="tooltip"
-                                            title="Klicka här för ta bort bekräftelsen"
-                                            style="vertical-align: middle;">help</i>
-                                    </a>
+                                        <i class="material-icons white md-18 ml-1" style="vertical-align: middle;">help</i>
+                                    </b-button>
                                 </div>
                             @endif
                         </div>
@@ -290,9 +291,9 @@
                 <div class="col-md-8">
                     <div class="font-weight-bold">Bilagor:</div>
                     @foreach ($files as $file)
-                    <a href="{{ '/issues/attachment/download/' . $file->id }}">{{ $file->filename }}</a>
-                    &nbsp;
-                    &nbsp;
+                        <a href="{{ '/issues/attachment/download/' . $file->id }}">{{ $file->filename }}</a>
+                        &nbsp;
+                        &nbsp;
                     @endforeach
                 </div>
             </div>
