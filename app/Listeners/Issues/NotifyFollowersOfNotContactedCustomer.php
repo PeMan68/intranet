@@ -45,7 +45,7 @@ class NotifyFollowersOfNotContactedCustomer
             } else {
                 $minutes = $event->issue->task->priority->hours * 60;
             }
-            $delay = nextWorkingHour(now()->addMinutes($minutes));
+            $delay = nextWorkingDateTime($minutes);
             
             foreach ($followers as $user) {
                 SendEmailAboutReminder::dispatch($event->issue, $user->email, $event->urgent)->delay($delay);

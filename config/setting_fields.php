@@ -16,6 +16,24 @@ return [
                 'class' => '', // any class for input
                 'value' => 'Intranet' // default value if you want
             ],
+            [
+                'type' => 'text', // input fields type
+                'data' => 'int', // data type, string, int, boolean
+                'name' => 'start_hour_workingday', // unique name for field
+                'label' => 'Ange timme för arbetsdags start', // you know what label it is
+                'rules' => 'required|numeric|min:0|max:23', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '8' // default value if you want
+            ],
+            [
+                'type' => 'text', // input fields type
+                'data' => 'int', // data type, string, int, boolean
+                'name' => 'stop_hour_workingday', // unique name for field
+                'label' => 'Ange timme för arbetsdags slut', // you know what label it is
+                'rules' => 'required|numeric|min:0|max:23', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '16' // default value if you want
+            ],
         ]
     ],
     'modules' => [

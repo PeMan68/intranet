@@ -35,9 +35,10 @@ class NotifyFollowersOfNewIssue
 
         $followers = $event->issue->followers;
 
-        $delay = nextWorkingHour();
+        $delay = nextWorkingDateTime();
         if (cache($event->issue->ticketNumber)) {
-            $delay = nextWorkingHour($delay->addMinutes(setting('time_disable_update_job')));
+            $delay = nextWorkingDateTime(setting('time_disable_update_job'));
+
         }
         foreach ($followers as $user) {
             SendEmailAboutNewIssue::dispatch($event->issue, $user->email, $event->urgent)->delay($delay);
@@ -48,7 +49,7 @@ class NotifyFollowersOfNewIssue
         } else {
             $minutes = $event->issue->task->priority->hours * 60;
         }
-        $delay = nextWorkingHour(now()->addMinutes($minutes));
+        $delay = nextWorkingDateTime($minutes);
 
         // Reminder to contact customer
         CreateNewReminder::dispatch($event->issue, 'customerNotContacted', $event->urgent)->delay($delay);

@@ -25,7 +25,8 @@
 *Features:*
 
 *Fixes*
-
+* Add workhours settings to settings field (**run settings to update database with the settings**)
+* Improved algorithm for workinghours (**Change the hours in the table 'Priorities', it should reflect working hours rather that calendar hours**)
 ## Finished for next release
 *Fixes*
 * 210216.01 Saving new contacts sets "Intern" regardless of the checkbox status
