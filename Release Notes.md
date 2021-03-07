@@ -47,7 +47,8 @@
 * Improved algorithm for workinghours (**Change the hours in the table 'Priorities', it should reflect working hours rather that calendar hours**)
 
 *Features:*
-* F200214-4 Attachments stored in Issues
+* F200214-4 Attachments stored in Issues (**requires migration**)
+
 ## **Release 2.5.32 (2021-02-15)**
 *Features:*
 * 210109-5  Add status Pause, WaitingForInternal, WaitingForCustomer to Issues (**requires migration**)
