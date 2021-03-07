@@ -25,7 +25,6 @@
 *Features:*
 
 *Fixes*
-* Add files for new issue samae as editing Issue
 ## Finished for next release
 *Fixes*
 * 210216.01 Saving new contacts sets "Intern" regardless of the checkbox status
