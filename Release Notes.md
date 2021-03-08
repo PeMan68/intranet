@@ -24,11 +24,13 @@
 
 *Fixes*
 ## Finished for next release
+## **Release 2.5.36 (2021-03-08)**
+*Fixes*
+* Wrong label for 'days_reminder_waiting_for_external' (was 'days_reminder_waiting_for_customer')
+
 *Features:*
 * 210223.03 Show the remindertime for the different options in Issues (eg. Pause (2 weeks))
 
-*Fixes*
-* Wrong label for 'days_reminder_waiting_for_external' (was 'days_reminder_waiting_for_customer')
 ## **Release 2.5.35 (2021-03-07)**
 *Fixes*
 * 210216.01 Saving new contacts sets "Intern" regardless of the checkbox status
