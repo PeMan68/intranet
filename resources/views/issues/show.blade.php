@@ -197,7 +197,11 @@
                         <div class="form-check form-check-inline">
                             <input type="checkbox" class="form-check-input" id="paused" name="paused" value="1"
                                 {{ $issue->paused == '1' ? 'checked' : '' }}>
-                            <label for="vip" class="font-weight-bold m-0">Ärendet Pausat</label>
+                            <label for="vip" class="font-weight-bold m-0">Ärendet Pausat
+                                <small>(Påminnelse om {{ setting('days_reminder_paused_issue') }}
+                                    {{ setting('days_reminder_paused_issue') < 2 ? 'dag' : 'dagar' }})
+                                </small>
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -207,7 +211,11 @@
                             <input type="checkbox" class="form-check-input" id="waitingForCustomer"
                                 name="waitingForCustomer" value="1"
                                 {{ $issue->waitingForCustomer == '1' ? 'checked' : '' }}>
-                            <label for="vip" class="font-weight-bold m-0">Väntar på svar från Kund</label>
+                            <label for="vip" class="font-weight-bold m-0">Väntar på svar från Kund
+                                <small>(Påminnelse om {{ setting('days_reminder_waiting_for_external') }}
+                                    {{ setting('days_reminder_waiting_for_external') < 2 ? 'dag' : 'dagar' }})
+                                </small>
+                                </small>
                         </div>
                     </div>
                 </div>
@@ -217,7 +225,11 @@
                             <input type="checkbox" class="form-check-input" id="waitingForInternal"
                                 name="waitingForInternal" value="1"
                                 {{ $issue->waitingForInternal == '1' ? 'checked' : '' }}>
-                            <label for="vip" class="font-weight-bold m-0">Väntar på svar från Kollega</label>
+                            <label for="vip" class="font-weight-bold m-0">Väntar på svar från Kollega
+                                <small>(Påminnelse om {{ setting('days_reminder_waiting_for_internal') }}
+                                    {{ setting('days_reminder_waiting_for_internal') < 2 ? 'dag' : 'dagar' }})
+                                </small>
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -239,8 +251,7 @@
                         <div class="col-md-6">
                             <div class="alert alert-info">
                                 @foreach ($followers as $user)
-                                    <b-avatar v-b-tooltip.hover text="{{ $user->initials() }}"
-                                        size="2em"
+                                    <b-avatar v-b-tooltip.hover text="{{ $user->initials() }}" size="2em"
                                         title="{{ $user->name . ' ' . $user->surname }}"></b-avatar>
                                 @endforeach
                                 @if ($follow)
