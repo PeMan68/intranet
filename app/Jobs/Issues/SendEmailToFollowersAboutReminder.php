@@ -61,7 +61,7 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
                 if (!$this->issue->waitingForCustomer) {
                     return null;
                 }
-                $delayDays = setting('days_reminder_waiting_for_customer');
+                $delayDays = setting('days_reminder_waiting_for_external');
                 break;
 
             default:
