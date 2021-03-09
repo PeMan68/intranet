@@ -69,7 +69,9 @@ class ProductStatusController extends Controller
     {
         if ($request->has('delete')) {
             $entry = ProductStatus::find($id);
-            $entry->delete();
+            if (!$entry->hasAnyProducts()) {
+                $entry->delete();
+            }
             return redirect('admin/productstatus');
         }
         if ($request->has('reset')) {
