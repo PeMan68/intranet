@@ -20,7 +20,6 @@
 
 ### ***Working on***
 *Features:*
-* Attachments stored in Issues
 * 210211.01 Edit/delete demoproducts. Transactions of products between places or statuses, track this? 
 
 *Fixes*
