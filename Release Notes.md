@@ -20,7 +20,11 @@
 
 ### ***Working on***
 *Features:*
-* 210211.01 Edit/delete demoproducts. Transactions of products between places or statuses, track this? 
+* 210211.01 Edit/delete demoproducts. Transactions of products between places or statuses, track this?
+    * Protected statuses from being deleted if used
+
+    * change indexview to show more relevant data and add details to row...
+    Detaljer visas i table men den vill inte ta striped etc
 
 *Fixes*
 

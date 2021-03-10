@@ -16,7 +16,8 @@
 		<demoproducts-table 
 			:items="{{ $products }}" 
 			:fields="{{ $fields }}" 
-			filter="{{ $filter }}">
+			{{-- filter="{{ $filter }}" --}}
+			>
 		</demoproducts-table>
 	</div>
 </div>

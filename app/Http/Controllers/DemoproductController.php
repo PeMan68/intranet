@@ -46,23 +46,29 @@ class DemoproductController extends Controller
         $selectedproducts = $demoproducts->map(function ( $product ) {
             return [
                 'Artikel' => $product->product->item,
-                //'Beskrivning' => $product->product->item_description_swe,
+                'Beskrivning' => $product->product->item_description_swe,
                 'Status' => $product->status->description,
                 'Kommentar' => $product->comment,
                 'Plats' => $product->location->path(),
-                //'Testad' => $product->tested,
-                //'E-nummer' => $product->product->enummer,
+                'Testad' => $product->tested,
+                'E_nummer' => $product->product->enummer,
+                'Orginal_kartong' => $product->original_box,
+                'Orginal_dokument' => $product->original_docs,
+                'Serienummer' => $product->serial,
+                'Inköpsdatum' => $product->invoice_date,
+                'Version' => $product->version,
+
             ];
         });
-        $fields = collect($selectedproducts->first())->keys();
-        $fields->transform(function ($item){
-            return [
-                'key' => $item,
-                'sortable' => true,
-            ];
-        });
-        $filter = request('filter') ;
-        return view('demoproducts.index', ['products' => $selectedproducts, 'fields' => $fields, 'filter' => $filter]);
+        $fields = collect([]);
+
+        $fields->push(['key'=> 'Info']);
+        $fields->push(['key'=> 'Artikel']);
+        $fields->push(['key'=> 'Status']);
+        $fields->push(['key'=> 'Plats']);
+        // $filter = request('filter') ;
+        // return view('demoproducts.index', ['products' => $selectedproducts, 'fields' => $fields, 'filter' => $filter]);
+        return view('demoproducts.index', ['products' => $selectedproducts, 'fields' => $fields]);
     }
 
     /**
