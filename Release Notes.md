@@ -4,7 +4,6 @@
     * 
 * 210109-2 The side-menu is not handled well when window height gets smaller
 * 210214.01 When adding comment to Issue it is not shown until another page reload in production. In development is is shown after the save.
-* 210223.01 Is it possible to collect more messages from issues, so if many posts are done in short time it will not generate separate emails
 * 210311.01 Add icon to links to open them in new window
 
 *Features*
@@ -24,6 +23,7 @@
 *Features:*
 
 *Fixes*
+* 210223.01 Is it possible to collect more messages from issues, so if many posts are done in short time it will not generate separate emails
 
 ## Finished for next release
 *Fixes*
