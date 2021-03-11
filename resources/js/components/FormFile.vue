@@ -1,4 +1,5 @@
 <template>
+<b-overlay :show="showspinner">
     <b-form @submit.prevent="onSubmit">
         <!-- <input type="hidden" name="_token" :value="csrf"> -->
         <b-form-file
@@ -17,6 +18,7 @@
         <b-button @click="file = null">Rensa</b-button>
             </div>
     </b-form>
+</b-overlay>
 </template>
 
 <script>
@@ -28,6 +30,7 @@
     data() {
       return {
         file: null,
+        showspinner: false,
         
         csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
       }
@@ -38,11 +41,13 @@
             let formData = new FormData();
             formData.append('file', this.file);
             formData.append('id', this.id);
+            this.showspinner = true;
             // evt.preventDefault()
             axios.post('/issues/attach', formData)
             .then((response) => {
                 console.log(response);
                 this.file = null;
+                this.showspinner = false;
                 window.location.href = '/issues/' + this.id;
             })
             .catch(function (error) {
