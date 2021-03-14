@@ -35,11 +35,16 @@ class NotifyFollowersOfUpdate
 				$event->issue->followers()->syncWithoutDetaching($user->id);
 			}
 		}
-		// Prevent email if cache-key is active	
+		// Prevent email if cache-key for this issue exist. 
+        // It means a job will also include this update when it is run
+        // All updates during Cache-time will be collected into one mail
+        // instead of sending an email for every update.
 		if (!cache($event->issue->ticketNumber)) {
 			$followers = $event->issue->followers;
+            $delay_email = nextWorkingDateTime(setting('minutes_to_collect_comments'));
+            cache([$event->issue->ticketNumber => true], $delay_email);
 			foreach ($followers as $user) {
-				SendEmailToFollowersAboutUpdate::dispatch($event->issue, $user->email, $event->type);
+				SendEmailToFollowersAboutUpdate::dispatch($event->issue, $user->email, $event->type)->delay($delay_email);
 			}
             $delay = nextWorkingDateTime(setting('days_reminder_waiting_for_comment') * (setting('stop_hour_workingday') - setting('start_hour_workingday')) * 60);
             CreateNewReminder::dispatch($event->issue, null)->delay($delay);
