@@ -25,6 +25,7 @@
 
 
 ## Finished for next release
+## **Release 2.5.37 (2021-03-16)**
 *Fixes*
 * 210311.02 Spinner when uploading files in issues
 * 210223.01 Collect more messages from issues, so if many posts are done in short time it will not generate separate emails
