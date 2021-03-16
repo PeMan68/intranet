@@ -10,19 +10,12 @@ use App\User;
 use App\Priority;
 use App\IssueComment;
 use App\IssueAttachment;
-use App\Mail\IssueCreated;
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
 use App\Http\Requests\StoreIssue;
 use App\Http\Requests\UpdateIssue;
-use App\Http\Requests\StoreDocument;
-use App\Http\Requests\StoreAttachment;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Arr;
 
 use App\Events\Issues\NewIssue;
 use App\Events\Issues\UpdatedIssue;
@@ -203,7 +196,8 @@ class IssuesController extends Controller
 			$prio = Task::find($request->task_id)->prio_id;
 			$hours = Priority::find($prio)->hours;
 		}
-		$validatedData['timeEstimatedcallback'] = date('Y-m-d H:i', strtotime(sprintf("+%d hours", $hours))); //Enhancement, adjust to working hours according to calendar
+		// TODO Enhancement, adjust to working hours according to calendar
+		$validatedData['timeEstimatedcallback'] = date('Y-m-d H:i', strtotime(sprintf("+%d hours", $hours))); 
 		$validatedData['vip'] = $request->has('vip');
 		//build ticketnumber, S+year+number of issues currentyear.
 		$validatedData['ticketNumber'] = setting('issue_prefix') . date('y') . sprintf('%03d',Issue::whereYear('created_at', date('Y'))->count() +1);
