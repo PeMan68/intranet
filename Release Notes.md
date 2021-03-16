@@ -3,7 +3,6 @@
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
 * 210214.01 When adding comment to Issue it is not shown until another page reload in production. In development is is shown after the save.
-* 210311.01 Add icon to links to open them in new window
 * 210314.01 nextWorkingDateTime not correct when today is weekend but inside working hours (for example sunday 10.30 gives Monday 10.30, while Sunday 21.30 gives Monday 08.00)
 
 *Features*
@@ -30,6 +29,7 @@
 * 210311.02 Spinner when uploading files in issues
 * 210223.01 Collect more messages from issues, so if many posts are done in short time it will not generate separate emails
     * using the same Cache-key as for new Issue, when checked out immediatly. Using own setting for this delay. (**run settings to update database with the settings**)
+* 210311.01 Add icon to links to open them in new window
 ## **Release 2.5.36 (2021-03-08)**
 *Fixes*
 * Wrong label for 'days_reminder_waiting_for_external' (was 'days_reminder_waiting_for_customer')
