@@ -28,6 +28,9 @@
 
 
 ## Finished for next release
+## **Release 2.5.38 (2021-03-18)**
+*Bugfix*
+* 210317.01 Multiple reminders sent for "cold" Issues.
 ## **Release 2.5.37 (2021-03-16)**
 *Fixes*
 * 210311.02 Spinner when uploading files in issues
