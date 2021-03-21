@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Http\Controllers\Auth;
 
+use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -31,6 +32,7 @@ class LoginControllerTest extends TestCase
     /** @test */
     public function login_authenticates_and_redirects_user()
     {
+
         $user = factory(User::class)->create();
 
         $response = $this->post(route('login'), [
