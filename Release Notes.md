@@ -1,5 +1,6 @@
 # Release notes
 ## To-do
+
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
 * 210214.01 When adding comment to Issue it is not shown until another page reload in production. In development is is shown after the save.
@@ -25,6 +26,9 @@
 
 
 ## Finished for next release
+## **Release 2.5.39 (2021-03-23)**
+*Bugfix*
+* 210323.01 Reminder of cold was still received multiple times (ex. S21025: 10:11, 11:13, 11:17, 11:17)
 ## **Release 2.5.38 (2021-03-18)**
 *Bugfix*
 * 210317.01 Multiple reminders sent for "cold" Issues.
