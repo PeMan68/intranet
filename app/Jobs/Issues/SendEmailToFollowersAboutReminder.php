@@ -73,6 +73,8 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
                         }
                         cache([$this->issue->ticketNumber . 'Cold' => true], now()->addDays($delayDays));
                     }
+                } else {
+                    return null;
                 }
                 break;
         }
