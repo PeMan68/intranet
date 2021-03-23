@@ -34,7 +34,6 @@ class LoginControllerTest extends TestCase
     {
 
         $user = factory(User::class)->create();
-
         $response = $this->post(route('login'), [
             'email' => $user->email,
             'password' => $user->password,
