@@ -5,12 +5,12 @@
 * 210109-2 The side-menu is not handled well when window height gets smaller
 * 210214.01 When adding comment to Issue it is not shown until another page reload in production. In development is is shown after the save.
 * 210314.01 nextWorkingDateTime not correct when today is weekend but inside working hours (for example sunday 10.30 gives Monday 10.30, while Sunday 21.30 gives Monday 08.00)
+* 210325.01 Change item30 to itemDaysClosed and use the value from settings (default 30)
 
 *Features*
 * 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails ar enot responded upon.
 * 210109-8  Add email-form from Issues to message directly to customer or internal support to be stored in Issue Comments History
 * 210109-9  Add question of debit customer for supporttime when checking back Issue. When Issue is closed an report shall be created to be invoiced from.
-* 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 * 210109-11 Pickup incoming emails, automatic adding comments and notification to followers.
 * 210111    Edit links in menu from Settings-db
 * 210112-2  Save customer details for autofill
@@ -21,6 +21,7 @@
 
 ### ***Working on***
 *Features:*
+* 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 
 *Fixes*
 
