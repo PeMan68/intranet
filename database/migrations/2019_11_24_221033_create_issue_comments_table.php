@@ -20,8 +20,9 @@ class CreateIssueCommentsTable extends Migration
 			$table->dateTime('checkin')->nullable();
 			$table->integer('issue_id');
 			$table->integer('user_id');
-			$table->text('comment')->nullable();
+			// $table->text('comment')->nullable();
 			$table->text('comment_external')->nullable();
+			$table->text('comment_internal')->nullable();
         });
     }
 
