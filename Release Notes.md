@@ -24,7 +24,7 @@
 *Features:*
 
 *Fixes*
-
+* All delays must use the algorithm nexWorkingDateTime to be synchronised. This fix should cover the dealys that have been leftout previously.
 
 ## Finished for next release
 *Features:*
