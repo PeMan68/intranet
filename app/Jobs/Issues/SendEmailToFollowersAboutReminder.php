@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailToFollowersAboutReminder;
 use App\Issue;
+use Illuminate\Support\Facades\Log;
 
 class SendEmailToFollowersAboutReminder implements ShouldQueue
 {
@@ -66,12 +67,15 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
 
             default:
                 $delayDays = setting('days_reminder_waiting_for_comment');
+                $delayDateTime = nextWorkingDateTime(workDaysToMinutes($delayDays));
+
                 if (!cache($this->issue->ticketNumber . 'Cold')) {
                     if (!is_null($this->issue->latestComment)) {
-                        if ($this->issue->latestComment->updated_at->addDays($delayDays) > now()) {
+                        if (nextWorkingDateTime(workDaysToMinutes($delayDays) - 1, $this->issue->latestComment->updated_at) > nextWorkingDateTime()) {
                             return null;
                         }
-                        cache([$this->issue->ticketNumber . 'Cold' => true], now()->addDays($delayDays));
+                        cache([$this->issue->ticketNumber . 'Cold' => true], $delayDateTime);
+                        Log::info('Cache-key updated: '.$this->issue->ticketNumber . 'Cold'.'. Expires: '.$delayDateTime);
                     }
                 } else {
                     return null;

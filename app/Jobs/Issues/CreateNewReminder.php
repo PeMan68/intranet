@@ -13,6 +13,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Facades\Log;
 
 class CreateNewReminder implements ShouldQueue
 {
@@ -42,6 +43,7 @@ class CreateNewReminder implements ShouldQueue
     public function handle()
     {
         if (!is_null($this->issue->timeClosed)) {
+            Log::info('Job: CreateNewReminder. '. $this->issue->ticketNumber . ' avslutat. Ingen reminder skapad' );
             return;
         }
         if ($this->typeOfReminder == 'paused') {
@@ -65,7 +67,8 @@ class CreateNewReminder implements ShouldQueue
             }
         }
         if ($this->typeOfReminder == null) {
-                event(new IssueWaitingForComment($this->issue, null));
+            event(new IssueWaitingForComment($this->issue, null));
         }
+        Log::info('Job: CreateNewReminder. '. $this->issue->ticketNumber . '. typeOfReminder='.$this->typeOfReminder );
     }
 }
