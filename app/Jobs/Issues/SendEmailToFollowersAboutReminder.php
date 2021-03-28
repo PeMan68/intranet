@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailToFollowersAboutReminder;
 use App\Issue;
+use Illuminate\Support\Facades\Log;
 
 class SendEmailToFollowersAboutReminder implements ShouldQueue
 {
@@ -72,6 +73,7 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
                             return null;
                         }
                         cache([$this->issue->ticketNumber . 'Cold' => true], now()->addDays($delayDays));
+                        Log::info('Cache-key updated: '.$this->issue->ticketNumber . 'Cold'.'. Expires: '.now()->addDays($delayDays));
                     }
                 } else {
                     return null;

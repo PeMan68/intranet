@@ -24,6 +24,8 @@ use App\Events\Issues\IssuePaused;
 use App\Events\Issues\IssueReopened;
 use App\Events\Issues\IssueWaitingForCustomer;
 use App\Events\Issues\IssueWaitingForInternal;
+use Illuminate\Support\Facades\Log;
+
 class IssuesController extends Controller
 {
 	
@@ -217,6 +219,7 @@ class IssuesController extends Controller
         if ($request->has('saveOpen')) {
 			// Key is used to delay email of New Issue and Block mails about updates until key is expired
 			cache([$issue->ticketNumber => true], now()->addMinutes(setting('time_disable_update_job')));
+			Log::info('Cache-key updated: '.$issue->ticketNumber.'. Expires: '.now()->addMinutes(setting('time_disable_update_job')));
 			event(new NewIssue($issue, $hours));
 			return redirect('/issues/'.$issue->id)->with('message','Nytt ärende '.$issue->ticketNumber);
 		}
