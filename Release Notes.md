@@ -17,11 +17,11 @@
 * 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
 * 210211.01 Edit/delete demoproducts. Transactions of products between places or statuses, track this? 
 * 210223.04 Add other users as followers manually, to have them notified autmatically
+* 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 
 
 ### ***Working on***
 *Features:*
-* 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 
 *Fixes*
 
