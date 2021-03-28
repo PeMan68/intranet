@@ -24,7 +24,6 @@
 *Features:*
 
 *Fixes*
-* All delays must use the algorithm nexWorkingDateTime to be synchronised. This fix should cover the dealys that have been leftout previously.
 
 ## Finished for next release
 *Features:*
@@ -32,6 +31,7 @@
 *Fixes:*
 * Tests added. Fixes in models and tables done, **run migration**
 * Logs added to trace jobs
+* All delays must use the algorithm nexWorkingDateTime to be synchronised. This fix should cover the dealys that have been leftout previously.
 ## **Release 2.5.39 (2021-03-23)**
 *Bugfix*
 * 210323.01 Reminder of cold was still received multiple times (ex. S21025: 10:11, 11:13, 11:17, 11:17)

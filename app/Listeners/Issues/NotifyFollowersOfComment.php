@@ -28,7 +28,7 @@ class NotifyFollowersOfComment
      */
     public function handle(IssueWaitingForComment $event)
     {
-        $delay = nextWorkingDateTime(setting('days_reminder_waiting_for_comment') * (setting('stop_hour_workingday') - setting('start_hour_workingday')) * 60);
+        $delay = nextWorkingDateTime(workDaysToMinutes(setting('days_reminder_waiting_for_comment')));
         $followers = $event->issue->followers;
         foreach ($followers as $follower) {
             SendEmailToFollowersAboutReminder::dispatch($event->issue, $follower->email, null)->delay($delay);

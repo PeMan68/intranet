@@ -67,13 +67,15 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
 
             default:
                 $delayDays = setting('days_reminder_waiting_for_comment');
+                $delayDateTime = nextWorkingDateTime(workDaysToMinutes($delayDays));
+
                 if (!cache($this->issue->ticketNumber . 'Cold')) {
                     if (!is_null($this->issue->latestComment)) {
-                        if ($this->issue->latestComment->updated_at->addDays($delayDays) > now()) {
+                        if (nextWorkingDateTime(workDaysToMinutes($delayDays) - 1, $this->issue->latestComment->updated_at) > nextWorkingDateTime()) {
                             return null;
                         }
-                        cache([$this->issue->ticketNumber . 'Cold' => true], now()->addDays($delayDays));
-                        Log::info('Cache-key updated: '.$this->issue->ticketNumber . 'Cold'.'. Expires: '.now()->addDays($delayDays));
+                        cache([$this->issue->ticketNumber . 'Cold' => true], $delayDateTime);
+                        Log::info('Cache-key updated: '.$this->issue->ticketNumber . 'Cold'.'. Expires: '.$delayDateTime);
                     }
                 } else {
                     return null;
