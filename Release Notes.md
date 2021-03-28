@@ -29,6 +29,8 @@
 *Features:*
 
 *Fixes:*
+## **Release 2.5.40 (2021-03-28)**
+*Fixes:*
 * Tests added. Fixes in models and tables done, **run migration**
 * Logs added to trace jobs
 * All delays must use the algorithm nexWorkingDateTime to be synchronised. This fix should cover the dealys that have been leftout previously.
