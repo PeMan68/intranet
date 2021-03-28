@@ -229,37 +229,38 @@ if (!function_exists('nextWorkingDateTime')) {
 	 * 
 	 * @return DateTime $datetimeValue
 	 */
-	function nextWorkingDateTime(int $minutes = 0){
+	function nextWorkingDateTime(int $minutes = 0, DateTime $dateTimeStart = null){
 		
-		// $hourWorkStart = 8;
-		// $hourWorkStop = 16;
+		if (is_null($dateTimeStart)) {
+
+			$dateTimeStart = now();
+		}
 		$hourWorkStart = setting('start_hour_workingday');
 		$hourWorkStop = setting('stop_hour_workingday');
 		
-		$dateTimeNow = now();
 		
 		$dateTimeWorkdayStart = now()->setDateTime(
-			$dateTimeNow->year,
-			$dateTimeNow->month,
-			$dateTimeNow->day,
+			$dateTimeStart->year,
+			$dateTimeStart->month,
+			$dateTimeStart->day,
 			$hourWorkStart,
 			0
 		);
 		$dateTimeWorkdayStop = now()->setDateTime(
-			$dateTimeNow->year,
-			$dateTimeNow->month,
-			$dateTimeNow->day,
+			$dateTimeStart->year,
+			$dateTimeStart->month,
+			$dateTimeStart->day,
 			$hourWorkStop,
 			0
 		);
 		
 		// Move the Starttime depending on if we are before, within or after the workinghours
-		if ($dateTimeNow < $dateTimeWorkdayStart) {
+		if ($dateTimeStart < $dateTimeWorkdayStart) {
 			$dateTimeTemporary = $dateTimeWorkdayStart;
-		} elseif ($dateTimeNow >= $dateTimeWorkdayStop) {
+		} elseif ($dateTimeStart >= $dateTimeWorkdayStop) {
 			$dateTimeTemporary = $dateTimeWorkdayStart->addDay();
 		} else {
-			$dateTimeTemporary = $dateTimeNow;
+			$dateTimeTemporary = $dateTimeStart;
 		}
 
 		$dateTimeTemporary = nextWorkingDay($dateTimeTemporary);
@@ -297,5 +298,29 @@ if (!function_exists('nextWorkingDay')) {
 			$datetime = $datetime->addDay();
 		}
 		return $datetime;
+	}
+}
+
+if (!function_exists('workDaysToMinutes')) {
+	/**
+	 * Undocumented function
+	 *
+	 * @param Int $days
+	 * @return Int $minutes
+	 */
+	function workDaysToMinutes(Int $days) {
+		$minutes = workHoursToMinutes($days * (setting('stop_hour_workingday') - setting('start_hour_workingday')));
+		return $minutes;
+	}
+}
+
+if (!function_exists('workHoursToMinutes')) {
+	/**
+	 * @param Int $hours
+	 * @return Int $minutes
+	 */
+	function workHoursToMinutes(Int $hours) {
+		$minutes = $hours * 60;
+		return $minutes;
 	}
 }
