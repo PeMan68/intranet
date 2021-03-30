@@ -28,6 +28,7 @@
 ## Finished for next release
 *Features:*
 
+## **Release 2.5.41 (2021-03-30)**
 *Fixes:*
 * Refined logging.
 * Reworked the logic for sending reminders.
