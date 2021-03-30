@@ -213,13 +213,15 @@ class IssuesController extends Controller
 		//Send mail to responsible staff and other stuff
 		
         if ($request->has('save')) {
+			Log::info('New Issue. '.$issue->ticketNumber);
 			event(new NewIssue($issue, $hours));
 			return redirect('/issues')->with('success','Nytt ärende skapat: '.$issue->ticketNumber);
 		}
         if ($request->has('saveOpen')) {
 			// Key is used to delay email of New Issue and Block mails about updates until key is expired
-			cache([$issue->ticketNumber => true], now()->addMinutes(setting('time_disable_update_job')));
-			Log::info('Cache-key updated: '.$issue->ticketNumber.'. Expires: '.now()->addMinutes(setting('time_disable_update_job')));
+			$delayMinutes = nextWorkingDateTime(setting('time_disable_update_job'));
+			cache([$issue->ticketNumber => true], $delayMinutes);
+			Log::info('New Issue, saveOpen, cache-key updated: '.$issue->ticketNumber.'. Expires: '.$delayMinutes);
 			event(new NewIssue($issue, $hours));
 			return redirect('/issues/'.$issue->id)->with('message','Nytt ärende '.$issue->ticketNumber);
 		}
