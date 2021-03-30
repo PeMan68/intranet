@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use App\Issue;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailToFollowersAboutUpdate;
+use Illuminate\Support\Facades\Log;
 
 class SendEmailToFollowersAboutUpdate implements ShouldQueue
 {
@@ -42,5 +43,6 @@ class SendEmailToFollowersAboutUpdate implements ShouldQueue
     public function handle()
     {
        Mail::to($this->email)->send(new MailToFollowersAboutUpdate($this->issue, $this->type));
+       Log::info('   MailToFollowersAboutUpdate skickas: '.$this->email);
     }
 }

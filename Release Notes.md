@@ -29,6 +29,8 @@
 *Features:*
 
 *Fixes:*
+* Refined logging.
+* Reworked the logic for sending reminders.
 ## **Release 2.5.40 (2021-03-28)**
 *Fixes:*
 * Tests added. Fixes in models and tables done, **run migration**

@@ -47,7 +47,7 @@ class NotifyFollowersOfUpdate
             Log::info('Cache-key updated: '.$event->issue->ticketNumber.'. Expires: '.$delay_email);
 			foreach ($followers as $user) {
 				SendEmailToFollowersAboutUpdate::dispatch($event->issue, $user->email, $event->type)->delay($delay_email);
-                Log::info('Mail dispatched: '. $event->issue->ticketNumber . ' to ' . $user->email . '. type: ' . $event->type .'. Delay: ' . $delay_email);
+                Log::info('SendEmailToFollowersAboutUpdate dispatched: '. $event->issue->ticketNumber . ' to ' . $user->email . '. type: ' . $event->type .'. Delay: ' . $delay_email);
 			}
             $delay = nextWorkingDateTime(workDaysToMinutes(setting('days_reminder_waiting_for_comment')));
             CreateNewReminder::dispatch($event->issue, null)->delay($delay);
