@@ -324,3 +324,19 @@ if (!function_exists('workHoursToMinutes')) {
 		return $minutes;
 	}
 }
+
+if (!function_exists('add_followers')) {
+	/**
+	 * Add followers to issue depending on task
+	 *
+	 * @param Int $level
+	 * @return void
+	 */
+	function add_followers($event, Int $level) {
+		foreach ($event->issue->task->users as $user) {
+			if ($user->pivot->level == $level) {
+				$event->issue->followers()->syncWithoutDetaching($user->id);
+			}
+		}
+	}
+}

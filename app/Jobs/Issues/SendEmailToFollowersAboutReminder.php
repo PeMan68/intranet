@@ -72,6 +72,18 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
                 break;
 
             default:
+                if ($this->issue->paused) {
+                    Log::info('   Ärende markerat som pausat. Inget mail skickat');
+                    return null;
+                }
+                if ($this->issue->waitingForInternal) {
+                    Log::info('   Ärende markerat som väntar på kollega. Inget mail skickat');
+                    return null;
+                }
+                if ($this->issue->waitingForCustomer) {
+                    Log::info('   Ärende markerat som väntar på kund. Inget mail skickat');
+                    return null;
+                }
                 $delayDays = setting('days_reminder_waiting_for_comment');
                 $delayDateTime = nextWorkingDateTime(workDaysToMinutes($delayDays));
                 if (cache($this->issue->ticketNumber . 'Cold')) {
@@ -83,7 +95,7 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
                 } else {
                     if (nextWorkingDateTime(workDaysToMinutes($delayDays) - 1, $this->issue->latestComment->updated_at) > nextWorkingDateTime()) {
                         Log::info('   Senaste kommentar: ' . $this->issue->latestComment->updated_at);
-                        Log::info('   Triggande kommentar: ' . $this->issue->latestComment->updated_at);
+                        Log::info('   Mail förväntas skickas: '.nextWorkingDateTime(workDaysToMinutes($delayDays), $this->issue->latestComment->updated_at));
                         Log::info('   Inget mail skickat');
                         return null;
                     }

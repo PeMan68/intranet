@@ -31,11 +31,8 @@ class NotifyFollowersOfUpdate
     {
         // Sync so all with level === 3 are followers.
         // For example, task may have changed
-		foreach ($event->issue->task->users as $user) {
-			if ($user->pivot->level == 3) {
-				$event->issue->followers()->syncWithoutDetaching($user->id);
-			}
-		}
+        add_followers($event, 3);
+        
 		// Prevent email if cache-key for this issue exist. 
         // It means a job will also include this update when it is run
         // All updates during Cache-time will be collected into one mail
