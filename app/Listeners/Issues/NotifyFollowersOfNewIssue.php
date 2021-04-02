@@ -26,18 +26,19 @@ class NotifyFollowersOfNewIssue
      */
     public function handle(NewIssue $event)
     {
+        if (cache($event->issue->ticketNumber)) {
+            $delayMail = nextWorkingDateTime(setting('time_disable_update_job'));
+        } else {
+            $delayMail = nextWorkingDateTime();
+        }
         
         add_followers($event, 3);
 
         $followers = $event->issue->followers;
 
-        $delay = nextWorkingDateTime();
-        if (cache($event->issue->ticketNumber)) {
-            $delay = nextWorkingDateTime(setting('time_disable_update_job'));
 
-        }
         foreach ($followers as $user) {
-            SendEmailAboutNewIssue::dispatch($event->issue, $user->email, $event->urgent)->delay($delay);
+            SendEmailAboutNewIssue::dispatch($event->issue, $user->email, $event->urgent)->delay($delayMail);
         }
 
         if ($event->urgent) {
@@ -45,12 +46,12 @@ class NotifyFollowersOfNewIssue
         } else {
             $minutes = $event->issue->task->priority->hours * 60;
         }
-        $delay = nextWorkingDateTime($minutes);
+        $delayReminder = nextWorkingDateTime($minutes);
 
         // Reminder to contact customer
-        CreateNewReminder::dispatch($event->issue, 'customerNotContacted', $event->urgent)->delay($delay);
+        CreateNewReminder::dispatch($event->issue, 'customerNotContacted', $event->urgent)->delay($delayReminder);
 
         // General reminder for issues without comments
-        CreateNewReminder::dispatch($event->issue, null)->delay($delay);
+        CreateNewReminder::dispatch($event->issue, null)->delay($delayReminder);
     }
 }
