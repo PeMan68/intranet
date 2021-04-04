@@ -5,7 +5,9 @@ use App\User;
 use App\Issue;
 use App\IssueComment;
 use App\CalendarEntry;
+use App\Holiday;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 if (!function_exists('check_out_issue')) {
 	/**
@@ -182,9 +184,7 @@ if (!function_exists('readableBytes')) {
 	function readableBytes($bytes)
 	{
 		$i = floor(log($bytes) / log(1024));
-
 		$sizes = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
-
 		return sprintf('%.0F', $bytes / pow(1024, $i)) * 1 . ' ' . $sizes[$i];
 	}
 }
@@ -229,16 +229,14 @@ if (!function_exists('nextWorkingDateTime')) {
 	 * 
 	 * @return DateTime $datetimeValue
 	 */
-	function nextWorkingDateTime(int $minutes = 0, DateTime $dateTimeStart = null){
-		
+	function nextWorkingDateTime(int $minutes = 0, DateTime $dateTimeStart = null)
+	{
 		if (is_null($dateTimeStart)) {
-
 			$dateTimeStart = now();
 		}
 		$hourWorkStart = setting('start_hour_workingday');
 		$hourWorkStop = setting('stop_hour_workingday');
-		
-		
+
 		$dateTimeWorkdayStart = now()->setDateTime(
 			$dateTimeStart->year,
 			$dateTimeStart->month,
@@ -253,8 +251,8 @@ if (!function_exists('nextWorkingDateTime')) {
 			$hourWorkStop,
 			0
 		);
-		
-		// Move the Starttime depending on if we are before, within or after the workinghours
+
+		// Move the Starttime within workinghours
 		if ($dateTimeStart < $dateTimeWorkdayStart) {
 			$dateTimeTemporary = $dateTimeWorkdayStart;
 		} elseif ($dateTimeStart >= $dateTimeWorkdayStop) {
@@ -263,41 +261,70 @@ if (!function_exists('nextWorkingDateTime')) {
 			$dateTimeTemporary = $dateTimeStart;
 		}
 
-		$dateTimeTemporary = nextWorkingDay($dateTimeTemporary);
-		
-		// Move time ahead within workingtime while counting down remaining time
-		$minutesDiff = $minutes;
-		while ($dateTimeTemporary->hour + $minutesDiff/60 >= $hourWorkStop) {
-			$minutesDiff = ($dateTimeTemporary->hour + $minutesDiff/60 - $hourWorkStop) * 60;
-			$dateTimeTemporary = now()->setDateTime(
-				$dateTimeTemporary->year,
-				$dateTimeTemporary->month,
-				$dateTimeTemporary->day+1,
-				$hourWorkStart,
-				$dateTimeTemporary->minute,
-			);
-			$dateTimeTemporary = nextWorkingDay($dateTimeTemporary);
-		}
-		
-		// Add the reamining minutes
-		$datetimeValue = $dateTimeTemporary->addMinutes($minutesDiff);
+		// Loop until we have a Datetime within workinghours
+		$validDateTime = false;
 
+		$minutesDiff = $minutes;
+		while (!$validDateTime) {
+			Log::info($dateTimeTemporary . ' + ' . $minutesDiff . ' minuter');
+			if (!isWeekend($dateTimeTemporary)) {
+
+				// Does the temporary date exist in Holidays?
+				$holiday = Holiday::whereDate('date', $dateTimeTemporary)->first();
+				// no holiday
+				if (is_null($holiday)) {
+					$hourWorkStop = setting('stop_hour_workingday');
+					Log::info($dateTimeTemporary . ' = vanlig dag, slutar ' . $hourWorkStop);
+					$checkMinutes = true; // !jump to checkMinutes:
+					// is holiday halfday?
+				} elseif (!is_null($holiday) && $holiday->half_day) {
+					$hourWorkStop = floor((setting('stop_hour_workingday') - setting('start_hour_workingday')) / 2) + setting('start_hour_workingday');
+					Log::info($dateTimeTemporary . ' = Ledig halvdag, slutar ' . $hourWorkStop);
+					$checkMinutes = true; // !jump to checkMinutes:
+				} else {
+					$hourWorkStop = setting('stop_hour_workingday');
+					Log::info($dateTimeTemporary . ' = Ledig heldag, ' . $holiday->description);
+					$checkMinutes = false; // !jump to add day and loop again
+				}
+
+				if ($checkMinutes && $dateTimeTemporary->hour + $minutesDiff / 60 >= $hourWorkStop) {
+					Log::info('$checkMinutes && tiden överskrider dagen');
+					$minutesDiff = ($dateTimeTemporary->hour + $minutesDiff / 60 - $hourWorkStop) * 60;
+					$dateTimeTemporary = now()->setDateTime(
+						$dateTimeTemporary->year,
+						$dateTimeTemporary->month,
+						$dateTimeTemporary->day,
+						$hourWorkStart,
+						$dateTimeTemporary->minute,
+					);
+					// jump to add day and loop again
+				} elseif ($checkMinutes) {
+					Log::info('$checkMinutes + avsluta');
+					$validDateTime = true;
+					// Add the reamining minutes
+					$datetimeValue = $dateTimeTemporary->addMinutes($minutesDiff);
+					break;
+				}
+			}
+			$dateTimeTemporary->addDay();
+		}
 		return $datetimeValue;
 	}
 }
 
-if (!function_exists('nextWorkingDay')) {
+if (!function_exists('isWeekend')) {
 	/**
 	 * @param DateTime $datetime
 	 * 
-	 * @return DateTime $datetime
+	 * @return boolean
 	 */
-	function nextWorkingDay(DateTime $datetime) {
-		// While day is not workday, add one day to datetime
-		while ($datetime->dayOfWeek > 5 || $datetime->dayOfWeek == 0) {
-			$datetime = $datetime->addDay();
+	function isWeekend(DateTime $datetime)
+	{
+		// While day is not workday or holiday, add one day to datetime
+		if ($datetime->dayOfWeek > 5 || $datetime->dayOfWeek == 0) {
+			return true;
 		}
-		return $datetime;
+		return false;
 	}
 }
 
@@ -308,7 +335,8 @@ if (!function_exists('workDaysToMinutes')) {
 	 * @param Int $days
 	 * @return Int $minutes
 	 */
-	function workDaysToMinutes(Int $days) {
+	function workDaysToMinutes(Int $days)
+	{
 		$minutes = workHoursToMinutes($days * (setting('stop_hour_workingday') - setting('start_hour_workingday')));
 		return $minutes;
 	}
@@ -319,7 +347,8 @@ if (!function_exists('workHoursToMinutes')) {
 	 * @param Int $hours
 	 * @return Int $minutes
 	 */
-	function workHoursToMinutes(Int $hours) {
+	function workHoursToMinutes(Int $hours)
+	{
 		$minutes = $hours * 60;
 		return $minutes;
 	}
