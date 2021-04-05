@@ -16,9 +16,21 @@ class HolidayController extends Controller
     public function index()
     {
        $this->delete_old_data();
+       $holidays =  Holiday::orderBy('date')->get()->map(function ($item) {
+           return [
+               'Ändra' => $item->id,
+               'Datum' => date('Y-m-d (l)',strtotime($item->date)),
+               'Halvdag' => $item->half_day,
+               'Beskrivning' => $item->description,
+           ];
+       });
        $fields = collect([]);
-    //    $fields->push(['key'=>''])
-       return view('holidays.index')->with(['holidays' => Holiday::all()]);
+        $fields->push(['key'=>'Ändra']);
+        $fields->push(['key'=>'Datum']);
+        $fields->push(['key'=>'Halvdag']);
+        $fields->push(['key'=>'Beskrivning']);
+
+       return view('holidays.index')->with(['holidays' => $holidays, 'fields' => $fields]);
     }
 
     private function delete_old_data() 
@@ -74,9 +86,10 @@ class HolidayController extends Controller
      * @param  \App\Holiday  $holiday
      * @return \Illuminate\Http\Response
      */
-    public function edit(Holiday $holiday)
+    public function edit($id)
     {
-        return view('holidays.edit')->with(['holiday'=>$holiday]);
+        
+        return view('holidays.edit')->with(['holiday'=>Holiday::find($id)]);
     }
 
     /**
@@ -86,21 +99,24 @@ class HolidayController extends Controller
      * @param  \App\Holiday  $holiday
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Holiday $holiday)
+    public function update(Request $request, $id)
     {
         if ($request->has('reset')) {
             return redirect('/holidays');
         }
+        $holiday = Holiday::find($id);
         if ($request->has('delete')) {
             $holiday->delete();
             return redirect('/holidays');
         }
-        $holiday->date = $request('date');
+        $holiday->date = $request->date;
         if ($request->has('half_day')) {
             $holiday->half_day = true;
+        } else {
+            $holiday->half_day = false;
         }
         $holiday->user_id = Auth::user()->id;
-        $holiday->description = $request('description');
+        $holiday->description = $request->description;
         $holiday->save();
         return redirect('/holidays');
     }

@@ -22,19 +22,24 @@
 * 210211.01 Edit/delete demoproducts. Transactions of products between places or statuses, track this? 
 * 210223.04 Add other users as followers manually, to have them notified autmatically
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
+* 210405.01 Show holidays in calendar
+    * Do something with settings, "if calendar-module && holidays-module is used"
 
 
 ### ***Working on***
 *Features:*
 * 210402.01 Possibility to block days, not only weekends for nexWorkingDay
-    Lagt till index, create för holidays
-    NextWorkingDateTime tar nu hänsyn till dessa och helgdagar. Loggas för att kunna följa
-    Endast heldagar fubnkar, löser nu halvdagar
+
 
 *Fixes*
 
 ## Finished for next release
 *Features:*
+* 210402.01 Possibility to block days, not only weekends for nexWorkingDay
+    * Model for holidays, keeping 12 months back in time
+    * Views for index and adding holidays
+    * Holidays are considered also in newWorkingDateTime
+    * sort holidays view in date order
 
 ## **Release 2.5.41 (2021-03-30)**
 *Fixes:*

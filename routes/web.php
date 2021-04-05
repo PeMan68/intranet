@@ -57,7 +57,13 @@ Route::resource('/documents','DocumentsController')->middleware('auth');
 Route::get('/documents/download/{id}','DocumentsController@download')->name('documents.download')->middleware('auth');
 
 Route::resource('/demoproducts', 'DemoproductController')->middleware('auth');
-Route::resource('/holidays', 'HolidayController')->middleware('auth');
+// Route::resource('/holidays', 'HolidayController')->middleware('auth');
+Route::get('/holidays', 'HolidayController@index')->name('holidays.index')->middleware('auth');
+Route::get('/holidays/create', 'HolidayController@create')->name('holidays.create')->middleware('auth');
+Route::get('/holidays/edit/{id}', 'HolidayController@edit')->name('holidays.edit')->middleware('auth');
+Route::post('/holidays', 'HolidayController@store')->name('holidays.store')->middleware('auth');
+Route::put('/holidays/{id}', 'HolidayController@update')->name('holidays.update')->middleware('auth');
+
 Route::resource('/locations', 'LocationController', ['except' => ['show', 'create']])->middleware('auth');
 Route::get('/locations/{id}', 'LocationController@create')->name('locations.create')->middleware('auth');
 Route::get('/locations/delete/{id}', 'LocationController@destroy')->name('locations.destroy')->middleware('auth');

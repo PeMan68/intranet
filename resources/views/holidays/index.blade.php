@@ -13,6 +13,7 @@
 		<holidays-table 
 			:items="{{ $holidays }}" 
 			:link="'/holidays/create'"
+			:fields="{{ $fields }}"
 			>
 			Lägg till datum
 		</holidays-table>
