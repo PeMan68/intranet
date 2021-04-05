@@ -57,7 +57,6 @@ Route::resource('/documents','DocumentsController')->middleware('auth');
 Route::get('/documents/download/{id}','DocumentsController@download')->name('documents.download')->middleware('auth');
 
 Route::resource('/demoproducts', 'DemoproductController')->middleware('auth');
-// Route::resource('/holidays', 'HolidayController')->middleware('auth');
 Route::get('/holidays', 'HolidayController@index')->name('holidays.index')->middleware('auth');
 Route::get('/holidays/create', 'HolidayController@create')->name('holidays.create')->middleware('auth');
 Route::get('/holidays/edit/{id}', 'HolidayController@edit')->name('holidays.edit')->middleware('auth');
