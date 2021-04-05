@@ -16,7 +16,8 @@
 				<b-form-checkbox
 					id="half_day"
 					name="half_day"
-					value="true">
+					value="true"
+					switch>
 					Halvdag
 				</b-form-checkbox>
 			</div>

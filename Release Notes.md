@@ -36,6 +36,7 @@
     * Views for index and adding holidays
     * Holidays are considered also in newWorkingDateTime
     * Sort holidays view in date order
+    * Lägg till Holidays i hantera-menyn
 *Fixes*
 * 210331.01 When Issue is marked to wait for paused/customer/collegue, don't send reminders of Cold case.
 

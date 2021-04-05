@@ -6,6 +6,7 @@
 		<div class="row">
 			<div class="col-6">
 				<h3>Lediga dagar</h3>
+				<small>Används i beräkningen av arbetstid för bl. a. påminnelser för ärenden.</small>
 			</div>
 		</div>
 	</div>
