@@ -1,7 +1,6 @@
 # Release notes
 ## To-do
 *Bugs*
-* 210401.01 Error 500 when choosing waiting for customer in http://192.168.100.18/issues/321 in production. 
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
