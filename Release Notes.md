@@ -1,11 +1,13 @@
 # Release notes
 ## To-do
+*Bugs*
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
 * 210214.01 When adding comment to Issue it is not shown until another page reload in production. In development is is shown after the save.
 * 210314.01 nextWorkingDateTime not correct when today is weekend but inside working hours (for example sunday 10.30 gives Monday 10.30, while Sunday 21.30 gives Monday 08.00)
 * 210325.01 Change item30 to itemDaysClosed and use the value from settings (default 30)
+* 210331.02 Re-insert Cold cache key, because now multiple reminders of Cold is received.
 
 *Features*
 * 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails ar enot responded upon.
@@ -18,6 +20,8 @@
 * 210211.01 Edit/delete demoproducts. Transactions of products between places or statuses, track this? 
 * 210223.04 Add other users as followers manually, to have them notified autmatically
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
+* 210405.01 Show holidays in calendar
+    * Do something with settings, "if calendar-module && holidays-module is used"
 
 
 ### ***Working on***
@@ -26,7 +30,16 @@
 *Fixes*
 
 ## Finished for next release
+## **Release 2.5.42 (2021-04-05)**
 *Features:*
+* 210402.01 Possibility to block days, not only weekends for nextWorkingDay
+    * Model for holidays, keeping 12 months back in time (**run migration**)
+    * Views for index and adding holidays
+    * Holidays are considered also in newWorkingDateTime
+    * Sort holidays view in date order
+    * Manage Holidays from main menu
+*Fixes*
+* 210331.01 When Issue is marked to wait for paused/customer/collegue, don't send reminders of Cold case.
 
 ## **Release 2.5.41 (2021-03-30)**
 *Fixes:*

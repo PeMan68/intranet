@@ -12,6 +12,7 @@
 <a href="./posten">Posten Adresslappar</a>
 <span class="border-top mt-1"></span>
 <div class="text-light">Hantera</div>
+<a href="{{ route('holidays.index')}}">Hantera lediga dagar</a>
 <a href="{{ route('contacts.index')}}">Hantera kontakter</a>
 @showmodule('enable_demoprodukter')
 <a href="{{ route('locations.index')}}">Hantera platser</a>
