@@ -28,18 +28,16 @@
 
 ### ***Working on***
 *Features:*
-* 210402.01 Possibility to block days, not only weekends for nexWorkingDay
-
 
 *Fixes*
 
 ## Finished for next release
 *Features:*
 * 210402.01 Possibility to block days, not only weekends for nexWorkingDay
-    * Model for holidays, keeping 12 months back in time
+    * Model for holidays, keeping 12 months back in time (**run migration**)
     * Views for index and adding holidays
     * Holidays are considered also in newWorkingDateTime
-    * sort holidays view in date order
+    * Sort holidays view in date order
 
 ## **Release 2.5.41 (2021-03-30)**
 *Fixes:*
