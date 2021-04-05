@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Holiday;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Concerns\ToArray;
 
 class HolidayController extends Controller
 {
@@ -15,28 +16,38 @@ class HolidayController extends Controller
      */
     public function index()
     {
-       $this->delete_old_data();
-       $holidays =  Holiday::orderBy('date')->get()->map(function ($item) {
-           return [
-               'Ändra' => $item->id,
-               'Datum' => date('Y-m-d (l)',strtotime($item->date)),
-               'Halvdag' => $item->half_day,
-               'Beskrivning' => $item->description,
-           ];
-       });
-       $fields = collect([]);
-        $fields->push(['key'=>'Ändra']);
-        $fields->push(['key'=>'Datum']);
-        $fields->push(['key'=>'Halvdag']);
-        $fields->push(['key'=>'Beskrivning']);
+        $this->delete_old_data(13);
+        $holidays =  Holiday::orderBy('date')->get()->map(function ($item) {
+            return [
+                'Ändra' => $item->id,
+                'Datum' => date('Y-m-d (l)', strtotime($item->date)),
+                'Halvdag' => $item->half_day,
+                'Beskrivning' => $item->description,
+            ];
+        });
+        $fields = collect([]);
+        $fields->push(['key' => 'Ändra']);
+        $fields->push(['key' => 'Datum']);
+        $fields->push(['key' => 'Halvdag']);
+        $fields->push(['key' => 'Beskrivning']);
 
-       return view('holidays.index')->with(['holidays' => $holidays, 'fields' => $fields]);
+        return view('holidays.index')->with(['holidays' => $holidays, 'fields' => $fields]);
     }
-
-    private function delete_old_data() 
+    /**
+     * Delete old holidays dates
+     *
+     * @param Int $months
+     * @return void
+     */
+    private function delete_old_data(Int $months)
     {
-        // Delete data from model older than 12 months
-        return true;
+        // Delete data from model older than months
+        $oldHolidays = Holiday::whereDate('date', '<', now()->subMonths($months));
+        if (!is_null($oldHolidays)) {
+            $oldHolidays->delete();
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -88,8 +99,8 @@ class HolidayController extends Controller
      */
     public function edit($id)
     {
-        
-        return view('holidays.edit')->with(['holiday'=>Holiday::find($id)]);
+
+        return view('holidays.edit')->with(['holiday' => Holiday::find($id)]);
     }
 
     /**
