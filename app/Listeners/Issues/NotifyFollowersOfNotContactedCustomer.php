@@ -32,11 +32,9 @@ class NotifyFollowersOfNotContactedCustomer
         if (is_null($event->issue->timeCustomercallback)) {
             // Add both level 2 and 3 to followers to broaden the notification
             // level 2 followers can unfollow at anytime.
-            foreach ($event->issue->task->users as $user) {
-                if ($user->pivot->level > 1) {
-                    $event->issue->followers()->syncWithoutDetaching($user->id);
-                }
-            }
+
+            add_followers($event, 2);
+            add_followers($event, 3);
             
             $followers = $event->issue->followers;
             

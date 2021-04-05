@@ -8,7 +8,6 @@
 * 210214.01 When adding comment to Issue it is not shown until another page reload in production. In development is is shown after the save.
 * 210314.01 nextWorkingDateTime not correct when today is weekend but inside working hours (for example sunday 10.30 gives Monday 10.30, while Sunday 21.30 gives Monday 08.00)
 * 210325.01 Change item30 to itemDaysClosed and use the value from settings (default 30)
-* 210331.01 When Issue is marked to wait for paused/customer/collegue, don't send reminders of Cold case.
 * 210331.02 Re-insert Cold cache key, because now multiple reminders of Cold is received.
 
 *Features*
@@ -38,6 +37,8 @@
     * Views for index and adding holidays
     * Holidays are considered also in newWorkingDateTime
     * Sort holidays view in date order
+*Fixes*
+* 210331.01 When Issue is marked to wait for paused/customer/collegue, don't send reminders of Cold case.
 
 ## **Release 2.5.41 (2021-03-30)**
 *Fixes:*
