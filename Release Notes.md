@@ -25,9 +25,11 @@
 *Features:*
 
 *Fixes*
-* 210331.02 Re-insert Cold cache key, because now multiple reminders of Cold is received.
 
 ## Finished for next release
+## **Release 2.5.44 (2021-04-11)**
+*Fixes*
+* 210331.02 Re-insert Cold cache key, because now multiple reminders of Cold is received.
 ## **Release 2.5.43 (2021-04-11)**
 *Features:*
 * 210405.02 Import holidays from https://date.nager.at/Api/v2/NextPublicHolidays/SE (will get swedish holidays for next 365 days)
