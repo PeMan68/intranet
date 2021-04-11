@@ -152,7 +152,7 @@
     export default {
         props: [
             'itemsAll',
-            'items30',
+            'itemsAlsoClosed',
             'fields',
          ],
 
@@ -168,7 +168,7 @@
 
         mounted() {
             // Set the initial number of items
-            this.items = this.items30
+            this.items = this.itemsAlsoClosed
             this.totalRows = this.items.length
         },
                 
@@ -177,7 +177,7 @@
             onFiltered(filteredItems) {
                 // Trigger pagination to update the number of buttons/pages due to filtering
                 if (this.filter == '' || this.filter == null) {
-                    this.items = this.items30
+                    this.items = this.itemsAlsoClosed
                     this.totalRows = this.items.length
                 } else {
                     this.items = this.itemsAll

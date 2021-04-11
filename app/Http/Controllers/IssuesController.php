@@ -47,11 +47,11 @@ class IssuesController extends Controller
 				->sortByDesc('calculated_prio')
 				->flatten()
 		);
-
-		$items30 = $this->createTableData(
+		$numberOfDaysToShow = setting('days_show_closed_issues');
+		$itemsAlsoClosed = $this->createTableData(
 			Issue::with('task','latestComment','userCreate')
 				->whereNull('timeClosed')
-				->orWhere('timeClosed','>',date('Y-m-d',strtotime('-1 month')))
+				->orWhere('timeClosed','>',now()->subDays($numberOfDaysToShow))
 				->get()
 				->sortByDesc('calculated_prio')
 				->flatten()
@@ -68,7 +68,7 @@ class IssuesController extends Controller
 		$fields->push(['key'=> 'Kontakt']);
 		$fields->push(['key'=> 'Rubrik']);
 
-        return view('issues.index', ['itemsAll' => $itemsAll, 'items30' => $items30, 'fields' => $fields]);
+        return view('issues.index', ['itemsAll' => $itemsAll, 'itemsAlsoClosed' => $itemsAlsoClosed, 'fields' => $fields]);
 	}
 
 	private function createTableData($issues) 
