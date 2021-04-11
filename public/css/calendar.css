@@ -5,7 +5,7 @@
 	background-color: #FFFFFF20;
 }
 
-.calendar-item, .calendar-item-weekend, .calendar-item-today,
+.calendar-item, .calendar-item-saturday, .calendar-item-sunday, .calendar-item-today,
 	.calendar-header, .calendar-header-weekend , .calendar-header-today{
 	border: thin solid #06060660;
 	color: var(--color-text);
@@ -31,8 +31,12 @@
 	background-color: rgba(var(--color-bg-dark),0.2);
 }
 
-.calendar-item-weekend {
-	background-color: rgba(var(--color-bg-dark),0.6);
+.calendar-item-saturday {
+	background-color: rgba(var(--color-bg-dark),1);
+}
+
+.calendar-item-sunday {
+	background-color: rgba(255,0,0,0.3);
 }
 
 .calendar-item-today {

@@ -6,7 +6,6 @@
 * 210109-2 The side-menu is not handled well when window height gets smaller
 * 210214.01 When adding comment to Issue it is not shown until another page reload in production. In development is is shown after the save.
 * 210314.01 nextWorkingDateTime not correct when today is weekend but inside working hours (for example sunday 10.30 gives Monday 10.30, while Sunday 21.30 gives Monday 08.00)
-* 210325.01 Change item30 to itemDaysClosed and use the value from settings (default 30)
 * 210331.02 Re-insert Cold cache key, because now multiple reminders of Cold is received.
 
 *Features*
@@ -23,13 +22,17 @@
 * 210405.01 Show holidays in calendar
     * Do something with settings, "if calendar-module && holidays-module is used"
 
-
 ### ***Working on***
 *Features:*
 
 *Fixes*
 
 ## Finished for next release
+## **Release 2.5.43 (2021-04-11)**
+*Features:*
+* 210405.02 Import holidays from https://date.nager.at/Api/v2/NextPublicHolidays/SE (will get swedish holidays for next 365 days)
+    * Imports automatically when opening index-view for managing holidays
+* 210325.01 Change item30 to numberOfDaysToShow and use the value 'days_show_closed_issues' from settings (default 1) (**run settings to update database with the settings**)
 ## **Release 2.5.42 (2021-04-05)**
 *Features:*
 * 210402.01 Possibility to block days, not only weekends for nextWorkingDay

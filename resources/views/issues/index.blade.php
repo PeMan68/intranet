@@ -15,7 +15,7 @@
 	<div class="card-body">
 		<issue-table 
 			:items-all = "{{ $itemsAll }}" 
-			:items30 = "{{ $items30 }}" 
+			:items-also-closed = "{{ $itemsAlsoClosed }}" 
 			:fields = "{{ $fields }}"
 			>
 		</issue-table>

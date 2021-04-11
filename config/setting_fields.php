@@ -133,6 +133,15 @@ return [
             [
                 'type' => 'text', // input fields type
                 'data' => 'int', // data type, string, int, boolean
+                'name' => 'days_show_closed_issues', // unique name for field
+                'label' => 'Hur många dagar ska avslutat ärende visas i "Öppna" vyn?', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => '1' // default value if you want
+            ],
+            [
+                'type' => 'text', // input fields type
+                'data' => 'int', // data type, string, int, boolean
                 'name' => 'time_disable_update_job', // unique name for field
                 'label' => 'Fördröjning av mail av "Nytt ärende" vid direktutcheckning (minuter)', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
