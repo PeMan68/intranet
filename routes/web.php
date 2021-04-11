@@ -13,6 +13,7 @@
 
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HolidayController;
 
 Route::get('/posten', 'PagesController@posten');
 Route::get('/reception', 'PagesController@reception');
@@ -62,6 +63,7 @@ Route::get('/holidays/create', 'HolidayController@create')->name('holidays.creat
 Route::get('/holidays/edit/{id}', 'HolidayController@edit')->name('holidays.edit')->middleware('auth');
 Route::post('/holidays', 'HolidayController@store')->name('holidays.store')->middleware('auth');
 Route::put('/holidays/{id}', 'HolidayController@update')->name('holidays.update')->middleware('auth');
+Route::get('/holidays/import_dates', 'HolidayController@import_dates')->middleware('auth');
 
 Route::resource('/locations', 'LocationController', ['except' => ['show', 'create']])->middleware('auth');
 Route::get('/locations/{id}', 'LocationController@create')->name('locations.create')->middleware('auth');
