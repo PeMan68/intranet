@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Holiday;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToArray;
@@ -17,6 +18,8 @@ class HolidayController extends Controller
     public function index()
     {
         $this->delete_old_data(13);
+        $result = $this->import_next_public_holidays();
+        
         $holidays =  Holiday::orderBy('date')->get()->map(function ($item) {
             return [
                 'Ändra' => $item->id,
@@ -30,8 +33,8 @@ class HolidayController extends Controller
         $fields->push(['key' => 'Datum']);
         $fields->push(['key' => 'Halvdag']);
         $fields->push(['key' => 'Beskrivning']);
-
-        return view('holidays.index')->with(['holidays' => $holidays, 'fields' => $fields]);
+        //? $result message is not shown?
+        return view('holidays.index')->with(['message' => $result, 'holidays' => $holidays, 'fields' => $fields]);
     }
     /**
      * Delete old holidays dates
@@ -81,17 +84,6 @@ class HolidayController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Holiday  $holiday
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Holiday $holiday)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Holiday  $holiday
@@ -133,13 +125,35 @@ class HolidayController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Importing public holidays
+     * next 365 days for given country
      *
-     * @param  \App\Holiday  $holiday
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function destroy(Holiday $holiday)
+    public function import_next_public_holidays()
     {
-        //
+        $uri='https://date.nager.at/Api/v2/NextPublicHolidays/';
+        $country= 'SE';
+        $client = new \GuzzleHttp\Client();
+        try {
+            $request = $client->get($uri.$country);
+
+            $response = json_decode($request->getBody());
+            for ($i = 0; $i < count($response); $i++) {
+                if (is_null(Holiday::whereDate('date', $response[$i]->date)->value('date'))) {
+                    $holiday = new Holiday();
+
+                    $holiday->date = $response[$i]->date;
+
+                    $holiday->user_id = Auth::user()->id;
+                    $holiday->description = $response[$i]->localName;
+                    $holiday->save();
+                }
+            }
+            return 'Röda dagar uppdaterade från '.$uri;
+        } catch (Exception $e) {
+            return 'Kunde inte hämta data från '.$uri.$country;
+
+        }
     }
 }
