@@ -23,13 +23,15 @@
 * 210405.01 Show holidays in calendar
     * Do something with settings, "if calendar-module && holidays-module is used"
 
-
 ### ***Working on***
 *Features:*
 
 *Fixes*
 
 ## Finished for next release
+*Features:*
+* 210405.02 Import holidays from https://date.nager.at/Api/v2/NextPublicHolidays/SE (will get swedish holidays for next 365 days)
+    * Imports automatically when opening index-view for managing holidays
 ## **Release 2.5.42 (2021-04-05)**
 *Features:*
 * 210402.01 Possibility to block days, not only weekends for nextWorkingDay
