@@ -37,10 +37,12 @@
                 {{ $user->name }} {{ $user->surname[0] }}
                 </div>
             @else
-                @if (date('Ymd') == date('Ymd', $date))
+                @if (date('w', $date)==0)
+                    <div class="calendar-item-sunday">
+                @elseif (date('w', $date)==6)
+                    <div class="calendar-item-saturday">
+                @elseif (date('Ymd') == date('Ymd', $date))
                     <div class="calendar-item-today">
-                @elseif (date('w', $date)==0 or date('w', $date)==6)
-                    <div class="calendar-item-weekend">
                 @else
                     <div class="calendar-item"> @endif
                     @foreach ($activities as $activity)
