@@ -28,10 +28,11 @@
 *Fixes*
 
 ## Finished for next release
+## **Release 2.5.43 (2021-04-11)**
 *Features:*
 * 210405.02 Import holidays from https://date.nager.at/Api/v2/NextPublicHolidays/SE (will get swedish holidays for next 365 days)
     * Imports automatically when opening index-view for managing holidays
-* 210325.01 Change item30 to numberOfDaysToShow and use the value 'days_show_closed_issues' from settings (default 1)
+* 210325.01 Change item30 to numberOfDaysToShow and use the value 'days_show_closed_issues' from settings (default 1) (**run settings to update database with the settings**)
 ## **Release 2.5.42 (2021-04-05)**
 *Features:*
 * 210402.01 Possibility to block days, not only weekends for nextWorkingDay
