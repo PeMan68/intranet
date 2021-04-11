@@ -6,7 +6,6 @@
 * 210109-2 The side-menu is not handled well when window height gets smaller
 * 210214.01 When adding comment to Issue it is not shown until another page reload in production. In development is is shown after the save.
 * 210314.01 nextWorkingDateTime not correct when today is weekend but inside working hours (for example sunday 10.30 gives Monday 10.30, while Sunday 21.30 gives Monday 08.00)
-* 210331.02 Re-insert Cold cache key, because now multiple reminders of Cold is received.
 
 *Features*
 * 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails ar enot responded upon.
@@ -17,7 +16,7 @@
 * 210112-2  Save customer details for autofill
 * 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
 * 210211.01 Edit/delete demoproducts. Transactions of products between places or statuses, track this? 
-* 210223.04 Add other users as followers manually, to have them notified autmatically
+* 210223.04 Add other users as followers manually, to have them notified automatically
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 * 210405.01 Show holidays in calendar
     * Do something with settings, "if calendar-module && holidays-module is used"
@@ -26,6 +25,7 @@
 *Features:*
 
 *Fixes*
+* 210331.02 Re-insert Cold cache key, because now multiple reminders of Cold is received.
 
 ## Finished for next release
 ## **Release 2.5.43 (2021-04-11)**
@@ -52,7 +52,7 @@
 *Fixes:*
 * Tests added. Fixes in models and tables done, **run migration**
 * Logs added to trace jobs
-* All delays must use the algorithm nexWorkingDateTime to be synchronised. This fix should cover the dealys that have been leftout previously.
+* All delays must use the algorithm nexWorkingDateTime to be synchronised. This fix should cover the delays that have been leftout previously.
 ## **Release 2.5.39 (2021-03-23)**
 *Bugfix*
 * 210323.01 Reminder of cold was still received multiple times (ex. S21025: 10:11, 11:13, 11:17, 11:17)

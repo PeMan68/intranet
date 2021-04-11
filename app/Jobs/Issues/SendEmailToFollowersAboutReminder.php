@@ -95,14 +95,16 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
                 } else {
                     if (nextWorkingDateTime(workDaysToMinutes($delayDays) - 1, $this->issue->latestComment->updated_at) > nextWorkingDateTime()) {
                         Log::info('   Senaste kommentar: ' . $this->issue->latestComment->updated_at);
-                        Log::info('   Mail förväntas skickas: '.nextWorkingDateTime(workDaysToMinutes($delayDays), $this->issue->latestComment->updated_at));
+                        Log::info('   Mail förväntas skickas: ' . nextWorkingDateTime(workDaysToMinutes($delayDays), $this->issue->latestComment->updated_at));
                         Log::info('   Inget mail skickat');
                         return null;
                     }
                 }
+                cache([$this->issue->ticketNumber . 'Cold' => true], $delayDateTime);
+                Log::info('   Cache-key updated: ' . $this->issue->ticketNumber . 'Cold' . '. Expires: ' . $delayDateTime);
                 break;
         }
         Mail::to($this->email)->send(new MailToFollowersAboutReminder($this->issue, $this->typeOfReminder));
-        Log::info('   MailToFollowersAboutReminder skickas: '.$this->email);
+        Log::info('   MailToFollowersAboutReminder skickas: ' . $this->email);
     }
 }
