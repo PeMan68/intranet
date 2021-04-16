@@ -31,7 +31,7 @@ class NotifyFollowersOfUpdate
     {
         // Sync so all with level === 3 are followers.
         // For example, task may have changed
-        add_followers($event, 3);
+        add_followers($event->issue, 3);
         
 		// Prevent email if cache-key for this issue exist. 
         // It means a job will also include this update when it is run

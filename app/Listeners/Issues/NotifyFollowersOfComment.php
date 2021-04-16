@@ -7,6 +7,7 @@ use App\Jobs\Issues\CreateNewReminder;
 use App\Jobs\Issues\SendEmailToFollowersAboutReminder;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Log;
 
 class NotifyFollowersOfComment
 {
@@ -28,11 +29,13 @@ class NotifyFollowersOfComment
      */
     public function handle(IssueWaitingForComment $event)
     {
-        $delay = nextWorkingDateTime(workDaysToMinutes(setting('days_reminder_waiting_for_comment')));
-        $followers = $event->issue->followers;
-        foreach ($followers as $follower) {
-            SendEmailToFollowersAboutReminder::dispatch($event->issue, $follower->email, null)->delay($delay);
-        }
-        CreateNewReminder::dispatch($event->issue, null)->delay($delay);
+        $delayDateTime = nextWorkingDateTime(workDaysToMinutes(setting('days_reminder_waiting_for_comment')));
+        cache([$event->issue->ticketNumber . 'Cold' => true], $delayDateTime->subSeconds(1));
+        Log::info('Cache-key updated: ' . $event->issue->ticketNumber . 'Cold' . '. Expires: ' . $delayDateTime->subSeconds(1));
+        // $followers = $event->issue->followers;
+        // foreach ($followers as $follower) {
+            SendEmailToFollowersAboutReminder::dispatch($event->issue, null)->delay($delayDateTime);
+        // }
+        CreateNewReminder::dispatch($event->issue, null)->delay($delayDateTime);
     }
 }

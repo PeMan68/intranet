@@ -33,8 +33,8 @@ class NotifyFollowersOfNotContactedCustomer
             // Add both level 2 and 3 to followers to broaden the notification
             // level 2 followers can unfollow at anytime.
 
-            add_followers($event, 2);
-            add_followers($event, 3);
+            add_followers($event->issue, 2);
+            add_followers($event->issue, 3);
             
             $followers = $event->issue->followers;
             

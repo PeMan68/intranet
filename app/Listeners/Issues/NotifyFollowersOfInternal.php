@@ -29,13 +29,13 @@ class NotifyFollowersOfInternal
      */
     public function handle(IssueWaitingForInternal $event)
     {
-        $delay = nextWorkingDateTime(setting('days_reminder_waiting_for_internal') * (setting('stop_hour_workingday') - setting('start_hour_workingday')) * 60);
-        $followers = $event->issue->followers;
-        foreach ($followers as $follower) {
-            SendEmailToFollowersAboutReminder::dispatch($event->issue, $follower->email, $event->typeOfReminder)->delay($delay);
-            Log::info('SendEmailToFollowersAboutReminder dispatched: '. $event->issue->ticketNumber . ' to ' . $follower->email . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delay);
-        }
-        CreateNewReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delay);
-        Log::info('Dispatched new job: CreateNewReminder, '. $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delay);
+        $delayDateTime = nextWorkingDateTime(setting('days_reminder_waiting_for_internal') * (setting('stop_hour_workingday') - setting('start_hour_workingday')) * 60);
+        // $followers = $event->issue->followers;
+        // foreach ($followers as $follower) {
+            SendEmailToFollowersAboutReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delayDateTime);
+            Log::info('Job SendEmailToFollowersAboutReminder dispatched: '. $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delayDateTime);
+        // }
+        CreateNewReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delayDateTime);
+        Log::info('Dispatched new job: CreateNewReminder, '. $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delayDateTime);
     }
 }

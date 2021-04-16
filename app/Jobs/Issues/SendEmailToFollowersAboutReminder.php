@@ -19,17 +19,17 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
     public $tries = 5;
     public $retryAfter = 60;
     private $issue;
-    private $email;
+    // private $email;
     private $typeOfReminder;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Issue $issue, $email, $typeOfReminder)
+    public function __construct(Issue $issue, $typeOfReminder)
     {
         $this->issue = $issue;
-        $this->email = $email;
+        // $this->email = $email;
         $this->typeOfReminder = $typeOfReminder;
         $this->queue = 'emails';
     }
@@ -41,7 +41,7 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
      */
     public function handle()
     {
-        Log::info('Job: SendEmailToFollowersAboutReminder. ' . $this->issue->ticketNumber);
+        Log::info('Handling Job: SendEmailToFollowersAboutReminder. ' . $this->issue->ticketNumber);
         if (!is_null($this->issue->timeClosed)) {
             Log::info(' - Avslutat. Inget mail skickat');
             return;
@@ -54,21 +54,21 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
                     Log::info('   ' . $this->typeOfReminder . ' inte aktuell längre. Inget mail skickat');
                     return null;
                 }
-                $delayDays = setting('days_reminder_paused_issue');
+                // $delayDays = setting('days_reminder_paused_issue');
                 break;
             case 'waitingForInternal':
                 if (!$this->issue->waitingForInternal) {
                     Log::info('   ' . $this->typeOfReminder . ' inte aktuell längre. Inget mail skickat');
                     return null;
                 }
-                $delayDays = setting('days_reminder_waiting_for_internal');
+                // $delayDays = setting('days_reminder_waiting_for_internal');
                 break;
             case 'waitingForCustomer':
                 if (!$this->issue->waitingForCustomer) {
                     Log::info('   ' . $this->typeOfReminder . ' inte aktuell längre. Inget mail skickat');
                     return null;
                 }
-                $delayDays = setting('days_reminder_waiting_for_external');
+                // $delayDays = setting('days_reminder_waiting_for_external');
                 break;
 
             default:
@@ -84,27 +84,30 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
                     Log::info('   Ärende markerat som väntar på kund. Inget mail skickat');
                     return null;
                 }
-                $delayDays = setting('days_reminder_waiting_for_comment');
-                $delayDateTime = nextWorkingDateTime(workDaysToMinutes($delayDays));
+                // $delayDays = setting('days_reminder_waiting_for_comment');
+                // $delayDateTime = nextWorkingDateTime(workDaysToMinutes($delayDays));
                 if (cache($this->issue->ticketNumber . 'Cold')) {
                     Log::info('   Cache-key: ' . $this->issue->ticketNumber . 'Cold exist. Inget mail skickat');
                     return null;
                 }
-                if (is_null($this->issue->latestComment)) {
-                    Log::info('   Finns ingen kommentar');
-                } else {
-                    if (nextWorkingDateTime(workDaysToMinutes($delayDays) - 1, $this->issue->latestComment->updated_at) > nextWorkingDateTime()) {
-                        Log::info('   Senaste kommentar: ' . $this->issue->latestComment->updated_at);
-                        Log::info('   Mail förväntas skickas: ' . nextWorkingDateTime(workDaysToMinutes($delayDays), $this->issue->latestComment->updated_at));
-                        Log::info('   Inget mail skickat');
-                        return null;
-                    }
-                }
-                cache([$this->issue->ticketNumber . 'Cold' => true], $delayDateTime);
-                Log::info('   Cache-key updated: ' . $this->issue->ticketNumber . 'Cold' . '. Expires: ' . $delayDateTime);
+                // if (is_null($this->issue->latestComment)) {
+                //     Log::info('   Finns ingen kommentar');
+                // } else {
+                //     if (nextWorkingDateTime(workDaysToMinutes($delayDays) - 1, $this->issue->latestComment->updated_at) > nextWorkingDateTime()) {
+                //         Log::info('   Senaste kommentar: ' . $this->issue->latestComment->updated_at);
+                //         Log::info('   Mail förväntas skickas: ' . nextWorkingDateTime(workDaysToMinutes($delayDays), $this->issue->latestComment->updated_at));
+                //         Log::info('   Inget mail skickat');
+                //         return null;
+                //     }
+                // }
+
                 break;
         }
-        Mail::to($this->email)->send(new MailToFollowersAboutReminder($this->issue, $this->typeOfReminder));
-        Log::info('   MailToFollowersAboutReminder skickas: ' . $this->email);
+        add_followers($this->issue, 3);
+        $followers = $this->issue->followers;
+        foreach ($followers as $follower) {
+            Mail::to($follower->email)->send(new MailToFollowersAboutReminder($this->issue, $this->typeOfReminder));
+            Log::info('   MailToFollowersAboutReminder skickas: ' . $follower->email);
+        }
     }
 }

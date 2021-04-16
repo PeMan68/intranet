@@ -1,7 +1,6 @@
 # Release notes
 ## To-do
 *Bugs*
-210412.01 Cold-key blocks followers 2 and more. Only first foollower gets the mail of cold issue.
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
@@ -23,6 +22,10 @@
     * Do something with settings, "if calendar-module && holidays-module is used"
 
 ### ***Working on***
+*Bugs*
+210412.01 Cold-key blocks followers 2 and more. Only first foollower gets the mail of cold issue.
+    Making new job structure
+
 *Features:*
 
 *Fixes*

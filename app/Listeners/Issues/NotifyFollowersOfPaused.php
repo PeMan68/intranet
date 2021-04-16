@@ -29,14 +29,14 @@ class NotifyFollowersOfPaused
      */
     public function handle(IssuePaused $event)
     {
-        $delay = nextWorkingDateTime(setting('days_reminder_paused_issue') * (setting('stop_hour_workingday') - setting('start_hour_workingday')) * 60);
+        $delayDateTime = nextWorkingDateTime(setting('days_reminder_paused_issue') * (setting('stop_hour_workingday') - setting('start_hour_workingday')) * 60);
 
-        $followers = $event->issue->followers;
-        foreach ($followers as $follower) {
-            SendEmailToFollowersAboutReminder::dispatch($event->issue, $follower->email, $event->typeOfReminder)->delay($delay);
-            Log::info('SendEmailToFollowersAboutReminder dispathed: '. $event->issue->ticketNumber . ' to ' . $follower->email . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delay);
-        }
-        CreateNewReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delay);
-        Log::info('Dispatched new job: CreateNewReminder, '. $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delay);
+        // $followers = $event->issue->followers;
+        // foreach ($followers as $follower) {
+            SendEmailToFollowersAboutReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delayDateTime);
+            Log::info('Job SendEmailToFollowersAboutReminder dispathed: '. $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delayDateTime);
+        // }
+        CreateNewReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delayDateTime);
+        Log::info('Dispatched new job: CreateNewReminder, '. $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delayDateTime);
     }
 }
