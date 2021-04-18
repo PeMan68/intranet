@@ -89,6 +89,12 @@ return [
             'driver' => 'errorlog',
             'level' => 'debug',
         ],
+
+        'templog' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/templog.log'),
+            'level' => 'debug',
+        ],
     ],
 
 ];

@@ -42,9 +42,9 @@ class CreateNewReminder implements ShouldQueue
      */
     public function handle()
     {
-        Log::info('Job: CreateNewReminder');
+        Log::channel('templog')->debug('Job: CreateNewReminder');
         if (!is_null($this->issue->timeClosed)) {
-            Log::info(' - '. $this->issue->ticketNumber . '. Avslutat. Ingen reminder skapad' );
+            Log::channel('templog')->debug(' - '. $this->issue->ticketNumber . '. Avslutat. Ingen reminder skapad' );
             return;
         }
         if ($this->typeOfReminder == 'paused') {
@@ -70,6 +70,6 @@ class CreateNewReminder implements ShouldQueue
         if ($this->typeOfReminder == null) {
             event(new IssueWaitingForComment($this->issue, null));
         }
-        Log::info(' - Nytt event: '. $this->issue->ticketNumber . '. typeOfReminder='.$this->typeOfReminder );
+        Log::channel('templog')->debug(' - Nytt event: '. $this->issue->ticketNumber . '. typeOfReminder='.$this->typeOfReminder );
     }
 }

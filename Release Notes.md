@@ -24,6 +24,7 @@
 
 ### ***Working on***
 *Features:*
+* Moving debug(info) logging to private logfile
 
 *Fixes*
 

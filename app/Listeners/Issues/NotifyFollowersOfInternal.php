@@ -33,9 +33,9 @@ class NotifyFollowersOfInternal
         $followers = $event->issue->followers;
         foreach ($followers as $follower) {
             SendEmailToFollowersAboutReminder::dispatch($event->issue, $follower->email, $event->typeOfReminder)->delay($delay);
-            Log::info('SendEmailToFollowersAboutReminder dispatched: '. $event->issue->ticketNumber . ' to ' . $follower->email . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delay);
+            Log::channel('templog')->debug('SendEmailToFollowersAboutReminder dispatched: '. $event->issue->ticketNumber . ' to ' . $follower->email . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delay);
         }
         CreateNewReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delay);
-        Log::info('Dispatched new job: CreateNewReminder, '. $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delay);
+        Log::channel('templog')->debug('Dispatched new job: CreateNewReminder, '. $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delay);
     }
 }
