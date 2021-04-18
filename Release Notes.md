@@ -1,6 +1,7 @@
 # Release notes
 ## To-do
 *Bugs*
+210412.01 Cold-key blocks followers 2 and more. Only first foollower gets the mail of cold issue.
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
@@ -27,6 +28,9 @@
 *Fixes*
 
 ## Finished for next release
+## **Release 2.5.45 (2021-04-18)**
+*Features:*
+* Moved debug logging to private logfile, logs/templog.log
 ## **Release 2.5.44 (2021-04-11)**
 *Fixes*
 * 210331.02 Re-insert Cold cache key, because now multiple reminders of Cold is received.
