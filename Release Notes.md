@@ -24,11 +24,12 @@
 
 ### ***Working on***
 *Features:*
-* Moving debug(info) logging to private logfile
 
 *Fixes*
 
 ## Finished for next release
+*Features:*
+* Moving debug(info) logging to private logfile
 ## **Release 2.5.44 (2021-04-11)**
 *Fixes*
 * 210331.02 Re-insert Cold cache key, because now multiple reminders of Cold is received.
