@@ -28,8 +28,9 @@
 *Fixes*
 
 ## Finished for next release
+## **Release 2.5.45 (2021-04-18)**
 *Features:*
-* Moving debug(info) logging to private logfile
+* Moved debug logging to private logfile, logs/templog.log
 ## **Release 2.5.44 (2021-04-11)**
 *Fixes*
 * 210331.02 Re-insert Cold cache key, because now multiple reminders of Cold is received.
