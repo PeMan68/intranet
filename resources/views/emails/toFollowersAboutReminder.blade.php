@@ -3,7 +3,7 @@
 @section('header')
 
 @if ($type=='paused')
-Ärendet är markerat som pausat. Dags att ta tag idet igen?
+Ärendet är markerat som pausat. Dags att ta tag i det igen?
 @elseif ($type=='waitingForInternal')
 Ärendet är markerat att vi väntar på svar från <strong>kollega</strong>. Dags för en påminnelse?
 @elseif ($type=='waitingForCustomer')

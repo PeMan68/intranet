@@ -25,10 +25,10 @@
 ### ***Working on***
 *Features:*
 
-*Fixes*
-* 210419.01 Streamline the subject-text of emails. Shortest Template is ok: Issue#: Header
 
 ## Finished for next release
+*Fixes*
+* 210419.01 Streamline the subject-text of emails. Shortest Template is ok: Issue#: Header
 ## **Release 2.5.45 (2021-04-18)**
 *Features:*
 * Moved debug logging to private logfile, logs/templog.log
