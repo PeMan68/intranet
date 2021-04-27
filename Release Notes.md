@@ -26,6 +26,7 @@
 *Features:*
 
 *Fixes*
+* 210419.01 Streamline the subject-text of emails. Shortest Template is ok: Issue#: Header
 
 ## Finished for next release
 ## **Release 2.5.45 (2021-04-18)**
