@@ -43,6 +43,6 @@ class SendEmailToFollowersAboutUpdate implements ShouldQueue
     public function handle()
     {
        Mail::to($this->email)->send(new MailToFollowersAboutUpdate($this->issue, $this->type));
-       Log::channel('templog')->debug('   MailToFollowersAboutUpdate skickas: '.$this->email);
+       Log::channel('templog-jobs')->debug('   MailToFollowersAboutUpdate skickas: '.$this->email);
     }
 }

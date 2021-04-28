@@ -41,7 +41,7 @@ class MailToFollowersAboutUpdate extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->ticketNumber.' Ny uppdatering i ärende: "'.$this->header.'"')
+        return $this->subject($this->ticketNumber . ': "' . $this->header . '"')
 					->view('emails.toFollowersAboutUpdatedIssue');
     }
 }

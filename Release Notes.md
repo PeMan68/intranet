@@ -1,7 +1,7 @@
 # Release notes
 ## To-do
 *Bugs*
-210412.01 Cold-key blocks followers 2 and more. Only first foollower gets the mail of cold issue.
+210412.01 Cold-key blocks followers 2 and more. Only first follower gets the mail of cold issue.
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
@@ -25,9 +25,12 @@
 ### ***Working on***
 *Features:*
 
-*Fixes*
 
 ## Finished for next release
+## **Release 2.5.46 (2021-04-12)**
+*Fixes*
+* 210419.01 Streamline the subject-text of emails. Shortest Template is ok: Issue#: Header
+* 210428.01 Try to solve the permissionproblem of log-files. Split debuglogging, so that jobs write to one log and web-user writes to another.
 ## **Release 2.5.45 (2021-04-18)**
 *Features:*
 * Moved debug logging to private logfile, logs/templog.log

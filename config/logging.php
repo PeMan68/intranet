@@ -90,9 +90,15 @@ return [
             'level' => 'debug',
         ],
 
-        'templog' => [
+        'templog-user' => [
             'driver' => 'daily',
-            'path' => storage_path('logs/templog.log'),
+            'path' => storage_path('logs/templog-user.log'),
+            'level' => 'debug',
+        ],
+
+        'templog-jobs' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/templog-jobs.log'),
             'level' => 'debug',
         ],
     ],
