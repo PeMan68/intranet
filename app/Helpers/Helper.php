@@ -266,7 +266,6 @@ if (!function_exists('nextWorkingDateTime')) {
 
 		$minutesDiff = $minutes;
 		while (!$validDateTime) {
-			Log::channel('templog')->debug($dateTimeTemporary . ' + ' . $minutesDiff . ' minuter');
 			if (!isWeekend($dateTimeTemporary)) {
 
 				// Does the temporary date exist in Holidays?
@@ -274,21 +273,17 @@ if (!function_exists('nextWorkingDateTime')) {
 				// no holiday
 				if (is_null($holiday)) {
 					$hourWorkStop = setting('stop_hour_workingday');
-					Log::channel('templog')->debug($dateTimeTemporary . ' = vanlig dag, slutar ' . $hourWorkStop);
 					$checkMinutes = true; // !jump to checkMinutes:
 					// is holiday halfday?
 				} elseif (!is_null($holiday) && $holiday->half_day) {
 					$hourWorkStop = floor((setting('stop_hour_workingday') - setting('start_hour_workingday')) / 2) + setting('start_hour_workingday');
-					Log::channel('templog')->debug($dateTimeTemporary . ' = Ledig halvdag, slutar ' . $hourWorkStop);
 					$checkMinutes = true; // !jump to checkMinutes:
 				} else {
 					$hourWorkStop = setting('stop_hour_workingday');
-					Log::channel('templog')->debug($dateTimeTemporary . ' = Ledig heldag, ' . $holiday->description);
 					$checkMinutes = false; // !jump to add day and loop again
 				}
 
 				if ($checkMinutes && $dateTimeTemporary->hour + $minutesDiff / 60 >= $hourWorkStop) {
-					Log::channel('templog')->debug('$checkMinutes && tiden överskrider dagen');
 					$minutesDiff = ($dateTimeTemporary->hour + $minutesDiff / 60 - $hourWorkStop) * 60;
 					$dateTimeTemporary = now()->setDateTime(
 						$dateTimeTemporary->year,
@@ -299,7 +294,6 @@ if (!function_exists('nextWorkingDateTime')) {
 					);
 					// jump to add day and loop again
 				} elseif ($checkMinutes) {
-					Log::channel('templog')->debug('$checkMinutes + avsluta');
 					$validDateTime = true;
 					// Add the reamining minutes
 					$datetimeValue = $dateTimeTemporary->addMinutes($minutesDiff);
@@ -367,9 +361,5 @@ if (!function_exists('add_followers')) {
 				$event->issue->followers()->syncWithoutDetaching($user->id);
 			}
 		}
-	}
-
-	function logtest() {
-		Log::channel('templog')->debug('Hello world!!');
 	}
 }
