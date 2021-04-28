@@ -27,6 +27,7 @@
 
 
 ## Finished for next release
+## **Release 2.5.46 (2021-04-12)**
 *Fixes*
 * 210419.01 Streamline the subject-text of emails. Shortest Template is ok: Issue#: Header
 * 210428.01 Try to solve the permissionproblem of log-files. Split debuglogging, so that jobs write to one log and web-user writes to another.
