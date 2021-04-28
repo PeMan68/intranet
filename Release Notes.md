@@ -7,7 +7,6 @@
 * 210109-2 The side-menu is not handled well when window height gets smaller
 * 210214.01 When adding comment to Issue it is not shown until another page reload in production. In development is is shown after the save.
 * 210314.01 nextWorkingDateTime not correct when today is weekend but inside working hours (for example sunday 10.30 gives Monday 10.30, while Sunday 21.30 gives Monday 08.00)
-* 210428.01 Try to solve the permissionproblem of log-files. Split debuglogging, so that jobs write to one log and web-user writes to another.
 
 *Features*
 * 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails ar enot responded upon.
@@ -30,6 +29,7 @@
 ## Finished for next release
 *Fixes*
 * 210419.01 Streamline the subject-text of emails. Shortest Template is ok: Issue#: Header
+* 210428.01 Try to solve the permissionproblem of log-files. Split debuglogging, so that jobs write to one log and web-user writes to another.
 ## **Release 2.5.45 (2021-04-18)**
 *Features:*
 * Moved debug logging to private logfile, logs/templog.log
