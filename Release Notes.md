@@ -27,6 +27,8 @@
 
 
 ## Finished for next release
+*Fixes*
+* 210430.01 Holidays-import. If a day is deleted from DB, mark it as deleted instead of delete it, so it is not imported again. 
 
 ## **Release 2.5.47 (2021-04-30)**
 * Changed a debug-log to be sent to correct file
