@@ -2,6 +2,7 @@
 ## To-do
 *Bugs*
 210412.01 Cold-key blocks followers 2 and more. Only first follower gets the mail of cold issue.
+210504.01 Changing Issue status to "Väntar på kollega" writes log to wrong log-file(templog-job), change to templog-user
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
