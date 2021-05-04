@@ -34,9 +34,7 @@ class NotifyFollowersOfPaused
         $followers = $event->issue->followers;
         foreach ($followers as $follower) {
             SendEmailToFollowersAboutReminder::dispatch($event->issue, $follower->email, $event->typeOfReminder)->delay($delay);
-            Log::channel('templog-jobs')->debug('SendEmailToFollowersAboutReminder dispathed: '. $event->issue->ticketNumber . ' to ' . $follower->email . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delay);
         }
         CreateNewReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delay);
-        Log::channel('templog-jobs')->debug('Dispatched new job: CreateNewReminder, '. $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delay);
     }
 }

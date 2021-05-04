@@ -41,14 +41,11 @@ class NotifyFollowersOfUpdate
 			$followers = $event->issue->followers;
             $delay_email = nextWorkingDateTime(setting('minutes_to_collect_comments'));
             cache([$event->issue->ticketNumber => true], $delay_email);
-            Log::channel('templog-user')->debug('Cache-key updated: '.$event->issue->ticketNumber.'. Expires: '.$delay_email);
 			foreach ($followers as $user) {
 				SendEmailToFollowersAboutUpdate::dispatch($event->issue, $user->email, $event->type)->delay($delay_email);
-                Log::channel('templog-user')->debug('SendEmailToFollowersAboutUpdate dispatched: '. $event->issue->ticketNumber . ' to ' . $user->email . '. type: ' . $event->type .'. Delay: ' . $delay_email);
 			}
             $delay = nextWorkingDateTime(workDaysToMinutes(setting('days_reminder_waiting_for_comment')));
             CreateNewReminder::dispatch($event->issue, null)->delay($delay);
-            Log::channel('templog-user')->debug('Dispatched new job: CreateNewReminder, '. $event->issue->ticketNumber . '. typeOfReminder: null. Delay: ' . $delay);
 		}
 	}
 }
