@@ -2,7 +2,6 @@
 ## To-do
 *Bugs*
 210412.01 Cold-key blocks followers 2 and more. Only first follower gets the mail of cold issue.
-210504.01 Changing Issue status to "Väntar på kollega" writes log to wrong log-file(templog-job), change to templog-user
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
@@ -27,9 +26,12 @@
 *Features:*
 
 
+*Fixes*
 ## Finished for next release
 *Fixes*
 * 210430.01 Holidays-import. If a day is deleted from DB, mark it as deleted instead of delete it, so it is not imported again. (**run  migration**)
+* 210504.01 Changing Issue status to "Väntar på kollega" writes log to wrong log-file(templog-job), change to templog-user
+    Both users and jobs are using CreateNewReminder that causes the conflict. Removed all logging
 
 ## **Release 2.5.47 (2021-04-30)**
 * Changed a debug-log to be sent to correct file

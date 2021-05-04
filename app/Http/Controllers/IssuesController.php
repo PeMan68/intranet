@@ -213,7 +213,6 @@ class IssuesController extends Controller
 		//Send mail to responsible staff and other stuff
 		
         if ($request->has('save')) {
-			Log::channel('templog-user')->debug('New Issue. '.$issue->ticketNumber);
 			event(new NewIssue($issue, $hours));
 			return redirect('/issues')->with('success','Nytt ärende skapat: '.$issue->ticketNumber);
 		}
@@ -221,7 +220,6 @@ class IssuesController extends Controller
 			// Key is used to delay email of New Issue and Block mails about updates until key is expired
 			$delayMinutes = nextWorkingDateTime(setting('time_disable_update_job'));
 			cache([$issue->ticketNumber => true], $delayMinutes);
-			Log::channel('templog-user')->debug('New Issue, saveOpen, cache-key updated: '.$issue->ticketNumber.'. Expires: '.$delayMinutes);
 			event(new NewIssue($issue, $hours));
 			return redirect('/issues/'.$issue->id)->with('message','Nytt ärende '.$issue->ticketNumber);
 		}
