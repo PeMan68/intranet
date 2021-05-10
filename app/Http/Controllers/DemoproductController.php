@@ -57,6 +57,7 @@ class DemoproductController extends Controller
                 'Serienummer' => $product->serial,
                 'Inköpsdatum' => $product->invoice_date,
                 'Version' => $product->version,
+                'Uppdaterad' => $product->updated_at,
 
             ];
         });

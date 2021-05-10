@@ -25,6 +25,7 @@
 
     * change indexview to show more relevant data and add details to row...
     Detaljer visas i table men den vill inte ta striped etc
+    Formattering av datum, nytt package installerat,**run composer dump-autoload?**
 
 *Fixes*
 

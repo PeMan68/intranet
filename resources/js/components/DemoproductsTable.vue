@@ -19,7 +19,7 @@
             </b-form-group>
         </b-col>
     </b-row>
-    <b-table id="demoproducts-table" :items="items" :fields="fields" :per-page="perPage" :current-page="currentPage" :filter="filter" @filtered="onFiltered" small sticky-header="400px" sort-icon-left>
+    <b-table id="demoproducts-table" :items="items" :fields="fields" :per-page="perPage" :current-page="currentPage" :filter="filter" @filtered="onFiltered" small sticky-header="800px" sort-icon-left>
         <template #cell(info)="row">
             <b-badge href="#" @click="row.toggleDetails">
                 <i v-if="row.detailsShowing" class="material-icons">expand_less</i>
@@ -71,7 +71,11 @@
                     </b-tr>
                     <b-tr>
                         <b-td>Inköpsdatum</b-td>
-                        <b-td>{{ row.item.Inköpsdatum }}</b-td>
+                        <b-td v-if="row.item.Inköpsdatum">{{ new Date(row.item.Inköpsdatum) | dateFormat('MMMM YYYY') }}</b-td>
+                    </b-tr>
+                    <b-tr>
+                        <b-td>Senast uppdaterad</b-td>
+                        <b-td>{{ new Date(row.item.Uppdaterad) | dateFormat('YYYY-MM-DD HH:mm') }}</b-td>
                     </b-tr>
                 </b-table-simple>
         </template>

@@ -1,0 +1,4238 @@
+{
+  "rootTopicKey": "9edddc92-1ec9-40d9-bd70-8bff12e7aed7",
+  "editorRootTopicKey": "9edddc92-1ec9-40d9-bd70-8bff12e7aed7",
+  "focusKey": "9edddc92-1ec9-40d9-bd70-8bff12e7aed7",
+  "extData": {
+    "TOPIC_REFERENCE": {
+      "reference": {}
+    }
+  },
+  "topics": [
+    {
+      "key": "9edddc92-1ec9-40d9-bd70-8bff12e7aed7",
+      "parentKey": null,
+      "subKeys": [
+        "df471583-4870-4ba0-b937-9abd15f542b9",
+        "b94bb326-022b-489b-80a9-ccbbe21f0307",
+        "6766ae4c-4e33-4ba2-95be-49bea108df9f"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Holidays\n210402.01"
+        }
+      ]
+    },
+    {
+      "key": "df471583-4870-4ba0-b937-9abd15f542b9",
+      "parentKey": "9edddc92-1ec9-40d9-bd70-8bff12e7aed7",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "CRUD för att redigera holidays"
+        }
+      ]
+    },
+    {
+      "key": "b94bb326-022b-489b-80a9-ccbbe21f0307",
+      "parentKey": "9edddc92-1ec9-40d9-bd70-8bff12e7aed7",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Model för holidays"
+        }
+      ]
+    },
+    {
+      "key": "6766ae4c-4e33-4ba2-95be-49bea108df9f",
+      "parentKey": "9edddc92-1ec9-40d9-bd70-8bff12e7aed7",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Ta med holidays i algoritmen för nextWorkingDay"
+        },
+        {
+          "type": "TOPOLOGY",
+          "data": {
+            "nodes": [
+              {
+                "id": "ccb14db3",
+                "name": "rectangle",
+                "tags": [],
+                "rect": {
+                  "x": 272,
+                  "y": 35,
+                  "width": 120,
+                  "height": 40,
+                  "center": {
+                    "x": 332,
+                    "y": 55
+                  },
+                  "ex": 392,
+                  "ey": 75
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "#222",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": ""
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "lineDashOffset": 0,
+                "text": "start",
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "animateType": "",
+                "data": "",
+                "zRotate": 0,
+                "anchors": [
+                  {
+                    "x": 272,
+                    "y": 55,
+                    "direction": 4
+                  },
+                  {
+                    "x": 332,
+                    "y": 35,
+                    "direction": 1
+                  },
+                  {
+                    "x": 392,
+                    "y": 55,
+                    "direction": 2
+                  },
+                  {
+                    "x": 332,
+                    "y": 75,
+                    "direction": 3
+                  }
+                ],
+                "rotatedAnchors": [
+                  {
+                    "x": 272,
+                    "y": 55,
+                    "direction": 4
+                  },
+                  {
+                    "x": 332,
+                    "y": 35,
+                    "direction": 1
+                  },
+                  {
+                    "x": 392,
+                    "y": 55,
+                    "direction": 2
+                  },
+                  {
+                    "x": 332,
+                    "y": 75,
+                    "direction": 3
+                  }
+                ],
+                "animateDuration": 0,
+                "animateFrames": [],
+                "z": null,
+                "borderRadius": 0.5,
+                "iconSize": null,
+                "imageAlign": "center",
+                "gradientAngle": 0,
+                "gradientRadius": 0.01,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingLeftNum": 0,
+                "paddingRightNum": 0,
+                "paddingTopNum": 0,
+                "paddingBottomNum": 0,
+                "textRect": {
+                  "x": 272,
+                  "y": 65,
+                  "width": 120,
+                  "height": 10,
+                  "center": {
+                    "x": 332,
+                    "y": 70
+                  },
+                  "ex": 392,
+                  "ey": 75
+                },
+                "fullTextRect": {
+                  "x": 272,
+                  "y": 35,
+                  "width": 120,
+                  "height": 40,
+                  "center": {
+                    "x": 332,
+                    "y": 55
+                  },
+                  "ex": 392,
+                  "ey": 75
+                },
+                "iconRect": {
+                  "x": 272,
+                  "y": 35,
+                  "width": 120,
+                  "height": 30,
+                  "center": {
+                    "x": 332,
+                    "y": 50
+                  },
+                  "ex": 392,
+                  "ey": 65
+                },
+                "fullIconRect": {
+                  "x": 272,
+                  "y": 35,
+                  "width": 120,
+                  "height": 40,
+                  "center": {
+                    "x": 332,
+                    "y": 55
+                  },
+                  "ex": 392,
+                  "ey": 75
+                },
+                "dockWatchers": [
+                  {
+                    "x": 332,
+                    "y": 55
+                  },
+                  {
+                    "x": 272,
+                    "y": 35
+                  },
+                  {
+                    "x": 392,
+                    "y": 35
+                  },
+                  {
+                    "x": 392,
+                    "y": 75
+                  },
+                  {
+                    "x": 272,
+                    "y": 75
+                  }
+                ]
+              },
+              {
+                "id": "0d8fc275",
+                "name": "rectangle",
+                "tags": [],
+                "rect": {
+                  "x": 200.5,
+                  "y": 119,
+                  "width": 263,
+                  "height": 60,
+                  "center": {
+                    "x": 332,
+                    "y": 149
+                  },
+                  "ex": 463.5,
+                  "ey": 179
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "#222",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": ""
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "lineDashOffset": 0,
+                "text": "$hourWorkStart\n$hourWorkStop\n$hourWorkStopHalfDay",
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "animateType": "",
+                "data": "",
+                "zRotate": 0,
+                "anchors": [
+                  {
+                    "x": 200.5,
+                    "y": 149,
+                    "direction": 4
+                  },
+                  {
+                    "x": 332,
+                    "y": 119,
+                    "direction": 1
+                  },
+                  {
+                    "x": 463.5,
+                    "y": 149,
+                    "direction": 2
+                  },
+                  {
+                    "x": 332,
+                    "y": 179,
+                    "direction": 3
+                  }
+                ],
+                "rotatedAnchors": [
+                  {
+                    "x": 200.5,
+                    "y": 149,
+                    "direction": 4
+                  },
+                  {
+                    "x": 332,
+                    "y": 119,
+                    "direction": 1
+                  },
+                  {
+                    "x": 463.5,
+                    "y": 149,
+                    "direction": 2
+                  },
+                  {
+                    "x": 332,
+                    "y": 179,
+                    "direction": 3
+                  }
+                ],
+                "animateDuration": 0,
+                "animateFrames": [],
+                "z": null,
+                "borderRadius": 0,
+                "iconSize": null,
+                "imageAlign": "center",
+                "gradientAngle": 0,
+                "gradientRadius": 0.01,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingLeftNum": 0,
+                "paddingRightNum": 0,
+                "paddingTopNum": 0,
+                "paddingBottomNum": 0,
+                "textRect": {
+                  "x": 200.5,
+                  "y": 164,
+                  "width": 263,
+                  "height": 15,
+                  "center": {
+                    "x": 332,
+                    "y": 171.5
+                  },
+                  "ex": 463.5,
+                  "ey": 179
+                },
+                "fullTextRect": {
+                  "x": 200.5,
+                  "y": 119,
+                  "width": 263,
+                  "height": 60,
+                  "center": {
+                    "x": 332,
+                    "y": 149
+                  },
+                  "ex": 463.5,
+                  "ey": 179
+                },
+                "iconRect": {
+                  "x": 200.5,
+                  "y": 119,
+                  "width": 263,
+                  "height": 45,
+                  "center": {
+                    "x": 332,
+                    "y": 141.5
+                  },
+                  "ex": 463.5,
+                  "ey": 164
+                },
+                "fullIconRect": {
+                  "x": 200.5,
+                  "y": 119,
+                  "width": 263,
+                  "height": 60,
+                  "center": {
+                    "x": 332,
+                    "y": 149
+                  },
+                  "ex": 463.5,
+                  "ey": 179
+                },
+                "dockWatchers": [
+                  {
+                    "x": 332,
+                    "y": 149
+                  },
+                  {
+                    "x": 200.5,
+                    "y": 119
+                  },
+                  {
+                    "x": 463.5,
+                    "y": 119
+                  },
+                  {
+                    "x": 463.5,
+                    "y": 179
+                  },
+                  {
+                    "x": 200.5,
+                    "y": 179
+                  }
+                ]
+              },
+              {
+                "id": "c5c14d4c",
+                "name": "rectangle",
+                "tags": [],
+                "rect": {
+                  "x": 193,
+                  "y": 222,
+                  "width": 278,
+                  "height": 63,
+                  "center": {
+                    "x": 332,
+                    "y": 253.5
+                  },
+                  "ex": 471,
+                  "ey": 285
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "#222",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": ""
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "lineDashOffset": 0,
+                "text": "$dateTimeWorkdayStart\n$dateTimeWorkdayStop\n",
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "animateType": "",
+                "data": "",
+                "zRotate": 0,
+                "anchors": [
+                  {
+                    "x": 193,
+                    "y": 253.5,
+                    "direction": 4
+                  },
+                  {
+                    "x": 332,
+                    "y": 222,
+                    "direction": 1
+                  },
+                  {
+                    "x": 471,
+                    "y": 253.5,
+                    "direction": 2
+                  },
+                  {
+                    "x": 332,
+                    "y": 285,
+                    "direction": 3
+                  }
+                ],
+                "rotatedAnchors": [
+                  {
+                    "x": 193,
+                    "y": 253.5,
+                    "direction": 4
+                  },
+                  {
+                    "x": 332,
+                    "y": 222,
+                    "direction": 1
+                  },
+                  {
+                    "x": 471,
+                    "y": 253.5,
+                    "direction": 2
+                  },
+                  {
+                    "x": 332,
+                    "y": 285,
+                    "direction": 3
+                  }
+                ],
+                "animateDuration": 0,
+                "animateFrames": [],
+                "z": null,
+                "borderRadius": 0,
+                "iconSize": null,
+                "imageAlign": "center",
+                "gradientAngle": 0,
+                "gradientRadius": 0.01,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingLeftNum": 0,
+                "paddingRightNum": 0,
+                "paddingTopNum": 0,
+                "paddingBottomNum": 0,
+                "textRect": {
+                  "x": 193,
+                  "y": 269.25,
+                  "width": 278,
+                  "height": 15.75,
+                  "center": {
+                    "x": 332,
+                    "y": 277.125
+                  },
+                  "ex": 471,
+                  "ey": 285
+                },
+                "fullTextRect": {
+                  "x": 193,
+                  "y": 222,
+                  "width": 278,
+                  "height": 63,
+                  "center": {
+                    "x": 332,
+                    "y": 253.5
+                  },
+                  "ex": 471,
+                  "ey": 285
+                },
+                "iconRect": {
+                  "x": 193,
+                  "y": 222,
+                  "width": 278,
+                  "height": 47.25,
+                  "center": {
+                    "x": 332,
+                    "y": 245.625
+                  },
+                  "ex": 471,
+                  "ey": 269.25
+                },
+                "fullIconRect": {
+                  "x": 193,
+                  "y": 222,
+                  "width": 278,
+                  "height": 63,
+                  "center": {
+                    "x": 332,
+                    "y": 253.5
+                  },
+                  "ex": 471,
+                  "ey": 285
+                },
+                "dockWatchers": [
+                  {
+                    "x": 332,
+                    "y": 253.5
+                  },
+                  {
+                    "x": 193,
+                    "y": 222
+                  },
+                  {
+                    "x": 471,
+                    "y": 222
+                  },
+                  {
+                    "x": 471,
+                    "y": 285
+                  },
+                  {
+                    "x": 193,
+                    "y": 285
+                  }
+                ]
+              },
+              {
+                "id": "94014e2f",
+                "name": "rectangle",
+                "tags": [],
+                "rect": {
+                  "x": 167,
+                  "y": 323,
+                  "width": 308,
+                  "height": 70,
+                  "center": {
+                    "x": 321,
+                    "y": 358
+                  },
+                  "ex": 475,
+                  "ey": 393
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "#222",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": ""
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "lineDashOffset": 0,
+                "text": "// Move the Starttime within workinghours if needed\n$dateTimeTemporary",
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "animateType": "",
+                "data": "",
+                "zRotate": 0,
+                "anchors": [
+                  {
+                    "x": 167,
+                    "y": 358,
+                    "direction": 4
+                  },
+                  {
+                    "x": 321,
+                    "y": 323,
+                    "direction": 1
+                  },
+                  {
+                    "x": 475,
+                    "y": 358,
+                    "direction": 2
+                  },
+                  {
+                    "x": 321,
+                    "y": 393,
+                    "direction": 3
+                  }
+                ],
+                "rotatedAnchors": [
+                  {
+                    "x": 167,
+                    "y": 358,
+                    "direction": 4
+                  },
+                  {
+                    "x": 321,
+                    "y": 323,
+                    "direction": 1
+                  },
+                  {
+                    "x": 475,
+                    "y": 358,
+                    "direction": 2
+                  },
+                  {
+                    "x": 321,
+                    "y": 393,
+                    "direction": 3
+                  }
+                ],
+                "animateDuration": 0,
+                "animateFrames": [],
+                "z": null,
+                "borderRadius": 0,
+                "iconSize": null,
+                "imageAlign": "center",
+                "gradientAngle": 0,
+                "gradientRadius": 0.01,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingLeftNum": 0,
+                "paddingRightNum": 0,
+                "paddingTopNum": 0,
+                "paddingBottomNum": 0,
+                "textRect": {
+                  "x": 167,
+                  "y": 375.5,
+                  "width": 308,
+                  "height": 17.5,
+                  "center": {
+                    "x": 321,
+                    "y": 384.25
+                  },
+                  "ex": 475,
+                  "ey": 393
+                },
+                "fullTextRect": {
+                  "x": 167,
+                  "y": 323,
+                  "width": 308,
+                  "height": 70,
+                  "center": {
+                    "x": 321,
+                    "y": 358
+                  },
+                  "ex": 475,
+                  "ey": 393
+                },
+                "iconRect": {
+                  "x": 167,
+                  "y": 323,
+                  "width": 308,
+                  "height": 52.5,
+                  "center": {
+                    "x": 321,
+                    "y": 349.25
+                  },
+                  "ex": 475,
+                  "ey": 375.5
+                },
+                "fullIconRect": {
+                  "x": 167,
+                  "y": 323,
+                  "width": 308,
+                  "height": 70,
+                  "center": {
+                    "x": 321,
+                    "y": 358
+                  },
+                  "ex": 475,
+                  "ey": 393
+                },
+                "dockWatchers": [
+                  {
+                    "x": 321,
+                    "y": 358
+                  },
+                  {
+                    "x": 167,
+                    "y": 323
+                  },
+                  {
+                    "x": 475,
+                    "y": 323
+                  },
+                  {
+                    "x": 475,
+                    "y": 393
+                  },
+                  {
+                    "x": 167,
+                    "y": 393
+                  }
+                ]
+              },
+              {
+                "id": "114c5322",
+                "name": "diamond",
+                "tags": [],
+                "rect": {
+                  "x": 223,
+                  "y": 507,
+                  "width": 120,
+                  "height": 60,
+                  "center": {
+                    "x": 283,
+                    "y": 537
+                  },
+                  "ex": 343,
+                  "ey": 567
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "#222",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": ""
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "lineDashOffset": 0,
+                "text": "Weekend?",
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "animateType": "",
+                "data": "",
+                "zRotate": 0,
+                "anchors": [
+                  {
+                    "x": 223,
+                    "y": 537,
+                    "direction": 4
+                  },
+                  {
+                    "x": 283,
+                    "y": 507,
+                    "direction": 1
+                  },
+                  {
+                    "x": 343,
+                    "y": 537,
+                    "direction": 2
+                  },
+                  {
+                    "x": 283,
+                    "y": 567,
+                    "direction": 3
+                  }
+                ],
+                "rotatedAnchors": [
+                  {
+                    "x": 223,
+                    "y": 537,
+                    "direction": 4
+                  },
+                  {
+                    "x": 283,
+                    "y": 507,
+                    "direction": 1
+                  },
+                  {
+                    "x": 343,
+                    "y": 537,
+                    "direction": 2
+                  },
+                  {
+                    "x": 283,
+                    "y": 567,
+                    "direction": 3
+                  }
+                ],
+                "animateDuration": 0,
+                "animateFrames": [],
+                "z": null,
+                "borderRadius": 0,
+                "iconSize": null,
+                "imageAlign": "center",
+                "gradientAngle": 0,
+                "gradientRadius": 0.01,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingLeftNum": 0,
+                "paddingRightNum": 0,
+                "paddingTopNum": 0,
+                "paddingBottomNum": 0,
+                "textRect": {
+                  "x": 263,
+                  "y": 541,
+                  "width": 40,
+                  "height": 15,
+                  "center": {
+                    "x": 283,
+                    "y": 548.5
+                  },
+                  "ex": 303,
+                  "ey": 556
+                },
+                "fullTextRect": {
+                  "x": 253,
+                  "y": 522,
+                  "width": 60,
+                  "height": 30,
+                  "center": {
+                    "x": 283,
+                    "y": 537
+                  },
+                  "ex": 313,
+                  "ey": 552
+                },
+                "iconRect": {
+                  "x": 273,
+                  "y": 531,
+                  "width": 20,
+                  "height": 20,
+                  "center": {
+                    "x": 283,
+                    "y": 541
+                  },
+                  "ex": 293,
+                  "ey": 551
+                },
+                "dockWatchers": [
+                  {
+                    "x": 283,
+                    "y": 537
+                  },
+                  {
+                    "x": 223,
+                    "y": 507
+                  },
+                  {
+                    "x": 343,
+                    "y": 507
+                  },
+                  {
+                    "x": 343,
+                    "y": 567
+                  },
+                  {
+                    "x": 223,
+                    "y": 567
+                  }
+                ]
+              },
+              {
+                "id": "abc41df7",
+                "name": "text",
+                "tags": [],
+                "rect": {
+                  "x": 284,
+                  "y": 535,
+                  "width": 160,
+                  "height": 30,
+                  "center": {
+                    "x": 364,
+                    "y": 550
+                  },
+                  "ex": 444,
+                  "ey": 565
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "#222",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": ""
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "lineDashOffset": 0,
+                "text": "yes",
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "animateType": "",
+                "data": "",
+                "zRotate": 0,
+                "anchors": [],
+                "rotatedAnchors": [],
+                "animateDuration": 0,
+                "animateFrames": [],
+                "z": null,
+                "borderRadius": 0,
+                "iconSize": null,
+                "imageAlign": "center",
+                "gradientAngle": 0,
+                "gradientRadius": 0.01,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingLeftNum": 0,
+                "paddingRightNum": 0,
+                "paddingTopNum": 0,
+                "paddingBottomNum": 0,
+                "textRect": {
+                  "x": 284,
+                  "y": 557.5,
+                  "width": 160,
+                  "height": 7.5,
+                  "center": {
+                    "x": 364,
+                    "y": 561.25
+                  },
+                  "ex": 444,
+                  "ey": 565
+                },
+                "fullTextRect": {
+                  "x": 284,
+                  "y": 535,
+                  "width": 160,
+                  "height": 30,
+                  "center": {
+                    "x": 364,
+                    "y": 550
+                  },
+                  "ex": 444,
+                  "ey": 565
+                },
+                "iconRect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                }
+              },
+              {
+                "id": "53262eda",
+                "name": "text",
+                "tags": [],
+                "rect": {
+                  "x": 223,
+                  "y": 684,
+                  "width": 160,
+                  "height": 30,
+                  "center": {
+                    "x": 303,
+                    "y": 699
+                  },
+                  "ex": 383,
+                  "ey": 714
+                },
+                "lineWidth": 1,
+                "rotate": 1.0416266760099688,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "#222",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": ""
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "lineDashOffset": 0,
+                "text": "yes",
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "animateType": "",
+                "data": "",
+                "zRotate": 0,
+                "anchors": [],
+                "rotatedAnchors": [],
+                "animateDuration": 0,
+                "animateFrames": [],
+                "z": null,
+                "borderRadius": 0,
+                "iconSize": null,
+                "imageAlign": "center",
+                "gradientAngle": 0,
+                "gradientRadius": 0.01,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingLeftNum": 0,
+                "paddingRightNum": 0,
+                "paddingTopNum": 0,
+                "paddingBottomNum": 0,
+                "textRect": {
+                  "x": 223,
+                  "y": 706.5,
+                  "width": 160,
+                  "height": 7.5,
+                  "center": {
+                    "x": 303,
+                    "y": 710.25
+                  },
+                  "ex": 383,
+                  "ey": 714
+                },
+                "fullTextRect": {
+                  "x": 223,
+                  "y": 684,
+                  "width": 160,
+                  "height": 30,
+                  "center": {
+                    "x": 303,
+                    "y": 699
+                  },
+                  "ex": 383,
+                  "ey": 714
+                },
+                "iconRect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                }
+              },
+              {
+                "id": "44e2cd7e",
+                "name": "rectangle",
+                "tags": [],
+                "rect": {
+                  "x": 218,
+                  "y": 1211.5,
+                  "width": 228,
+                  "height": 69,
+                  "center": {
+                    "x": 332,
+                    "y": 1246
+                  },
+                  "ex": 446,
+                  "ey": 1280.5
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "#222",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": ""
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "lineDashOffset": 0,
+                "text": "// Move $dateTimeTemporary +1 day",
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "animateType": "",
+                "data": "",
+                "zRotate": 0,
+                "anchors": [
+                  {
+                    "x": 218,
+                    "y": 1246,
+                    "direction": 4
+                  },
+                  {
+                    "x": 332,
+                    "y": 1211.5,
+                    "direction": 1
+                  },
+                  {
+                    "x": 446,
+                    "y": 1246,
+                    "direction": 2
+                  },
+                  {
+                    "x": 332,
+                    "y": 1280.5,
+                    "direction": 3
+                  }
+                ],
+                "rotatedAnchors": [
+                  {
+                    "x": 218,
+                    "y": 1246,
+                    "direction": 4
+                  },
+                  {
+                    "x": 332,
+                    "y": 1211.5,
+                    "direction": 1
+                  },
+                  {
+                    "x": 446,
+                    "y": 1246,
+                    "direction": 2
+                  },
+                  {
+                    "x": 332,
+                    "y": 1280.5,
+                    "direction": 3
+                  }
+                ],
+                "animateDuration": 0,
+                "animateFrames": [],
+                "z": null,
+                "borderRadius": 0,
+                "iconSize": null,
+                "imageAlign": "center",
+                "gradientAngle": 0,
+                "gradientRadius": 0.01,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingLeftNum": 0,
+                "paddingRightNum": 0,
+                "paddingTopNum": 0,
+                "paddingBottomNum": 0,
+                "textRect": {
+                  "x": 218,
+                  "y": 1263.25,
+                  "width": 228,
+                  "height": 17.25,
+                  "center": {
+                    "x": 332,
+                    "y": 1271.875
+                  },
+                  "ex": 446,
+                  "ey": 1280.5
+                },
+                "fullTextRect": {
+                  "x": 218,
+                  "y": 1211.5,
+                  "width": 228,
+                  "height": 69,
+                  "center": {
+                    "x": 332,
+                    "y": 1246
+                  },
+                  "ex": 446,
+                  "ey": 1280.5
+                },
+                "iconRect": {
+                  "x": 218,
+                  "y": 1211.5,
+                  "width": 228,
+                  "height": 51.75,
+                  "center": {
+                    "x": 332,
+                    "y": 1237.375
+                  },
+                  "ex": 446,
+                  "ey": 1263.25
+                },
+                "fullIconRect": {
+                  "x": 218,
+                  "y": 1211.5,
+                  "width": 228,
+                  "height": 69,
+                  "center": {
+                    "x": 332,
+                    "y": 1246
+                  },
+                  "ex": 446,
+                  "ey": 1280.5
+                },
+                "dockWatchers": [
+                  {
+                    "x": 332,
+                    "y": 1246
+                  },
+                  {
+                    "x": 278,
+                    "y": 1209.5
+                  },
+                  {
+                    "x": 506,
+                    "y": 1209.5
+                  },
+                  {
+                    "x": 506,
+                    "y": 1278.5
+                  },
+                  {
+                    "x": 278,
+                    "y": 1278.5
+                  }
+                ]
+              },
+              {
+                "id": "b427d0da",
+                "name": "text",
+                "tags": [],
+                "rect": {
+                  "x": 445,
+                  "y": 673.5,
+                  "width": 160,
+                  "height": 30,
+                  "center": {
+                    "x": 525,
+                    "y": 688.5
+                  },
+                  "ex": 605,
+                  "ey": 703.5
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "#222",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": ""
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "lineDashOffset": 0,
+                "text": "yes",
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "animateType": "",
+                "data": "",
+                "zRotate": 0,
+                "anchors": [],
+                "rotatedAnchors": [],
+                "animateDuration": 0,
+                "animateFrames": [],
+                "z": null,
+                "borderRadius": 0,
+                "iconSize": null,
+                "imageAlign": "center",
+                "gradientAngle": 0,
+                "gradientRadius": 0.01,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingLeftNum": 0,
+                "paddingRightNum": 0,
+                "paddingTopNum": 0,
+                "paddingBottomNum": 0,
+                "textRect": {
+                  "x": 445,
+                  "y": 696,
+                  "width": 160,
+                  "height": 7.5,
+                  "center": {
+                    "x": 525,
+                    "y": 699.75
+                  },
+                  "ex": 605,
+                  "ey": 703.5
+                },
+                "fullTextRect": {
+                  "x": 445,
+                  "y": 673.5,
+                  "width": 160,
+                  "height": 30,
+                  "center": {
+                    "x": 525,
+                    "y": 688.5
+                  },
+                  "ex": 605,
+                  "ey": 703.5
+                },
+                "iconRect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                }
+              },
+              {
+                "id": "1849c44b",
+                "name": "rectangle",
+                "tags": [],
+                "rect": {
+                  "x": 141,
+                  "y": 749,
+                  "width": 282,
+                  "height": 48,
+                  "center": {
+                    "x": 282,
+                    "y": 773
+                  },
+                  "ex": 423,
+                  "ey": 797
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "#222",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": ""
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "lineDashOffset": 0,
+                "text": "// change $hourWorkStop to halfday",
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "animateType": "",
+                "data": "",
+                "zRotate": 0,
+                "anchors": [
+                  {
+                    "x": 141,
+                    "y": 773,
+                    "direction": 4
+                  },
+                  {
+                    "x": 282,
+                    "y": 749,
+                    "direction": 1
+                  },
+                  {
+                    "x": 423,
+                    "y": 773,
+                    "direction": 2
+                  },
+                  {
+                    "x": 282,
+                    "y": 797,
+                    "direction": 3
+                  }
+                ],
+                "rotatedAnchors": [
+                  {
+                    "x": 141,
+                    "y": 773,
+                    "direction": 4
+                  },
+                  {
+                    "x": 282,
+                    "y": 749,
+                    "direction": 1
+                  },
+                  {
+                    "x": 423,
+                    "y": 773,
+                    "direction": 2
+                  },
+                  {
+                    "x": 282,
+                    "y": 797,
+                    "direction": 3
+                  }
+                ],
+                "animateDuration": 0,
+                "animateFrames": [],
+                "z": null,
+                "borderRadius": 0,
+                "iconSize": null,
+                "imageAlign": "center",
+                "gradientAngle": 0,
+                "gradientRadius": 0.01,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingLeftNum": 0,
+                "paddingRightNum": 0,
+                "paddingTopNum": 0,
+                "paddingBottomNum": 0,
+                "textRect": {
+                  "x": 141,
+                  "y": 785,
+                  "width": 282,
+                  "height": 12,
+                  "center": {
+                    "x": 282,
+                    "y": 791
+                  },
+                  "ex": 423,
+                  "ey": 797
+                },
+                "fullTextRect": {
+                  "x": 141,
+                  "y": 749,
+                  "width": 282,
+                  "height": 48,
+                  "center": {
+                    "x": 282,
+                    "y": 773
+                  },
+                  "ex": 423,
+                  "ey": 797
+                },
+                "iconRect": {
+                  "x": 141,
+                  "y": 749,
+                  "width": 282,
+                  "height": 36,
+                  "center": {
+                    "x": 282,
+                    "y": 767
+                  },
+                  "ex": 423,
+                  "ey": 785
+                },
+                "fullIconRect": {
+                  "x": 141,
+                  "y": 749,
+                  "width": 282,
+                  "height": 48,
+                  "center": {
+                    "x": 282,
+                    "y": 773
+                  },
+                  "ex": 423,
+                  "ey": 797
+                },
+                "dockWatchers": [
+                  {
+                    "x": 282,
+                    "y": 773
+                  },
+                  {
+                    "x": 724,
+                    "y": 751
+                  },
+                  {
+                    "x": 1006,
+                    "y": 751
+                  },
+                  {
+                    "x": 1006,
+                    "y": 799
+                  },
+                  {
+                    "x": 724,
+                    "y": 799
+                  }
+                ]
+              },
+              {
+                "id": "b7e517f7",
+                "name": "diamond",
+                "tags": [],
+                "rect": {
+                  "x": 155.5,
+                  "y": 901,
+                  "width": 233,
+                  "height": 130,
+                  "center": {
+                    "x": 272,
+                    "y": 966
+                  },
+                  "ex": 388.5,
+                  "ey": 1031
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "#222",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": ""
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "lineDashOffset": 0,
+                "text": "$dateTimeTemporary + minutes > $hourWorkStop",
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "animateType": "",
+                "data": "",
+                "zRotate": 0,
+                "anchors": [
+                  {
+                    "x": 155.5,
+                    "y": 966,
+                    "direction": 4
+                  },
+                  {
+                    "x": 272,
+                    "y": 901,
+                    "direction": 1
+                  },
+                  {
+                    "x": 388.5,
+                    "y": 966,
+                    "direction": 2
+                  },
+                  {
+                    "x": 272,
+                    "y": 1031,
+                    "direction": 3
+                  }
+                ],
+                "rotatedAnchors": [
+                  {
+                    "x": 155.5,
+                    "y": 966,
+                    "direction": 4
+                  },
+                  {
+                    "x": 272,
+                    "y": 901,
+                    "direction": 1
+                  },
+                  {
+                    "x": 388.5,
+                    "y": 966,
+                    "direction": 2
+                  },
+                  {
+                    "x": 272,
+                    "y": 1031,
+                    "direction": 3
+                  }
+                ],
+                "animateDuration": 0,
+                "animateFrames": [],
+                "z": null,
+                "borderRadius": 0,
+                "iconSize": null,
+                "imageAlign": "center",
+                "gradientAngle": 0,
+                "gradientRadius": 0.01,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingLeftNum": 0,
+                "paddingRightNum": 0,
+                "paddingTopNum": 0,
+                "paddingBottomNum": 0,
+                "textRect": {
+                  "x": 233.16666666666669,
+                  "y": 974.6666666666666,
+                  "width": 77.66666666666667,
+                  "height": 38.333333333333336,
+                  "center": {
+                    "x": 272,
+                    "y": 993.8333333333333
+                  },
+                  "ex": 310.83333333333337,
+                  "ey": 1013
+                },
+                "fullTextRect": {
+                  "x": 213.75,
+                  "y": 933.5,
+                  "width": 116.5,
+                  "height": 65,
+                  "center": {
+                    "x": 272,
+                    "y": 966
+                  },
+                  "ex": 330.25,
+                  "ey": 998.5
+                },
+                "iconRect": {
+                  "x": 250.33333333333331,
+                  "y": 947.6,
+                  "width": 43.333333333333336,
+                  "height": 43.333333333333336,
+                  "center": {
+                    "x": 272,
+                    "y": 969.2666666666667
+                  },
+                  "ex": 293.66666666666663,
+                  "ey": 990.9333333333334
+                },
+                "dockWatchers": [
+                  {
+                    "x": 272,
+                    "y": 966
+                  },
+                  {
+                    "x": 212,
+                    "y": 896
+                  },
+                  {
+                    "x": 445,
+                    "y": 896
+                  },
+                  {
+                    "x": 445,
+                    "y": 1026
+                  },
+                  {
+                    "x": 212,
+                    "y": 1026
+                  }
+                ]
+              },
+              {
+                "id": "5b0e8310",
+                "name": "rectangle",
+                "tags": [],
+                "rect": {
+                  "x": 658,
+                  "y": 748,
+                  "width": 200,
+                  "height": 50,
+                  "center": {
+                    "x": 758,
+                    "y": 773
+                  },
+                  "ex": 858,
+                  "ey": 798
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "#222",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": ""
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "lineDashOffset": 0,
+                "text": "set $hourWorkStop to full day",
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "animateType": "",
+                "data": "",
+                "zRotate": 0,
+                "anchors": [
+                  {
+                    "x": 658,
+                    "y": 773,
+                    "direction": 4
+                  },
+                  {
+                    "x": 758,
+                    "y": 748,
+                    "direction": 1
+                  },
+                  {
+                    "x": 858,
+                    "y": 773,
+                    "direction": 2
+                  },
+                  {
+                    "x": 758,
+                    "y": 798,
+                    "direction": 3
+                  }
+                ],
+                "rotatedAnchors": [
+                  {
+                    "x": 658,
+                    "y": 773,
+                    "direction": 4
+                  },
+                  {
+                    "x": 758,
+                    "y": 748,
+                    "direction": 1
+                  },
+                  {
+                    "x": 858,
+                    "y": 773,
+                    "direction": 2
+                  },
+                  {
+                    "x": 758,
+                    "y": 798,
+                    "direction": 3
+                  }
+                ],
+                "animateDuration": 0,
+                "animateFrames": [],
+                "z": null,
+                "borderRadius": 0.1,
+                "iconSize": null,
+                "imageAlign": "center",
+                "gradientAngle": 0,
+                "gradientRadius": 0.01,
+                "paddingTop": 10,
+                "paddingBottom": 10,
+                "paddingLeft": 10,
+                "paddingRight": 10,
+                "paddingLeftNum": 10,
+                "paddingRightNum": 10,
+                "paddingTopNum": 10,
+                "paddingBottomNum": 10,
+                "textRect": {
+                  "x": 668,
+                  "y": 780.5,
+                  "width": 180,
+                  "height": 7.5,
+                  "center": {
+                    "x": 758,
+                    "y": 784.25
+                  },
+                  "ex": 848,
+                  "ey": 788
+                },
+                "fullTextRect": {
+                  "x": 668,
+                  "y": 758,
+                  "width": 180,
+                  "height": 30,
+                  "center": {
+                    "x": 758,
+                    "y": 773
+                  },
+                  "ex": 848,
+                  "ey": 788
+                },
+                "iconRect": {
+                  "x": 668,
+                  "y": 758,
+                  "width": 180,
+                  "height": 17.5,
+                  "center": {
+                    "x": 758,
+                    "y": 766.75
+                  },
+                  "ex": 848,
+                  "ey": 775.5
+                },
+                "fullIconRect": {
+                  "x": 668,
+                  "y": 758,
+                  "width": 180,
+                  "height": 30,
+                  "center": {
+                    "x": 758,
+                    "y": 773
+                  },
+                  "ex": 848,
+                  "ey": 788
+                },
+                "dockWatchers": [
+                  {
+                    "x": 758,
+                    "y": 773
+                  },
+                  {
+                    "x": 441,
+                    "y": 699
+                  },
+                  {
+                    "x": 641,
+                    "y": 699
+                  },
+                  {
+                    "x": 641,
+                    "y": 749
+                  },
+                  {
+                    "x": 441,
+                    "y": 749
+                  }
+                ]
+              },
+              {
+                "id": "80576b70",
+                "name": "rectangle",
+                "tags": [],
+                "rect": {
+                  "x": 445,
+                  "y": 749.5,
+                  "width": 194,
+                  "height": 45,
+                  "center": {
+                    "x": 542,
+                    "y": 772
+                  },
+                  "ex": 639,
+                  "ey": 794.5
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "#222",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": ""
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "lineDashOffset": 0,
+                "text": "set $hourWorkStop to full day",
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "animateType": "",
+                "data": "",
+                "zRotate": 0,
+                "anchors": [
+                  {
+                    "x": 445,
+                    "y": 772,
+                    "direction": 4
+                  },
+                  {
+                    "x": 542,
+                    "y": 749.5,
+                    "direction": 1
+                  },
+                  {
+                    "x": 639,
+                    "y": 772,
+                    "direction": 2
+                  },
+                  {
+                    "x": 542,
+                    "y": 794.5,
+                    "direction": 3
+                  }
+                ],
+                "rotatedAnchors": [
+                  {
+                    "x": 445,
+                    "y": 772,
+                    "direction": 4
+                  },
+                  {
+                    "x": 542,
+                    "y": 749.5,
+                    "direction": 1
+                  },
+                  {
+                    "x": 639,
+                    "y": 772,
+                    "direction": 2
+                  },
+                  {
+                    "x": 542,
+                    "y": 794.5,
+                    "direction": 3
+                  }
+                ],
+                "animateDuration": 0,
+                "animateFrames": [],
+                "z": null,
+                "borderRadius": 0,
+                "iconSize": null,
+                "imageAlign": "center",
+                "gradientAngle": 0,
+                "gradientRadius": 0.01,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingLeftNum": 0,
+                "paddingRightNum": 0,
+                "paddingTopNum": 0,
+                "paddingBottomNum": 0,
+                "textRect": {
+                  "x": 445,
+                  "y": 783.25,
+                  "width": 194,
+                  "height": 11.25,
+                  "center": {
+                    "x": 542,
+                    "y": 788.875
+                  },
+                  "ex": 639,
+                  "ey": 794.5
+                },
+                "fullTextRect": {
+                  "x": 445,
+                  "y": 749.5,
+                  "width": 194,
+                  "height": 45,
+                  "center": {
+                    "x": 542,
+                    "y": 772
+                  },
+                  "ex": 639,
+                  "ey": 794.5
+                },
+                "iconRect": {
+                  "x": 445,
+                  "y": 749.5,
+                  "width": 194,
+                  "height": 33.75,
+                  "center": {
+                    "x": 542,
+                    "y": 766.375
+                  },
+                  "ex": 639,
+                  "ey": 783.25
+                },
+                "fullIconRect": {
+                  "x": 445,
+                  "y": 749.5,
+                  "width": 194,
+                  "height": 45,
+                  "center": {
+                    "x": 542,
+                    "y": 772
+                  },
+                  "ex": 639,
+                  "ey": 794.5
+                },
+                "dockWatchers": [
+                  {
+                    "x": 542,
+                    "y": 772
+                  },
+                  {
+                    "x": 186,
+                    "y": 752.5
+                  },
+                  {
+                    "x": 380,
+                    "y": 752.5
+                  },
+                  {
+                    "x": 380,
+                    "y": 797.5
+                  },
+                  {
+                    "x": 186,
+                    "y": 797.5
+                  }
+                ]
+              },
+              {
+                "id": "40f1588f",
+                "name": "flowData",
+                "tags": [],
+                "rect": {
+                  "x": 223,
+                  "y": 621,
+                  "width": 120,
+                  "height": 50,
+                  "center": {
+                    "x": 283,
+                    "y": 646
+                  },
+                  "ex": 343,
+                  "ey": 671
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "#222",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": ""
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "lineDashOffset": 0,
+                "text": "holiday and half-day?",
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "animateType": "",
+                "data": "",
+                "zRotate": 0,
+                "anchors": [
+                  {
+                    "x": 231.57142857142858,
+                    "y": 646,
+                    "direction": 4
+                  },
+                  {
+                    "x": 291.57142857142856,
+                    "y": 621,
+                    "direction": 1
+                  },
+                  {
+                    "x": 334.42857142857144,
+                    "y": 646,
+                    "direction": 2
+                  },
+                  {
+                    "x": 274.42857142857144,
+                    "y": 671,
+                    "direction": 3
+                  }
+                ],
+                "rotatedAnchors": [
+                  {
+                    "x": 231.57142857142858,
+                    "y": 646,
+                    "direction": 4
+                  },
+                  {
+                    "x": 291.57142857142856,
+                    "y": 621,
+                    "direction": 1
+                  },
+                  {
+                    "x": 334.42857142857144,
+                    "y": 646,
+                    "direction": 2
+                  },
+                  {
+                    "x": 274.42857142857144,
+                    "y": 671,
+                    "direction": 3
+                  }
+                ],
+                "animateDuration": 0,
+                "animateFrames": [],
+                "borderRadius": 0,
+                "iconSize": null,
+                "imageAlign": "center",
+                "gradientAngle": 0,
+                "gradientRadius": 0.01,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingLeftNum": 0,
+                "paddingRightNum": 0,
+                "paddingTopNum": 0,
+                "paddingBottomNum": 0,
+                "textRect": {
+                  "x": 240.14285714285714,
+                  "y": 621,
+                  "width": 85.71428571428571,
+                  "height": 50,
+                  "center": {
+                    "x": 283,
+                    "y": 646
+                  },
+                  "ex": 325.85714285714283,
+                  "ey": 671
+                },
+                "fullTextRect": {
+                  "x": 240.14285714285714,
+                  "y": 621,
+                  "width": 85.71428571428571,
+                  "height": 50,
+                  "center": {
+                    "x": 283,
+                    "y": 646
+                  },
+                  "ex": 325.85714285714283,
+                  "ey": 671
+                },
+                "iconRect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                },
+                "dockWatchers": [
+                  {
+                    "x": 283,
+                    "y": 646
+                  },
+                  {
+                    "x": 384,
+                    "y": 560
+                  },
+                  {
+                    "x": 504,
+                    "y": 560
+                  },
+                  {
+                    "x": 504,
+                    "y": 610
+                  },
+                  {
+                    "x": 384,
+                    "y": 610
+                  }
+                ]
+              },
+              {
+                "id": "24f71764",
+                "name": "flowData",
+                "tags": [],
+                "rect": {
+                  "x": 412.5,
+                  "y": 621,
+                  "width": 120,
+                  "height": 50,
+                  "center": {
+                    "x": 472.5,
+                    "y": 646
+                  },
+                  "ex": 532.5,
+                  "ey": 671
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "#222",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": ""
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "lineDashOffset": 0,
+                "text": "Elseif no holiday?",
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "animateType": "",
+                "data": "",
+                "zRotate": 0,
+                "anchors": [
+                  {
+                    "x": 421.07142857142856,
+                    "y": 646,
+                    "direction": 4
+                  },
+                  {
+                    "x": 481.07142857142856,
+                    "y": 621,
+                    "direction": 1
+                  },
+                  {
+                    "x": 523.9285714285714,
+                    "y": 646,
+                    "direction": 2
+                  },
+                  {
+                    "x": 463.92857142857144,
+                    "y": 671,
+                    "direction": 3
+                  }
+                ],
+                "rotatedAnchors": [
+                  {
+                    "x": 421.07142857142856,
+                    "y": 646,
+                    "direction": 4
+                  },
+                  {
+                    "x": 481.07142857142856,
+                    "y": 621,
+                    "direction": 1
+                  },
+                  {
+                    "x": 523.9285714285714,
+                    "y": 646,
+                    "direction": 2
+                  },
+                  {
+                    "x": 463.92857142857144,
+                    "y": 671,
+                    "direction": 3
+                  }
+                ],
+                "animateDuration": 0,
+                "animateFrames": [],
+                "borderRadius": 0,
+                "iconSize": null,
+                "imageAlign": "center",
+                "gradientAngle": 0,
+                "gradientRadius": 0.01,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingLeftNum": 0,
+                "paddingRightNum": 0,
+                "paddingTopNum": 0,
+                "paddingBottomNum": 0,
+                "textRect": {
+                  "x": 429.64285714285717,
+                  "y": 621,
+                  "width": 85.71428571428571,
+                  "height": 50,
+                  "center": {
+                    "x": 472.5,
+                    "y": 646
+                  },
+                  "ex": 515.3571428571429,
+                  "ey": 671
+                },
+                "fullTextRect": {
+                  "x": 429.64285714285717,
+                  "y": 621,
+                  "width": 85.71428571428571,
+                  "height": 50,
+                  "center": {
+                    "x": 472.5,
+                    "y": 646
+                  },
+                  "ex": 515.3571428571429,
+                  "ey": 671
+                },
+                "iconRect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                },
+                "dockWatchers": [
+                  {
+                    "x": 472.5,
+                    "y": 646
+                  },
+                  {
+                    "x": 528,
+                    "y": 603
+                  },
+                  {
+                    "x": 648,
+                    "y": 603
+                  },
+                  {
+                    "x": 648,
+                    "y": 653
+                  },
+                  {
+                    "x": 528,
+                    "y": 653
+                  }
+                ]
+              },
+              {
+                "id": "743118e2",
+                "name": "flowData",
+                "tags": [],
+                "rect": {
+                  "x": 624,
+                  "y": 619,
+                  "width": 134,
+                  "height": 54,
+                  "center": {
+                    "x": 691,
+                    "y": 646
+                  },
+                  "ex": 758,
+                  "ey": 673
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "#222",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": ""
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "lineDashOffset": 0,
+                "text": "Else\n(Holiday whole day)",
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "animateType": "",
+                "data": "",
+                "zRotate": 0,
+                "anchors": [
+                  {
+                    "x": 633.5714285714286,
+                    "y": 646,
+                    "direction": 4
+                  },
+                  {
+                    "x": 700.5714285714286,
+                    "y": 619,
+                    "direction": 1
+                  },
+                  {
+                    "x": 748.4285714285714,
+                    "y": 646,
+                    "direction": 2
+                  },
+                  {
+                    "x": 681.4285714285714,
+                    "y": 673,
+                    "direction": 3
+                  }
+                ],
+                "rotatedAnchors": [
+                  {
+                    "x": 633.5714285714286,
+                    "y": 646,
+                    "direction": 4
+                  },
+                  {
+                    "x": 700.5714285714286,
+                    "y": 619,
+                    "direction": 1
+                  },
+                  {
+                    "x": 748.4285714285714,
+                    "y": 646,
+                    "direction": 2
+                  },
+                  {
+                    "x": 681.4285714285714,
+                    "y": 673,
+                    "direction": 3
+                  }
+                ],
+                "animateDuration": 0,
+                "animateFrames": [],
+                "borderRadius": 0,
+                "iconSize": null,
+                "imageAlign": "center",
+                "gradientAngle": 0,
+                "gradientRadius": 0.01,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingLeftNum": 0,
+                "paddingRightNum": 0,
+                "paddingTopNum": 0,
+                "paddingBottomNum": 0,
+                "textRect": {
+                  "x": 643.1428571428571,
+                  "y": 619,
+                  "width": 95.71428571428571,
+                  "height": 54,
+                  "center": {
+                    "x": 691,
+                    "y": 646
+                  },
+                  "ex": 738.8571428571428,
+                  "ey": 673
+                },
+                "fullTextRect": {
+                  "x": 643.1428571428571,
+                  "y": 619,
+                  "width": 95.71428571428571,
+                  "height": 54,
+                  "center": {
+                    "x": 691,
+                    "y": 646
+                  },
+                  "ex": 738.8571428571428,
+                  "ey": 673
+                },
+                "iconRect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                },
+                "elementRendered": false,
+                "dockWatchers": [
+                  {
+                    "x": 691,
+                    "y": 646
+                  },
+                  {
+                    "x": 624,
+                    "y": 619
+                  },
+                  {
+                    "x": 758,
+                    "y": 619
+                  },
+                  {
+                    "x": 758,
+                    "y": 673
+                  },
+                  {
+                    "x": 624,
+                    "y": 673
+                  }
+                ]
+              },
+              {
+                "id": "159d4a00",
+                "name": "text",
+                "tags": [],
+                "rect": {
+                  "x": 231,
+                  "y": 1032,
+                  "width": 160,
+                  "height": 30,
+                  "center": {
+                    "x": 311,
+                    "y": 1047
+                  },
+                  "ex": 391,
+                  "ey": 1062
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "#222",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": ""
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "lineDashOffset": 0,
+                "text": "yes",
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "animateType": "",
+                "data": "",
+                "zRotate": 0,
+                "anchors": [],
+                "rotatedAnchors": [],
+                "animateDuration": 0,
+                "animateFrames": [],
+                "borderRadius": 0,
+                "iconSize": null,
+                "imageAlign": "center",
+                "gradientAngle": 0,
+                "gradientRadius": 0.01,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingLeftNum": 0,
+                "paddingRightNum": 0,
+                "paddingTopNum": 0,
+                "paddingBottomNum": 0,
+                "textRect": {
+                  "x": 231,
+                  "y": 1054.5,
+                  "width": 160,
+                  "height": 7.5,
+                  "center": {
+                    "x": 311,
+                    "y": 1058.25
+                  },
+                  "ex": 391,
+                  "ey": 1062
+                },
+                "fullTextRect": {
+                  "x": 231,
+                  "y": 1032,
+                  "width": 160,
+                  "height": 30,
+                  "center": {
+                    "x": 311,
+                    "y": 1047
+                  },
+                  "ex": 391,
+                  "ey": 1062
+                },
+                "iconRect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                }
+              },
+              {
+                "id": "9815c405",
+                "name": "rectangle",
+                "tags": [],
+                "rect": {
+                  "x": 577,
+                  "y": 1031,
+                  "width": 120,
+                  "height": 40,
+                  "center": {
+                    "x": 637,
+                    "y": 1051
+                  },
+                  "ex": 697,
+                  "ey": 1071
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "#222",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": ""
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "lineDashOffset": 0,
+                "text": "validDate",
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "animateType": "",
+                "data": "",
+                "zRotate": 0,
+                "anchors": [
+                  {
+                    "x": 577,
+                    "y": 1051,
+                    "direction": 4
+                  },
+                  {
+                    "x": 637,
+                    "y": 1031,
+                    "direction": 1
+                  },
+                  {
+                    "x": 697,
+                    "y": 1051,
+                    "direction": 2
+                  },
+                  {
+                    "x": 637,
+                    "y": 1071,
+                    "direction": 3
+                  }
+                ],
+                "rotatedAnchors": [
+                  {
+                    "x": 577,
+                    "y": 1051,
+                    "direction": 4
+                  },
+                  {
+                    "x": 637,
+                    "y": 1031,
+                    "direction": 1
+                  },
+                  {
+                    "x": 697,
+                    "y": 1051,
+                    "direction": 2
+                  },
+                  {
+                    "x": 637,
+                    "y": 1071,
+                    "direction": 3
+                  }
+                ],
+                "animateDuration": 0,
+                "animateFrames": [],
+                "borderRadius": 0,
+                "iconSize": null,
+                "imageAlign": "center",
+                "gradientAngle": 0,
+                "gradientRadius": 0.01,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingLeftNum": 0,
+                "paddingRightNum": 0,
+                "paddingTopNum": 0,
+                "paddingBottomNum": 0,
+                "textRect": {
+                  "x": 577,
+                  "y": 1061,
+                  "width": 120,
+                  "height": 10,
+                  "center": {
+                    "x": 637,
+                    "y": 1066
+                  },
+                  "ex": 697,
+                  "ey": 1071
+                },
+                "fullTextRect": {
+                  "x": 577,
+                  "y": 1031,
+                  "width": 120,
+                  "height": 40,
+                  "center": {
+                    "x": 637,
+                    "y": 1051
+                  },
+                  "ex": 697,
+                  "ey": 1071
+                },
+                "iconRect": {
+                  "x": 577,
+                  "y": 1031,
+                  "width": 120,
+                  "height": 30,
+                  "center": {
+                    "x": 637,
+                    "y": 1046
+                  },
+                  "ex": 697,
+                  "ey": 1061
+                },
+                "fullIconRect": {
+                  "x": 577,
+                  "y": 1031,
+                  "width": 120,
+                  "height": 40,
+                  "center": {
+                    "x": 637,
+                    "y": 1051
+                  },
+                  "ex": 697,
+                  "ey": 1071
+                },
+                "dockWatchers": [
+                  {
+                    "x": 637,
+                    "y": 1051
+                  },
+                  {
+                    "x": 577,
+                    "y": 1031
+                  },
+                  {
+                    "x": 697,
+                    "y": 1031
+                  },
+                  {
+                    "x": 697,
+                    "y": 1071
+                  },
+                  {
+                    "x": 577,
+                    "y": 1071
+                  }
+                ]
+              },
+              {
+                "id": "d1951f14",
+                "name": "rectangle",
+                "tags": [],
+                "rect": {
+                  "x": 581,
+                  "y": 1133,
+                  "width": 120,
+                  "height": 40,
+                  "center": {
+                    "x": 641,
+                    "y": 1153
+                  },
+                  "ex": 701,
+                  "ey": 1173
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "#222",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": ""
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "lineDashOffset": 0,
+                "text": "end",
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "animateType": "",
+                "data": "",
+                "zRotate": 0,
+                "anchors": [
+                  {
+                    "x": 581,
+                    "y": 1153,
+                    "direction": 4
+                  },
+                  {
+                    "x": 641,
+                    "y": 1133,
+                    "direction": 1
+                  },
+                  {
+                    "x": 701,
+                    "y": 1153,
+                    "direction": 2
+                  },
+                  {
+                    "x": 641,
+                    "y": 1173,
+                    "direction": 3
+                  }
+                ],
+                "rotatedAnchors": [
+                  {
+                    "x": 581,
+                    "y": 1153,
+                    "direction": 4
+                  },
+                  {
+                    "x": 641,
+                    "y": 1133,
+                    "direction": 1
+                  },
+                  {
+                    "x": 701,
+                    "y": 1153,
+                    "direction": 2
+                  },
+                  {
+                    "x": 641,
+                    "y": 1173,
+                    "direction": 3
+                  }
+                ],
+                "animateDuration": 0,
+                "animateFrames": [],
+                "borderRadius": 0.5,
+                "iconSize": null,
+                "imageAlign": "center",
+                "gradientAngle": 0,
+                "gradientRadius": 0.01,
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingLeftNum": 0,
+                "paddingRightNum": 0,
+                "paddingTopNum": 0,
+                "paddingBottomNum": 0,
+                "textRect": {
+                  "x": 581,
+                  "y": 1163,
+                  "width": 120,
+                  "height": 10,
+                  "center": {
+                    "x": 641,
+                    "y": 1168
+                  },
+                  "ex": 701,
+                  "ey": 1173
+                },
+                "fullTextRect": {
+                  "x": 581,
+                  "y": 1133,
+                  "width": 120,
+                  "height": 40,
+                  "center": {
+                    "x": 641,
+                    "y": 1153
+                  },
+                  "ex": 701,
+                  "ey": 1173
+                },
+                "iconRect": {
+                  "x": 581,
+                  "y": 1133,
+                  "width": 120,
+                  "height": 30,
+                  "center": {
+                    "x": 641,
+                    "y": 1148
+                  },
+                  "ex": 701,
+                  "ey": 1163
+                },
+                "fullIconRect": {
+                  "x": 581,
+                  "y": 1133,
+                  "width": 120,
+                  "height": 40,
+                  "center": {
+                    "x": 641,
+                    "y": 1153
+                  },
+                  "ex": 701,
+                  "ey": 1173
+                }
+              }
+            ],
+            "lines": [
+              {
+                "id": "46094760",
+                "name": "curve",
+                "tags": [],
+                "rect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": "#fff"
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "locked": false,
+                "lineDashOffset": 0,
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "data": "",
+                "controlPoints": [
+                  {
+                    "x": 282,
+                    "y": 830,
+                    "direction": 3,
+                    "anchorIndex": 3,
+                    "id": "1849c44b"
+                  },
+                  {
+                    "x": 283,
+                    "y": 864,
+                    "direction": 1,
+                    "anchorIndex": 1,
+                    "id": "b7e517f7"
+                  }
+                ],
+                "fromArrowSize": 5,
+                "toArrowSize": 5,
+                "borderWidth": 0,
+                "borderColor": "#000000",
+                "animateColor": "",
+                "animateSpan": 1,
+                "animatePos": 0,
+                "isAnimate": false,
+                "animateFromSize": 0,
+                "animateToSize": 0,
+                "animateDotSize": 3,
+                "from": {
+                  "x": 282,
+                  "y": 797,
+                  "direction": 3,
+                  "anchorIndex": 3,
+                  "id": "1849c44b"
+                },
+                "to": {
+                  "x": 272,
+                  "y": 901,
+                  "direction": 1,
+                  "anchorIndex": 1,
+                  "id": "b7e517f7"
+                },
+                "fromArrow": "",
+                "toArrow": "triangleSolid",
+                "textRect": null
+              },
+              {
+                "id": "81020ea3",
+                "name": "curve",
+                "tags": [],
+                "rect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": "#fff"
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "locked": false,
+                "lineDashOffset": 0,
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "data": "",
+                "controlPoints": [
+                  {
+                    "x": 454.92857142857144,
+                    "y": 751,
+                    "direction": 3,
+                    "anchorIndex": 3,
+                    "id": "24f71764"
+                  },
+                  {
+                    "x": 560.5,
+                    "y": 670.5,
+                    "direction": 1,
+                    "anchorIndex": 1,
+                    "id": "80576b70"
+                  }
+                ],
+                "fromArrowSize": 5,
+                "toArrowSize": 5,
+                "borderWidth": 0,
+                "borderColor": "#000000",
+                "animateColor": "",
+                "animateSpan": 1,
+                "animatePos": 0,
+                "isAnimate": false,
+                "animateFromSize": 0,
+                "animateToSize": 0,
+                "animateDotSize": 3,
+                "from": {
+                  "x": 463.92857142857144,
+                  "y": 671,
+                  "direction": 3,
+                  "anchorIndex": 3,
+                  "id": "24f71764"
+                },
+                "to": {
+                  "x": 542,
+                  "y": 749.5,
+                  "direction": 1,
+                  "anchorIndex": 1,
+                  "id": "80576b70"
+                },
+                "fromArrow": "",
+                "toArrow": "triangleSolid",
+                "textRect": null
+              },
+              {
+                "id": "8b37fc12",
+                "name": "curve",
+                "tags": [],
+                "rect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": "#fff"
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "locked": false,
+                "lineDashOffset": 0,
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "data": "",
+                "controlPoints": [
+                  {
+                    "x": 143,
+                    "y": 537,
+                    "direction": 4,
+                    "anchorIndex": 0,
+                    "id": "114c5322"
+                  },
+                  {
+                    "x": 4,
+                    "y": 1144,
+                    "direction": 1,
+                    "anchorIndex": 1,
+                    "id": 1
+                  }
+                ],
+                "fromArrowSize": 5,
+                "toArrowSize": 5,
+                "borderWidth": 0,
+                "borderColor": "#000000",
+                "animateColor": "",
+                "animateSpan": 1,
+                "animatePos": 0,
+                "isAnimate": false,
+                "animateFromSize": 0,
+                "animateToSize": 0,
+                "animateDotSize": 3,
+                "from": {
+                  "x": 223,
+                  "y": 537,
+                  "direction": 4,
+                  "anchorIndex": 0,
+                  "id": "114c5322"
+                },
+                "to": {
+                  "x": 332,
+                  "y": 1211.5,
+                  "direction": 1,
+                  "anchorIndex": 1,
+                  "id": "44e2cd7e"
+                },
+                "fromArrow": "",
+                "toArrow": "triangleSolid",
+                "textRect": null
+              },
+              {
+                "id": "841ea365",
+                "name": "curve",
+                "tags": [],
+                "rect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": "#fff"
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "locked": false,
+                "lineDashOffset": 0,
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "data": "",
+                "controlPoints": [
+                  {
+                    "x": 283,
+                    "y": 647,
+                    "direction": 3,
+                    "anchorIndex": 3,
+                    "id": "114c5322"
+                  },
+                  {
+                    "x": 291.57142857142856,
+                    "y": 541,
+                    "direction": 1,
+                    "anchorIndex": 1,
+                    "id": "40f1588f"
+                  }
+                ],
+                "fromArrowSize": 5,
+                "toArrowSize": 5,
+                "borderWidth": 0,
+                "borderColor": "#000000",
+                "animateColor": "",
+                "animateSpan": 1,
+                "animatePos": 0,
+                "isAnimate": false,
+                "animateFromSize": 0,
+                "animateToSize": 0,
+                "animateDotSize": 3,
+                "from": {
+                  "x": 283,
+                  "y": 567,
+                  "direction": 3,
+                  "anchorIndex": 3,
+                  "id": "114c5322"
+                },
+                "to": {
+                  "x": 291.57142857142856,
+                  "y": 621,
+                  "direction": 1,
+                  "anchorIndex": 1,
+                  "id": "40f1588f"
+                },
+                "fromArrow": "",
+                "toArrow": "triangleSolid",
+                "textRect": null
+              },
+              {
+                "id": "9b4064c2",
+                "name": "curve",
+                "tags": [],
+                "rect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": "#fff"
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "locked": false,
+                "lineDashOffset": 0,
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "data": "",
+                "controlPoints": [
+                  {
+                    "x": 681.4285714285714,
+                    "y": 753,
+                    "direction": 3,
+                    "anchorIndex": 3,
+                    "id": "743118e2"
+                  },
+                  {
+                    "x": 758,
+                    "y": 668,
+                    "direction": 1,
+                    "anchorIndex": 1,
+                    "id": "5b0e8310"
+                  }
+                ],
+                "fromArrowSize": 5,
+                "toArrowSize": 5,
+                "borderWidth": 0,
+                "borderColor": "#000000",
+                "animateColor": "",
+                "animateSpan": 1,
+                "animatePos": 0,
+                "isAnimate": false,
+                "animateFromSize": 0,
+                "animateToSize": 0,
+                "animateDotSize": 3,
+                "from": {
+                  "x": 681.4285714285714,
+                  "y": 673,
+                  "direction": 3,
+                  "anchorIndex": 3,
+                  "id": "743118e2"
+                },
+                "to": {
+                  "x": 758,
+                  "y": 748,
+                  "direction": 1,
+                  "anchorIndex": 1,
+                  "id": "5b0e8310"
+                },
+                "fromArrow": "",
+                "toArrow": "triangleSolid",
+                "textRect": null
+              },
+              {
+                "id": "eecc7f6e",
+                "name": "curve",
+                "tags": [],
+                "rect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": "#fff"
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "locked": false,
+                "lineDashOffset": 0,
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "data": "",
+                "controlPoints": [
+                  {
+                    "x": 34,
+                    "y": 1017,
+                    "direction": 3,
+                    "anchorIndex": 3,
+                    "id": "44e2cd7e"
+                  },
+                  {
+                    "x": 283,
+                    "y": 427,
+                    "direction": 1,
+                    "anchorIndex": 1,
+                    "id": 1
+                  }
+                ],
+                "fromArrowSize": 5,
+                "toArrowSize": 5,
+                "borderWidth": 0,
+                "borderColor": "#000000",
+                "animateColor": "",
+                "animateSpan": 1,
+                "animatePos": 0,
+                "isAnimate": false,
+                "animateFromSize": 0,
+                "animateToSize": 0,
+                "animateDotSize": 3,
+                "from": {
+                  "x": 332,
+                  "y": 1280.5,
+                  "direction": 3,
+                  "anchorIndex": 3,
+                  "id": "44e2cd7e"
+                },
+                "to": {
+                  "x": 283,
+                  "y": 507,
+                  "direction": 1,
+                  "anchorIndex": 1,
+                  "id": "114c5322"
+                },
+                "fromArrow": "",
+                "toArrow": "triangleSolid",
+                "textRect": null
+              },
+              {
+                "id": "6eb1175e",
+                "name": "curve",
+                "tags": [],
+                "rect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": "#fff"
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "locked": false,
+                "lineDashOffset": 0,
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "data": "",
+                "controlPoints": [
+                  {
+                    "x": 758,
+                    "y": 878,
+                    "direction": 3,
+                    "anchorIndex": 3,
+                    "id": "5b0e8310"
+                  },
+                  {
+                    "x": 332,
+                    "y": 1131.5,
+                    "direction": 1,
+                    "anchorIndex": 1,
+                    "id": 1
+                  }
+                ],
+                "fromArrowSize": 5,
+                "toArrowSize": 5,
+                "borderWidth": 0,
+                "borderColor": "#000000",
+                "animateColor": "",
+                "animateSpan": 1,
+                "animatePos": 0,
+                "isAnimate": false,
+                "animateFromSize": 0,
+                "animateToSize": 0,
+                "animateDotSize": 3,
+                "from": {
+                  "x": 758,
+                  "y": 798,
+                  "direction": 3,
+                  "anchorIndex": 3,
+                  "id": "5b0e8310"
+                },
+                "to": {
+                  "x": 332,
+                  "y": 1211.5,
+                  "direction": 1,
+                  "anchorIndex": 1,
+                  "id": "44e2cd7e"
+                },
+                "fromArrow": "",
+                "toArrow": "triangleSolid",
+                "textRect": null
+              },
+              {
+                "id": "29966e69",
+                "name": "curve",
+                "tags": [],
+                "rect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": "#fff"
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "locked": false,
+                "lineDashOffset": 0,
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "data": "",
+                "controlPoints": [
+                  {
+                    "x": 283,
+                    "y": 1170,
+                    "direction": 3,
+                    "anchorIndex": 3,
+                    "id": "b7e517f7"
+                  },
+                  {
+                    "x": 357,
+                    "y": 1130.5,
+                    "direction": 1,
+                    "anchorIndex": 1,
+                    "id": "44e2cd7e"
+                  }
+                ],
+                "fromArrowSize": 5,
+                "toArrowSize": 5,
+                "borderWidth": 0,
+                "borderColor": "#000000",
+                "animateColor": "",
+                "animateSpan": 1,
+                "animatePos": 0,
+                "isAnimate": false,
+                "animateFromSize": 0,
+                "animateToSize": 0,
+                "animateDotSize": 3,
+                "from": {
+                  "x": 272,
+                  "y": 1031,
+                  "direction": 3,
+                  "anchorIndex": 3,
+                  "id": "b7e517f7"
+                },
+                "to": {
+                  "x": 332,
+                  "y": 1211.5,
+                  "direction": 1,
+                  "anchorIndex": 1,
+                  "id": "44e2cd7e"
+                },
+                "fromArrow": "",
+                "toArrow": "triangleSolid",
+                "textRect": null
+              },
+              {
+                "id": "33535d9f",
+                "name": "curve",
+                "tags": [],
+                "rect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": "#fff"
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "locked": false,
+                "lineDashOffset": 0,
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "data": "",
+                "controlPoints": [
+                  {
+                    "x": 560.5,
+                    "y": 875.5,
+                    "direction": 3,
+                    "anchorIndex": 3,
+                    "id": "80576b70"
+                  },
+                  {
+                    "x": 283,
+                    "y": 880,
+                    "direction": 1,
+                    "anchorIndex": 1,
+                    "id": "b7e517f7"
+                  }
+                ],
+                "fromArrowSize": 5,
+                "toArrowSize": 5,
+                "borderWidth": 0,
+                "borderColor": "#000000",
+                "animateColor": "",
+                "animateSpan": 1,
+                "animatePos": 0,
+                "isAnimate": false,
+                "animateFromSize": 0,
+                "animateToSize": 0,
+                "animateDotSize": 3,
+                "from": {
+                  "x": 542,
+                  "y": 794.5,
+                  "direction": 3,
+                  "anchorIndex": 3,
+                  "id": "80576b70"
+                },
+                "to": {
+                  "x": 272,
+                  "y": 901,
+                  "direction": 1,
+                  "anchorIndex": 1,
+                  "id": "b7e517f7"
+                },
+                "fromArrow": "",
+                "toArrow": "triangleSolid",
+                "textRect": null
+              },
+              {
+                "id": "5b957a7e",
+                "name": "curve",
+                "tags": [],
+                "rect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": "#fff"
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "locked": false,
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "controlPoints": [
+                  {
+                    "x": 274.42857142857144,
+                    "y": 751,
+                    "direction": 3,
+                    "anchorIndex": 3,
+                    "id": "40f1588f"
+                  },
+                  {
+                    "x": 282,
+                    "y": 669,
+                    "direction": 1,
+                    "anchorIndex": 1,
+                    "id": 1
+                  }
+                ],
+                "fromArrowSize": 5,
+                "toArrowSize": 5,
+                "borderWidth": 0,
+                "borderColor": "#000000",
+                "animateColor": "",
+                "animateSpan": 1,
+                "animatePos": 0,
+                "isAnimate": false,
+                "animateFromSize": 0,
+                "animateToSize": 0,
+                "animateDotSize": 3,
+                "fromArrow": "",
+                "from": {
+                  "x": 274.42857142857144,
+                  "y": 671,
+                  "direction": 3,
+                  "anchorIndex": 3,
+                  "id": "40f1588f"
+                },
+                "textRect": null,
+                "to": {
+                  "x": 282,
+                  "y": 749,
+                  "direction": 1,
+                  "anchorIndex": 1,
+                  "id": "1849c44b"
+                },
+                "toArrow": "triangleSolid"
+              },
+              {
+                "id": "65df7f20",
+                "name": "curve",
+                "tags": [],
+                "rect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": "#fff"
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "locked": false,
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "controlPoints": [
+                  {
+                    "x": 359.42857142857144,
+                    "y": 646,
+                    "direction": 2,
+                    "anchorIndex": 2,
+                    "id": "40f1588f"
+                  },
+                  {
+                    "x": 387.07142857142856,
+                    "y": 646,
+                    "direction": 4,
+                    "anchorIndex": 0,
+                    "id": "24f71764"
+                  }
+                ],
+                "fromArrowSize": 5,
+                "toArrowSize": 5,
+                "borderWidth": 0,
+                "borderColor": "#000000",
+                "animateColor": "",
+                "animateSpan": 1,
+                "animatePos": 0,
+                "isAnimate": false,
+                "animateFromSize": 0,
+                "animateToSize": 0,
+                "animateDotSize": 3,
+                "fromArrow": "",
+                "from": {
+                  "x": 334.42857142857144,
+                  "y": 646,
+                  "direction": 2,
+                  "anchorIndex": 2,
+                  "id": "40f1588f"
+                },
+                "textRect": null,
+                "to": {
+                  "x": 421.07142857142856,
+                  "y": 646,
+                  "direction": 4,
+                  "anchorIndex": 0,
+                  "id": "24f71764"
+                },
+                "toArrow": "triangleSolid"
+              },
+              {
+                "id": "a8e5f6ac",
+                "name": "curve",
+                "tags": [],
+                "rect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": "#fff"
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "locked": false,
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "controlPoints": [
+                  {
+                    "x": 559.9285714285714,
+                    "y": 646,
+                    "direction": 2,
+                    "anchorIndex": 2,
+                    "id": "24f71764"
+                  },
+                  {
+                    "x": 597.5714285714286,
+                    "y": 646,
+                    "direction": 4,
+                    "anchorIndex": 0,
+                    "id": "743118e2"
+                  }
+                ],
+                "fromArrowSize": 5,
+                "toArrowSize": 5,
+                "borderWidth": 0,
+                "borderColor": "#000000",
+                "animateColor": "",
+                "animateSpan": 1,
+                "animatePos": 0,
+                "isAnimate": false,
+                "animateFromSize": 0,
+                "animateToSize": 0,
+                "animateDotSize": 3,
+                "fromArrow": "",
+                "from": {
+                  "x": 523.9285714285714,
+                  "y": 646,
+                  "direction": 2,
+                  "anchorIndex": 2,
+                  "id": "24f71764"
+                },
+                "textRect": null,
+                "to": {
+                  "x": 633.5714285714286,
+                  "y": 646,
+                  "direction": 4,
+                  "anchorIndex": 0,
+                  "id": "743118e2"
+                },
+                "toArrow": "triangleSolid"
+              },
+              {
+                "id": "92913bff",
+                "name": "curve",
+                "tags": [],
+                "rect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": "#fff"
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "locked": false,
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "controlPoints": [
+                  {
+                    "x": 468.5,
+                    "y": 966,
+                    "direction": 2,
+                    "anchorIndex": 2,
+                    "id": "b7e517f7"
+                  },
+                  {
+                    "x": 637,
+                    "y": 951,
+                    "direction": 1,
+                    "anchorIndex": 1,
+                    "id": "9815c405"
+                  }
+                ],
+                "fromArrowSize": 5,
+                "toArrowSize": 5,
+                "borderWidth": 0,
+                "borderColor": "#000000",
+                "animateColor": "",
+                "animateSpan": 1,
+                "animatePos": 0,
+                "isAnimate": false,
+                "animateFromSize": 0,
+                "animateToSize": 0,
+                "animateDotSize": 3,
+                "fromArrow": "",
+                "from": {
+                  "x": 388.5,
+                  "y": 966,
+                  "direction": 2,
+                  "anchorIndex": 2,
+                  "id": "b7e517f7"
+                },
+                "textRect": null,
+                "to": {
+                  "x": 637,
+                  "y": 1031,
+                  "direction": 1,
+                  "anchorIndex": 1,
+                  "id": "9815c405"
+                },
+                "toArrow": "triangleSolid"
+              },
+              {
+                "id": "3b239b3c",
+                "name": "curve",
+                "tags": [],
+                "rect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0,
+                  "center": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "ex": 0,
+                  "ey": 0
+                },
+                "lineWidth": 1,
+                "rotate": 0,
+                "offsetRotate": 0,
+                "globalAlpha": 1,
+                "dash": 0,
+                "strokeStyle": "#222",
+                "fillStyle": "",
+                "font": {
+                  "color": "",
+                  "fontFamily": "\"Hiragino Sans GB\", \"Microsoft YaHei\", \"Helvetica Neue\", Helvetica, Arial",
+                  "fontSize": 12,
+                  "lineHeight": 1.5,
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                  "textAlign": "center",
+                  "textBaseline": "middle",
+                  "background": "#fff"
+                },
+                "animateStart": 0,
+                "animateCycleIndex": 0,
+                "locked": false,
+                "textOffsetX": 0,
+                "textOffsetY": 0,
+                "controlPoints": [
+                  {
+                    "x": 637,
+                    "y": 1151,
+                    "direction": 3,
+                    "anchorIndex": 3,
+                    "id": 0
+                  },
+                  {
+                    "x": 641,
+                    "y": 1053,
+                    "direction": 1,
+                    "anchorIndex": 1,
+                    "id": "d1951f14"
+                  }
+                ],
+                "fromArrowSize": 5,
+                "toArrowSize": 5,
+                "borderWidth": 0,
+                "borderColor": "#000000",
+                "animateColor": "",
+                "animateSpan": 1,
+                "animatePos": 0,
+                "isAnimate": false,
+                "animateFromSize": 0,
+                "animateToSize": 0,
+                "animateDotSize": 3,
+                "fromArrow": "",
+                "from": {
+                  "x": 637,
+                  "y": 1071,
+                  "direction": 3,
+                  "anchorIndex": 3,
+                  "id": "9815c405"
+                },
+                "textRect": null,
+                "to": {
+                  "x": 641,
+                  "y": 1133,
+                  "direction": 1,
+                  "anchorIndex": 1,
+                  "id": "d1951f14"
+                },
+                "toArrow": "triangleSolid"
+              }
+            ],
+            "lineName": "curve",
+            "fromArrowType": "",
+            "toArrowType": "triangleSolid",
+            "scale": 1,
+            "locked": 0
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "readOnly": false,
+    "allowUndo": true,
+    "layoutDir": 2,
+    "theme": {
+      "name": "default",
+      "randomColor": true,
+      "background": "rgb(57,60,65)",
+      "highlightColor": "#50C9CE",
+      "marginH": 60,
+      "marginV": 20,
+      "contentStyle": {
+        "lineHeight": "1.5",
+        "fontSize": "16px"
+      },
+      "linkStyle": {
+        "lineRadius": 5,
+        "lineType": "curve",
+        "lineWidth": "3px"
+      },
+      "rootTopic": {
+        "contentStyle": {
+          "fontSize": "36px"
+        },
+        "subLinkStyle": {
+          "lineType": "curve",
+          "lineWidth": "3px"
+        }
+      },
+      "primaryTopic": {
+        "contentStyle": {
+          "fontSize": "24px"
+        },
+        "subLinkStyle": {
+          "lineType": "curve",
+          "lineWidth": "3px"
+        }
+      },
+      "normalTopic": {
+        "subLinkStyle": {
+          "lineType": "curve",
+          "lineWidth": "3px"
+        }
+      }
+    }
+  },
+  "formatVersion": "0.0"
+}
