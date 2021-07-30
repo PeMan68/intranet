@@ -18,4 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('comment', 'IssueCommentController@store');
+Route::post('movedemoproduct', 'TrackDemoproductController@store');
 

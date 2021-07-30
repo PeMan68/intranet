@@ -27,6 +27,10 @@
     Detaljer visas i table men den vill inte ta striped etc
     Formattering av datum, nytt package installerat,**run composer dump-autoload?**
 
+    * Added table to track demoproducts **run migration**
+    
+    **just nu: lagra info i tracking och utför det i demoproduktabellen** 
+
 *Fixes*
 
 ## Finished for next release

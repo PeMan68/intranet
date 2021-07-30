@@ -15,8 +15,8 @@
 	<div class="card-body">
 		<demoproducts-table 
 			:items="{{ $products }}" 
-			:fields="{{ $fields }}" 
-			{{-- filter="{{ $filter }}" --}}
+			:fields="{{ $fields }}"
+			:locations="{{ $locations }}"
 			>
 		</demoproducts-table>
 	</div>
