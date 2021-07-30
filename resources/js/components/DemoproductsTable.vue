@@ -28,56 +28,69 @@
         </template>
 
         <template #row-details="row">
-                <b-table-simple small striped bordered hover>
-                    <b-tr>
-                        <b-td>Beskrivning</b-td>
-                        <b-td>{{ row.item.Beskrivning }}</b-td>
-                    </b-tr>
-                    <b-tr>
-                        <b-td>E-nummer</b-td>
-                        <b-td>{{ row.item.E_nummer }}</b-td>
-                    </b-tr>
-                    <b-tr>
-                        <b-td>Status</b-td>
-                        <b-td>{{ row.item.Status }}</b-td>
-                    </b-tr>
-                    <b-tr>
-                        <b-td>Kommentar</b-td>
-                        <b-td>{{ row.item.Kommentar }}</b-td>
-                    </b-tr>
-                    <b-tr>
-                        <b-td>Plats</b-td>
-                        <b-td>{{ row.item.Plats }}</b-td>
-                    </b-tr>
-                    <b-tr>
-                        <b-td>Testad</b-td>
-                        <b-td>{{ row.item.Testad ? "OK" : "Nej" }}</b-td>
-                    </b-tr>
-                    <b-tr>
-                        <b-td>Orginalkartong</b-td>
-                        <b-td>{{ row.item.Orginal_kartong ? "OK" : "Nej" }}</b-td>
-                    </b-tr>
-                    <b-tr>
-                        <b-td>Orginaldokument</b-td>
-                        <b-td>{{ row.item.Orginal_dokument ? "OK" : "Nej" }}</b-td>
-                    </b-tr>
-                    <b-tr>
-                        <b-td>Serienummer</b-td>
-                        <b-td>{{ row.item.Serienummer }}</b-td>
-                    </b-tr>
-                    <b-tr>
-                        <b-td>Version</b-td>
-                        <b-td>{{ row.item.Version }}</b-td>
-                    </b-tr>
-                    <b-tr>
-                        <b-td>Inköpsdatum</b-td>
-                        <b-td v-if="row.item.Inköpsdatum">{{ new Date(row.item.Inköpsdatum) | dateFormat('MMMM YYYY') }}</b-td>
-                    </b-tr>
-                    <b-tr>
-                        <b-td>Senast uppdaterad</b-td>
-                        <b-td>{{ new Date(row.item.Uppdaterad) | dateFormat('YYYY-MM-DD HH:mm') }}</b-td>
-                    </b-tr>
-                </b-table-simple>
+            <div class="card bg-light mb-3">
+                <div class="card-header">
+                    <h4>Detaljer</h4>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-3">Produkt</dt>
+                        <dd class="col-sm-9">
+                            <p class="font-weight-bolder">{{ row.item.Artikel }}</p>
+                            <p>{{ row.item.Beskrivning }}</br>
+                                {{ row.item.E_nummer }}</p>
+                        </dd>
+                        <dt class="col-sm-3">Plats</dt>
+                        <dd class="col-sm-9 font-italic">{{ row.item.Plats }}</dd>
+                        <dt class="col-sm-3">Status</dt>
+                        <dd class="col-sm-9">{{ row.item.Status }}</dd>
+                        <dt class="col-sm-3">Testad</dt>
+                        <dd class="col-sm-9">{{ row.item.Testad ? "OK" : "Nej" }}</dd>
+                        <dt class="col-sm-3">Orginalkartong</dt>
+                        <dd class="col-sm-9">{{ row.item.Orginal_kartong ? "Ja" : "Ej verifierat" }}</dd>
+                        <dt class="col-sm-3">Orginaldokument</dt>
+                        <dd class="col-sm-9">{{ row.item.Orginal_dokument ? "Ja" : "Ej verifierat" }}</dd>
+                        <dt class="col-sm-3" v-show="row.item.Serienummer">Serienummer</dt>
+                        <dd class="col-sm-9" v-show="row.item.Serienummer">{{ row.item.Serienummer }}</dd>
+                        <dt class="col-sm-3" v-show="row.item.Version">Version</dt>
+                        <dd class="col-sm-9" v-show="row.item.Version">{{ row.item.Version }}</dd>
+                        <dt class="col-sm-3" v-show="row.item.Inköpsdatum">Inköpsdatum</dt>
+                        <dd class="col-sm-9" v-show="row.item.Inköpsdatum" v-if="row.item.Inköpsdatum">{{ new Date(row.item.Inköpsdatum) | dateFormat('MMMM YYYY') }}</dd>
+                        <dt class="col-sm-3">Information uppdaterad</dt>
+                        <dd class="col-sm-9">{{ new Date(row.item.Uppdaterad) | dateFormat('YYYY-MM-DD HH:mm') }}</dd>
+                    </dl>
+
+                    <b-button>Plocka ut från demolager</b-button>
+                    <h5>
+                        Flytta denna produkt från
+                        <span class="font-italic">{{ row.item.Plats }}</span> till:
+                    </h5>
+
+                    <!-- TEstar standard select funkar ej så bra -->
+                    <!-- <div class="form-group">
+                <label for="to-location">Välj produkt</label>
+                <select class="form-control" id="to-location" name="to-location">
+                    <div  v-for="location in locations" :key="location.name">
+                    <option :value="location.id">{{ location.name }}</option>
+                    </div>
+                </select>
+            </div> -->
+
+                    <b-form-select id="to-location" v-model="formfields.toLocation" :options="sortedLocations" value-field="id" text-field="name">
+
+                        <b-form-select-option id="to-location" value="demo">till kunddemo</b-form-select-option>
+                        <template #first>
+                            <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
+                        </template>
+                    </b-form-select>
+
+                    <div class="mt-3">Selected: <strong>{{ formfields.toLocation }}</strong></div>
+
+                    <b-form-text id="comment" v-model="formfields.comment"> </b-form-text>
+
+                    <b-button @click="submit">Flytta</b-button>
+                </div>
+            </div>
         </template>
     </b-table>
 </b-container>
@@ -85,7 +98,11 @@
 
 <script>
 export default {
-    props: ["items", "fields"],
+    props: {
+        items: Array,
+        fields: Array,
+        locations: Object,
+    },
 
     data() {
         return {
@@ -93,14 +110,46 @@ export default {
             currentPage: 1,
             totalRows: 1,
             filter: null,
+            formfields: {
+                comment: "",
+                toLocation: 0,
+                fromLocation: 0,
+                itemId,
+            },
+            sortedLocations: [],
+
         };
     },
 
     mounted() {
         // Set the initial number of items
         this.totalRows = this.items.length;
+        
+        let strippedArray = []
+        for (const [key, value] of Object.entries(this.locations)) {
+            strippedArray.push({
+                id: key,
+                ...value
+            })
+        }
+        // Sort strings with this algorithm
+        this.sortedLocations = strippedArray.sort(function (a, b) {
+            let x = a.name.toLowerCase()
+            let y = b.name.toLowerCase()
+            if (x < y) {
+                return -1
+            }
+            if (x > y) {
+                return 1
+            }
+            return 0
+        })
     },
+
     methods: {
+        submit() {
+            axios.post("/api/movedemoproduct", this.formfields);
+        },
         onFiltered(filteredItems) {
             // Trigger pagination to update the number of buttons/pages due to filtering
             this.totalRows = filteredItems.length;
