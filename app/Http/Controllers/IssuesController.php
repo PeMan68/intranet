@@ -82,7 +82,7 @@ class IssuesController extends Controller
 				$latest_date = '';
 			}
 			if ($latest_days == 0) {
-				$latest_days = ' idag';
+				$latest_days = 'senaste 24h';
 			} elseif ($latest_days == 1){
 				$latest_days = '1 dag';
 			} else {
