@@ -19,9 +19,9 @@
             </b-form-group>
         </b-col>
     </b-row>
-    <b-table id="demoproducts-table" :items="items" :fields="fields" :per-page="perPage" :current-page="currentPage" :filter="filter" @filtered="onFiltered" small sticky-header="800px" sort-icon-left>
+    <b-table id="demoproducts-table" :primary-key="'ID'" :items="items" :fields="fields" :per-page="perPage" :current-page="currentPage" :filter="filter" @filtered="onFiltered" small sticky-header="800px" sort-icon-left>
         <template #cell(info)="row">
-            <b-badge href="#" @click="row.toggleDetails">
+            <b-badge href="#" @click="toggleRow(row)">
                 <i v-if="row.detailsShowing" class="material-icons">expand_less</i>
                 <i v-else class="material-icons">expand_more</i>
             </b-badge>
@@ -114,17 +114,17 @@ export default {
                 comment: "",
                 toLocation: 0,
                 fromLocation: 0,
-                itemId,
+                itemId: 0,
             },
             sortedLocations: [],
-
+            oldRow: -1,
         };
     },
 
     mounted() {
         // Set the initial number of items
         this.totalRows = this.items.length;
-        
+
         let strippedArray = []
         for (const [key, value] of Object.entries(this.locations)) {
             strippedArray.push({
@@ -155,6 +155,24 @@ export default {
             this.totalRows = filteredItems.length;
             this.currentPage = 1;
         },
+        toggleRow(row) {
+            // close previous details if open
+            if (row.detailsShowing) {
+                this.oldRow = -1
+            } else {
+                if (this.oldRow !== -1) {
+                    this.oldRow.toggleDetails()
+                }
+                this.oldRow = row
+            }
+            row.toggleDetails()
+
+            // Load form-data for opened row
+            if (row.detailsShowing) {
+                this.formfields.toLocation = 'laddad från script'
+            }
+        }
+
     },
 };
 </script>

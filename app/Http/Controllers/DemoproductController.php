@@ -22,6 +22,7 @@ class DemoproductController extends Controller
         $demoproducts = Demoproduct::with('product', 'location', 'status')->get();
         $selectedproducts = $demoproducts->map(function ($product) {
             return [
+                'ID' => $product->id,
                 'Artikel' => $product->product->item,
                 'Beskrivning' => $product->product->item_description_swe,
                 'Status' => $product->status->description,
