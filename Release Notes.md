@@ -32,6 +32,7 @@
 * 210430.01 Holidays-import. If a day is deleted from DB, mark it as deleted instead of delete it, so it is not imported again. (**run  migration**)
 * 210504.01 Changing Issue status to "Väntar på kollega" writes log to wrong log-file(templog-job), change to templog-user
     Both users and jobs are using CreateNewReminder that causes the conflict. Removed all logging
+* Changed text of elapsed time for latest update of Issues to more clear
 
 ## **Release 2.5.47 (2021-04-30)**
 * Changed a debug-log to be sent to correct file
