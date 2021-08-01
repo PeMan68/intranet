@@ -17,6 +17,7 @@
 			:items="{{ $products }}" 
 			:fields="{{ $fields }}"
 			:locations="{{ $locations }}"
+			:statuses="{{ $statuses }}"
 			>
 		</demoproducts-table>
 	</div>

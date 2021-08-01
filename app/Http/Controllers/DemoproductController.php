@@ -26,6 +26,7 @@ class DemoproductController extends Controller
                 'Artikel' => $product->product->item,
                 'Beskrivning' => $product->product->item_description_swe,
                 'Status' => $product->status->description,
+                'Status_id' => $product->status_id,
                 'Kommentar' => $product->comment,
                 'Plats' => $product->location->path(),
                 'Plats_id' => $product->location_id,
@@ -59,6 +60,7 @@ class DemoproductController extends Controller
             'products' => $selectedproducts,
             'fields' => $fields,
             'locations' => $locationBreadcrumbList,
+            'statuses' => ProductStatus::all(),
         ]);
     }
 

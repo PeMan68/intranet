@@ -41,15 +41,16 @@
                                 {{ row.item.E_nummer }}</p>
                         </dd>
                         <dt class="col-sm-3">Plats</dt>
-                        <dd class="col-sm-9 font-italic">{{ row.item.Plats }}</dd>
+                        <dd class="col-sm-9"><b-form-select id="to-location" v-model="formfields.toLocation" :options="sortedLocations" value-field="id" text-field="name"></b-form-select></dd>
                         <dt class="col-sm-3">Status</dt>
-                        <dd class="col-sm-9">{{ row.item.Status }}</dd>
+                        <dd class="col-sm-9"><b-form-select id="status" v-model="formfields.status" :options="statuses" value-field="id" text-field="description">
+                    </b-form-select></dd>
                         <dt class="col-sm-3">Testad</dt>
                         <dd class="col-sm-9">{{ row.item.Testad ? "OK" : "Nej" }}</dd>
                         <dt class="col-sm-3">Orginalkartong</dt>
-                        <dd class="col-sm-9">{{ row.item.Orginal_kartong ? "Ja" : "Ej verifierat" }}</dd>
+                        <dd class="col-sm-9"><b-form-checkbox id="box" v-model="formfields.box" value="Ja" unchecked-value="Nej"></b-form-checkbox></dd>
                         <dt class="col-sm-3">Orginaldokument</dt>
-                        <dd class="col-sm-9">{{ row.item.Orginal_dokument ? "Ja" : "Ej verifierat" }}</dd>
+                        <dd class="col-sm-9"><b-form-checkbox id="doc" v-model="formfields.doc" value="Ja" unchecked-value="Nej"></b-form-checkbox></dd>
                         <dt class="col-sm-3" v-show="row.item.Serienummer">Serienummer</dt>
                         <dd class="col-sm-9" v-show="row.item.Serienummer">{{ row.item.Serienummer }}</dd>
                         <dt class="col-sm-3" v-show="row.item.Version">Version</dt>
@@ -66,25 +67,9 @@
                         <span class="font-italic">{{ row.item.Plats }}</span> till:
                     </h5>
 
-                    <!-- TEstar standard select funkar ej så bra -->
-                    <!-- <div class="form-group">
-                <label for="to-location">Välj produkt</label>
-                <select class="form-control" id="to-location" name="to-location">
-                    <div  v-for="location in locations" :key="location.name">
-                    <option :value="location.id">{{ location.name }}</option>
-                    </div>
-                </select>
-            </div> -->
+                    
+                    
 
-                    <b-form-select id="to-location" v-model="formfields.toLocation" :options="sortedLocations" value-field="id" text-field="name">
-
-                        <b-form-select-option id="to-location" value="demo">till kunddemo</b-form-select-option>
-                        <template #first>
-                            <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
-                        </template>
-                    </b-form-select>
-
-                    <div class="mt-3">Selected: <strong>{{ formfields.toLocation }}</strong></div>
 
                     <b-form-text id="comment" v-model="formfields.comment"> </b-form-text>
 
@@ -102,6 +87,7 @@ export default {
         items: Array,
         fields: Array,
         locations: Object,
+        statuses: Array,
     },
 
     data() {
@@ -112,9 +98,12 @@ export default {
             filter: null,
             formfields: {
                 comment: "",
+                status: 0,
                 toLocation: 0,
                 fromLocation: 0,
                 itemId: 0,
+                box: '',
+                doc: '',
             },
             sortedLocations: [],
             oldRow: -1,
@@ -125,6 +114,7 @@ export default {
         // Set the initial number of items
         this.totalRows = this.items.length;
 
+        // store locations object in an array [{id: 1, name:'foo'},{id: 2, name:'bar'}]
         let strippedArray = []
         for (const [key, value] of Object.entries(this.locations)) {
             strippedArray.push({
@@ -132,7 +122,7 @@ export default {
                 ...value
             })
         }
-        // Sort strings with this algorithm
+        // Sort strings by name with this algorithm
         this.sortedLocations = strippedArray.sort(function (a, b) {
             let x = a.name.toLowerCase()
             let y = b.name.toLowerCase()
@@ -168,11 +158,21 @@ export default {
             row.toggleDetails()
 
             // Load form-data for opened row
-            if (row.detailsShowing) {
-                this.formfields.toLocation = 'laddad från script'
+            // Inverterad därför att status är inte uppdaterad...next tic-nånting löser?
+            if (!row.detailsShowing) {
+                // Load id of location-name to select
+                // this.formfields.toLocation = strippedArray.find(x => x.name === row.item.Plats).id
+                this.formfields.toLocation = row.item.Plats_id
+                // Load status to select
+                this.formfields.status = row.item.Status_id
+                this.formfields.box = row.item.Orginal_kartong ? "Ja" : "Nej"
+                this.formfields.doc = row.item.Orginal_dokument ? "Ja" : "Nej"
+                this.formfields.comment = row.item.Kommentar
+
             }
         }
 
     },
+
 };
 </script>
