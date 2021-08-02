@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Demoproduct;
 use App\TrackDemoproduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class TrackDemoproductController extends Controller
 {
@@ -43,7 +45,19 @@ class TrackDemoproductController extends Controller
             $data ['comment'] = $request->reason;
 
             $track = TrackDemoproduct::create($data);
-            // return redirect('/demoproducts')->with('message', $demoProduct->product->item . ' registrerad, plats ' . $demoProduct->location->name);
+
+            // Update produktinfo
+            $product = Demoproduct::find($request->itemId);
+            
+            $product->location_id = $request->toLocation;
+            $product->status_id = $request->status;
+            $product->original_box = $request->box == 'Yes' ? true : false;
+            $product->original_docs = $request->doc == 'Yes' ? true : false;
+            $product->tested = $request->tested == 'Yes' ? true : false;
+            $product->serial = $request->serial;
+            $product->version = $request->version;
+                        
+            $product->save();
     }
 
     /**
