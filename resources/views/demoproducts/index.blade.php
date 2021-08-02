@@ -14,6 +14,7 @@
 	</div>
 	<div class="card-body">
 		<demoproducts-table 
+			:user="{{ $user }}"
 			:items="{{ $products }}" 
 			:fields="{{ $fields }}"
 			:locations="{{ $locations }}"

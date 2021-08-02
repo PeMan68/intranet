@@ -22,7 +22,7 @@ class DemoproductController extends Controller
         $demoproducts = Demoproduct::with('product', 'location', 'status')->get();
         $selectedproducts = $demoproducts->map(function ($product) {
             return [
-                'ID' => $product->id,
+                'Produkt_id' => $product->id,
                 'Artikel' => $product->product->item,
                 'Beskrivning' => $product->product->item_description_swe,
                 'Status' => $product->status->description,
@@ -38,6 +38,7 @@ class DemoproductController extends Controller
                 'Inköpsdatum' => $product->invoice_date,
                 'Version' => $product->version,
                 'Uppdaterad' => $product->updated_at,
+                
 
             ];
         });
@@ -61,6 +62,7 @@ class DemoproductController extends Controller
             'fields' => $fields,
             'locations' => $locationBreadcrumbList,
             'statuses' => ProductStatus::all(),
+            'user' => Auth::id(),
         ]);
     }
 

@@ -45,6 +45,10 @@
                             <dd class="col-sm-9">
                                 <b-form-select id="to-location" v-model="formfields.toLocation" :options="sortedLocations" value-field="id" text-field="name"></b-form-select>
                             </dd>
+                            <dt class="col-sm-3">Anledning till flytt</dt>
+                            <dd class="col-sm-9">
+                                <b-form-input v-model="formfields.reason" placeholder="Obligatoriskt"></b-form-input>
+                            </dd>
                             <dt class="col-sm-3">Status</dt>
                             <dd class="col-sm-9">
                                 <b-form-select id="status" v-model="formfields.status" :options="statuses" value-field="id" text-field="description">
@@ -97,6 +101,7 @@ export default {
         fields: Array,
         locations: Object,
         statuses: Array,
+        user: Number,
     },
 
     data() {
@@ -116,6 +121,8 @@ export default {
                 tested: '',
                 serial: '',
                 version: '',
+                reason: '',
+                user: 0,
 
             },
             sortedLocations: [],
@@ -125,7 +132,8 @@ export default {
 
     mounted() {
         // Set the initial number of items
-        this.totalRows = this.items.length;
+        this.totalRows = this.items.length
+        this.formfields.user = this.user
 
         // store locations object in an array [{id: 1, name:'foo'},{id: 2, name:'bar'}]
         let strippedArray = []
@@ -177,10 +185,9 @@ export default {
                 }
         },
         resetForm(row) {
-            // Load id of location-name to select
-            // this.formfields.toLocation = strippedArray.find(x => x.name === row.item.Plats).id
+            this.formfields.itemId = row.item.Produkt_id
             this.formfields.toLocation = row.item.Plats_id
-            // Load status to select
+            this.formfields.fromLocation = row.item.Plats_id
             this.formfields.status = row.item.Status_id
             this.formfields.tested = row.item.Testad ? "Yes" : "No"
             this.formfields.box = row.item.Orginal_kartong ? "Yes" : "No"
@@ -188,7 +195,7 @@ export default {
             this.formfields.serial = row.item.Serienummer
             this.formfields.version = row.item.Version
             this.formfields.comment = row.item.Kommentar
-
+            this.formfields.reason = ''
         },
 
     },

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\TrackDemoproduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TrackDemoproductController extends Controller
 {
@@ -35,12 +36,11 @@ class TrackDemoproductController extends Controller
      */
     public function store(Request $request)
     {
-            // $data = $request;
             $data ['demoproduct_id'] = $request->itemId;
             $data ['to_location_id'] = $request->toLocation;
-            $data ['from_location_id'] = $request->toLocation;
-            $data ['user_id'] = 1;
-            $data ['comment'] = $request->selected;
+            $data ['from_location_id'] = $request->fromLocation;
+            $data ['user_id'] = $request->user;
+            $data ['comment'] = $request->reason;
 
             $track = TrackDemoproduct::create($data);
             // return redirect('/demoproducts')->with('message', $demoProduct->product->item . ' registrerad, plats ' . $demoProduct->location->name);
