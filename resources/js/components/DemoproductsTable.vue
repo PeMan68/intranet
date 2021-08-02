@@ -32,49 +32,58 @@
                 <div class="card-header">
                     <h4>Detaljer</h4>
                 </div>
-                <div class="card-body">
-                    <dl class="row">
-                        <dt class="col-sm-3">Produkt</dt>
-                        <dd class="col-sm-9">
-                            <p class="font-weight-bolder">{{ row.item.Artikel }}</p>
-                            <p>{{ row.item.Beskrivning }}</br>
-                                {{ row.item.E_nummer }}</p>
-                        </dd>
-                        <dt class="col-sm-3">Plats</dt>
-                        <dd class="col-sm-9"><b-form-select id="to-location" v-model="formfields.toLocation" :options="sortedLocations" value-field="id" text-field="name"></b-form-select></dd>
-                        <dt class="col-sm-3">Status</dt>
-                        <dd class="col-sm-9"><b-form-select id="status" v-model="formfields.status" :options="statuses" value-field="id" text-field="description">
-                    </b-form-select></dd>
-                        <dt class="col-sm-3">Testad</dt>
-                        <dd class="col-sm-9">{{ row.item.Testad ? "OK" : "Nej" }}</dd>
-                        <dt class="col-sm-3">Orginalkartong</dt>
-                        <dd class="col-sm-9"><b-form-checkbox id="box" v-model="formfields.box" value="Ja" unchecked-value="Nej"></b-form-checkbox></dd>
-                        <dt class="col-sm-3">Orginaldokument</dt>
-                        <dd class="col-sm-9"><b-form-checkbox id="doc" v-model="formfields.doc" value="Ja" unchecked-value="Nej"></b-form-checkbox></dd>
-                        <dt class="col-sm-3" v-show="row.item.Serienummer">Serienummer</dt>
-                        <dd class="col-sm-9" v-show="row.item.Serienummer">{{ row.item.Serienummer }}</dd>
-                        <dt class="col-sm-3" v-show="row.item.Version">Version</dt>
-                        <dd class="col-sm-9" v-show="row.item.Version">{{ row.item.Version }}</dd>
-                        <dt class="col-sm-3" v-show="row.item.Inköpsdatum">Inköpsdatum</dt>
-                        <dd class="col-sm-9" v-show="row.item.Inköpsdatum" v-if="row.item.Inköpsdatum">{{ new Date(row.item.Inköpsdatum) | dateFormat('MMMM YYYY') }}</dd>
-                        <dt class="col-sm-3">Information uppdaterad</dt>
-                        <dd class="col-sm-9">{{ new Date(row.item.Uppdaterad) | dateFormat('YYYY-MM-DD HH:mm') }}</dd>
-                    </dl>
+                <b-form>
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-3">Produkt</dt>
+                            <dd class="col-sm-9">
+                                <p class="font-weight-bolder">{{ row.item.Artikel }}</p>
+                                <p>{{ row.item.Beskrivning }}</br>
+                                    {{ row.item.E_nummer }}</p>
+                            </dd>
+                            <dt class="col-sm-3">Plats</dt>
+                            <dd class="col-sm-9">
+                                <b-form-select id="to-location" v-model="formfields.toLocation" :options="sortedLocations" value-field="id" text-field="name"></b-form-select>
+                            </dd>
+                            <dt class="col-sm-3">Status</dt>
+                            <dd class="col-sm-9">
+                                <b-form-select id="status" v-model="formfields.status" :options="statuses" value-field="id" text-field="description">
+                                </b-form-select>
+                            </dd>
+                            <dt class="col-sm-3">Testad</dt>
+                            <dd class="col-sm-9">
+                                <b-form-checkbox id="tested" v-model="formfields.tested" value="Yes" unchecked-value="No"></b-form-checkbox>
+                            </dd>
+                            <dt class="col-sm-3">Orginalkartong</dt>
+                            <dd class="col-sm-9">
+                                <b-form-checkbox id="box" v-model="formfields.box" value="Yes" unchecked-value="No"></b-form-checkbox>
+                            </dd>
+                            <dt class="col-sm-3">Orginaldokument</dt>
+                            <dd class="col-sm-9">
+                                <b-form-checkbox id="doc" v-model="formfields.doc" value="Yes" unchecked-value="No"></b-form-checkbox>
+                            </dd>
+                            <dt class="col-sm-3">Serienummer</dt>
+                            <dd class="col-sm-9">
+                                <b-form-input v-model="formfields.serial" placeholder="Ev seriennummer"></b-form-input>
+                            </dd>
+                            <dt class="col-sm-3">Version</dt>
+                            <dd class="col-sm-9">
+                                <b-form-input v-model="formfields.version" placeholder="Ev version"></b-form-input>
+                            </dd>
+                            <dt class="col-sm-3">Kommentar</dt>
+                            <dd class="col-sm-9">
+                                <b-form-input v-model="formfields.comment" placeholder="Ev kommentar"></b-form-input>
+                            </dd>
+                            <dt class="col-sm-3" v-show="row.item.Inköpsdatum">Inköpsdatum</dt>
+                            <dd class="col-sm-9" v-show="row.item.Inköpsdatum" v-if="row.item.Inköpsdatum">{{ new Date(row.item.Inköpsdatum) | dateFormat('MMMM YYYY') }}</dd>
+                            <dt class="col-sm-3">Information uppdaterad</dt>
+                            <dd class="col-sm-9">{{ new Date(row.item.Uppdaterad) | dateFormat('YYYY-MM-DD HH:mm') }}</dd>
+                        </dl>
 
-                    <b-button>Plocka ut från demolager</b-button>
-                    <h5>
-                        Flytta denna produkt från
-                        <span class="font-italic">{{ row.item.Plats }}</span> till:
-                    </h5>
-
-                    
-                    
-
-
-                    <b-form-text id="comment" v-model="formfields.comment"> </b-form-text>
-
-                    <b-button @click="submit">Flytta</b-button>
-                </div>
+                        <b-button @click="submit" variant="success">Ändra</b-button>
+                        <b-button @click="resetForm(row)">Återställ</b-button>
+                    </div>
+                </b-form>
             </div>
         </template>
     </b-table>
@@ -97,13 +106,17 @@ export default {
             totalRows: 1,
             filter: null,
             formfields: {
-                comment: "",
+                comment: '',
                 status: 0,
                 toLocation: 0,
                 fromLocation: 0,
                 itemId: 0,
                 box: '',
                 doc: '',
+                tested: '',
+                serial: '',
+                version: '',
+
             },
             sortedLocations: [],
             oldRow: -1,
@@ -160,17 +173,23 @@ export default {
             // Load form-data for opened row
             // Inverterad därför att status är inte uppdaterad...next tic-nånting löser?
             if (!row.detailsShowing) {
-                // Load id of location-name to select
-                // this.formfields.toLocation = strippedArray.find(x => x.name === row.item.Plats).id
-                this.formfields.toLocation = row.item.Plats_id
-                // Load status to select
-                this.formfields.status = row.item.Status_id
-                this.formfields.box = row.item.Orginal_kartong ? "Ja" : "Nej"
-                this.formfields.doc = row.item.Orginal_dokument ? "Ja" : "Nej"
-                this.formfields.comment = row.item.Kommentar
+                this.resetForm(row)
+                }
+        },
+        resetForm(row) {
+            // Load id of location-name to select
+            // this.formfields.toLocation = strippedArray.find(x => x.name === row.item.Plats).id
+            this.formfields.toLocation = row.item.Plats_id
+            // Load status to select
+            this.formfields.status = row.item.Status_id
+            this.formfields.tested = row.item.Testad ? "Yes" : "No"
+            this.formfields.box = row.item.Orginal_kartong ? "Yes" : "No"
+            this.formfields.doc = row.item.Orginal_dokument ? "Yes" : "No"
+            this.formfields.serial = row.item.Serienummer
+            this.formfields.version = row.item.Version
+            this.formfields.comment = row.item.Kommentar
 
-            }
-        }
+        },
 
     },
 
