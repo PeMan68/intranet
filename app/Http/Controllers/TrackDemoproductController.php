@@ -51,11 +51,15 @@ class TrackDemoproductController extends Controller
             
             $product->location_id = $request->toLocation;
             $product->status_id = $request->status;
+            $product->comment = $request->comment;
             $product->original_box = $request->box == 'Yes' ? true : false;
             $product->original_docs = $request->doc == 'Yes' ? true : false;
             $product->tested = $request->tested == 'Yes' ? true : false;
             $product->serial = $request->serial;
             $product->version = $request->version;
+            $product->invoice_date = date('Y-m-d', strtotime($request->invoiceDate));
+            
+            
                         
             $product->save();
     }
