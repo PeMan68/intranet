@@ -34,6 +34,8 @@
     Both users and jobs are using CreateNewReminder that causes the conflict. Removed all logging
 * Changed text of elapsed time for latest update of Issues to more clear
 
+## **Release 2.5.48 (2021-08-10)**
+* Updated link to unifaun printer
 ## **Release 2.5.47 (2021-04-30)**
 * Changed a debug-log to be sent to correct file
 ## **Release 2.5.46 (2021-04-28)**
