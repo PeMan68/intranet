@@ -29,7 +29,7 @@
 
     * Added table to track demoproducts **run migration**
     
-    **just nu: lagra info i tracking och utför det i demoproduktabellen** 
+    **just nu: lagra inköpsdatum med vissa intervall istället för absoluta datum** 
 
 *Fixes*
 

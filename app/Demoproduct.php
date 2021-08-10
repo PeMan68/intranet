@@ -27,4 +27,9 @@ class Demoproduct extends Model
     {
         return $this->hasMany('App\TrackDemoproduct');
     }
+
+    public function setInvoiceDateAttribute($value)
+    {
+        
+    }
 }

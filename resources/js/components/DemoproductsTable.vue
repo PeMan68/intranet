@@ -2,7 +2,8 @@
 <b-container fluid>
     <b-row class="mb-2">
         <b-col sm="2">
-            <b-button variant="primary" size="sm" href="demoproducts/create"><i class="material-icons">add_circle</i>Lägg in produkt</b-button>
+            <b-button variant="primary" size="sm" href="/demoproducts/create"><i class="material-icons">add_circle</i>Lägg in produkt</b-button>
+            <b-button variant="outline-success" size="sm" href="/demoproducts/"><i class="material-icons">refresh</i></b-button>
         </b-col>
         <b-col sm="5">
             <b-pagination v-model="currentPage" :total-rows="totalRows" :per-page="perPage" aria-controls="demoproducts-table"></b-pagination>
@@ -78,8 +79,19 @@
                             <dd class="col-sm-9">
                                 <b-form-input v-model="formfields.comment" placeholder="Ev kommentar"></b-form-input>
                             </dd>
-                            <dt class="col-sm-3" v-show="row.item.Inköpsdatum">Inköpsdatum</dt>
-                            <dd class="col-sm-9" v-show="row.item.Inköpsdatum" v-if="row.item.Inköpsdatum">{{ new Date(row.item.Inköpsdatum) | dateFormat('MMMM YYYY') }}</dd>
+                            <dt class="col-sm-3">Inköpt</dt>
+                            <dd class="col-sm-9">
+                                {{ row.item.Inköpsdatum ? row.item.Inköpsdatum : '-'}}
+                            </dd>
+                            <dt class="col-sm-3">Ändra ålder</dt>
+                            <dd class="col-sm-9">
+                                <b-form-radio-group v-model="age">
+                                    <b-form-radio value="0">Ny</b-form-radio>
+                                    <b-form-radio value="1">Max 6 månader</b-form-radio>
+                                    <b-form-radio value="2">Mer än 6 månader</b-form-radio>
+                                    <b-form-radio value="3">Mer än 2 år</b-form-radio>
+                                </b-form-radio-group>
+                            </dd>
                             <dt class="col-sm-3">Information uppdaterad</dt>
                             <dd class="col-sm-9">{{ new Date(row.item.Uppdaterad) | dateFormat('YYYY-MM-DD HH:mm') }}</dd>
                         </dl>
@@ -110,6 +122,7 @@ export default {
             currentPage: 1,
             totalRows: 1,
             filter: null,
+            age: null,
             formfields: {
                 comment: '',
                 status: 0,
@@ -122,6 +135,7 @@ export default {
                 serial: '',
                 version: '',
                 reason: '',
+                invoiceDate: '',
                 user: 0,
 
             },
@@ -159,6 +173,9 @@ export default {
 
     methods: {
         submit() {
+            this.formfields.invoiceDate = this.agevalueToDate(this.age)
+            console.log('age = ' + this.age)
+            console.log('converted age: ' + this.formfields.invoiceDate)
             axios.post("/api/movedemoproduct", this.formfields);
         },
         onFiltered(filteredItems) {
@@ -178,11 +195,8 @@ export default {
             }
             row.toggleDetails()
 
-            // Load form-data for opened row
-            // Inverterad därför att status är inte uppdaterad...next tic-nånting löser?
-            if (!row.detailsShowing) {
-                this.resetForm(row)
-                }
+            // Reset form-data for active row
+            this.resetForm(row)
         },
         resetForm(row) {
             this.formfields.itemId = row.item.Produkt_id
@@ -196,6 +210,55 @@ export default {
             this.formfields.version = row.item.Version
             this.formfields.comment = row.item.Kommentar
             this.formfields.reason = ''
+            this.formfields.invoiceDate = row.item.Inköpsdatum
+            this.age = this.invoicedateToValue(row.item.Inköpsdatum)
+        },
+        invoicedateToValue(date) {
+            const today = new Date()
+            const last1Month = today.setMonth(today.getMonth() - 1)
+            const last6Month = today.setMonth(today.getMonth() - 6)
+            const last24Month = today.setMonth(today.getMonth() - 24)
+            if (date === null) {
+                return null
+            } 
+                date = new Date(date)
+                console.log('date: ' + date)
+                console.log('last1Month: ' + last1Month)
+                console.log('last6Month: ' + last6Month)
+                console.log('last24Month: ' + last24Month)
+            if (date < last24Month) {
+                return 3
+            } else if (date < last6Month) {
+                return 2
+            } else if (date < last1Month) {
+                return 1
+            } else {
+                return 0;
+            }
+        },
+        agevalueToDate(age) {
+            const today = new Date()
+            const yesterday = today.setDate(today. getDate() - 1)
+            age = Number(age)
+            console.log(typeof(age))
+            switch (age) {
+                case 0:
+                    return new Date(today).toISOString()
+                    break
+                case 1:
+                    return new Date(today.setMonth(today.getMonth() - 1)).toISOString()
+                    break
+                case 2:
+                    return new Date(today.setMonth(today.getMonth() - 6)).toISOString()
+                    break
+                case 3:
+                    return new Date(today.setMonth(today.getMonth() - 24)).toISOString()
+                    break
+            
+                default:
+                    return null
+                    break
+            }
         },
 
     },
