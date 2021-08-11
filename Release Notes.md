@@ -16,6 +16,7 @@
 * 210111    Edit links in menu from Settings-db
 * 210112-2  Save customer details for autofill
 * 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
+<<<<<<< HEAD
 * 210211.01 Edit/delete demoproducts. Transactions of products between places or statuses, track this? 
 * 210223.04 Add other users as followers manually, to have them notified automatically
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
@@ -24,6 +25,22 @@
 
 ### ***Working on***
 *Features:*
+=======
+
+
+### ***Working on***
+*Features:*
+* 210211.01 Edit/delete demoproducts. Transactions of products between places or statuses, track this?
+    * Protected statuses from being deleted if used
+
+    * change indexview to show more relevant data and add details to row...
+    
+    * Formattering av datum, nytt package installerat,**run composer dump-autoload?**
+
+    * Added table to track demoproducts **run migration**
+    
+    **just nu:** 
+>>>>>>> feature/210211.01
 
 
 *Fixes*
