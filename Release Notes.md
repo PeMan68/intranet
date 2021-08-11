@@ -16,19 +16,14 @@
 * 210111    Edit links in menu from Settings-db
 * 210112-2  Save customer details for autofill
 * 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
-<<<<<<< HEAD
-* 210211.01 Edit/delete demoproducts. Transactions of products between places or statuses, track this? 
 * 210223.04 Add other users as followers manually, to have them notified automatically
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 * 210405.01 Show holidays in calendar
     * Do something with settings, "if calendar-module && holidays-module is used"
-
 ### ***Working on***
-*Features:*
-=======
 
-
-### ***Working on***
+*Fixes*
+## Finished for next release (2.6.x)
 *Features:*
 * 210211.01 Edit/delete demoproducts. Transactions of products between places or statuses, track this?
     * Protected statuses from being deleted if used
@@ -38,13 +33,6 @@
     * Formattering av datum, nytt package installerat,**run composer dump-autoload?**
 
     * Added table to track demoproducts **run migration**
-    
-    **just nu:** 
->>>>>>> feature/210211.01
-
-
-*Fixes*
-## Finished for next release
 *Fixes*
 * 210430.01 Holidays-import. If a day is deleted from DB, mark it as deleted instead of delete it, so it is not imported again. (**run  migration**)
 * 210504.01 Changing Issue status to "Väntar på kollega" writes log to wrong log-file(templog-job), change to templog-user
