@@ -3,13 +3,15 @@
     <b-row class="mb-2">
         <b-col sm="2">
             <b-button variant="primary" size="sm" href="/demoproducts/create"><i class="material-icons">add_circle</i>Lägg in produkt</b-button>
-            <b-button variant="outline-success" size="sm" href="/demoproducts/"><i class="material-icons">refresh</i></b-button>
         </b-col>
-        <b-col sm="5">
+        <b-col sm="2">
+            <b-button variant="outline-success" size="sm" href="/demoproducts/"><i class="material-icons">refresh</i>Uppdatera från databas</b-button>
+        </b-col>
+        <b-col sm="4">
             <b-pagination v-model="currentPage" :total-rows="totalRows" :per-page="perPage" aria-controls="demoproducts-table"></b-pagination>
         </b-col>
 
-        <b-col sm="5">
+        <b-col sm="4">
             <b-form-group label="Filter" label-cols-sm="3" label-align-sm="right" label-size="sm" label-for="filterInput" class="mb-0">
                 <b-input-group size="sm">
                     <b-form-input v-model="filter" type="search" id="filterInput" placeholder="Sök"></b-form-input>
@@ -45,10 +47,6 @@
                             <dt class="col-sm-3">Plats</dt>
                             <dd class="col-sm-9">
                                 <b-form-select id="to-location" v-model="formfields.toLocation" :options="sortedLocations" value-field="id" text-field="name"></b-form-select>
-                            </dd>
-                            <dt class="col-sm-3">Anledning till flytt</dt>
-                            <dd class="col-sm-9">
-                                <b-form-input v-model="formfields.reason" placeholder="Obligatoriskt"></b-form-input>
                             </dd>
                             <dt class="col-sm-3">Status</dt>
                             <dd class="col-sm-9">
@@ -94,10 +92,10 @@
                             </dd>
                             <dt class="col-sm-3">Information uppdaterad</dt>
                             <dd class="col-sm-9">{{ new Date(row.item.Uppdaterad) | dateFormat('YYYY-MM-DD HH:mm') }}</dd>
-                        </dl>
 
-                        <b-button @click="submit" variant="success">Ändra</b-button>
-                        <b-button @click="resetForm(row)">Återställ</b-button>
+                            <b-button @click="submit" variant="success">Spara ändringar</b-button>
+                            <b-button @click="resetForm(row)">Återställ</b-button>
+                        </dl>
                     </div>
                 </b-form>
             </div>
@@ -174,8 +172,6 @@ export default {
     methods: {
         submit() {
             this.formfields.invoiceDate = this.agevalueToDate(this.age)
-            console.log('age = ' + this.age)
-            console.log('converted age: ' + this.formfields.invoiceDate)
             axios.post("/api/movedemoproduct", this.formfields);
         },
         onFiltered(filteredItems) {
@@ -216,16 +212,13 @@ export default {
         invoicedateToValue(date) {
             const today = new Date()
             const last1Month = today.setMonth(today.getMonth() - 1)
-            const last6Month = today.setMonth(today.getMonth() - 6)
-            const last24Month = today.setMonth(today.getMonth() - 24)
+            const last6Month = today.setMonth(today.getMonth() - 5) // -1-5
+            const last24Month = today.setMonth(today.getMonth() - 18) // -1-5-18
             if (date === null) {
                 return null
-            } 
-                date = new Date(date)
-                console.log('date: ' + date)
-                console.log('last1Month: ' + last1Month)
-                console.log('last6Month: ' + last6Month)
-                console.log('last24Month: ' + last24Month)
+            }
+            date = new Date(date)
+            date = Date.parse(date)
             if (date < last24Month) {
                 return 3
             } else if (date < last6Month) {
@@ -238,9 +231,8 @@ export default {
         },
         agevalueToDate(age) {
             const today = new Date()
-            const yesterday = today.setDate(today. getDate() - 1)
+            const yesterday = today.setDate(today.getDate() - 1)
             age = Number(age)
-            console.log(typeof(age))
             switch (age) {
                 case 0:
                     return new Date(today).toISOString()
@@ -254,7 +246,7 @@ export default {
                 case 3:
                     return new Date(today.setMonth(today.getMonth() - 24)).toISOString()
                     break
-            
+
                 default:
                     return null
                     break
