@@ -37,6 +37,7 @@ export default {
         'contacts',
         'comment',
         'follow',
+        'auth_user',
 
     ],
 
@@ -57,8 +58,9 @@ export default {
     },
 
     mounted() {
-        this.fields.id = this.comment.id; // include comments id with form-post
-        this.fields.follow = this.follow;
+        this.fields.id = this.comment.id // include comments id with form-post
+        this.fields.follow = this.follow
+        this.fields.user_id = this.auth_user // include user id with post
     },
 
     methods: {

@@ -19,17 +19,17 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
     public $tries = 5;
     public $retryAfter = 60;
     private $issue;
-    private $email;
+    // private $email;
     private $typeOfReminder;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Issue $issue, $email, $typeOfReminder)
+    public function __construct(Issue $issue, $typeOfReminder)
     {
         $this->issue = $issue;
-        $this->email = $email;
+        // $this->email = $email;
         $this->typeOfReminder = $typeOfReminder;
         $this->queue = 'emails';
     }
@@ -41,6 +41,7 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
      */
     public function handle()
     {
+        Log::info('Handling Job: SendEmailToFollowersAboutReminder. ' . $this->issue->ticketNumber);
         if (!is_null($this->issue->timeClosed)) {
             return;
         }
@@ -50,19 +51,19 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
                 if (!$this->issue->paused) {
                     return null;
                 }
-                $delayDays = setting('days_reminder_paused_issue');
+                // $delayDays = setting('days_reminder_paused_issue');
                 break;
             case 'waitingForInternal':
                 if (!$this->issue->waitingForInternal) {
                     return null;
                 }
-                $delayDays = setting('days_reminder_waiting_for_internal');
+                // $delayDays = setting('days_reminder_waiting_for_internal');
                 break;
             case 'waitingForCustomer':
                 if (!$this->issue->waitingForCustomer) {
                     return null;
                 }
-                $delayDays = setting('days_reminder_waiting_for_external');
+                // $delayDays = setting('days_reminder_waiting_for_external');
                 break;
 
             default:
@@ -75,20 +76,19 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
                 if ($this->issue->waitingForCustomer) {
                     return null;
                 }
-                $delayDays = setting('days_reminder_waiting_for_comment');
-                $delayDateTime = nextWorkingDateTime(workDaysToMinutes($delayDays));
+                // $delayDays = setting('days_reminder_waiting_for_comment');
+                // $delayDateTime = nextWorkingDateTime(workDaysToMinutes($delayDays));
                 if (cache($this->issue->ticketNumber . 'Cold')) {
                     return null;
                 }
-                if (is_null($this->issue->latestComment)) {
-                } else {
-                    if (nextWorkingDateTime(workDaysToMinutes($delayDays) - 1, $this->issue->latestComment->updated_at) > nextWorkingDateTime()) {
-                        return null;
-                    }
-                }
-                cache([$this->issue->ticketNumber . 'Cold' => true], $delayDateTime);
+
                 break;
         }
-        Mail::to($this->email)->send(new MailToFollowersAboutReminder($this->issue, $this->typeOfReminder));
+        add_followers($this->issue, 3);
+        $followers = $this->issue->followers;
+        foreach ($followers as $follower) {
+            Mail::to($follower->email)->send(new MailToFollowersAboutReminder($this->issue, $this->typeOfReminder));
+            Log::info('   MailToFollowersAboutReminder skickas: ' . $follower->email);
+        }
     }
 }

@@ -1,7 +1,6 @@
 # Release notes
 ## To-do
 *Bugs*
-210412.01 Cold-key blocks followers 2 and more. Only first follower gets the mail of cold issue.
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
@@ -24,6 +23,12 @@
 
 *Fixes*
 ## Finished for next release (2.6.x)
+*Bugs*
+210412.01 Cold-key blocks followers 2 and more. Only first follower gets the mail of cold issue.
+   * Making new job structure
+   * Moved add_followers to helper and initiates this when sending the emails, so it is most up-to-date. Previously followers where added before moving to jobs, so changes in followers after this point wheren't considered.
+   * Adding user who makes comment to follower, by passing the user_id via the request. 
+
 *Features:*
 * 210211.01 Edit/delete demoproducts. Transactions of products between places or statuses, track this?
     * Protected statuses from being deleted if used

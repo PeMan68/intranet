@@ -350,15 +350,16 @@ if (!function_exists('workHoursToMinutes')) {
 
 if (!function_exists('add_followers')) {
 	/**
-	 * Add followers to issue depending on task
+	 *	 Add followers to issue depending on task
 	 *
 	 * @param Int $level
+	 * @param \App\Issue $issue
 	 * @return void
 	 */
-	function add_followers($event, Int $level) {
-		foreach ($event->issue->task->users as $user) {
+	function add_followers(Issue $issue, Int $level) {
+		foreach ($issue->task->users as $user) {
 			if ($user->pivot->level == $level) {
-				$event->issue->followers()->syncWithoutDetaching($user->id);
+				$issue->followers()->syncWithoutDetaching($user->id);
 			}
 		}
 	}

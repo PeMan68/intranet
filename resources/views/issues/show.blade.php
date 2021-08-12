@@ -320,8 +320,11 @@
         <div>
             <h3>Lägg till anteckning</h3>
             @if (is_null($issue->timeClosed))
-                <issue-comment-form :contacts="{{ $contacts }}" :comment="{{ $new_comment }}"
-                    :follow="{{ $follow }}">
+                <issue-comment-form 
+                    :contacts="{{ $contacts }}" 
+                    :comment="{{ $new_comment }}"
+                    :follow="{{ $follow }}"
+                    :auth_user="{{ $auth_user->id }}">
                 </issue-comment-form>
             @endif
             <h3>Historik</h3>
