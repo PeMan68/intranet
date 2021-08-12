@@ -24,8 +24,11 @@
 ### ***Working on***
 *Bugs*
 210412.01 Cold-key blocks followers 2 and more. Only first follower gets the mail of cold issue.
-    Making new job structure
-    Moved add_followers to helper and initiates this when sending the emails, so it is most up-to-date. Previously followers where added before moving to jobs, so changes in followers after this point wheren't considered.
+   * Making new job structure
+   * Moved add_followers to helper and initiates this when sending the emails, so it is most up-to-date. Previously followers where added before moving to jobs, so changes in followers after this point wheren't considered.
+   * Adding user who makes comment to follower, by passing the user_id via the request. 
+
+**justnu**
 
 *Features:*
 

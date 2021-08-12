@@ -9,6 +9,7 @@ use App\Events\Issues\UpdatedIssue;
 use App\Events\Issues\IssueCommentedFirstTime;
 use App\Events\Issues\IssueClosed;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class IssueCommentController extends Controller
 {
@@ -26,7 +27,7 @@ class IssueCommentController extends Controller
                 'direction' => $request->direction,
 			]);
 			//Send mail to creator if another user and this is first comment
-			if ($issue->userCreate_id <> Auth::id())
+			if ($issue->userCreate_id <> $request->user_id)
 			{
 				if (IssueComment::where('issue_id', $issuecomment->issue_id)
 				->count() == 1) 
@@ -34,10 +35,10 @@ class IssueCommentController extends Controller
 					event(new IssueCommentedFirstTime($issue));
 				}
 			}
-			//Send mail to staff who is following
 			//Add commenter as follower if not already
+			//Send mail to staff who is following
 			if (!$request->follow) {
-				$issue->followers()->attach(Auth::id());
+				$issue->followers()->attach($request->user_id);
 			}
             event(new UpdatedIssue($issue, $type='comment',[]));
 		}
