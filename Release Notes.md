@@ -1,6 +1,7 @@
 # Release notes
 ## To-do
 *Bugs*
+* 210813.01 Saving status of demoproduct should not update invoice-date unless changed
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
