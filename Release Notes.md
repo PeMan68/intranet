@@ -1,7 +1,6 @@
 # Release notes
 ## To-do
 *Bugs*
-* 210813.02 Saving status of demoproduct should not update invoice-date unless changed
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
@@ -24,8 +23,9 @@
     * Do something with settings, "if calendar-module && holidays-module is used"
 ### ***Working on***
 
-*Fixes*
 ## Finished for next release
+*Bugs*
+* 210813.02 Saving status of demoproduct should not update invoice-date unless changed
 ## **Release 2.6.0 (2021-08-13)**
 *Bugs*
 210412.01 Cold-key blocks followers 2 and more. Only first follower gets the mail of cold issue.

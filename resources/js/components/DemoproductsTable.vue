@@ -139,6 +139,7 @@ export default {
             },
             sortedLocations: [],
             oldRow: -1,
+            oldAge: null,
         };
     },
 
@@ -171,7 +172,9 @@ export default {
 
     methods: {
         submit() {
-            this.formfields.invoiceDate = this.agevalueToDate(this.age)
+            if (this.oldAge != this.age) {
+                this.formfields.invoiceDate = this.agevalueToDate(this.age)
+            }
             axios.post("/api/movedemoproduct", this.formfields);
         },
         onFiltered(filteredItems) {
@@ -208,6 +211,7 @@ export default {
             this.formfields.reason = ''
             this.formfields.invoiceDate = row.item.Inköpsdatum
             this.age = this.invoicedateToValue(row.item.Inköpsdatum)
+            this.oldAge =  this.age
         },
         invoicedateToValue(date) {
             const today = new Date()
