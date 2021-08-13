@@ -1,5 +1,17 @@
 # intranet
 
+## Version 2.6.1 ##
+(2021-08-13)
+
+*Nyheter*
+
+* **Ny modul Demoprodukter**
+
+    * Register för att hålla kolla på var demoprodukter finns och vilken status de har.
+    * Platser har en hierarkisk struktur och kan redigeras av alla, "Hantera platser" vänster meny.
+    * Status på produkten indikerar om produkten kan säljas, returneras till lager etc.
+    * Produkter kan sökas med fritext (artikelnummer, benämning, e-nummer).
+    * Produktdetaljer kan redigeras av alla.
 ## Version 2.5.32 ##
 (2021-02-15)
 
