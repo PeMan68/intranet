@@ -1,7 +1,6 @@
 # Release notes
 ## To-do
 *Bugs*
-* 210813.02 Saving status of demoproduct should not update invoice-date unless changed
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
@@ -23,8 +22,9 @@
 * 210405.01 Show holidays in calendar
     * Do something with settings, "if calendar-module && holidays-module is used"
 ### ***Working on***
+*Bugs*
+* 210813.02 Saving status of demoproduct should not update invoice-date unless changed
 
-*Fixes*
 ## Finished for next release
 ## **Release 2.6.0 (2021-08-13)**
 *Bugs*
