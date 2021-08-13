@@ -11,6 +11,27 @@ window.Vue = require('vue');
 import BootstrapVue from 'bootstrap-vue';
 Vue.use(BootstrapVue);
 
+import VueFilterDateFormat from '@vuejs-community/vue-filter-date-format';
+Vue.use(VueFilterDateFormat, {
+    dayOfWeekNames: [
+      'Söndag', 'Måndag', 'Tisdag', 'Onsdag', 'Torsdag',
+      'Fredag', 'Lördag'
+    ],
+    dayOfWeekNamesShort: [
+      'sön', 'mån', 'tis', 'ons', 'tor', 'fre', 'lör'
+    ],
+    monthNames: [
+      'Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni',
+      'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'
+    ],
+    monthNamesShort: [
+      'Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'
+    ],
+    // Timezone offset, in minutes (0 - UTC, 180 - Russia, undefined - current)
+    timezone: 60
+  });
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

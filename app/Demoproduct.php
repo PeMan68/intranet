@@ -22,4 +22,9 @@ class Demoproduct extends Model
     {
         return $this->belongsTo('App\ProductStatus', 'status_id');
     }
+
+    public function tracking()
+    {
+        return $this->hasMany('App\TrackDemoproduct');
+    }
 }

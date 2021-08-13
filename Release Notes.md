@@ -1,12 +1,12 @@
 # Release notes
 ## To-do
 *Bugs*
-210412.01 Cold-key blocks followers 2 and more. Only first follower gets the mail of cold issue.
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
 * 210214.01 When adding comment to Issue it is not shown until another page reload in production. In development is is shown after the save.
 * 210314.01 nextWorkingDateTime not correct when today is weekend but inside working hours (for example sunday 10.30 gives Monday 10.30, while Sunday 21.30 gives Monday 08.00)
+* 210813.01 Change input form of demoproducts to match the edit form
 
 *Features*
 * 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails ar enot responded upon.
@@ -16,17 +16,35 @@
 * 210111    Edit links in menu from Settings-db
 * 210112-2  Save customer details for autofill
 * 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
-* 210211.01 Edit/delete demoproducts. Transactions of products between places or statuses, track this? 
 * 210223.04 Add other users as followers manually, to have them notified automatically
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 * 210405.01 Show holidays in calendar
     * Do something with settings, "if calendar-module && holidays-module is used"
-
 ### ***Working on***
-*Features:*
 
-
+*Fixes*
 ## Finished for next release
+## **Release 2.6.0 (2021-08-13)**
+*Bugs*
+210412.01 Cold-key blocks followers 2 and more. Only first follower gets the mail of cold issue.
+   * Making new job structure
+   * Moved add_followers to helper and initiates this when sending the emails, so it is most up-to-date. Previously followers where added before moving to jobs, so changes in followers after this point wheren't considered.
+   * Adding user who makes comment to follower, by passing the user_id via the request. 
+
+*Features:*
+* 210211.01 Edit/delete demoproducts. Transactions of products between places or statuses, track this?
+    * Protected statuses from being deleted if used
+
+    * change indexview to show more relevant data and add details to row...
+    
+    * Formattering av datum, nytt package installerat,**run composer dump-autoload?**
+
+    * Added table to track demoproducts **run migration**
+*Fixes*
+* 210430.01 Holidays-import. If a day is deleted from DB, mark it as deleted instead of delete it, so it is not imported again. (**run  migration**)
+* 210504.01 Changing Issue status to "Väntar på kollega" writes log to wrong log-file(templog-job), change to templog-user
+    Both users and jobs are using CreateNewReminder that causes the conflict. Removed all logging
+* Changed text of elapsed time for latest update of Issues to more clear
 
 ## **Release 2.5.48 (2021-08-10)**
 * Updated link to unifaun printer

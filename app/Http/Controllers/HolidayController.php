@@ -20,7 +20,10 @@ class HolidayController extends Controller
         $this->delete_old_data(13);
         $result = $this->import_next_public_holidays();
         
-        $holidays =  Holiday::orderBy('date')->get()->map(function ($item) {
+        $holidays =  Holiday::where('disabled', '<>', true)
+                            ->orderBy('date')
+                            ->get()
+                            ->map(function ($item) {
             return [
                 'Ändra' => $item->id,
                 'Datum' => date('Y-m-d (l)', strtotime($item->date)),
@@ -109,7 +112,8 @@ class HolidayController extends Controller
         }
         $holiday = Holiday::find($id);
         if ($request->has('delete')) {
-            $holiday->delete();
+            $holiday->disabled = true;
+            $holiday->save();
             return redirect('/holidays');
         }
         $holiday->date = $request->date;

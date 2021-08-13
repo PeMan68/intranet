@@ -32,7 +32,7 @@ class NotifyFollowersOfNewIssue
             $delayMail = nextWorkingDateTime();
         }
         
-        add_followers($event, 3);
+        add_followers($event->issue, 3);
 
         $followers = $event->issue->followers;
 
