@@ -23,7 +23,8 @@
 ### ***Working on***
 
 *Fixes*
-## Finished for next release (2.6.x)
+## Finished for next release
+## **Release 2.6.0 (2021-08-13)**
 *Bugs*
 210412.01 Cold-key blocks followers 2 and more. Only first follower gets the mail of cold issue.
    * Making new job structure
