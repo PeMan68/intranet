@@ -1,12 +1,28 @@
 # Release notes
 ## To-do
 *Bugs*
+* 210816.01 Multiple mails sent as reminder
+Example:
+[2021-08-16 10:55:04] production.INFO: Handling Job: SendEmailToFollowersAboutReminder. S-21087  
+[2021-08-16 10:55:06] production.INFO:    MailToFollowersAboutReminder skickas: jonathan.lind@carlogavazzi.se  
+[2021-08-16 10:55:07] production.INFO:    MailToFollowersAboutReminder skickas: anna-karin.engstrom@carlogavazzi.se  
+[2021-08-16 10:55:08] production.INFO:    MailToFollowersAboutReminder skickas: fredrik.olsson@carlogavazzi.se  
+[2021-08-16 10:55:08] production.INFO: Handling Job: SendEmailToFollowersAboutReminder. S-21087  
+[2021-08-16 10:55:10] production.INFO:    MailToFollowersAboutReminder skickas: jonathan.lind@carlogavazzi.se  
+[2021-08-16 10:55:11] production.INFO:    MailToFollowersAboutReminder skickas: anna-karin.engstrom@carlogavazzi.se  
+[2021-08-16 10:55:12] production.INFO:    MailToFollowersAboutReminder skickas: fredrik.olsson@carlogavazzi.se  
+[2021-08-16 10:55:12] production.INFO: Handling Job: SendEmailToFollowersAboutReminder. S-21087  
+[2021-08-16 10:55:14] production.INFO:    MailToFollowersAboutReminder skickas: jonathan.lind@carlogavazzi.se  
+[2021-08-16 10:55:15] production.INFO:    MailToFollowersAboutReminder skickas: anna-karin.engstrom@carlogavazzi.se  
+[2021-08-16 10:55:19] production.INFO:    MailToFollowersAboutReminder skickas: fredrik.olsson@carlogavazzi.se  
+[2021-08-16 10:55:19] production.INFO: Cache-key updated: S-21087Cold. Expires: 2021-08-18 10:54:58
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
 * 210214.01 When adding comment to Issue it is not shown until another page reload in production. In development is is shown after the save.
 * 210314.01 nextWorkingDateTime not correct when today is weekend but inside working hours (for example sunday 10.30 gives Monday 10.30, while Sunday 21.30 gives Monday 08.00)
 * 210813.01 Change input form of demoproducts to match the edit form
+* 210813.03 Link from "Hantera Plaster" to demoproducts loading the filter doesn't work anymore
 
 *Features*
 * 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails ar enot responded upon.
@@ -22,8 +38,10 @@
     * Do something with settings, "if calendar-module && holidays-module is used"
 ### ***Working on***
 
-*Fixes*
 ## Finished for next release
+## **Release 2.6.2 (2021-08-17)**
+*Bugs*
+* 210813.02 Saving status of demoproduct should not update invoice-date unless changed
 ## **Release 2.6.0 (2021-08-13)**
 *Bugs*
 210412.01 Cold-key blocks followers 2 and more. Only first follower gets the mail of cold issue.
