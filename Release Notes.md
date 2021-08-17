@@ -39,6 +39,7 @@ Example:
 ### ***Working on***
 
 ## Finished for next release
+## **Release 2.6.2 (2021-08-17)**
 *Bugs*
 * 210813.02 Saving status of demoproduct should not update invoice-date unless changed
 ## **Release 2.6.0 (2021-08-13)**
