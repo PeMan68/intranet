@@ -1,21 +1,6 @@
 # Release notes
 ## To-do
 *Bugs*
-* 210816.01 Multiple mails sent as reminder
-Example:
-[2021-08-16 10:55:04] production.INFO: Handling Job: SendEmailToFollowersAboutReminder. S-21087  
-[2021-08-16 10:55:06] production.INFO:    MailToFollowersAboutReminder skickas: jonathan.lind@carlogavazzi.se  
-[2021-08-16 10:55:07] production.INFO:    MailToFollowersAboutReminder skickas: anna-karin.engstrom@carlogavazzi.se  
-[2021-08-16 10:55:08] production.INFO:    MailToFollowersAboutReminder skickas: fredrik.olsson@carlogavazzi.se  
-[2021-08-16 10:55:08] production.INFO: Handling Job: SendEmailToFollowersAboutReminder. S-21087  
-[2021-08-16 10:55:10] production.INFO:    MailToFollowersAboutReminder skickas: jonathan.lind@carlogavazzi.se  
-[2021-08-16 10:55:11] production.INFO:    MailToFollowersAboutReminder skickas: anna-karin.engstrom@carlogavazzi.se  
-[2021-08-16 10:55:12] production.INFO:    MailToFollowersAboutReminder skickas: fredrik.olsson@carlogavazzi.se  
-[2021-08-16 10:55:12] production.INFO: Handling Job: SendEmailToFollowersAboutReminder. S-21087  
-[2021-08-16 10:55:14] production.INFO:    MailToFollowersAboutReminder skickas: jonathan.lind@carlogavazzi.se  
-[2021-08-16 10:55:15] production.INFO:    MailToFollowersAboutReminder skickas: anna-karin.engstrom@carlogavazzi.se  
-[2021-08-16 10:55:19] production.INFO:    MailToFollowersAboutReminder skickas: fredrik.olsson@carlogavazzi.se  
-[2021-08-16 10:55:19] production.INFO: Cache-key updated: S-21087Cold. Expires: 2021-08-18 10:54:58
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
