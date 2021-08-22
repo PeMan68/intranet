@@ -51,7 +51,7 @@
                 <small class="form-text text-muted">Ange version om det är aktuellt</small>
             </div>
             <div class="form-group">
-                <label for="invoice_date">Inköpsdatum</label>
+                <label for="invoice_date">Ungefärlig ålder</label>
                 <b-form-radio-group name="invoice_date" id="date" >
                     <b-form-radio value="0">Ny</b-form-radio>
                     <b-form-radio value="1">Max 6 månader</b-form-radio>
