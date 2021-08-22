@@ -52,8 +52,12 @@
             </div>
             <div class="form-group">
                 <label for="invoice_date">Inköpsdatum</label>
-                <b-form-datepicker name="invoice_date" id="date" value="{{ now() }}"></b-form-datepicker>
-                <small class="form-text text-muted">Ange inköpsdatum, minst År, gärna Månad, helst Dag</small>
+                <b-form-radio-group name="invoice_date" id="date" >
+                    <b-form-radio value="0">Ny</b-form-radio>
+                    <b-form-radio value="1">Max 6 månader</b-form-radio>
+                    <b-form-radio value="2">Mer än 6 månader</b-form-radio>
+                    <b-form-radio value="3">Mer än 2 år</b-form-radio>
+                </b-form-radio-group>
             </div>
             <div class="form-group">
                 <label for="invoice_no">Fakturanummer/ordernummer</label>
