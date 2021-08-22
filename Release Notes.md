@@ -6,8 +6,9 @@
 * 210109-2 The side-menu is not handled well when window height gets smaller
 * 210214.01 When adding comment to Issue it is not shown until another page reload in production. In development is is shown after the save.
 * 210314.01 nextWorkingDateTime not correct when today is weekend but inside working hours (for example sunday 10.30 gives Monday 10.30, while Sunday 21.30 gives Monday 08.00)
-* 210813.01 Change input form of demoproducts to match the edit form
-* 210813.03 Link from "Hantera Plaster" to demoproducts loading the filter doesn't work anymore
+* 210813.03 Link from "Hantera Platser" to demoproducts loading the filter doesn't work anymore
+* 210822.01 Use the php helpers dateconversion for demoproducts instead of vue. (used in store demoproduct)
+
 
 *Features*
 * 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails ar enot responded upon.
@@ -24,6 +25,8 @@
 ### ***Working on***
 
 ## Finished for next release
+*Fixes*
+* 210813.01 Change input form of demoproducts to match the edit form
 ## **Release 2.6.2 (2021-08-17)**
 *Bugs*
 * 210813.02 Saving status of demoproduct should not update invoice-date unless changed
