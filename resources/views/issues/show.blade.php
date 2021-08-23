@@ -269,7 +269,16 @@
                                         <i class="material-icons white md-18 ml-1" style="vertical-align: middle;">help</i>
                                     </b-button>
                                 @endif
+                                
                             </div>
+                            <div>
+                                <form-select-followers 
+                                    :issue-id = "{{ $issue->id }}"
+                                    :users = "{{ $users }}">
+                                </form-select-followers>
+                                
+                            </div>
+                            
                         </div>
                         <div class="col-md-6">
                             @if (is_null($issue->timeCustomercallback))
