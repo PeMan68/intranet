@@ -3,7 +3,7 @@
     <b-form @submit.prevent="onSubmit">
         <b-select v-model="selected" :options="userlist" value-field="id" text-field="name"></b-select>
         <b-button v-b-tooltip.hover size="sm" type="submit" class="btn btn-success m-2" name="save" title="Lägg till andra användare så de får uppdateringar om ärendet">
-            Lägg till följare
+            Lägg till andra följare
             <i class="material-icons white md-18 ml-1" style="vertical-align: middle;">help</i>
         </b-button>
     </b-form>

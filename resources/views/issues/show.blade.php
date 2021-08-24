@@ -112,7 +112,7 @@
                     @endif
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             <table style="width: 100%;">
                                 <tr>
                                     <td style="width: 30%;"><strong>Ärende skapat:</strong></td>
@@ -175,7 +175,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             <table style="width: 100%;">
                                 <tr>
                                     <td><strong>Rubrik:</strong></td>
@@ -197,7 +197,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             <div class="form-check form-check-inline">
                                 <input type="radio" class="form-check-input" id="prio1" name="prio" value="1"
                                     {{ $issue->prio == '1' ? 'checked' : '' }}>
@@ -211,7 +211,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             <div class="form-check form-check-inline">
                                 <input type="checkbox" class="form-check-input" id="vip" name="vip" value="1"
                                     {{ $issue->vip == '1' ? 'checked' : '' }}>
@@ -220,7 +220,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             <div class="form-check form-check-inline">
                                 <input type="checkbox" class="form-check-input" id="paused" name="paused" value="1"
                                     {{ $issue->paused == '1' ? 'checked' : '' }}>
@@ -233,7 +233,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             <div class="form-check form-check-inline">
                                 <input type="checkbox" class="form-check-input" id="waitingForCustomer"
                                     name="waitingForCustomer" value="1"
@@ -247,7 +247,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             <div class="form-check form-check-inline">
                                 <input type="checkbox" class="form-check-input" id="waitingForInternal"
                                     name="waitingForInternal" value="1"
@@ -261,7 +261,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6" id="buttons">
+                        <div class="col-lg-8" id="buttons">
                             <b-button size="sm" variant="success" type="submit" name="save" class="m-1">
                                 Spara ändringarna
                             </b-button>
@@ -275,7 +275,7 @@
             </b-card>
             <b-card sub-title="Bilagor:">
                 <div class="row py-1">
-                    <div class="col-md-6">
+                    <div class="col-xs-12">
                         @foreach ($files as $file)
                             <a href="{{ '/issues/attachment/download/' . $file->id }}">{{ $file->filename }}</a>
                             &nbsp;
@@ -284,7 +284,7 @@
                     </div>
                 </div>
                 <div class="row py-2">
-                    <div class="col-md-6">
+                    <div class="col-xl-6 col-lg-8">
                         <form-file :id={{ $issue->id }}></form-file>
                     </div>
                 </div>
@@ -300,7 +300,6 @@
                                         title="{{ $user->name . ' ' . $user->surname }}"></b-avatar>
                                 @endforeach
                             </div>
-                            <br />
                             @if ($follow)
                                 <b-button class="mb-1 ml-1" size="sm" v-b-tooltip.hover
                                     title="Du kan sluta följa ärendet om det inte är ditt primära område"
