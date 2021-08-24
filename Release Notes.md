@@ -11,9 +11,9 @@
 
 
 *Features*
-* 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails ar enot responded upon.
+* 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails are not responded upon.
 * 210109-8  Add email-form from Issues to message directly to customer or internal support to be stored in Issue Comments History
-* 210109-9  Add question of debit customer for supporttime when checking back Issue. When Issue is closed an report shall be created to be invoiced from.
+* 210109-9  Add question of debit customer for supporttime when checking back Issue. When Issue is closed a report shall be created to be invoiced from.
 * 210109-11 Pickup incoming emails, automatic adding comments and notification to followers.
 * 210111    Edit links in menu from Settings-db
 * 210112-2  Save customer details for autofill
@@ -25,8 +25,11 @@
 
 ## Finished for next release
 *Fixes*
-* 210223.04 Add other users as followers manually, to have them notified automatically
 * 210813.01 Change input form of demoproducts to match the edit form
+
+*Features*
+* 210223.04 Add other users as followers manually, to have them notified automatically
+
 ## **Release 2.6.2 (2021-08-17)**
 *Bugs*
 * 210813.02 Saving status of demoproduct should not update invoice-date unless changed
