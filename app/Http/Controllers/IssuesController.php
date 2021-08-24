@@ -267,7 +267,13 @@ class IssuesController extends Controller
 			];
 		});
 		$selected->push(['value' => 0, 'text' => $issue->customerName]);
-
+		$users = $users->map(function ($user) {
+			if ($user)
+			return [
+				'id' => $user->id,
+				'name' => $user->fullName(),
+			];
+		});
 		return view('issues.show')->with([
 			'issue' => $issue, 
 			'comments' => $comments,
@@ -344,6 +350,15 @@ class IssuesController extends Controller
 		$issue = Issue::find($id);
 		$issue->followers()->attach(Auth::id());
 		return redirect()->back();
+	}
+
+	public function add_follower(Request $request)
+	{
+		$issue = Issue::find($request->issueId);
+		// Add follower if not already exists
+		if (!$issue->followers->contains($request->user)) {
+			$issue->followers()->attach($request->user);
+		}
 	}
 	
 	public function unfollow($id)

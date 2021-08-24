@@ -18,7 +18,6 @@
 * 210111    Edit links in menu from Settings-db
 * 210112-2  Save customer details for autofill
 * 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
-* 210223.04 Add other users as followers manually, to have them notified automatically
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 * 210405.01 Show holidays in calendar
     * Do something with settings, "if calendar-module && holidays-module is used"
@@ -26,6 +25,7 @@
 
 ## Finished for next release
 *Fixes*
+* 210223.04 Add other users as followers manually, to have them notified automatically
 * 210813.01 Change input form of demoproducts to match the edit form
 ## **Release 2.6.2 (2021-08-17)**
 *Bugs*
