@@ -24,6 +24,7 @@
 ### ***Working on***
 
 ## Finished for next release
+## **Release 2.6.3 (2021-08-25)**
 *Fixes*
 * 210813.01 Change input form of demoproducts to match the edit form
 
