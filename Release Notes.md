@@ -1,44 +1,36 @@
 # Release notes
 ## To-do
 *Bugs*
-* 210816.01 Multiple mails sent as reminder
-Example:
-[2021-08-16 10:55:04] production.INFO: Handling Job: SendEmailToFollowersAboutReminder. S-21087  
-[2021-08-16 10:55:06] production.INFO:    MailToFollowersAboutReminder skickas: jonathan.lind@carlogavazzi.se  
-[2021-08-16 10:55:07] production.INFO:    MailToFollowersAboutReminder skickas: anna-karin.engstrom@carlogavazzi.se  
-[2021-08-16 10:55:08] production.INFO:    MailToFollowersAboutReminder skickas: fredrik.olsson@carlogavazzi.se  
-[2021-08-16 10:55:08] production.INFO: Handling Job: SendEmailToFollowersAboutReminder. S-21087  
-[2021-08-16 10:55:10] production.INFO:    MailToFollowersAboutReminder skickas: jonathan.lind@carlogavazzi.se  
-[2021-08-16 10:55:11] production.INFO:    MailToFollowersAboutReminder skickas: anna-karin.engstrom@carlogavazzi.se  
-[2021-08-16 10:55:12] production.INFO:    MailToFollowersAboutReminder skickas: fredrik.olsson@carlogavazzi.se  
-[2021-08-16 10:55:12] production.INFO: Handling Job: SendEmailToFollowersAboutReminder. S-21087  
-[2021-08-16 10:55:14] production.INFO:    MailToFollowersAboutReminder skickas: jonathan.lind@carlogavazzi.se  
-[2021-08-16 10:55:15] production.INFO:    MailToFollowersAboutReminder skickas: anna-karin.engstrom@carlogavazzi.se  
-[2021-08-16 10:55:19] production.INFO:    MailToFollowersAboutReminder skickas: fredrik.olsson@carlogavazzi.se  
-[2021-08-16 10:55:19] production.INFO: Cache-key updated: S-21087Cold. Expires: 2021-08-18 10:54:58
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
 * 210214.01 When adding comment to Issue it is not shown until another page reload in production. In development is is shown after the save.
 * 210314.01 nextWorkingDateTime not correct when today is weekend but inside working hours (for example sunday 10.30 gives Monday 10.30, while Sunday 21.30 gives Monday 08.00)
-* 210813.01 Change input form of demoproducts to match the edit form
-* 210813.03 Link from "Hantera Plaster" to demoproducts loading the filter doesn't work anymore
+* 210813.03 Link from "Hantera Platser" to demoproducts loading the filter doesn't work anymore
+* 210822.01 Use the php helpers dateconversion for demoproducts instead of vue. (used in store demoproduct)
+
 
 *Features*
-* 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails ar enot responded upon.
+* 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails are not responded upon.
 * 210109-8  Add email-form from Issues to message directly to customer or internal support to be stored in Issue Comments History
-* 210109-9  Add question of debit customer for supporttime when checking back Issue. When Issue is closed an report shall be created to be invoiced from.
+* 210109-9  Add question of debit customer for supporttime when checking back Issue. When Issue is closed a report shall be created to be invoiced from.
 * 210109-11 Pickup incoming emails, automatic adding comments and notification to followers.
 * 210111    Edit links in menu from Settings-db
 * 210112-2  Save customer details for autofill
 * 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
-* 210223.04 Add other users as followers manually, to have them notified automatically
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 * 210405.01 Show holidays in calendar
     * Do something with settings, "if calendar-module && holidays-module is used"
 ### ***Working on***
 
 ## Finished for next release
+## **Release 2.6.3 (2021-08-25)**
+*Fixes*
+* 210813.01 Change input form of demoproducts to match the edit form
+
+*Features*
+* 210223.04 Add other users as followers manually, to have them notified automatically
+
 ## **Release 2.6.2 (2021-08-17)**
 *Bugs*
 * 210813.02 Saving status of demoproduct should not update invoice-date unless changed

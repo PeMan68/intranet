@@ -76,6 +76,18 @@ if (!function_exists('check_in_time')) {
 	}
 }
 
+if (!function_exists('epoch_to_sql')) {
+	/**
+	 * @param mixed $datetimeValue
+	 * 
+	 * @return DateTime
+	 */
+	function epoch_to_sql($datetimeValue)
+	{
+		return date('Y-m-d H:i', $datetimeValue);
+	}
+}
+
 if (!function_exists('load_chart_data')) {
 	/**
 	 * Load data to chart
@@ -356,11 +368,40 @@ if (!function_exists('add_followers')) {
 	 * @param \App\Issue $issue
 	 * @return void
 	 */
-	function add_followers(Issue $issue, Int $level) {
+	function add_followers(Issue $issue, Int $level)
+	{
 		foreach ($issue->task->users as $user) {
 			if ($user->pivot->level == $level) {
 				$issue->followers()->syncWithoutDetaching($user->id);
 			}
+		}
+	}
+}
+
+if (!function_exists('radio_to_epoch')) {
+	function radio_to_epoch($n)
+	{
+		switch ($n) {
+			case null:
+				return strtotime('-2 years');
+				break;
+
+			case 0:
+				return strtotime('-1 day');
+				break;
+			case 1:
+				return strtotime('-1 month');
+				break;
+			case 2:
+				return strtotime('-6 months');
+				break;
+			case 3:
+				return strtotime('-2 years');
+				break;
+
+			default:
+				return null;
+				break;
 		}
 	}
 }

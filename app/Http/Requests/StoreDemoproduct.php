@@ -34,11 +34,23 @@ class StoreDemoproduct extends FormRequest
             'original_docs' => 'nullable',
             'tested' => 'nullable',
             'serial' => 'nullable',
-            'invoice_date' => 'nullable',
+            'invoice_date' => 'required',
             'invoice_no' => 'nullable',
             'version' => 'nullable',
             'used_by_user_id' => 'nullable',
             'used_by_customer_id' => 'nullable',
         ];
     }
+
+    /**
+	 * Get the error messages for the defined validation rules.
+	 *
+	 * @return array
+	 */
+	public function messages()
+	{
+		return [
+			'invoice_date.required' => 'Ange ungefärlig ålder',
+		];
+	}
 }

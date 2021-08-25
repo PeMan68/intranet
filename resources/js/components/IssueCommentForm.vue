@@ -20,7 +20,7 @@
 
     <b-form-textarea class="form-style my-1" id="textarea" v-model="fields.message" placeholder="Meddelande" rows="3" max-rows="30"></b-form-textarea>
 
-    <b-button @click="submit">Spara</b-button>
+    <b-button size="sm" variant="success" @click="submit">Spara</b-button>
 
 </div>
 </template>
