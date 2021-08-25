@@ -19,6 +19,7 @@
 			:fields="{{ $fields }}"
 			:locations="{{ $locations }}"
 			:statuses="{{ $statuses }}"
+			locations-filter="{{ $filter }}"
 			>
 		</demoproducts-table>
 	</div>

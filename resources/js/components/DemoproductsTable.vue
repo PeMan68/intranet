@@ -14,15 +14,15 @@
         <b-col sm="4">
             <b-form-group label="Filter" label-cols-sm="3" label-align-sm="right" label-size="sm" label-for="filterInput" class="mb-0">
                 <b-input-group size="sm">
-                    <b-form-input v-model="filter" type="search" id="filterInput" placeholder="Sök"></b-form-input>
+                    <b-form-input v-model="filterTable" type="search" id="filterInput" placeholder="Sök"></b-form-input>
                     <b-input-group-append>
-                        <b-button :disabled="!filter" @click="filter = ''">Rensa</b-button>
+                        <b-button :disabled="!filterTable" @click="filterTable = ''">Rensa</b-button>
                     </b-input-group-append>
                 </b-input-group>
             </b-form-group>
         </b-col>
     </b-row>
-    <b-table id="demoproducts-table" :primary-key="'ID'" :items="items" :fields="fields" :per-page="perPage" :current-page="currentPage" :filter="filter" @filtered="onFiltered" small sticky-header="800px" sort-icon-left>
+    <b-table id="demoproducts-table" :primary-key="'ID'" :items="items" :fields="fields" :per-page="perPage" :current-page="currentPage" :filter="filterTable" @filtered="onFiltered" small sticky-header="800px" sort-icon-left>
         <template #cell(info)="row">
             <b-badge href="#" @click="toggleRow(row)">
                 <i v-if="row.detailsShowing" class="material-icons">expand_less</i>
@@ -113,6 +113,7 @@ export default {
         locations: Object,
         statuses: Array,
         user: Number,
+        locationsFilter: String,
     },
 
     data() {
@@ -120,7 +121,7 @@ export default {
             perPage: 10,
             currentPage: 1,
             totalRows: 1,
-            filter: null,
+            filterTable: null,
             age: null,
             formfields: {
                 comment: '',
@@ -145,9 +146,11 @@ export default {
     },
 
     mounted() {
+        console.log(this.locationsFilter)
         // Set the initial number of items
         this.totalRows = this.items.length
         this.formfields.user = this.user
+        this.filterTable = this.locationsFilter
 
         // store locations object in an array [{id: 1, name:'foo'},{id: 2, name:'bar'}]
         let strippedArray = []
@@ -170,6 +173,7 @@ export default {
             return 0
         })
     },
+
 
     methods: {
         submit() {
