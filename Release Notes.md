@@ -21,9 +21,9 @@
 * 210405.01 Show holidays in calendar
     * Do something with settings, "if calendar-module && holidays-module is used"
 ### ***Working on***
-* 210826.01 Make message show in front of instead of in between elements
 ## Finished for next release
 * 210813.03 Link from "Hantera Platser" to demoproducts loading the filter doesn't work anymore
+* 210826.01 Make message show in front of instead of in between elements
 ## **Release 2.6.3 (2021-08-25)**
 
 *Fixes*
