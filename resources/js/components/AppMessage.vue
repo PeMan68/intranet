@@ -1,31 +1,21 @@
 <template>
-    <transition name="fade">
-        <div v-show="elementVisible" class="alert alert-success">
-        <slot></slot>
-        </div>
-    </transition>
+<b-alert class="position-absolute" style="z-index: 2000; margin-top: -2rem;
+    opacity: 0.85;" v-model="showTop" fade variant="success" dismissible>
+    <slot></slot>
+</b-alert>
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                elementVisible: true
-            }
-        },
-
-        created() {
-            setTimeout(() => this.elementVisible = false, 2000)
+export default {
+    data() {
+        return {
+            showTop: true
         }
+    },
+
+    created() {
+        setTimeout(() => this.showTop = false, 20000)
     }
+}
 </script>
 
-<style>
-    .fade-leave-active {
-        transition: opacity 2s ease-out;
-    }
-    .fade-leave-to {
-        opacity: 0;
-    }
-
-</style>
