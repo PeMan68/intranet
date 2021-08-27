@@ -18,9 +18,9 @@
 * 210112-2  Save customer details for autofill
 * 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
+### ***Working on***
 * 210405.01 Show holidays in calendar
     * Do something with settings, "if calendar-module && holidays-module is used"
-### ***Working on***
 ## Finished for next release
 * 210813.03 Link from "Hantera Platser" to demoproducts loading the filter doesn't work anymore
 * 210826.01 Make message show in front of instead of in between elements

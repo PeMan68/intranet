@@ -146,17 +146,21 @@ if (!function_exists('load_calendar_data')) {
 				return [$u->departments->sort()];
 			});
 
-
 		$datestop = strtotime('+' . $period . ' days', $dateStart);
 		$entries = CalendarEntry::where('start', '<=', date('Y-m-d', $datestop))
 			->where('stop', '>=', date('Y-m-d', $dateStart))
 			->get()->sortBy('start');
+		$holidays = Holiday::where('date', '<=', date('Y-m-d', $dateStart))
+			->where('date', '>=', date('Y-m-d', $datestop))
+			->get()-sortBy('date');
+		
 		$data = [
 			'users' => $activeusers,
 			'start' => $dateStart,
 			'stop' => $datestop,
 			'activities' => $entries,
 			'chart' => $chart,
+			'holidays' => $holidays,
 		];
 		return $data;
 	}
