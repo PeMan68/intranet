@@ -17,7 +17,7 @@ class DemoproductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $demoproducts = Demoproduct::with('product', 'location', 'status')->get();
         $selectedproducts = $demoproducts->map(function ($product) {
@@ -38,8 +38,6 @@ class DemoproductController extends Controller
                 'Inköpsdatum' => $product->invoice_date,
                 'Version' => $product->version,
                 'Uppdaterad' => $product->updated_at,
-                
-
             ];
         });
         $fields = collect([]);
@@ -49,20 +47,18 @@ class DemoproductController extends Controller
         $fields->push(['key' => 'Status']);
         $fields->push(['key' => 'Plats']);
         $locationBreadcrumbList = $this->locationNames();
-        // dd($locationBreadcrumbList);
-        // $locations = Location::all();
-        // $locationBreadcrumbList = $locations->map(function ($f) {
-        //     return [
-        //         'text' => $f->path(),
-        //         'value' => $f->id,
-        //     ];
-        // })->sortBy('text');
+        if ($request->filter) {
+            $filter = $request->filter;
+        } else {
+            $filter= null;
+        }
         return view('demoproducts.index', [
             'products' => $selectedproducts,
             'fields' => $fields,
             'locations' => $locationBreadcrumbList,
             'statuses' => ProductStatus::all(),
             'user' => Auth::id(),
+            'filter' => $filter,
         ]);
     }
 
