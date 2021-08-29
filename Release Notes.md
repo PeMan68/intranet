@@ -7,6 +7,7 @@
 * 210214.01 When adding comment to Issue it is not shown until another page reload in production. In development is is shown after the save.
 * 210314.01 nextWorkingDateTime not correct when today is weekend but inside working hours (for example sunday 10.30 gives Monday 10.30, while Sunday 21.30 gives Monday 08.00)
 * 210822.01 Use the php helpers dateconversion for demoproducts instead of vue. (used in store demoproduct)
+* 210829.01 Do something with settings, "if calendar-module && holidays-module is used". To handle modules in the future.
 
 
 *Features*
@@ -19,11 +20,10 @@
 * 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 ### ***Working on***
-* 210405.01 Show holidays in calendar
-    * Do something with settings, "if calendar-module && holidays-module is used"
 ## Finished for next release
 * 210813.03 Link from "Hantera Platser" to demoproducts loading the filter doesn't work anymore
 * 210826.01 Make message show in front of instead of in between elements
+* 210405.01 Show holidays in calendar
 ## **Release 2.6.3 (2021-08-25)**
 
 *Fixes*
