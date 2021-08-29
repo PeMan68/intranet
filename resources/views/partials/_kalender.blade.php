@@ -39,7 +39,7 @@
                             @elseif ($holidayState == 2)
                             <div class="calendar-header-off-day" id="{{ date('j/n', $date) }}"> 
                                 <b-tooltip target="{{ date('j/n', $date) }}">
-                                    <strong>Stängt.</strong><br/>
+                                    <strong>Helgdag.</strong><br/>
                                     {{ $holiday->description }}
                                 </b-tooltip>  
                     @elseif (date('Ymd') == date('Ymd', $date))
