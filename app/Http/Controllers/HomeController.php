@@ -34,7 +34,8 @@ class HomeController extends Controller
 			['startTime','>=',date("Y-m-d", $day1ofweek)],
 			['stopTime','<=',date("Y-m-d", $day7ofweek)],
 			])->get();
-			$data['visitors'] = $visitors;
+		$data['visitors'] = $visitors;
 		return view('home',$data);
+
     }
 }
