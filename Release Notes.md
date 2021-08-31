@@ -21,6 +21,7 @@
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 ### ***Working on***
 ## Finished for next release
+* 210831.01 Adjusting columns for issues table
 ## **Release 2.6.4 (2021-08-29)**
 * 210813.03 Link from "Hantera Platser" to demoproducts loading the filter doesn't work anymore
 * 210826.01 Make message show in front of instead of in between elements
