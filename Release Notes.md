@@ -1,6 +1,7 @@
 # Release notes
 ## To-do
 *Bugs*
+* 210902.01 Adding visitors names doesnt work anymore
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
