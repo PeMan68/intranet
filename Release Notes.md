@@ -2,7 +2,7 @@
 ## To-do
 *Bugs*
 * 210902.01 Adding visitors names doesnt work anymore
-* 210907.01 server 500 error when changing status in header of issues
+* 210907.01 server 500 error when changing status in header of issues. When correcting the permissions of logfiles the error disappears
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
