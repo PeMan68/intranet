@@ -60,8 +60,8 @@ class IssuesController extends Controller
 		$fields = collect([]);
 		$fields->push(['key'=> 'Info']);
 		$fields->push(['key'=> 'Ärende', 'sortable' => true]);
-		$fields->push(['key'=> 'Registrerat', 'sortable' => true]);
-		$fields->push(['key'=> 'Senaste_kontakt', 'sortable' => true]);
+		// $fields->push(['key'=> 'Registrerat', 'sortable' => true]);
+		$fields->push(['key'=> 'Senaste_händelse']);
 		$fields->push(['key'=> 'Område', 'sortable' => true]);
 		$fields->push(['key'=> '.', 'class' => 'text-right']);
 		$fields->push(['key'=> 'Kund']);
@@ -82,11 +82,11 @@ class IssuesController extends Controller
 				$latest_date = '';
 			}
 			if ($latest_days == 0) {
-				$latest_days = 'senaste 24h';
-			} elseif ($latest_days == 1){
-				$latest_days = '1 dag';
+				$latest_days = 'senaste dygnet';
+			// } elseif ($latest_days == 1){
+			// 	$latest_days = '1 dygn';
 			} else {
-				$latest_days .= ' dagar';
+				$latest_days .= ' dygn';
 			}
 
 			if ($item->minutesToCallback() < 0 && is_null($item->timeClosed)) {
@@ -104,7 +104,7 @@ class IssuesController extends Controller
                 'Ärende' => $item->ticketNumber,
 				'Registrerat' => date('y-m-d',strtotime($item->timeInit)),
 				'Avslutat' => date('y-m-d', strtotime($item->timeClosed)),
-				'Senaste_kontakt' => $latest_days,
+				'Senaste_händelse' => $latest_days,
 				'Senaste' => $latest_date,
 				'Område' => $item->task->name,
 				'finish' => $item->timeClosed,

@@ -1,6 +1,7 @@
 # Release notes
 ## To-do
 *Bugs*
+* 210902.01 Adding visitors names doesnt work anymore
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
@@ -21,6 +22,12 @@
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 ### ***Working on***
 ## Finished for next release
+## **Release 2.6.6 (2021-09-23)**
+* 210831.01 Adjusting columns for issues table
+
+*Bugs*
+* 210907.01 server 500 error when changing status in header of issues. When correcting the permissions of logfiles the error disappears
+    * disabled some logging, wait and see if it works
 ## **Release 2.6.4 (2021-08-29)**
 * 210813.03 Link from "Hantera Platser" to demoproducts loading the filter doesn't work anymore
 * 210826.01 Make message show in front of instead of in between elements
