@@ -22,6 +22,7 @@
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 ### ***Working on***
 ## Finished for next release
+## **Release 2.6.6 (2021-09-23)**
 * 210831.01 Adjusting columns for issues table
 
 *Bugs*
