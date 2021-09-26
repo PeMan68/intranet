@@ -20,6 +20,8 @@
 * 210112-2  Save customer details for autofill
 * 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
+* 210926-1 Add multiple products as batch into demoproducts
+
 ### ***Working on***
 ## Finished for next release
 ## **Release 2.6.6 (2021-09-23)**
