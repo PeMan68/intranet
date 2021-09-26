@@ -39,6 +39,7 @@ class StoreDemoproduct extends FormRequest
             'version' => 'nullable',
             'used_by_user_id' => 'nullable',
             'used_by_customer_id' => 'nullable',
+            'pcs' => 'required'
         ];
     }
 

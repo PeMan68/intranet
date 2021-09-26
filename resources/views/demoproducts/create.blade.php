@@ -16,6 +16,10 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="pcs">Antal enheter av denna produkt</label>
+                <input class="form-control" type="number" name="pcs" id="pcs" value="{{ old('pcs') ? old('pcs') : 1 }}">
+            </div>
+            <div class="form-group">
                 <label for="place">Plats</label>
                 <select class="form-control" name="location_id" id="place">
                     @foreach ($locations as $location)

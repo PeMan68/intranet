@@ -98,7 +98,11 @@ class DemoproductController extends Controller
         $validatedData = $request->validated();
         $validatedData['userUpdate_id'] = Auth::id();
         $validatedData['invoice_date'] = epoch_to_sql(radio_to_epoch($request->invoice_date));
+        $numberOfPieces = $validatedData['pcs'];
+        unset($validatedData['pcs']);
+        for ($x=1; $x <= $numberOfPieces; $x++) {
         $demoProduct = Demoproduct::create($validatedData);
+        }
         return redirect('/demoproducts')->with('message', $demoProduct->product->item . ' registrerad, plats ' . $demoProduct->location->name);
     }
 
