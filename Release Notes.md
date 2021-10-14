@@ -13,7 +13,6 @@
 
 *Features*
 * 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails are not responded upon.
-* 210109-8  Add email-form from Issues to message directly to customer or internal support to be stored in Issue Comments History
 * 210109-9  Add question of debit customer for supporttime when checking back Issue. When Issue is closed a report shall be created to be invoiced from.
 * 210109-11 Pickup incoming emails, automatic adding comments and notification to followers.
 * 210111    Edit links in menu from Settings-db
@@ -22,6 +21,7 @@
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 
 ### ***Working on***
+* 210109-8  Add email-form from Issues to message directly to customer or internal support to be stored in Issue Comments History
 ## Finished for next release
 * 210926-1 Add multiple products as batch into demoproducts
 ## **Release 2.6.6 (2021-09-23)**
