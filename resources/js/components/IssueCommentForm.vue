@@ -21,6 +21,7 @@
     <b-form-textarea class="form-style my-1" id="textarea" v-model="fields.message" placeholder="Meddelande" rows="3" max-rows="30"></b-form-textarea>
 
     <b-button size="sm" variant="success" @click="submit">Spara</b-button>
+    <b-button :href="'mailto:' + fields.selected.email + '?subject=' + ticket + ': ' + header">Skapa mail</b-button>
 
 </div>
 </template>
@@ -33,13 +34,15 @@
 
 <script>
 export default {
-    props: [
-        'contacts',
-        'comment',
-        'follow',
-        'auth_user',
+    props: {
+        contacts: Array,
+        comment: Object,
+        follow: Number,
+        auth_user: Number,
+        ticket: String,
+        header: String,
 
-    ],
+    },
 
     data() {
         return {
@@ -48,6 +51,7 @@ export default {
                 type: 0,
                 message: '',
                 selected: 0,
+                // mail_subject: ''
 
             },
             errors: {},
@@ -61,6 +65,8 @@ export default {
         this.fields.id = this.comment.id // include comments id with form-post
         this.fields.follow = this.follow
         this.fields.user_id = this.auth_user // include user id with post
+        // this.fields.mail_subject = this.ticket + ': ' + this.header
+        // this.fields.header = this.header
     },
 
     methods: {

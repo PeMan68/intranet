@@ -262,11 +262,15 @@ class IssuesController extends Controller
 		$issue->refresh();
 		$selected = $contacts->map(function ( $contact ) {
 			return [
-				'value' => $contact->id,
+				'value' => [
+					
+					'id' => $contact->id,
+					'email' => $contact->email,
+				],
 				'text' => $contact->name,
 			];
 		});
-		$selected->push(['value' => 0, 'text' => $issue->customerName]);
+		$selected->push(['value' => ['id' => 0, 'email' => $issue->customerMail], 'text' => $issue->customerName, ]);
 		$users = $users->map(function ($user) {
 			if ($user)
 			return [
