@@ -18,11 +18,11 @@
         </b-form-select>
     </b-form-group>
     <div v-show="outgoingMail" class="form-style mail-header my-1">----- Skapa Mail -----</div>
-    <b-form-group v-show="fields.direction == 1 && fields.type == 2" class="form-style my-1">
+    <b-form-group v-show="outgoingMail" class="form-style my-1">
         <b-form-input id="subject" disabled v-model="fields.selected.email"></b-form-input>
     </b-form-group>
     
-    <b-form-group v-show="fields.direction == 1 && fields.type == 2" class="form-style" label-cols="auto" label="Ämnesrad:">
+    <b-form-group v-show="outgoingMail" class="form-style" label-cols="auto" label="Ämnesrad:">
         <b-form-input id="subject" v-model="fields.subject"></b-form-input>
     </b-form-group>
     
