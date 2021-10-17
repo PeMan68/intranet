@@ -17,10 +17,15 @@
         <b-form-select id="selected-contact" v-model="fields.selected" :options="contacts">
         </b-form-select>
     </b-form-group>
-    <b-form-group v-show="fields.direction == 1 && fields.type == 2" class="form-style" label-cols="auto" label="Ämnesrad:">
-
-    <b-form-input id="subject" v-model="fields.subject"></b-form-input>
+    <div v-show="outgoingMail" class="form-style mail-header my-1">----- Skapa Mail -----</div>
+    <b-form-group v-show="fields.direction == 1 && fields.type == 2" class="form-style my-1">
+        <b-form-input id="subject" disabled v-model="fields.selected.email"></b-form-input>
     </b-form-group>
+    
+    <b-form-group v-show="fields.direction == 1 && fields.type == 2" class="form-style" label-cols="auto" label="Ämnesrad:">
+        <b-form-input id="subject" v-model="fields.subject"></b-form-input>
+    </b-form-group>
+    
     <b-form-textarea class="form-style my-1" id="textarea" v-model="fields.message" placeholder="Meddelande" rows="3" max-rows="30"></b-form-textarea>
 
     <b-button size="sm" variant="success" @click="submit">Spara</b-button>
@@ -31,6 +36,11 @@
 <style>
 .form-style {
     max-width: 50rem;
+}
+.mail-header {
+    text-align: center;
+    color: darkslategray;
+    font-size: 1.5rem;
 }
 </style>
 
@@ -54,8 +64,6 @@ export default {
                 message: '',
                 selected: 0,
                 subject: '',
-                // mail_subject: ''
-
             },
             errors: {},
             loaded: true,
@@ -70,6 +78,16 @@ export default {
         this.fields.user_id = this.auth_user // include user id with post
         this.fields.subject = this.ticket + ': ' + this.header
         // this.fields.header = this.header
+    },
+    computed: {
+        outgoingMail : function() {
+
+            if (this.fields.direction == 1 && this.fields.type == 2) {
+                return true
+            } else {
+                return false
+            }
+        }
     },
 
     methods: {
@@ -112,5 +130,5 @@ export default {
         },
     },
 
-    };
+};
 </script>
