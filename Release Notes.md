@@ -20,10 +20,10 @@
 * 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 
+### ***Working on***
 * 210109-8  Add email-form from Issues to message directly to customer or internal support to be stored in Issue Comments History
 
 Next...send email directly from Issue!
-### ***Working on***
 
 ## Finished for next release
 * 210926-1 Add multiple products as batch into demoproducts
