@@ -24,11 +24,11 @@
 
 Next...send email directly from Issue!
 ### ***Working on***
-* 211017.01 Place is not kept when adding a demoproduct and verification fails.
 
 ## Finished for next release
 * 210926-1 Add multiple products as batch into demoproducts
 * 210109-8 Partly done. Link to create mail from email client added to Issue Comments.
+* 211017.01 Selected options of demoproducts are not kept when adding a demoproduct and validation fails.
 ## **Release 2.6.6 (2021-09-23)**
 * 210831.01 Adjusting columns for issues table
 
