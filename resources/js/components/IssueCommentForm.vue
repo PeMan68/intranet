@@ -31,8 +31,14 @@
     <b-form-textarea class="form-style my-1" id="textarea" v-model="fields.message" placeholder="Meddelande" rows="3" max-rows="30"></b-form-textarea>
     <div v-show="outgoingMail" class="form-style mail-header my-1">---</div>
 
-    <b-button v-show="outgoingMail" size="sm" :href="'mailto:' + fields.selected.email + '?subject=' + fields.subject + '&body=' + encodeURIComponent(fields.message)">Kopiera till e-post</b-button>
-    <b-button size="sm" variant="success" @click="submit">Spara anteckning</b-button>
+    <b-button 
+        v-show="outgoingMail" 
+        size="sm" 
+        v-b-tooltip.hover title="Skapa mail med ovanstående information från din egen e-post. OBS! Spara anteckningen separat"
+        :href="'mailto:' + fields.selected.email + '?subject=' + fields.subject + '&body=' + encodeURIComponent(fields.message)">1. Kopiera till e-post
+        <i class="material-icons white md-18 ml-1" style="vertical-align: middle;">help</i>
+        </b-button>
+    <b-button size="sm" variant="success" @click="submit">{{ outgoingMail ? '2. ':''}} Spara anteckning</b-button>
 </div>
 </template>
 
