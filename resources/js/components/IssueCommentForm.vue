@@ -17,12 +17,14 @@
         <b-form-select id="selected-contact" v-model="fields.selected" :options="contacts">
         </b-form-select>
     </b-form-group>
+    <b-form-group v-show="fields.direction == 1 && fields.type == 2" class="form-style" label-cols="auto" label="Ämnesrad:">
 
+    <b-form-input id="subject" v-model="fields.subject"></b-form-input>
+    </b-form-group>
     <b-form-textarea class="form-style my-1" id="textarea" v-model="fields.message" placeholder="Meddelande" rows="3" max-rows="30"></b-form-textarea>
 
     <b-button size="sm" variant="success" @click="submit">Spara</b-button>
-    <b-button :href="'mailto:' + fields.selected.email + '?subject=' + ticket + ': ' + header">Skapa mail</b-button>
-
+    <b-button size="sm" :href="'mailto:' + fields.selected.email + '?subject=' + fields.subject + '&body=' + fields.message">Skapa mail</b-button>
 </div>
 </template>
 
@@ -51,6 +53,7 @@ export default {
                 type: 0,
                 message: '',
                 selected: 0,
+                subject: '',
                 // mail_subject: ''
 
             },
@@ -65,7 +68,7 @@ export default {
         this.fields.id = this.comment.id // include comments id with form-post
         this.fields.follow = this.follow
         this.fields.user_id = this.auth_user // include user id with post
-        // this.fields.mail_subject = this.ticket + ': ' + this.header
+        this.fields.subject = this.ticket + ': ' + this.header
         // this.fields.header = this.header
     },
 
