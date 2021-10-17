@@ -22,7 +22,7 @@ class IssueCommentController extends Controller
 			IssueComment::find($issuecomment->id)->update([
 				'checkin' => date('Y-m-d H:i:s',strtotime(now())),
                 'comment' => $request->message,
-                'contact_id' => $request->selected,
+                'contact_id' => $request->selected['id'],
                 'type' => $request->type,
                 'direction' => $request->direction,
 			]);

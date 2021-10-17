@@ -17,8 +17,10 @@
         <b-form-select id="selected-contact" v-model="fields.selected" :options="contacts">
         </b-form-select>
     </b-form-group>
-    <div v-show="outgoingMail" class="form-style mail-header my-1">----- Skapa Mail -----</div>
-    <b-form-group v-show="outgoingMail" class="form-style my-1">
+    <div v-show="outgoingMail" class="form-style mail-header my-1">--- Skapa Mail ---
+
+    </div>
+    <b-form-group v-show="outgoingMail" class="form-style my-1" label-cols="auto" label="Till:">
         <b-form-input id="subject" disabled v-model="fields.selected.email"></b-form-input>
     </b-form-group>
     
@@ -27,9 +29,10 @@
     </b-form-group>
     
     <b-form-textarea class="form-style my-1" id="textarea" v-model="fields.message" placeholder="Meddelande" rows="3" max-rows="30"></b-form-textarea>
+    <div v-show="outgoingMail" class="form-style mail-header my-1">---</div>
 
-    <b-button size="sm" variant="success" @click="submit">Spara</b-button>
-    <b-button size="sm" :href="'mailto:' + fields.selected.email + '?subject=' + fields.subject + '&body=' + fields.message">Skapa mail</b-button>
+    <b-button v-show="outgoingMail" size="sm" :href="'mailto:' + fields.selected.email + '?subject=' + fields.subject + '&body=' + encodeURIComponent(fields.message)">Kopiera till e-post</b-button>
+    <b-button size="sm" variant="success" @click="submit">Spara anteckning</b-button>
 </div>
 </template>
 
@@ -108,6 +111,7 @@ export default {
                         window.location.href = '/issues/' + this.comment.issue_id;
                     }
                 ).catch(error => {
+                    console.log(error)
                     this.loaded = true;
                     if (error.response.status === 422) {
                         this.errors = error.response.data.errors || {};
@@ -118,7 +122,6 @@ export default {
 
         changeType() {
             this.$nextTick(() => {
-                console.log(this.fields.direction);
                 if (this.fields.direction == '0') {
                     this.fields.type = 0;
                     this.fields.selected = 0;
