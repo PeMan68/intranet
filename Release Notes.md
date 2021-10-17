@@ -2,7 +2,6 @@
 ## To-do
 *Bugs*
 * 210902.01 Adding visitors names doesnt work anymore
-* 211017.01 Place is not kept when adding a demoproduct and verification fails.
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
@@ -21,10 +20,12 @@
 * 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 
-### ***Working on***
 * 210109-8  Add email-form from Issues to message directly to customer or internal support to be stored in Issue Comments History
 
 Next...send email directly from Issue!
+### ***Working on***
+* 211017.01 Place is not kept when adding a demoproduct and verification fails.
+
 ## Finished for next release
 * 210926-1 Add multiple products as batch into demoproducts
 * 210109-8 Partly done. Link to create mail from email client added to Issue Comments.
