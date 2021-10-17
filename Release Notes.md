@@ -2,6 +2,7 @@
 ## To-do
 *Bugs*
 * 210902.01 Adding visitors names doesnt work anymore
+* 211017.01 Place is not kept when adding a demoproduct and verification fails.
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
