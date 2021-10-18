@@ -6,9 +6,11 @@
 *Nyheter*
 * **Ärenden**
     * Möjlighet att lägga till andra användare som följare i ärenden, så de blir notifierade om ärendet.
-    * Helgdagar hanteras från vänster meny. Allmänna helgdagar importeras automatiskt 12 månader framåt när den menyn öppnas. Helgdagar visas i kalendern.
-    * Möjlighet att samtidigt lägga till många produkter av samma typ egenskaper på demolagret.
     * Möjlighet att mail skickas direkt från anteckning i ärenden till vald mottagare med avsändare "support@carlogavazzi.se". Alternativt kopiera all relevant info och skapa mailet med egen avsändare om man vill redigera, t ex lägga till bilder eller filer.
+* **Kalendern**
+    * Helgdagar hanteras från vänster meny. Allmänna helgdagar importeras automatiskt 12 månader framåt när den menyn öppnas. Helgdagar visas i kalendern.
+* **Demolager**
+    * Möjlighet att samtidigt lägga till många produkter av samma typ egenskaper på demolagret.
  ## Version 2.6.1 ##
 (2021-08-13)
 
