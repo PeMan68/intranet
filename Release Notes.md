@@ -21,14 +21,12 @@
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 
 ### ***Working on***
-* 210109-8  Add email-form from Issues to message directly to customer or internal support to be stored in Issue Comments History
-
-Next...send email directly from Issue!
 
 ## Finished for next release
 * 210926-1 Add multiple products as batch into demoproducts
 * 210109-8 Partly done. Link to create mail from email client added to Issue Comments.
 * 211017.01 Selected options of demoproducts are not kept when adding a demoproduct and validation fails.
+* 210109-8  Add email-form from Issues to message directly to customer or internal support to be stored in Issue Comments History
 ## **Release 2.6.6 (2021-09-23)**
 * 210831.01 Adjusting columns for issues table
 
