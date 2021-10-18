@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Events\Issues\UpdatedIssue;
 use App\Events\Issues\IssueCommentedFirstTime;
 use App\Events\Issues\IssueClosed;
+use App\Events\Issues\IssuecommentOutboundMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -39,6 +40,11 @@ class IssueCommentController extends Controller
 			//Send mail to staff who is following
 			if (!$request->follow) {
 				$issue->followers()->attach($request->user_id);
+			}
+			if ($request->type == 2 && $request->direction == 1) {
+				// Type is Email && Direction is Outbound
+				Log::debug('Type is Email && Direction is Outbound');
+				event(new IssuecommentOutboundMail($issue, $request->selected['email'], $request->message));
 			}
             event(new UpdatedIssue($issue, $type='comment',[]));
 		}

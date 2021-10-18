@@ -52,6 +52,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Issues\CustomerNotContacted' => [
             'App\Listeners\Issues\NotifyFollowersOfNotContactedCustomer',
         ],
+        'App\Events\Issues\IssuecommentOutboundMail' => [
+            'App\Listeners\Issues\NotifyReceiverOfComment',
+        ],
     ];
 
     /**
