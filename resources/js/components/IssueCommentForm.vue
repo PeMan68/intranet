@@ -34,11 +34,29 @@
     <b-button 
         v-show="outgoingMail" 
         size="sm" 
-        v-b-tooltip.hover title="Skapa mail med ovanstående information från din egen e-post. OBS! Spara anteckningen separat"
+        v-b-tooltip.hover title="Skapa mail av ovanstående från din egen e-post. OBS! Spara anteckningen separat efteråt!"
         :href="'mailto:' + fields.selected.email + '?subject=' + fields.subject + '&body=' + encodeURIComponent(fields.message)">1. Kopiera till e-post
         <i class="material-icons white md-18 ml-1" style="vertical-align: middle;">help</i>
         </b-button>
-    <b-button size="sm" variant="success" @click="submit">{{ outgoingMail ? '2. ':''}} Spara anteckning</b-button>
+    <span v-show="outgoingMail" class="mail-header"> + </span>
+    <b-button 
+        size="sm" 
+        variant="success" 
+        @click="submit"
+        v-b-tooltip.hover title="Spara som ny anteckning och ladda om sidan">{{ outgoingMail ? '2. ':''}} Spara anteckning
+        <i class="material-icons white md-18 ml-1" style="vertical-align: middle;">help</i>
+        </b-button>
+    <span v-show="outgoingMail" class="mail-header"> ...eller... </span>
+    <b-button 
+        v-show="outgoingMail" 
+        size="sm" 
+        variant="success" 
+        @click="submitAndSend"
+        v-b-tooltip.hover :title="'Spara anteckningen och anteckningen skickas automatiskt från ' + from"
+        > Spara och skicka mail
+        <i class="material-icons white md-18 ml-1" style="vertical-align: middle;">help</i>
+        </b-button>
+
 </div>
 </template>
 
@@ -62,6 +80,7 @@ export default {
         auth_user: Number,
         ticket: String,
         header: String,
+        from: String,
 
     },
 
@@ -73,6 +92,7 @@ export default {
                 message: '',
                 selected: 0,
                 subject: '',
+                send: false,
             },
             errors: {},
             loaded: true,
@@ -100,11 +120,16 @@ export default {
     },
 
     methods: {
+        submitAndSend() {
+            this.fields.send = true;
+            this.submit();
+        },
         submit() {
             if (this.loaded) {
                 this.loaded = false;
                 this.success = false;
                 this.errors = {};
+                
                 axios.post('/api/comment', this.fields).then(
                     response => {
                         // Clear input fields.
@@ -114,6 +139,7 @@ export default {
                         this.fields.selected = 0;
                         this.loaded = true;
                         this.success = true;
+                        this.fields.send = false;
                         window.location.href = '/issues/' + this.comment.issue_id;
                     }
                 ).catch(error => {

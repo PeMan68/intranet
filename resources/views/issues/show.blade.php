@@ -344,6 +344,7 @@
                     :auth_user="{{ $auth_user->id }}"
                     :ticket="{{ json_encode($issue->ticketNumber) }}"
                     :header="{{ json_encode($issue->header) }}"
+                    :from = "{{ json_encode(setting('app_from_adress')) }}"
                     >
                 </issue-comment-form>
             @endif
