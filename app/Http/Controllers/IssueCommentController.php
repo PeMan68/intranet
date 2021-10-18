@@ -41,8 +41,8 @@ class IssueCommentController extends Controller
 			if (!$request->follow) {
 				$issue->followers()->attach($request->user_id);
 			}
-			if ($request->type == 2 && $request->direction == 1) {
-				// Type is Email && Direction is Outbound
+			if ($request->send) {
+				// Send message as email to receiver
 				event(new IssuecommentOutboundMail($issue, $request->selected['email'], $request->message));
 			}
             event(new UpdatedIssue($issue, $type='comment',[]));
