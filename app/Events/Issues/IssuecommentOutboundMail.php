@@ -23,7 +23,6 @@ class IssuecommentOutboundMail
      */
     public function __construct(Issue $issue, $receiver, $message)
     {
-        Log::debug('event triggered');
         $this->issue = $issue;
         $this->receiver = $receiver;
         $this->message = $message;

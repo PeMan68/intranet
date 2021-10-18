@@ -26,7 +26,6 @@ class NotifyReceiverOfComment
      */
     public function handle(IssuecommentOutboundMail $event)
     {
-        Log::debug('Listener triggered');
         SendEmailToReceiver::dispatch($event->issue, $event->receiver, $event->message);
     }
 }

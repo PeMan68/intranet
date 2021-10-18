@@ -43,7 +43,6 @@ class IssueCommentController extends Controller
 			}
 			if ($request->type == 2 && $request->direction == 1) {
 				// Type is Email && Direction is Outbound
-				Log::debug('Type is Email && Direction is Outbound');
 				event(new IssuecommentOutboundMail($issue, $request->selected['email'], $request->message));
 			}
             event(new UpdatedIssue($issue, $type='comment',[]));

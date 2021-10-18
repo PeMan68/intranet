@@ -33,8 +33,7 @@ class MailToReceiverWithLatestComment extends Mailable
      */
     public function build()
     {
-        Log::debug('Mail is built');
-        return $this->subject($this->issue->ticketNumber.': '.$this->issue->header)
+        return $this->subject($this->issue->ticketNumber.': "'.$this->issue->header.'"')
         ->view('emails.toReceiverWithLatestComment');
     }
 }

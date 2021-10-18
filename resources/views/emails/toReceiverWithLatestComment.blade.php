@@ -2,5 +2,6 @@
 
 
 @section('message')
-{{ $mailMessage }}
+{!! nl2br(e($mailMessage)) !!}
+
 @endsection

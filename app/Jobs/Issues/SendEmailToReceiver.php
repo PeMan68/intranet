@@ -41,7 +41,6 @@ class SendEmailToReceiver implements ShouldQueue
      */
     public function handle()
     {
-        Log::debug('Job triggered');
         Mail::to($this->email)->send(new MailToReceiverWithLatestComment($this->issue, $this->message));
     }
 }
