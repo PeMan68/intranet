@@ -11,15 +11,19 @@
                 <label for="product_id">Välj produkt</label>
                 <select class="form-control" id="product_id" name="product_id">
                     @foreach ($products as $product)
-                    <option value="{{ $product->id }}">{{ $product->item }}</option>
+                    <option value="{{ $product->id }}" {{ old('product_id')==$product->id ? 'selected' : '' }}>{{ $product->item }}</option>
                     @endforeach
                 </select>
+            </div>
+            <div class="form-group">
+                <label for="pcs">Antal enheter av denna produkt</label>
+                <input class="form-control" type="number" name="pcs" id="pcs" value="{{ old('pcs') ? old('pcs') : 1 }}">
             </div>
             <div class="form-group">
                 <label for="place">Plats</label>
                 <select class="form-control" name="location_id" id="place">
                     @foreach ($locations as $location)
-                    <option value="{{ $location['id'] }}">{{ $location['name'] }}</option>
+                    <option value="{{ $location['id'] }}" {{ old('location_id') == $location['id']  ? 'selected' : '' }}>{{ $location['name'] }}</option>
                     @endforeach
                 </select>
             </div>
@@ -27,7 +31,7 @@
                 <label for="status">Status</label>
                 <select class="form-control" name="status_id" id="status">
                     @foreach ($statuses as $status)
-                    <option value="{{ $status->id }}">{{ $status->description }}</option>
+                    <option value="{{ $status->id }}" {{ old('status_id') == $status->id ? 'selected' : '' }}>{{ $status->description }}</option>
                     @endforeach
                 </select>
                 <div class="form-check">

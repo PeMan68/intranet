@@ -17,10 +17,45 @@
         <b-form-select id="selected-contact" v-model="fields.selected" :options="contacts">
         </b-form-select>
     </b-form-group>
+    <div v-show="outgoingMail" class="form-style mail-header my-1">--- Skapa Mail ---
 
+    </div>
+    <b-form-group v-show="outgoingMail" class="form-style my-1" label-cols="auto" label="Till:">
+        <b-form-input id="subject" disabled v-model="fields.selected.email"></b-form-input>
+    </b-form-group>
+    
+    <b-form-group v-show="outgoingMail" class="form-style" label-cols="auto" label="Ämnesrad:">
+        <b-form-input id="subject" v-model="fields.subject"></b-form-input>
+    </b-form-group>
+    
     <b-form-textarea class="form-style my-1" id="textarea" v-model="fields.message" placeholder="Meddelande" rows="3" max-rows="30"></b-form-textarea>
+    <div v-show="outgoingMail" class="form-style mail-header my-1">---</div>
 
-    <b-button size="sm" variant="success" @click="submit">Spara</b-button>
+    <b-button 
+        v-show="outgoingMail" 
+        size="sm" 
+        v-b-tooltip.hover title="Skapa mail av ovanstående från din egen e-post. OBS! Spara anteckningen separat efteråt!"
+        :href="'mailto:' + fields.selected.email + '?subject=' + fields.subject + '&body=' + encodeURIComponent(fields.message)">1. Kopiera till e-post
+        <i class="material-icons white md-18 ml-1" style="vertical-align: middle;">help</i>
+        </b-button>
+    <span v-show="outgoingMail" class="mail-header"> + </span>
+    <b-button 
+        size="sm" 
+        variant="success" 
+        @click="submit"
+        v-b-tooltip.hover title="Spara som ny anteckning och ladda om sidan">{{ outgoingMail ? '2. ':''}} Spara anteckning
+        <i class="material-icons white md-18 ml-1" style="vertical-align: middle;">help</i>
+        </b-button>
+    <span v-show="outgoingMail" class="mail-header"> ...eller... </span>
+    <b-button 
+        v-show="outgoingMail" 
+        size="sm" 
+        variant="success" 
+        @click="submitAndSend"
+        v-b-tooltip.hover :title="'Spara anteckningen och anteckningen skickas automatiskt från ' + from"
+        > Spara och skicka mail
+        <i class="material-icons white md-18 ml-1" style="vertical-align: middle;">help</i>
+        </b-button>
 
 </div>
 </template>
@@ -29,17 +64,25 @@
 .form-style {
     max-width: 50rem;
 }
+.mail-header {
+    text-align: center;
+    color: darkslategray;
+    font-size: 1.5rem;
+}
 </style>
 
 <script>
 export default {
-    props: [
-        'contacts',
-        'comment',
-        'follow',
-        'auth_user',
+    props: {
+        contacts: Array,
+        comment: Object,
+        follow: Number,
+        auth_user: Number,
+        ticket: String,
+        header: String,
+        from: String,
 
-    ],
+    },
 
     data() {
         return {
@@ -48,7 +91,8 @@ export default {
                 type: 0,
                 message: '',
                 selected: 0,
-
+                subject: '',
+                send: false,
             },
             errors: {},
             loaded: true,
@@ -61,14 +105,31 @@ export default {
         this.fields.id = this.comment.id // include comments id with form-post
         this.fields.follow = this.follow
         this.fields.user_id = this.auth_user // include user id with post
+        this.fields.subject = this.ticket + ': ' + this.header
+        // this.fields.header = this.header
+    },
+    computed: {
+        outgoingMail : function() {
+
+            if (this.fields.direction == 1 && this.fields.type == 2) {
+                return true
+            } else {
+                return false
+            }
+        }
     },
 
     methods: {
+        submitAndSend() {
+            this.fields.send = true;
+            this.submit();
+        },
         submit() {
             if (this.loaded) {
                 this.loaded = false;
                 this.success = false;
                 this.errors = {};
+                
                 axios.post('/api/comment', this.fields).then(
                     response => {
                         // Clear input fields.
@@ -78,9 +139,11 @@ export default {
                         this.fields.selected = 0;
                         this.loaded = true;
                         this.success = true;
+                        this.fields.send = false;
                         window.location.href = '/issues/' + this.comment.issue_id;
                     }
                 ).catch(error => {
+                    console.log(error)
                     this.loaded = true;
                     if (error.response.status === 422) {
                         this.errors = error.response.data.errors || {};
@@ -91,7 +154,6 @@ export default {
 
         changeType() {
             this.$nextTick(() => {
-                console.log(this.fields.direction);
                 if (this.fields.direction == '0') {
                     this.fields.type = 0;
                     this.fields.selected = 0;
@@ -103,5 +165,5 @@ export default {
         },
     },
 
-    };
+};
 </script>
