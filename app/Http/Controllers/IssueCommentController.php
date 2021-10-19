@@ -20,10 +20,16 @@ class IssueCommentController extends Controller
         $issue = Issue::find($issuecomment->issue_id);
 		if (!is_null($request->message))
 		{
+			if ($request->type == 0) {
+				// Type is a Note, no reciever
+				$contact_id = 0;
+			} else {
+				$contact_id = $request->selected['id'];
+			}
 			IssueComment::find($issuecomment->id)->update([
 				'checkin' => date('Y-m-d H:i:s',strtotime(now())),
                 'comment' => $request->message,
-                'contact_id' => $request->selected['id'],
+                'contact_id' => $contact_id,
                 'type' => $request->type,
                 'direction' => $request->direction,
 			]);

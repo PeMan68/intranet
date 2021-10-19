@@ -90,7 +90,10 @@ export default {
                 direction: 0,
                 type: 0,
                 message: '',
-                selected: 0,
+                selected: {
+                    id: 0,
+                    email: '',
+                },
                 subject: '',
                 send: false,
             },
@@ -106,7 +109,6 @@ export default {
         this.fields.follow = this.follow
         this.fields.user_id = this.auth_user // include user id with post
         this.fields.subject = this.ticket + ': ' + this.header
-        // this.fields.header = this.header
     },
     computed: {
         outgoingMail : function() {
@@ -136,7 +138,6 @@ export default {
                         this.fields.direction = 0;
                         this.fields.type = 0;
                         this.fields.message = '';
-                        this.fields.selected = 0;
                         this.loaded = true;
                         this.success = true;
                         this.fields.send = false;
@@ -156,7 +157,6 @@ export default {
             this.$nextTick(() => {
                 if (this.fields.direction == '0') {
                     this.fields.type = 0;
-                    this.fields.selected = 0;
                     this.showType = false;
                 } else {
                     this.showType = true;
