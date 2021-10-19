@@ -23,6 +23,8 @@
 ### ***Working on***
 
 ## Finished for next release
+## **Release 2.6.8 (2021-10-19)**
+* 211019.01 and 02, small bugfixes
 ## **Release 2.6.7 (2021-10-18)**
 * 210926-1 Add multiple products as batch into demoproducts
 * 210109-8 Partly done. Link to create mail from email client added to Issue Comments.
