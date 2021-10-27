@@ -20,9 +20,9 @@
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 
 ### ***Working on***
-* 211026.01 Create form for issues. Add description for descriptions, to make it clear what's sent to customer and what's not.
 
 ## Finished for next release
+* 211026.01 Changed look of form for issues. Add description for descriptions, to make it clear what's sent to customer and what's not.
 ## **Release 2.6.8 (2021-10-19)**
 * 211019.01 and 02, small bugfixes
 ## **Release 2.6.7 (2021-10-18)**
