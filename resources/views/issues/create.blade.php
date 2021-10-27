@@ -11,8 +11,8 @@
                 @csrf
                 <input type="hidden" name="timeInit" value="{{ $timeInit }}">
                 <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <b-card>
+                    <div class="col-lg-6 d-flex align-items-stretch flex-column">
+                        <b-card class="mb-auto">
                         <div class="form-row">
                             <div class="col-md-4">
                                 <div class="font-weight-bold">Område</div>
@@ -67,9 +67,10 @@
 
                             </div>
                         </div>
+                        </b-card>
+                        <b-card class="my-2">
                         <div class="form-row">
                             <div class="col-md-12">
-                                <hr>
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="follow" name="follow" value="1"
                                         {{ old('follow') == '1' ? 'checked' : '' }}>
