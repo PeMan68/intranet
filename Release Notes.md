@@ -9,7 +9,6 @@
 * 210314.01 nextWorkingDateTime not correct when today is weekend but inside working hours (for example sunday 10.30 gives Monday 10.30, while Sunday 21.30 gives Monday 08.00)
 * 210822.01 Use the php helpers dateconversion for demoproducts instead of vue. (used in store demoproduct)
 * 210829.01 Do something with settings, "if calendar-module && holidays-module is used". To handle modules in the future.
-* 211026.01 Create form for issues. Add description for descriptions, to make it clear what's sent to customer and what's not.
 
 *Features*
 * 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails are not responded upon.
@@ -23,6 +22,7 @@
 ### ***Working on***
 
 ## Finished for next release
+* 211026.01 Changed look of form for issues. Add description for descriptions, to make it clear what's sent to customer and what's not.
 ## **Release 2.6.8 (2021-10-19)**
 * 211019.01 and 02, small bugfixes
 ## **Release 2.6.7 (2021-10-18)**
