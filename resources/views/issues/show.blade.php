@@ -135,7 +135,7 @@
                                             </td>
                                         </tr>
                                     </table>
-                                    <div class="form-check form-check-inline">
+                                    <div class="form-check form-check-inline mt-4">
                                         <input type="radio" class="form-check-input" id="prio1" name="prio" value="1"
                                             {{ $issue->prio == '1' ? 'checked' : '' }}>
                                         <label for="prio1" class="font-weight-bold m-0">Prioritet Normal</label>
