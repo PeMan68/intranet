@@ -15,29 +15,6 @@
     </script>
 @endsection
 
-{{-- @section('scriptsBody')
-    <script type="text/javascript">
-        $(document).ready(function() {
-            var i = 1;
-            $('#form-table').hide();
-
-            $('#add').click(function() {
-                i++;
-                $('#form-table').show();
-                $('#form-table').append('<tr id="row' + i +
-                    '" class="dynamic-added"><td><input type="file" class="form-control-file" name="files[]"></td><td><input type="text" class="form-control form-control-sm" id="fileDescription"  name="fileDescriptions[]" value="{{ old('fileDescription') }}"></td><td><button type="button" name="remove" id="' +
-                    i + '" class="btn btn-danger btn_remove btn-sm">X</button></td></tr>');
-            });
-
-            $(document).on('click', '.btn_remove', function() {
-                var button_id = $(this).attr("id");
-                $('#row' + button_id + '').remove();
-            });
-        });
-
-    </script>
-@endsection --}}
-
 @section('content')
     <div class="card">
         <div class="card-header h3">
