@@ -367,7 +367,7 @@
                     @endswitch
 
                     <b-card style="max-width: 50rem;"
-                        border-variant="{{ $comment->direction == 0 ? 'info' : ($comment->contact_id == 0 ? 'success' : 'warning') }}">
+                        border-variant="{{ $comment->direction == 0 ? 'info' : ($comment->contact_id == 0 ? 'danger' : 'warning') }}">
                         <b-card-text>
                             {!! nl2br(e($comment->comment)) !!}
                         </b-card-text>
