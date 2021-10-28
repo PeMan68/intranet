@@ -336,9 +336,6 @@
                         @endswitch
                     </template>
                     @switch($comment->direction)
-                        {{-- direction==0 > internal note
-                        direction==1 > outbound message
-                        direction==2 > inbound message --}}
                         @case(0)
                             <template #from>
                                 {{ $comment->user->name . ' ' . $comment->user->surname }}
