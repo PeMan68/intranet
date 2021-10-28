@@ -68,7 +68,7 @@
                             </div>
                         </div>
                         </b-card>
-                        <b-card class="my-2">
+                        <b-card class="mt-2">
                         <div class="form-row">
                             <div class="col-md-12">
                                 <div class="form-check">

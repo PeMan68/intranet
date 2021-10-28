@@ -15,29 +15,6 @@
     </script>
 @endsection
 
-{{-- @section('scriptsBody')
-    <script type="text/javascript">
-        $(document).ready(function() {
-            var i = 1;
-            $('#form-table').hide();
-
-            $('#add').click(function() {
-                i++;
-                $('#form-table').show();
-                $('#form-table').append('<tr id="row' + i +
-                    '" class="dynamic-added"><td><input type="file" class="form-control-file" name="files[]"></td><td><input type="text" class="form-control form-control-sm" id="fileDescription"  name="fileDescriptions[]" value="{{ old('fileDescription') }}"></td><td><button type="button" name="remove" id="' +
-                    i + '" class="btn btn-danger btn_remove btn-sm">X</button></td></tr>');
-            });
-
-            $(document).on('click', '.btn_remove', function() {
-                var button_id = $(this).attr("id");
-                $('#row' + button_id + '').remove();
-            });
-        });
-
-    </script>
-@endsection --}}
-
 @section('content')
     <div class="card">
         <div class="card-header h3">
@@ -113,153 +90,148 @@
 
                     <div class="row">
                         <div class="col-lg-6">
-                            <table style="width: 100%;">
-                                <tr>
-                                    <td style="width: 30%;"><strong>Ärende skapat:</strong></td>
-                                    <td>
-                                        {{ date('Y-m-d H:i', strtotime($issue->created_at)) }}
-                                        av
-                                        {{ $issue->userCreate->name }}
-                                        {{ $issue->userCreate->surname }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Kundnr:</strong></td>
-                                    <td>
-                                        <input type="text" value="{{ old('customerNumber', $issue->customerNumber) }}"
-                                            class="form-control" id="customerNumber" name="customerNumber">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Kund:</strong></td>
-                                    <td><input type="text" value="{{ $issue->customer }}" class="form-control"
-                                            id="customer" name="customer"></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Kontakt:</strong></td>
-                                    <td><input type="text" value="{{ $issue->customerName }}" class="form-control"
-                                            id="customerName" name="customerName"></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Telefon:</strong></td>
-                                    <td> <input type="text" value="{{ $issue->customerTel }}" class="form-control"
-                                            id="customerTel" name="customerTel"></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>E-mail:</strong></td>
-                                    <td><input type="text" value="{{ $issue->customerMail }}" class="form-control"
-                                            id="customerMail" name="customerMail"></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Område:</strong></td>
-                                    <td><select class="form-control" id="task_id" name="task_id">
-                                            <option value="-">---</option>
+                            <b-card title="Intern info">
+                                <b-card-body align="left">
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td style="width: 30%;"><strong>Ärende skapat:</strong></td>
+                                            <td>
+                                                {{ date('Y-m-d H:i', strtotime($issue->created_at)) }}
+                                                av
+                                                {{ $issue->userCreate->name }}
+                                                {{ $issue->userCreate->surname }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Område:</strong></td>
+                                            <td><select class="form-control" id="task_id" name="task_id">
+                                                    <option value="-">---</option>
 
-                                            @foreach ($tasks as $task)
-                                                <option value="{{ $task->id }}"
-                                                    {{ $task->id == $issue->task_id ? 'selected' : '' }}>
-                                                    {{ $task->name }}</option>
-                                            @endforeach
-                                        </select></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Personligt eller grupp:</strong></td>
-                                    <td><select class="form-control" id="taskPersonal_id" name="taskPersonal_id">
-                                            <option value="0" {{ old('taskPersonal_id') == '0' ? 'selected' : '' }}>
-                                                Gruppärende
-                                            </option>
-                                            <option value="{{ $auth_user->id }}" @if (!old() && $auth_user->id == $issue->taskPersonal_id) selected @endif>{{ $auth_user->name }}
-                                                {{ $auth_user->surname }}
-                                            </option>
-                                        </select></td>
-                                </tr>
-                            </table>
+                                                    @foreach ($tasks as $task)
+                                                        <option value="{{ $task->id }}"
+                                                            {{ $task->id == $issue->task_id ? 'selected' : '' }}>
+                                                            {{ $task->name }}</option>
+                                                    @endforeach
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Personligt eller grupp:</strong></td>
+                                            <td><select class="form-control" id="taskPersonal_id" name="taskPersonal_id">
+                                                    <option value="0"
+                                                        {{ old('taskPersonal_id') == '0' ? 'selected' : '' }}>
+                                                        Gruppärende
+                                                    </option>
+                                                    <option value="{{ $auth_user->id }}" @if (!old() && $auth_user->id == $issue->taskPersonal_id) selected @endif>
+                                                        {{ $auth_user->name }}
+                                                        {{ $auth_user->surname }}
+                                                    </option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Intern kommentar:</strong></td>
+                                            <td> <textarea class="form-control" id="descriptionInternal"
+                                                    name="descriptionInternal"
+                                                    rows="7">{{ old('descriptionInternal', $issue->descriptionInternal) }}</textarea>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="form-check form-check-inline mt-4">
+                                        <input type="radio" class="form-check-input" id="prio1" name="prio" value="1"
+                                            {{ $issue->prio == '1' ? 'checked' : '' }}>
+                                        <label for="prio1" class="font-weight-bold m-0">Prioritet Normal</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" class="form-check-input" id="prio2" name="prio" value="2"
+                                            {{ $issue->prio == '2' ? 'checked' : '' }}>
+                                        <label for="prio2" class="font-weight-bold m-0">Prioritet Hög</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="vip" name="vip" value="1"
+                                            {{ $issue->vip == '1' ? 'checked' : '' }}>
+                                        <label for="vip" class="font-weight-bold m-0">VIP-kund</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="paused" name="paused" value="1"
+                                            {{ $issue->paused == '1' ? 'checked' : '' }}>
+                                        <label for="vip" class="font-weight-bold m-0">Ärendet Pausat
+                                            <small>(Påminnelse om {{ setting('days_reminder_paused_issue') }}
+                                                {{ setting('days_reminder_paused_issue') < 2 ? 'dag' : 'dagar' }})
+                                            </small>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="waitingForCustomer"
+                                            name="waitingForCustomer" value="1"
+                                            {{ $issue->waitingForCustomer == '1' ? 'checked' : '' }}>
+                                        <label for="vip" class="font-weight-bold m-0">Väntar på svar från Kund
+                                            <small>(Påminnelse om {{ setting('days_reminder_waiting_for_external') }}
+                                                {{ setting('days_reminder_waiting_for_external') < 2 ? 'dag' : 'dagar' }})
+                                            </small>
+                                            </small>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="waitingForInternal"
+                                            name="waitingForInternal" value="1"
+                                            {{ $issue->waitingForInternal == '1' ? 'checked' : '' }}>
+                                        <label for="vip" class="font-weight-bold m-0">Väntar på svar från Kollega
+                                            <small>(Påminnelse om {{ setting('days_reminder_waiting_for_internal') }}
+                                                {{ setting('days_reminder_waiting_for_internal') < 2 ? 'dag' : 'dagar' }})
+                                            </small>
+                                        </label>
+                                    </div>
+                                </b-card-body>
+                            </b-card>
                         </div>
                         <div class="col-lg-6">
-                            <table style="width: 100%;">
-                                <tr>
-                                    <td><strong>Rubrik:</strong></td>
-                                    <td><input type="text" value="{{ old('header', $issue->header) }}"
-                                            class="form-control" id="header" name="header"></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 30%;"><strong>Ärendebeskrivning:</strong></td>
-                                    <td> <textarea class="form-control" id="description" name="description"
-                                            rows="7">{{ old('description', $issue->description) }}</textarea></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Intern kommentar:</strong></td>
-                                    <td> <textarea class="form-control" id="descriptionInternal" name="descriptionInternal"
-                                            rows="5">{{ old('descriptionInternal', $issue->descriptionInternal) }}</textarea>
-                                    </td>
-                                </tr>
-                            </table>
+                            <b-card border-variant="danger">
+                                <b-card-title><span class="text-danger">Denna info visas även i mail till kund!</span></b-card-title>
+                                <b-card-body align="left">
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td><strong>Kundnr:</strong></td>
+                                            <td>
+                                                <input type="text"
+                                                    value="{{ old('customerNumber', $issue->customerNumber) }}"
+                                                    class="form-control" id="customerNumber" name="customerNumber">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Kund:</strong></td>
+                                            <td><input type="text" value="{{ $issue->customer }}" class="form-control"
+                                                    id="customer" name="customer"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Kontakt:</strong></td>
+                                            <td><input type="text" value="{{ $issue->customerName }}"
+                                                    class="form-control" id="customerName" name="customerName"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Telefon:</strong></td>
+                                            <td> <input type="text" value="{{ $issue->customerTel }}"
+                                                    class="form-control" id="customerTel" name="customerTel"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>E-mail:</strong></td>
+                                            <td><input type="text" value="{{ $issue->customerMail }}"
+                                                    class="form-control" id="customerMail" name="customerMail"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Rubrik:</strong></td>
+                                            <td><input type="text" value="{{ old('header', $issue->header) }}"
+                                                    class="form-control" id="header" name="header"></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 30%;"><strong>Ärendebeskrivning:</strong></td>
+                                            <td> <textarea class="form-control" id="description" name="description"
+                                                    rows="7">{{ old('description', $issue->description) }}</textarea>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </b-card-body>
+                            </b-card>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-check form-check-inline">
-                                <input type="radio" class="form-check-input" id="prio1" name="prio" value="1"
-                                    {{ $issue->prio == '1' ? 'checked' : '' }}>
-                                <label for="prio1" class="font-weight-bold m-0">Prioritet Normal</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" class="form-check-input" id="prio2" name="prio" value="2"
-                                    {{ $issue->prio == '2' ? 'checked' : '' }}>
-                                <label for="prio2" class="font-weight-bold m-0">Prioritet Hög</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-check form-check-inline">
-                                <input type="checkbox" class="form-check-input" id="vip" name="vip" value="1"
-                                    {{ $issue->vip == '1' ? 'checked' : '' }}>
-                                <label for="vip" class="font-weight-bold m-0">VIP-kund</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-check form-check-inline">
-                                <input type="checkbox" class="form-check-input" id="paused" name="paused" value="1"
-                                    {{ $issue->paused == '1' ? 'checked' : '' }}>
-                                <label for="vip" class="font-weight-bold m-0">Ärendet Pausat
-                                    <small>(Påminnelse om {{ setting('days_reminder_paused_issue') }}
-                                        {{ setting('days_reminder_paused_issue') < 2 ? 'dag' : 'dagar' }})
-                                    </small>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-check form-check-inline">
-                                <input type="checkbox" class="form-check-input" id="waitingForCustomer"
-                                    name="waitingForCustomer" value="1"
-                                    {{ $issue->waitingForCustomer == '1' ? 'checked' : '' }}>
-                                <label for="vip" class="font-weight-bold m-0">Väntar på svar från Kund
-                                    <small>(Påminnelse om {{ setting('days_reminder_waiting_for_external') }}
-                                        {{ setting('days_reminder_waiting_for_external') < 2 ? 'dag' : 'dagar' }})
-                                    </small>
-                                    </small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-check form-check-inline">
-                                <input type="checkbox" class="form-check-input" id="waitingForInternal"
-                                    name="waitingForInternal" value="1"
-                                    {{ $issue->waitingForInternal == '1' ? 'checked' : '' }}>
-                                <label for="vip" class="font-weight-bold m-0">Väntar på svar från Kollega
-                                    <small>(Påminnelse om {{ setting('days_reminder_waiting_for_internal') }}
-                                        {{ setting('days_reminder_waiting_for_internal') < 2 ? 'dag' : 'dagar' }})
-                                    </small>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="row">
                         <div class="col-lg-8" id="buttons">
                             <b-button size="sm" variant="success" type="submit" name="save" class="m-1">
@@ -273,7 +245,7 @@
                     </fieldset>
                 </form>
             </b-card>
-            <b-card sub-title="Bilagor:">
+            <b-card title="Bilagor:">
                 <div class="row py-1">
                     <div class="col-xs-12">
                         @foreach ($files as $file)
@@ -337,15 +309,10 @@
         <div>
             <h3>Lägg till anteckning</h3>
             @if (is_null($issue->timeClosed))
-                <issue-comment-form 
-                    :contacts="{{ $contacts }}" 
-                    :comment="{{ $new_comment }}"
-                    :follow="{{ $follow }}" 
-                    :auth_user="{{ $auth_user->id }}"
-                    :ticket="{{ json_encode($issue->ticketNumber) }}"
-                    :header="{{ json_encode($issue->header) }}"
-                    :from = "{{ json_encode(setting('app_from_adress')) }}"
-                    >
+                <issue-comment-form :contacts="{{ $contacts }}" :comment="{{ $new_comment }}"
+                    :follow="{{ $follow }}" :auth_user="{{ $auth_user->id }}"
+                    :ticket="{{ json_encode($issue->ticketNumber) }}" :header="{{ json_encode($issue->header) }}"
+                    :from="{{ json_encode(setting('app_from_adress')) }}">
                 </issue-comment-form>
             @endif
             <h3>Historik</h3>
@@ -369,9 +336,6 @@
                         @endswitch
                     </template>
                     @switch($comment->direction)
-                        {{-- direction==0 > internal note
-                        direction==1 > outbound message
-                        direction==2 > inbound message --}}
                         @case(0)
                             <template #from>
                                 {{ $comment->user->name . ' ' . $comment->user->surname }}
@@ -403,7 +367,7 @@
                     @endswitch
 
                     <b-card style="max-width: 50rem;"
-                        border-variant="{{ $comment->direction == 0 ? 'info' : ($comment->contact_id == 0 ? 'success' : 'warning') }}">
+                        border-variant="{{ $comment->direction == 0 ? 'info' : ($comment->contact_id == 0 ? 'danger' : 'warning') }}">
                         <b-card-text>
                             {!! nl2br(e($comment->comment)) !!}
                         </b-card-text>
