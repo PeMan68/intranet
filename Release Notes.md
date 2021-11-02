@@ -2,6 +2,7 @@
 ## To-do
 *Bugs*
 * 210902.01 Adding visitors names doesnt work anymore
+* 211102.01 Reminders can be sent several times, not just the set interval. I think when one toggle "answer from customer/collegue" it creates a job each time. A cache-key could prevent to sent the remaining mails if it has recently been sent?
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
