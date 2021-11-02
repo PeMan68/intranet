@@ -76,13 +76,11 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
                 if ($this->issue->waitingForCustomer) {
                     return null;
                 }
-                // $delayDays = setting('days_reminder_waiting_for_comment');
-                // $delayDateTime = nextWorkingDateTime(workDaysToMinutes($delayDays));
-                if (cache($this->issue->ticketNumber . 'Cold')) {
-                    return null;
-                }
-
                 break;
+        }
+        // Mailing blocked by cahe-key.
+        if (cache($this->issue->ticketNumber . 'Cold')) {
+            return null;
         }
         add_followers($this->issue, 3);
         $followers = $this->issue->followers;
