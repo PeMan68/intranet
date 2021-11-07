@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 
 class NotifyFollowersOfPaused
 {
-        /**
+    /**
      * Create the event listener.
      *
      * @return void
@@ -29,14 +29,18 @@ class NotifyFollowersOfPaused
      */
     public function handle(IssuePaused $event)
     {
-        $delayDateTime = nextWorkingDateTime(setting('days_reminder_paused_issue') * (setting('stop_hour_workingday') - setting('start_hour_workingday')) * 60);
+        $delayDateTime = nextWorkingDateTime(workDaysToMinutes(setting('days_reminder_paused_issue')));
 
-        // $followers = $event->issue->followers;
-        // foreach ($followers as $follower) {
-            SendEmailToFollowersAboutReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delayDateTime);
-            // Log::info('Job SendEmailToFollowersAboutReminder dispathed: '. $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delayDateTime);
-        // }
+        // Only if cache-key doesn't exist:
+        // - Activate cache-key
+        if (!cache($event->issue->ticketNumber . '-BlockPauseReminder')) {
+            cache([$event->issue->ticketNumber . '-BlockPauseReminder' => true], $delayDateTime->subSeconds(1));
+            // Log::info('Cache-key updated from NotifyFollowersOfPaused: ' . $event->issue->ticketNumber . '-BlockPauseReminder' . '. Expires: ' . $delayDateTime->subSeconds(1));
+        }
+
+        SendEmailToFollowersAboutReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delayDateTime);
+        // Log::info('Job SendEmailToFollowersAboutReminder dispathed: ' . $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder . '. Delay: ' . $delayDateTime);
         CreateNewReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delayDateTime);
-        // Log::info('Dispatched new job: CreateNewReminder, '. $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delayDateTime);
+        // Log::info('Dispatched new job: CreateNewReminder, ' . $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder . '. Delay: ' . $delayDateTime);
     }
 }

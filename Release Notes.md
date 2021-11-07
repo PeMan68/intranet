@@ -10,7 +10,6 @@
 * 210822.01 Use the php helpers dateconversion for demoproducts instead of vue. (used in store demoproduct)
 * 210829.01 Do something with settings, "if calendar-module && holidays-module is used". To handle modules in the future.
 
-
 *Features*
 * 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails are not responded upon.
 * 210109-9  Add question of debit customer for supporttime when checking back Issue. When Issue is closed a report shall be created to be invoiced from.
@@ -21,8 +20,12 @@
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 
 ### ***Working on***
-
 ## Finished for next release
+## **Release 2.6.9 (2021-11-07)**
+* 211102.01 Reminders can be sent several times, not just the set interval. I think when one toggle "answer from customer/collegue" it creates a job each time. A cache-key could prevent to sent the remaining mails if it has recently been sent?
+    * Cache-keys for individual jobs added to block jobs
+* 211026.01 Changed look of form for issues. Add description for descriptions, to make it clear what's sent to customer and what's not.
+* 211028.01 Highlight fields in issue that are visible for customer
 ## **Release 2.6.8 (2021-10-19)**
 * 211019.01 and 02, small bugfixes
 ## **Release 2.6.7 (2021-10-18)**

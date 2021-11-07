@@ -41,7 +41,7 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
      */
     public function handle()
     {
-        Log::info('Handling Job: SendEmailToFollowersAboutReminder. ' . $this->issue->ticketNumber);
+        // Log::info('Handling Job: SendEmailToFollowersAboutReminder. ' . $this->issue->ticketNumber);
         if (!is_null($this->issue->timeClosed)) {
             return;
         }
@@ -49,21 +49,38 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
         switch ($this->typeOfReminder) {
             case 'paused':
                 if (!$this->issue->paused) {
+                    // Log::info('   issue är inte Paused');
                     return null;
                 }
-                // $delayDays = setting('days_reminder_paused_issue');
+                // Log::info('   BlockPauseReminder: ' . cache($this->issue->ticketNumber . '-BlockPauseReminder'));
+                if (cache($this->issue->ticketNumber . '-BlockPauseReminder')) {
+                    // Mailing blocked by cache-key.
+                    return null;
+                }
                 break;
+
             case 'waitingForInternal':
                 if (!$this->issue->waitingForInternal) {
+                    // Log::info('   typeOfReminder är inte Internal');
                     return null;
                 }
-                // $delayDays = setting('days_reminder_waiting_for_internal');
+                if (cache($this->issue->ticketNumber . '-BlockInternalReminder')) {
+                    // Mailing blocked by cache-key.
+                    // Log::info('   MailToFollowersAboutReminder blockeras av BlockInternalReminder-key');
+                    return null;
+                }
                 break;
+
             case 'waitingForCustomer':
                 if (!$this->issue->waitingForCustomer) {
+                    // Log::info('   typeOfReminder är inte Customer');
                     return null;
                 }
-                // $delayDays = setting('days_reminder_waiting_for_external');
+                if (cache($this->issue->ticketNumber . '-BlockCustomerReminder')) {
+                    // Mailing blocked by cache-key.
+                    // Log::info('   MailToFollowersAboutReminder blockeras av BlockCustomerReminder-key');
+                    return null;
+                }
                 break;
 
             default:
@@ -76,19 +93,17 @@ class SendEmailToFollowersAboutReminder implements ShouldQueue
                 if ($this->issue->waitingForCustomer) {
                     return null;
                 }
-                // $delayDays = setting('days_reminder_waiting_for_comment');
-                // $delayDateTime = nextWorkingDateTime(workDaysToMinutes($delayDays));
                 if (cache($this->issue->ticketNumber . 'Cold')) {
+                    // Mailing blocked by cahe-key.
                     return null;
                 }
-
                 break;
         }
         add_followers($this->issue, 3);
         $followers = $this->issue->followers;
         foreach ($followers as $follower) {
             Mail::to($follower->email)->send(new MailToFollowersAboutReminder($this->issue, $this->typeOfReminder));
-            Log::info('   MailToFollowersAboutReminder skickas: ' . $follower->email);
+            // Log::info('   MailToFollowersAboutReminder skickas: ' . $follower->email);
         }
     }
 }

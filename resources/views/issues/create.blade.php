@@ -11,7 +11,8 @@
                 @csrf
                 <input type="hidden" name="timeInit" value="{{ $timeInit }}">
                 <div class="row justify-content-center">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 d-flex align-items-stretch flex-column">
+                        <b-card class="mb-auto">
                         <div class="form-row">
                             <div class="col-md-4">
                                 <div class="font-weight-bold">Område</div>
@@ -66,9 +67,10 @@
 
                             </div>
                         </div>
+                        </b-card>
+                        <b-card class="mt-2">
                         <div class="form-row">
                             <div class="col-md-12">
-                                <hr>
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="follow" name="follow" value="1"
                                         {{ old('follow') == '1' ? 'checked' : '' }}>
@@ -76,9 +78,17 @@
                                 </div>
                             </div>
                         </div>
+                        </b-card>
                     </div>
 
                     <div class="col-lg-6">
+                        <b-card 
+                            border-variant="danger"
+                            header="Denna info visas även i mail till kund!"
+                            header-text-variant="danger"
+                            header-bg-variant="transparent"
+                            align="center"
+                            >
                         <div class="form-row">
                             <div class="col-md-4 form-group">
                                 <label for="customerNumber" class="font-weight-bold">Kundnummer</label>
@@ -109,23 +119,26 @@
                                 value="{{ old('customerMail') }}">
                         </div>
                         <div class="form-group">
-                            <label for="customerMail" class="font-weight-bold">Rubrik(*)</label>
+                            <label for="header" class="font-weight-bold">Rubrik(*)</label>
                             <input type="text" class="form-control form-control-sm" id="header" name="header"
                                 value="{{ old('header') }}">
                         </div>
                         <div class="form-row">
-                            <div class="col-md-6 form-group">
                                 <label for="description" class="font-weight-bold">Formell beskrivning(*)</label>
                                 <textarea class="form-control form-control-sm" id="description" name="description"
-                                    rows="8">{{ old('description') }}</textarea>
-                            </div>
-                            <div class="col-md-6 form-group">
+                                rows="8">{{ old('description') }}</textarea>
+                        </div>
+                    </b-card>
+                    <b-card class="mt-4">
+                            <div class="form-row">
+                            
                                 <label for="descriptionInternal" class="font-weight-bold">Intern anteckning</label>
                                 <textarea class="form-control form-control-sm" id="descriptionInternal"
                                     name="descriptionInternal" rows="8">{{ old('descriptionInternal') }}</textarea>
-                            </div>
                         </div>
+                        </b-card>
                     </div>
+                
                 </div>
 
                 <div class="row">
