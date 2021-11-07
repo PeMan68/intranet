@@ -330,6 +330,9 @@ if (!function_exists('isWeekend')) {
 	 */
 	function isWeekend(DateTime $datetime)
 	{
+		// Uncomment to temporary allow all days of week for testing
+		// return false;
+		
 		// While day is not workday or holiday, add one day to datetime
 		if ($datetime->dayOfWeek > 5 || $datetime->dayOfWeek == 0) {
 			return true;
