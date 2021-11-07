@@ -323,6 +323,10 @@ class IssuesController extends Controller
 			$validatedData['paused'] = $request->has('paused');
 			if ($request->has('paused')) {
 				event(new IssuePaused($issue, 'paused'));
+			} else {
+				// reset cache-key
+				cache([$issue->ticketNumber . '-BlockPauseReminder' => true], 0);
+				// Log::info('Cache-key deleted: ' . $issue->ticketNumber . '-BlockPauseReminder');
 			}
 			$validatedData['waitingForCustomer'] = $request->has('waitingForCustomer');
 			if ($request->has('waitingForCustomer')) {
@@ -331,6 +335,10 @@ class IssuesController extends Controller
 			$validatedData['waitingForInternal'] = $request->has('waitingForInternal');
 			if ($request->has('waitingForInternal')) {
 				event(new IssueWaitingForInternal($issue, 'waitingForInternal'));
+			} else {
+				// reset cache-key
+				cache([$issue->ticketNumber . '-BlockInternalReminder' => true], 0);
+				// Log::info('Cache-key deleted: ' . $issue->ticketNumber . '-BlockInternalReminder');
 			}
 			$issue->update($validatedData);
 			// event(new UpdatedIssue($issue, $type='header', $issue->getChanges()));

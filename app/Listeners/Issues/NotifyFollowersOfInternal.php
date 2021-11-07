@@ -29,9 +29,13 @@ class NotifyFollowersOfInternal
      */
     public function handle(IssueWaitingForInternal $event)
     {
-        $delayDateTime = nextWorkingDateTime(setting('days_reminder_waiting_for_internal') * (setting('stop_hour_workingday') - setting('start_hour_workingday')) * 60);
-        // $followers = $event->issue->followers;
-        // foreach ($followers as $follower) {
+        $delayDateTime = nextWorkingDateTime(workDaysToMinutes(setting('days_reminder_waiting_for_internal')));
+        // Only if cache-key doesn't exist:
+        // - Activate cache-key
+        if (!cache($event->issue->ticketNumber . '-BlockInternalReminder')) {
+            cache([$event->issue->ticketNumber . '-BlockInternalReminder' => true], $delayDateTime->subSeconds(1));
+            // Log::info('Cache-key updated from NotifyFollowersOfInternal: ' . $event->issue->ticketNumber . '-BlockInternalReminder' . '. Expires: ' . $delayDateTime->subSeconds(1));
+        }
             SendEmailToFollowersAboutReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delayDateTime);
             // Log::info('Job SendEmailToFollowersAboutReminder dispatched: '. $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delayDateTime);
         // }
