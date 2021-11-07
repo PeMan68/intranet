@@ -20,8 +20,9 @@
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 
 ### ***Working on***
-* 211102.01 Reminders can be sent several times, not just the set interval. I think when one toggle "answer from customer/collegue" it creates a job each time. A cache-key could prevent to sent the remaining mails if it has recently been sent?
 ## Finished for next release
+* 211102.01 Reminders can be sent several times, not just the set interval. I think when one toggle "answer from customer/collegue" it creates a job each time. A cache-key could prevent to sent the remaining mails if it has recently been sent?
+    * Cache-keys for individual jobs added to block jobs
 * 211026.01 Changed look of form for issues. Add description for descriptions, to make it clear what's sent to customer and what's not.
 * 211028.01 Highlight fields in issue that are visible for customer
 ## **Release 2.6.8 (2021-10-19)**
