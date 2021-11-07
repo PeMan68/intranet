@@ -247,6 +247,9 @@ if (!function_exists('nextWorkingDateTime')) {
 	 */
 	function nextWorkingDateTime(int $minutes = 0, DateTime $dateTimeStart = null)
 	{
+		// ! Uncomment for testing jobs
+		return now()->addMinutes(1);
+
 		if (is_null($dateTimeStart)) {
 			$dateTimeStart = now();
 		}
