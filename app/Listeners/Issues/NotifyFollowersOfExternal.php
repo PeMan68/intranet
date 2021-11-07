@@ -40,7 +40,6 @@ class NotifyFollowersOfExternal
 
         SendEmailToFollowersAboutReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delayDateTime);
         // Log::info('Job SendEmailToFollowersAboutReminder dispatched: '. $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delayDateTime);
-        // }
         CreateNewReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delayDateTime);
         // Log::info('Dispatched new job: CreateNewReminder, '. $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delayDateTime);
     }

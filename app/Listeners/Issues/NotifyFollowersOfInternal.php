@@ -37,10 +37,9 @@ class NotifyFollowersOfInternal
             cache([$event->issue->ticketNumber . '-BlockInternalReminder' => true], $delayDateTime->subSeconds(1));
             // Log::info('Cache-key updated from NotifyFollowersOfInternal: ' . $event->issue->ticketNumber . '-BlockInternalReminder' . '. Expires: ' . $delayDateTime->subSeconds(1));
         }
-            SendEmailToFollowersAboutReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delayDateTime);
-            // Log::info('Job SendEmailToFollowersAboutReminder dispatched: '. $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delayDateTime);
-        // }
+        SendEmailToFollowersAboutReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delayDateTime);
+        // Log::info('Job SendEmailToFollowersAboutReminder dispatched: ' . $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder . '. Delay: ' . $delayDateTime);
         CreateNewReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delayDateTime);
-        // Log::info('Dispatched new job: CreateNewReminder, '. $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delayDateTime);
+        // Log::info('Dispatched new job: CreateNewReminder, ' . $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder . '. Delay: ' . $delayDateTime);
     }
 }
