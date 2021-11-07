@@ -29,11 +29,17 @@ class NotifyFollowersOfExternal
      */
     public function handle(IssueWaitingForCustomer $event)
     {
-        $delayDateTime = nextWorkingDateTime(setting('days_reminder_waiting_for_external') * (setting('stop_hour_workingday') - setting('start_hour_workingday')) * 60);
-        // $followers = $event->issue->followers;
-        // foreach ($followers as $follower) {
-            SendEmailToFollowersAboutReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delayDateTime);
-            // Log::info('Job SendEmailToFollowersAboutReminder dispatched: '. $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delayDateTime);
+        $delayDateTime = nextWorkingDateTime(workDaysToMinutes(setting('days_reminder_waiting_for_external')));
+
+        // Only if cache-key doesn't exist:
+        // - Activate cache-key
+        if (!cache($event->issue->ticketNumber . '-BlockCustomerReminder')) {
+            cache([$event->issue->ticketNumber . '-BlockCustomerReminder' => true], $delayDateTime->subSeconds(1));
+            // Log::info('Cache-key updated from NotifyFollowersOfInternal: ' . $event->issue->ticketNumber . '-BlockCustomerReminder' . '. Expires: ' . $delayDateTime->subSeconds(1));
+        }
+
+        SendEmailToFollowersAboutReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delayDateTime);
+        // Log::info('Job SendEmailToFollowersAboutReminder dispatched: '. $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delayDateTime);
         // }
         CreateNewReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delayDateTime);
         // Log::info('Dispatched new job: CreateNewReminder, '. $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delayDateTime);

@@ -30,6 +30,7 @@ class NotifyFollowersOfInternal
     public function handle(IssueWaitingForInternal $event)
     {
         $delayDateTime = nextWorkingDateTime(workDaysToMinutes(setting('days_reminder_waiting_for_internal')));
+
         // Only if cache-key doesn't exist:
         // - Activate cache-key
         if (!cache($event->issue->ticketNumber . '-BlockInternalReminder')) {

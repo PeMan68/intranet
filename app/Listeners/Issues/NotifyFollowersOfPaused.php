@@ -29,10 +29,15 @@ class NotifyFollowersOfPaused
      */
     public function handle(IssuePaused $event)
     {
-        $delayDateTime = nextWorkingDateTime(setting('days_reminder_paused_issue') * (setting('stop_hour_workingday') - setting('start_hour_workingday')) * 60);
+        $delayDateTime = nextWorkingDateTime(workDaysToMinutes(setting('days_reminder_paused_issue')));
+        
+        // Only if cache-key doesn't exist:
+        // - Activate cache-key
+        if (!cache($event->issue->ticketNumber . '-BlockPauseReminder')) {
+            cache([$event->issue->ticketNumber . '-BlockPauseReminder' => true], $delayDateTime->subSeconds(1));
+            // Log::info('Cache-key updated from NotifyFollowersOfPaused: ' . $event->issue->ticketNumber . '-BlockPauseReminder' . '. Expires: ' . $delayDateTime->subSeconds(1));
+        }
 
-        // $followers = $event->issue->followers;
-        // foreach ($followers as $follower) {
             SendEmailToFollowersAboutReminder::dispatch($event->issue, $event->typeOfReminder)->delay($delayDateTime);
             // Log::info('Job SendEmailToFollowersAboutReminder dispathed: '. $event->issue->ticketNumber . '. typeOfReminder: ' . $event->typeOfReminder .'. Delay: ' . $delayDateTime);
         // }
