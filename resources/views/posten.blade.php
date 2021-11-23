@@ -7,7 +7,7 @@
 @section('content')
 	<div class="container">
 		<p>
-		<h2>Utskrift av adresslapp</h2>
+		<h2>Utskrift av adresslapp för Posten eller TNT</h2>
 		Användarnamn: 650058000365221 </br>
 		Lösenord: QTS856JF</br>
 		</p>
