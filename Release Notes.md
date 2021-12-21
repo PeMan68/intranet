@@ -22,6 +22,7 @@
 ### ***Working on***
 ## Finished for next release
 * 211123.01 Change a label of left menu from "Posten Adresslappar" to "Adressetiketter"
+* 211221.01 Change label on open issue from "Öppna ärende" to "Checka ut ärende""
 ## **Release 2.6.9 (2021-11-07)**
 * 211102.01 Reminders can be sent several times, not just the set interval. I think when one toggle "answer from customer/collegue" it creates a job each time. A cache-key could prevent to sent the remaining mails if it has recently been sent?
     * Cache-keys for individual jobs added to block jobs
