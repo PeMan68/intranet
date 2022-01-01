@@ -74,3 +74,5 @@ Route::get('/posts', 'PostController@index')->name('posts.index')->middleware('a
 
 Route::resource('/contacts', 'ContactController')->middleware('auth');
 
+Route::resource('/products', 'ProductController')->middleware('auth');
+
