@@ -12,10 +12,36 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::paginate(25);
-		return view('products.index',['products' => $products]);
+        if ($request->filter) {
+        $products = Product::where('item', 'LIKE', '%'.$request->filter.'%' )
+            ->get()
+            ->map(function($product) {
+                return [
+                    'Artikel' => $product->item,
+                    'E-nummer' => $product->Enummer,
+                    'Benämning' => $product->item_description_swe,
+                    'Listpris' => $product->listprice,
+                    'Uppdaterad' => $product->updated_at,
+                    'Ersättningar' => $product->replacements,
+                    '_showDetails' => True,
+                ];
+            });
+        $fields = collect([]);
+        $fields->push(['key' => 'Artikel']);
+        $fields->push(['key' => 'E-nummer']);
+        $fields->push(['key' => 'Benämning']);
+        $fields->push(['key' => 'Listpris']);
+        $fields->push(['key' => 'Uppdaterad']);
+
+		return view('products.index',[
+            'products' => $products,
+            'fields' => $fields,
+            
+        ]);
+    }
+    return;
     }
 
     /**

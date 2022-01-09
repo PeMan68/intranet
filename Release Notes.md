@@ -20,6 +20,11 @@
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 ### ***Working on***
 * 211230.01 Product info. Replacement items
+    * sök produkt redan från huvudsidan?
+    * ersätt demoproduktsidan genom att ha en klickruta för endast demoartiklar?
+    * Vy - visa all info från sökresultat
+        - artikel | enummer | benämning | listpris | antal i demolager
+            ersättningsartiklar i kursivt med samma info
 ## Finished for next release
 * 211123.01 Change a label of left menu from "Posten Adresslappar" to "Adressetiketter"
 * 211221.01 Change label on open issue from "Öppna ärende" to "Checka ut ärende""
