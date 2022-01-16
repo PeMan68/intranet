@@ -15,25 +15,47 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         if ($request->filter) {
-        $products = Product::where('item', 'LIKE', '%'.$request->filter.'%' )
-            ->get()
+        $selectedProducts =  Product::where('item', 'LIKE', '%'.$request->filter.'%' )->get();   
+        $products =$selectedProducts
             ->map(function($product) {
+                
                 return [
+                    'ID' => $product->id,
                     'Artikel' => $product->item,
-                    'E-nummer' => $product->Enummer,
+                    'Enummer' => $product->Enummer,
                     'Benämning' => $product->item_description_swe,
                     'Listpris' => $product->listprice,
-                    'Uppdaterad' => $product->updated_at,
+                    'Uppdaterad' => date('y-m-d', strtotime($product->updated_at)),
                     'Ersättningar' => $product->replacements,
-                    '_showDetails' => True,
+                    'Antal_i_demo' => count($product->demoproduct),
+
                 ];
             });
+
+        // foreach ($selectedProducts as $product) {
+        //     if ($product->replacements->IsNotEmpty()){
+        //         foreach ($product->replacements as $replacement) {
+        //             $products->push( [
+        //                 'ID' => $replacement->id,
+        //                 'Artikel' => $replacement->item,
+        //                 'E-nummer' => $replacement->Enummer,
+        //                 'Benämning' => $replacement->item_description_swe,
+        //                 'Listpris' => $replacement->listprice,
+        //                 'Uppdaterad' => $replacement->updated_at,
+        //                 'Kommentar' => $replacement->pivot->comment,
+        //                 'Ersätter' => $product->id,
+        //             ]);
+        //         }
+        //     }
+        // }
+        // $products->dd();
         $fields = collect([]);
         $fields->push(['key' => 'Artikel']);
         $fields->push(['key' => 'E-nummer']);
         $fields->push(['key' => 'Benämning']);
         $fields->push(['key' => 'Listpris']);
         $fields->push(['key' => 'Uppdaterad']);
+        $fields->push(['key' => 'Kommentar']);
 
 		return view('products.index',[
             'products' => $products,
@@ -73,7 +95,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        return view('products.show',['product' => $product]);
     }
 
     /**

@@ -1,41 +1,35 @@
 <template>
 <b-container fluid>
 
-    <b-table id="products-table" :primary-key="'ID'" :items="items" :fields="fields" :per-page="perPage" :current-page="currentPage" small borderless sticky-header="800px" sort-icon-left>
-        <template #row-details="row">
-            <div v-show="row.item.Ersättningar" class="card-body">
-                <h5>Ersättningsprodukter</h5>
-                <table>
+                <table class="table table-sm table-borderless">
                     <tr>
                         <th>Artikel</th>
                         <th>E-nummer</th>
                         <th>Benämning</th>
                         <th>Listpris</th>
                         <th>Uppdaterad</th>
+                        <th>Kommentar</th>
                     </tr>
-                    <div  v-for="replacement in row.item.Ersättningar" :key="replacement.replacement_product_id">
+                    <tbody v-for="item in items" :key="item.id">
                     <tr>
-                        <td>{{ replacement.item }}</td>
-                        <td>{{ replacement.enummer }}</td>
-                        <td>{{ replacement.item_description_swe }}</td>
-                        <td>{{ replacement.listprice }}</td>
-                        <td>{{ replacement.updated_at }}</td>
+                        <td>{{ item.Artikel }} {{item.Antal_i_demo>0?'Finns':''}}</td>
+                        <td>{{ item.Enummer }}</td>
+                        <td>{{ item.Benämning}}</td>
+                        <td class="justify-right">{{ item.Listpris }}</td>
+                        <td>{{ item.Uppdaterad }}</td>
+
                     </tr>
-                    <tr>
-                        <td colspan="5">{{ replacement.pivot.comment }}</td>
-                    </tr>
-                    </div>
+                        <tr class="bg-light" v-for="replacement in item.Ersättningar" :key="replacement.item.id">
+                            <td><i class="material-icons">subdirectory_arrow_right</i> 
+                            <a :href="'products?filter=' + replacement.item">{{ replacement.item }}</a> </td>
+                            <td> {{ replacement.enummer }}</td>
+                            <td> {{ replacement.item_description_swe }}</td>
+                            <td class="justify-right"> {{ replacement.listprice }}</td>
+                            <td> {{ replacement.updated_at }}</td>
+                            <td> {{ replacement.pivot.comment }}</td>
+                        </tr>
+                    </tbody>
                 </table>
-            </div>
-        </template>
-    </b-table>
-    <b-row v-show="totalRows>perPage" class="mb-2">
-
-        <b-col>
-            <b-pagination v-model="currentPage" :total-rows="totalRows" :per-page="perPage" aria-controls="products-table"></b-pagination>
-        </b-col>
-
-    </b-row>
 </b-container>
 </template>
 
@@ -48,37 +42,10 @@ export default {
 
     data() {
         return {
-            perPage: 10,
-            currentPage: 1,
-            totalRows: 1,
-            filterTable: '',
-            age: null,
-            formfields: {
-                comment: '',
-                status: 0,
-                toLocation: 0,
-                fromLocation: 0,
-                itemId: 0,
-                box: '',
-                doc: '',
-                tested: '',
-                serial: '',
-                version: '',
-                reason: '',
-                invoiceDate: '',
-                user: 0,
 
-            },
-            sortedLocations: [],
-            oldRow: -1,
-            oldAge: null,
         };
     },
 
-    mounted() {
-        // Set the initial number of items
-        this.totalRows = this.items.length
-    },
 
     methods: {
 
