@@ -27,8 +27,9 @@ OK  * Vy - visa all info från sökresultat
             ersättningsartiklar i kursivt med samma info
     * hur ska data uppdateras? någon mer generisk importfunktion
         - nya produkter
-        - pris
+        - pris 
 Börjat på products.show, layout med productinfo, demolager, ersättningsprodukter
+Lagt till prisdatum **run migration**
 ## Finished for next release
 * 211123.01 Change a label of left menu from "Posten Adresslappar" to "Adressetiketter"
 * 211221.01 Change label on open issue from "Öppna ärende" to "Checka ut ärende""
