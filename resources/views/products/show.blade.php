@@ -10,7 +10,7 @@
             <div class="col-lg-6">
                 <div class="card-body">
                     <b-card title="Produktinfo">
-                        <table>
+                        <table class="table table-borderless">
                             <tr>
                                 <td>Benämning:</td>
                                 <td>
@@ -24,13 +24,13 @@
                                 <td>E-nummer:</td><td> {{ is_null($product->enummer)?'-':$product->enummer }}</td>
                             </tr>
                             <tr>
-                                <td>Listpris:</td>
-                                <td> {{ $product->listprice }} 
-                                    (Prisdatum {{ 
+                                <td>Listpris {{ 
                                     is_null($product->price_date)
                                     ?date('Y-m-d', strtotime($product->updated_at))
                                     :$product->price_date 
-                                    }})
+                                    }}:</td>
+                                <td> 
+                                    {{ $product->listprice }} 
                                 </td>
                             </tr>
                             <tr>
