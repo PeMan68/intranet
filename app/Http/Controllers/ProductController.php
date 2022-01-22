@@ -15,7 +15,10 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         if ($request->filter) {
-        $selectedProducts =  Product::where('item', 'LIKE', '%'.$request->filter.'%' )->get();   
+        $selectedProducts =  Product::where('item', 'LIKE', '%'.$request->filter.'%')
+            ->orWhere('enummer', $request->filter)    
+        
+        ->get();   
         $products =$selectedProducts
             ->map(function($product) {
                 
