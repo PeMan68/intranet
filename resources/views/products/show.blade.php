@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="card-body">
-                    <b-card title="Produktinfo">
+                    <b-card title="Produktinfo, uppdaterad {{ formatPriceDate($product) }}">
                         <table class="table table-borderless">
                             <tr>
                                 <td>Benämning:</td>
@@ -24,17 +24,14 @@
                                 <td>E-nummer:</td><td> {{ is_null($product->enummer)?'-':$product->enummer }}</td>
                             </tr>
                             <tr>
-                                <td>Listpris {{ 
-                                    is_null($product->price_date)
-                                    ?date('Y-m-d', strtotime($product->updated_at))
-                                    :$product->price_date 
-                                    }}:</td>
+                                <td>Listpris :</td>
                                 <td> 
-                                    {{ $product->listprice }} 
+                                    {{ formatPrice($product->listprice) }} 
+                                   
                                 </td>
                             </tr>
                             <tr>
-                                <td>Produktgrupp:</td><td>{{ $product->group }} {{ $product->family }} {{ $product->subfamily }}</td>
+                                <td>Produktgrupp:</td><td>{{ $product->group }}/{{ $product->family }}/{{ $product->subfamily }}</td>
                             </tr>
                         </table>
                     </b-card>

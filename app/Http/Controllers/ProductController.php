@@ -32,8 +32,8 @@ class ProductController extends Controller
                         'Artikel' => $product->item,
                         'E_nummer' => $product->enummer,
                         'Benämning' => $product->item_description_swe,
-                        'Listpris' => $product->listprice,
-                        'Uppdaterad' => date('y-m-d', strtotime($product->updated_at)),
+                        'Listpris' => formatPrice($product->listprice),
+                        'Uppdaterad' => formatPriceDate($product),
                         'Ersättningar' => $product->replacements,
                         'Antal_i_demo' => count($product->demoproduct),
 

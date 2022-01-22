@@ -412,3 +412,26 @@ if (!function_exists('radio_to_epoch')) {
 		}
 	}
 }
+
+if (!function_exists('formatPrice')) {
+	function formatPrice($price)
+	{
+		$i = intval($price);
+		$d = intval(($price-$i)*100);
+		if ($d == 0) { 
+			$d='00';
+		}
+		return $i.'.'.$d;
+	}
+}
+
+if (!function_exists('formatPriceDate')) {
+	function formatPriceDate($product)
+	{
+		if (is_null($product->price_date)) {
+			return date('Y-m-d', strtotime($product->updated_at));
+		} else {
+			return $product->price_date;
+		}
+	}
+}
