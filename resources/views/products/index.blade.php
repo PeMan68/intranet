@@ -8,6 +8,16 @@
 			<div class="col-6">
 				<h3>Produkter</h3>
 			</div>
+			<div class="col-6">
+
+				<span class="text-right">
+					<form>
+					<input type="text" id="filter" name="filter">
+					<button>Sök</button>
+					</form>
+				</span>
+			</div>
+			</div>
 		</div>
 	</div>
 	<div class="card-body">
