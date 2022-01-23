@@ -20,6 +20,7 @@
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 ### ***Working on***
 ## Finished for next release
+## **Release 2.6.12 (2022-01-23)**
 * 211123.01 Change a label of left menu from "Posten Adresslappar" to "Adressetiketter"
 * 211221.01 Change label on open issue from "Öppna ärende" to "Checka ut ärende""
 * 211230.01 Products module, Product Replacements module added
@@ -32,6 +33,7 @@
     * sök produkt redan från huvudsidan?
     * ersätt demoproduktsidan genom att ha en klickruta för endast demoartiklar?
     **edit settings to enable the new modules**
+    * 220123.01 Added form to all product-pages
 ## **Release 2.6.9 (2021-11-07)**
 * 211102.01 Reminders can be sent several times, not just the set interval. I think when one toggle "answer from customer/collegue" it creates a job each time. A cache-key could prevent to sent the remaining mails if it has recently been sent?
     * Cache-keys for individual jobs added to block jobs
