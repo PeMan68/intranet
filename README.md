@@ -1,5 +1,21 @@
 # intranet
 
+## Version 2.6.11 ##
+(2022-01-23)
+
+*Nyheter*
+* **Ny modul Produkter**
+
+- Produkter visar samlad info om våra produkter:
+    * Pris
+    * Benämning
+    * E-nummer
+    * Produktgrupp
+    * Om den finns på "demolager"
+    * Om det finns ersättare
+* **Startsidan**
+    * Diagram borttaget från startsidan
+    * Uppdaterad länk till adresslappar
 ## Version 2.6.7 ##
 (2021-10-18)
 
