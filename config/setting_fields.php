@@ -81,8 +81,26 @@ return [
             [
                 'type' => 'checkbox', // input fields type
                 'data' => 'boolean', // data type, string, int, boolean
+                'name' => 'enable_products', // unique name for field
+                'label' => 'Produkter', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 0 // default value if you want
+            ],
+            [
+                'type' => 'checkbox', // input fields type
+                'data' => 'boolean', // data type, string, int, boolean
+                'name' => 'enable_product_replacements', // unique name for field
+                'label' => 'Ersättningsprodukter', // you know what label it is
+                'rules' => 'required', // validation rule of laravel
+                'class' => '', // any class for input
+                'value' => 0 // default value if you want
+            ],
+            [
+                'type' => 'checkbox', // input fields type
+                'data' => 'boolean', // data type, string, int, boolean
                 'name' => 'enable_posts', // unique name for field
-                'label' => 'Artiklar', // you know what label it is
+                'label' => 'Supportinfo', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
                 'value' => 0 // default value if you want

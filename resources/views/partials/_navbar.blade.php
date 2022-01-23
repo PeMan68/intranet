@@ -23,9 +23,9 @@
 				</b-nav-item>
 				@endshowmodule
 
-				@showmodule('enable_demoprodukter')
-				<b-nav-item href="{{ url('/demoproducts/') }}">Demoprodukter
-					@if (!setting('enable_demoprodukter'))
+				@showmodule('enable_products')
+				<b-nav-item href="{{ url('/products/') }}">Produkter
+					@if (!setting('enable_products'))
 						<sup>beta</sup>
 					@endif
 				</b-nav-item>
@@ -40,7 +40,7 @@
 				@endshowmodule
 				
 				@showmodule('enable_posts')
-				<b-nav-item href="{{ url('/posts/') }}">Artiklar
+				<b-nav-item href="{{ url('/posts/') }}">Supportartiklar
 					@if (!setting('enable_posts'))
 						<sup>beta</sup>
 					@endif
