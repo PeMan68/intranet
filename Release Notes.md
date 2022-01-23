@@ -30,6 +30,7 @@ OK  * Vy - visa all info från sökresultat
         - pris 
 Börjat på products.show, layout med productinfo, demolager, ersättningsprodukter
 Lagt till prisdatum **run migration**
+**edit settings to enable the new modules**
 ## Finished for next release
 * 211123.01 Change a label of left menu from "Posten Adresslappar" to "Adressetiketter"
 * 211221.01 Change label on open issue from "Öppna ärende" to "Checka ut ärende""
