@@ -40,7 +40,7 @@
 				@endshowmodule
 				
 				@showmodule('enable_posts')
-				<b-nav-item href="{{ url('/posts/') }}">Artiklar
+				<b-nav-item href="{{ url('/posts/') }}">Supportartiklar
 					@if (!setting('enable_posts'))
 						<sup>beta</sup>
 					@endif
