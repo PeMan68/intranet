@@ -18,7 +18,11 @@
 		</div>
 	</div>
 	<div class="card-body">
-        Sök produkter
+		<products-table 
+			:items="{{ $products }}" 
+			:fields="{{ $fields }}"
+			>
+		</products-table>
 	</div>
 </div>
 

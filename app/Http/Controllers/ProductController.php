@@ -14,8 +14,15 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->filter) {
+    
+        return view('products.index');
+    }
+
+    public function search(Request $request)
+    {
+        if (!is_null($request->filter)) {
             $selectedProducts =  Product::where('item', 'LIKE', '%' . $request->filter . '%')
+                ->orWhere('item_description_swe', 'LIKE', '%' . $request->filter . '%')    
                 ->orWhere('enummer', $request->filter)
                 ->get();
 
@@ -48,15 +55,15 @@ class ProductController extends Controller
             $fields->push(['key' => 'Uppdaterad']);
             $fields->push(['key' => 'Kommentar']);
 
-            return view('products.index', [
+            return view('products.overview', [
                 'products' => $products,
                 'fields' => $fields,
 
             ]);
+        } else {
+            return view('products.index');
         }
-        return;
     }
-
     /**
      * Show the form for creating a new resource.
      *

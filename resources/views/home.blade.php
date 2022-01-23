@@ -4,7 +4,8 @@
 
 <div class="row pb-3">
     <div class="col">
-        @include('partials._chart')
+        Snabbsök produkter
+        @include('partials._productsform')
     </div>
 </div>
 <div class="row pb-3">
