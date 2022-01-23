@@ -2,8 +2,17 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header h3">
-            Produkt <strong>{{ $product->item }}</strong>
+        <div class="card-header">
+            <div class="row">
+                <div class="col-lg-6 h3">
+                    Produkt
+                </div>
+                <div class="col-lg-6">
+                    <span class="text-right">
+                    @include('partials._productsform')
+                    </span>
+                </div>
+            </div>
         </div>
         <div class="card-body">
         <div class="row">
@@ -11,6 +20,10 @@
                 <div class="card-body">
                     <b-card title="Produktinfo, uppdaterad {{ formatPriceDate($product) }}">
                         <table class="table table-borderless">
+                            <tr>
+                                <td>Produkt:</td>
+                                <td><strong>{{ $product->item }}</strong></td>
+                            </tr>
                             <tr>
                                 <td>Benämning:</td>
                                 <td>
