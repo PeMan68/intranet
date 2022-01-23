@@ -74,3 +74,7 @@ Route::get('/posts', 'PostController@index')->name('posts.index')->middleware('a
 
 Route::resource('/contacts', 'ContactController')->middleware('auth');
 
+Route::get('/products', 'ProductController@index')->name('products.index')->middleware('auth');
+Route::get('/products/{id}', 'ProductController@show')->name('products.show')->middleware('auth');
+Route::post('/products', 'ProductController@search')->name('products.search')->middleware('auth');
+

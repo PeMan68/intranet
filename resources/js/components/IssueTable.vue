@@ -137,7 +137,7 @@
                         </b-col>
                     </b-row>
 
-                    <b-button size="sm" :href="'/issues/' + row.item.Id ">Öppna ärendet</b-button>
+                    <b-button size="sm" :href="'/issues/' + row.item.Id ">Checka ut ärendet</b-button>
                 </b-card>
             </template>
         </b-table>

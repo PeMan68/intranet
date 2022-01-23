@@ -9,7 +9,7 @@
 <navigation-link url="http://172.16.0.184/qweb"><slot>QUARTA</slot></navigation-link>
 <navigation-link url="http://194.243.72.228"><slot>GESTREQ</slot></navigation-link>
 <navigation-link url="http://172.16.0.183/projects/si5/wiki"><slot>Dokumentation SIGIP mm</slot></navigation-link>
-<a href="/posten">Posten Adresslappar</a>
+<a href="/posten">Adressetiketter</a>
 <span class="border-top mt-1"></span>
 <div class="text-light">Hantera</div>
 <a href="{{ route('holidays.index')}}">Hantera lediga dagar</a>
