@@ -36,7 +36,7 @@
                         </table>
                     </b-card>
                 </div>
-                @showmodule('enable_product_replacements')
+                @hasroles(['admin'])
                 <div class="card-body">
                     <b-card title="Ersättningsprodukter">
                         @if (count($product->replacements)==0)
@@ -57,7 +57,7 @@
                     </b-card>
     
                 </div>
-                @endshowmodule
+                @endhasroles
             </div>
 
             <div class="col-lg-6">
