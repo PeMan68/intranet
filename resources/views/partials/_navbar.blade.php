@@ -23,9 +23,9 @@
 				</b-nav-item>
 				@endshowmodule
 
-				@showmodule('enable_demoprodukter')
+				@showmodule('enable_products')
 				<b-nav-item href="{{ url('/products/') }}">Produkter
-					@if (!setting('enable_demoprodukter'))
+					@if (!setting('enable_products'))
 						<sup>beta</sup>
 					@endif
 				</b-nav-item>

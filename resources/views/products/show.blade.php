@@ -36,6 +36,7 @@
                         </table>
                     </b-card>
                 </div>
+                @showmodule('enable_product_replacements')
                 <div class="card-body">
                     <b-card title="Ersättningsprodukter">
                         @if (count($product->replacements)==0)
@@ -56,8 +57,11 @@
                     </b-card>
     
                 </div>
+                @endshowmodule
             </div>
+
             <div class="col-lg-6">
+                @showmodule('enable_demoprodukter')
                 <div class="card-body">
                     <b-card title="Demoprodukter">
                         @if (count($product->demoproduct)==0)
@@ -77,6 +81,7 @@
                         @endif
                     </b-card>
                 </div>
+                @endshowmodule
             </div>
         </div>
         </div>
