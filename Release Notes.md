@@ -19,18 +19,16 @@
 * 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 ### ***Working on***
-* 211230.01 Product info. Replacement items
+* 211230.01 Products module, Product Replacements module added
+    * New menue for Products
+    * Search Products
+    * Replacement items and demoitems calculated and shown from Products.
+    * Single product show all info of product.
+    * Date of price-update is indicated per product. **run migration** 
+    * import of product-info can hold only some columns. ***NB: No validation is done***
     * sök produkt redan från huvudsidan?
     * ersätt demoproduktsidan genom att ha en klickruta för endast demoartiklar?
-OK  * Vy - visa all info från sökresultat
-        - artikel | enummer | benämning | listpris | antal i demolager
-            ersättningsartiklar i kursivt med samma info
-    * hur ska data uppdateras? någon mer generisk importfunktion
-        - nya produkter
-        - pris 
-Börjat på products.show, layout med productinfo, demolager, ersättningsprodukter
-Lagt till prisdatum **run migration**
-**edit settings to enable the new modules**
+    **edit settings to enable the new modules**
 ## Finished for next release
 * 211123.01 Change a label of left menu from "Posten Adresslappar" to "Adressetiketter"
 * 211221.01 Change label on open issue from "Öppna ärende" to "Checka ut ärende""
