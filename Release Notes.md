@@ -18,6 +18,9 @@
 * 210112-2  Save customer details for autofill
 * 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
+* 220123.02 Upload Replacement products
+* 220123.03 Add module "snabbsök" for other modules on startpage
+
 ### ***Working on***
 ## Finished for next release
 ## **Release 2.6.12 (2022-01-23)**
