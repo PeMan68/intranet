@@ -18,7 +18,18 @@
 		</div>
 	</div>
 	<div class="card-body">
-        Sök produkter
+        <h4>Sök produkter</h4>
+        <p>Du kan söka produkt på följande information:
+            <ul>
+                <li>Del av produktnamn</li>
+                <li>Del av benämning</li>
+                <li>E-nummer. E-numret ska vara komplett, inga mellanrum och inget "E" först.</li>
+            </ul>
+        @hasroles(['admin'])
+        <p> Om du har rättighet, så kan du uppdatera produktinformationen genom att ladda upp en excelfil med information.
+            Om du ser denna text, så har du rättighet att göra det.
+        </p>
+        @endhasroles
 	</div>
 </div>
 
