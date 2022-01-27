@@ -22,6 +22,8 @@
 * 220125.02 Access to view and add Dempoproducts must be available again, not only from productsearch.
 
 ### ***Working on***
+* 220123.02 Import of replacement products
+
 ## Finished for next release
 ## **Release 2.6.12 (2022-01-23)**
 * 211123.01 Change a label of left menu from "Posten Adresslappar" to "Adressetiketter"
