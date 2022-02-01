@@ -34,19 +34,19 @@ class ProductReplacementsImport implements WithStartRow, OnEachRow, WithChunkRea
 
         $row = $row->toArray();
 
-        // // Check columns
-        // if (is_null($row[$itemFromFile] ?? null)) {
-        //     //! Return with error message, fix!
-        //     return redirect()->action([ProductReplacementController::class, 'importReplacementForm'])->with('danger', 'Kolumnen ' . $item . ' saknas');
-        // }
-        // if (is_null($row[$replacementFromFile] ?? null)) {
-        //     //! Return with error message, fix!
-        //     return;
-        // }
-        // if (is_null($row[$remarkFromFile] ?? null)) {
-        //     //! Return with error message, fix!
-        //     return;
-        // }
+        // Check columns
+        if (is_null($row[$itemFromFile] ?? null)) {
+            //! Return with error message, fix!
+            return redirect()->action([ProductReplacementController::class, 'importReplacementForm'])->with('danger', 'Kolumnen ' . $item . ' saknas');
+        }
+        if (is_null($row[$replacementFromFile] ?? null)) {
+            //! Return with error message, fix!
+            return;
+        }
+        if (is_null($row[$remarkFromFile] ?? null)) {
+            //! Return with error message, fix!
+            return;
+        }
 
         // Update comment if record exist, or create
         $item = Product::where('item', $row[$itemFromFile])->first();
@@ -55,10 +55,12 @@ class ProductReplacementsImport implements WithStartRow, OnEachRow, WithChunkRea
         // Check if replacement product exist in Products table, otherwise insert..
 
         // Check if replacement exist in replacement-table
-        if ($item->replacements->contains('replacement', $replacement->id)) {
-            dd ($item->item . ' finns');
+        if ($item->replacements->contains($replacement)) {
+            $item->replacements()->updateExistingPivot($replacement, ['comment' => $row[$remarkFromFile]]);
+            
         } else {
-            $item->replacements()->attach($replacement);
+            $item->replacements()->attach($replacement,['comment' => $row[$remarkFromFile]]);
+            // $item->replacements()->updateExistingPivot($item, ['comment' => $row[$remarkFromFile]]);
             // dd ($item->item . ' tillagd');
         }
     }        

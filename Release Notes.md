@@ -23,6 +23,13 @@
 
 ### ***Working on***
 * 220123.02 Import of replacement products
++ Import from file
+    - Check column names work, but error message is not shown
+    + Import new rows with or without comment work
+    + If replacement exist, comment is updated
+    - count inserts and updatres and show result after import
+    - Let support-role import products and replacements
+        - validating poducs-file must be done in the same manner as replacement-file which works
 
 ## Finished for next release
 ## **Release 2.6.12 (2022-01-23)**
