@@ -28,6 +28,6 @@
 <a href="{{ route('admin.tasks.index')}}">Hantera ärenden</a>
 <a href="{{ route('admin.users.index')}}">Hantera användare</a>
 <a href="{{ route('admin.images.create')}}">Lägg till fil till receptionsskärm</a>
-<a href="{{ route('admin.importproducts')}}">Uppdatera produktlista</a>
 <a href="{{ route('admin.productstatus.index')}}">Hantera produktstatus</a>
+<a href="{{ route('admin.importproducts')}}">Uppdatera produktlista</a>
 @endhasrole
