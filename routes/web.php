@@ -37,6 +37,11 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 	Route::resource('/productstatus', 'ProductStatusController');
 });
 
+Route::namespace('Support')->prefix('support')->middleware('auth')->name('support.')->group(function(){
+	Route::get('/importreplacementproducts', 'ProductReplacementController@importReplacementForm')->name('importproducts');
+	Route::post('/import', 'ProductReplacementController@importReplacement')->name('import');
+});
+
 Route::get('/admin/impersonate/destroy', 'Admin\ImpersonateController@destroy')->name('admin.impersonate.destroy');
 
 Route::resource('/calendar','CalendarController')->middleware('auth');
