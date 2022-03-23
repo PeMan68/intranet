@@ -2,7 +2,7 @@
 
 @section('content')
 <div class='h1'>
-	Importera fil 'Ersättningsprodukter.xls'
+	Importera fil 'Ersättningsprodukter.xlsx'
 </div>
 	
 		<form action="{{ route('support.import') }}" method="POST" enctype="multipart/form-data">
@@ -12,4 +12,5 @@
 			<button class="btn btn-success">Importera</button>
 		</form>
 	
+		<a href="{{asset('files/Ersättningsartiklar.xlsx')}}">Mall</a>
 @endsection
