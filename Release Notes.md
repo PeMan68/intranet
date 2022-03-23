@@ -2,6 +2,7 @@
 ## To-do
 *Bugs*
 * 210902.01 Adding visitors names doesnt work anymore
+* 220323.01 Products in dropdown for create demoproduct needs to be sorted alphabetically, or change input method
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
