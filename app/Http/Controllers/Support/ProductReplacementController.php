@@ -34,6 +34,6 @@ class ProductReplacementController extends Controller
       }
       
       // If validation of headers failed
-      return redirect('/support/importreplacementproducts')->with('message', 'Fel filformat');
+      return redirect('/support/importreplacementproducts')->with('danger', 'Fel fil, kolumnrubrikerna stämmer inte. Använd mallen.');
 	}
 }
