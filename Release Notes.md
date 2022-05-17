@@ -9,6 +9,7 @@
 * 210314.01 nextWorkingDateTime not correct when today is weekend but inside working hours (for example sunday 10.30 gives Monday 10.30, while Sunday 21.30 gives Monday 08.00)
 * 210822.01 Use the php helpers dateconversion for demoproducts instead of vue. (used in store demoproduct)
 * 210829.01 Do something with settings, "if calendar-module && holidays-module is used". To handle modules in the future.
+* 220517.01 Make admins upload excel-template file for products and replacement products to validate against. Now the template is already in asset('files/Ersättningsartiklar.xlsx')
 
 *Features*
 * 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails are not responded upon.
@@ -30,6 +31,7 @@
     - count inserts and updates and show result (also errors) after import
     - Let support-role import products and replacements
         - validating products-file must be done in the same manner as replacement-file which works
+    - Delete products from replacement table
 
 ## Finished for next release
 ## **Release 2.6.12 (2022-01-23)**
