@@ -18,8 +18,16 @@ class ProductReplacementController extends Controller
       
     public function importReplacement() 
     {
+      //Temporary directory created to sore file and destroyed afterwards
+      $tmpDir = 'tmp';
+      
+      // Flag for successful import
+      $success = false;
+
 		// Store file temporary, HeadingRowImport will delete the file after use
-      $file = request()->file('file')->store('tmp');
+      $file = request()->file('file')->store($tmpDir);
+
+      // TODO Validate the file MIMe type to '.xlsx' . also '.xls' throws error
 
       //Validate the file headings
       $headings = (new HeadingRowImport)->toArray($file);
@@ -27,9 +35,13 @@ class ProductReplacementController extends Controller
       // hardcoded for the moment. Change to validate against uploaded template
       // to make the application more generic
       if ($headings[0][0][0] == 'item' &&
-      $headings[0][0][1] == 'replacement' &&
-      $headings[0][0][2] == 'remark') {
+            $headings[0][0][1] == 'replacement' &&
+            $headings[0][0][2] == 'remark') {
          Excel::import(new ProductReplacementsImport,$file);
+         $success = true;
+      }
+      Storage::deleteDirectory($tmpDir);
+      if ($success) {
          return redirect('/products');
       }
       
