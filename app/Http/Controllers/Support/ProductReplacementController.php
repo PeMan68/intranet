@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Support;
 use App\Http\Controllers\Controller;
 use App\Imports\ProductReplacementsImport;
 use Illuminate\Contracts\Session\Session;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\HeadingRowImport;
@@ -16,36 +17,39 @@ class ProductReplacementController extends Controller
        return view('support.productReplacements.import');
     }
       
-    public function importReplacement() 
+    public function importReplacement(Request $request) 
     {
-      //Temporary directory created to sore file and destroyed afterwards
+      $validatedFile = $request->validate([
+         'file' => 'mimes:xlsx|max:1024'
+      ]);
+
+      //Temporary directory created to store file and destroyed afterwards
       $tmpDir = 'tmp';
       
       // Flag for successful import
       $success = false;
-
+      
 		// Store file temporary, HeadingRowImport will delete the file after use
       $file = request()->file('file')->store($tmpDir);
-
-      // TODO Validate the file MIMe type to '.xlsx' . also '.xls' throws error
 
       //Validate the file headings
       $headings = (new HeadingRowImport)->toArray($file);
 
       // hardcoded for the moment. Change to validate against uploaded template
       // to make the application more generic
-      if ($headings[0][0][0] == 'item' &&
-            $headings[0][0][1] == 'replacement' &&
-            $headings[0][0][2] == 'remark') {
-         Excel::import(new ProductReplacementsImport,$file);
-         $success = true;
-      }
-      Storage::deleteDirectory($tmpDir);
+      if ($headings[0][0][0] != 'item' |
+            $headings[0][0][1] != 'replacement' |
+            $headings[0][0][2] != 'remark') {
+               // If validation of headers failed
+               Storage::deleteDirectory($tmpDir);
+               return redirect('/support/importreplacementproducts')->with('danger', 'Fel fil, kolumnrubrikerna stämmer inte. Använd mallen.');
+            }
+            Excel::import(new ProductReplacementsImport,$file);
+            Storage::deleteDirectory($tmpDir);
+            $success = true;
       if ($success) {
          return redirect('/products');
       }
       
-      // If validation of headers failed
-      return redirect('/support/importreplacementproducts')->with('danger', 'Fel fil, kolumnrubrikerna stämmer inte. Använd mallen.');
 	}
 }
