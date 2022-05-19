@@ -10,6 +10,7 @@
 * 210314.01 nextWorkingDateTime not correct when today is weekend but inside working hours (for example sunday 10.30 gives Monday 10.30, while Sunday 21.30 gives Monday 08.00)
 * 210822.01 Use the php helpers dateconversion for demoproducts instead of vue. (used in store demoproduct)
 * 210829.01 Do something with settings, "if calendar-module && holidays-module is used". To handle modules in the future.
+* 220517.01 Make admins upload excel-template file for products and replacement products to validate against. Now the template is already in asset('files/Ersättningsartiklar.xlsx')
 
 *Features*
 * 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails are not responded upon.
@@ -21,18 +22,19 @@
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 * 220125.01 Add quick search module for other modules on homepage
 * 220125.02 Access to view and add Dempoproducts must be available again, not only from productsearch.
-
-### ***Working on***
-* 220123.02 Import of replacement products
-+ Import from file
-    - Check column names work, but error message is not shown
-    + Import new rows with or without comment work
-    + If replacement exist, comment is updated
-    - count inserts and updatres and show result after import
+* 220519.01 Replacement products, updates:
+    - count inserts and updates and show result (also errors) after import
     - Let support-role import products and replacements
-        - validating poducs-file must be done in the same manner as replacement-file which works
+        - validating products-file must be done in the same manner as replacement-file which works
+    - Delete products from replacement table
+### ***Working on***
 
 ## Finished for next release
+* 220123.02 Import of replacement products
++ Import from file
+    + Check column names work
+    + Import new rows with or without comment work
+    + If replacement exist, comment is updated
 ## **Release 2.6.12 (2022-01-23)**
 * 211123.01 Change a label of left menu from "Posten Adresslappar" to "Adressetiketter"
 * 211221.01 Change label on open issue from "Öppna ärende" to "Checka ut ärende""

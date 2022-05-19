@@ -30,4 +30,5 @@
 <a href="{{ route('admin.images.create')}}">Lägg till fil till receptionsskärm</a>
 <a href="{{ route('admin.productstatus.index')}}">Hantera produktstatus</a>
 <a href="{{ route('admin.importproducts')}}">Uppdatera produktlista</a>
+<a href="{{ route('support.importproducts')}}">Uppdatera ersättningsartiklar</a>
 @endhasrole
