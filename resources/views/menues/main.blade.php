@@ -17,6 +17,9 @@
 @showmodule('enable_demoprodukter')
 <a href="{{ route('locations.index')}}">Hantera platser</a>
 @endshowmodule
+@hasrole('support')
+<a href="{{ route('support.importproducts')}}">Uppdatera ersättningsartiklar</a>
+@endhasrole
 @hasrole('admin')
 <span class="border-top mt-1"></span>
 <div class="text-light">Admin Hantera</div>
