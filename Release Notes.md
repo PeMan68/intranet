@@ -25,8 +25,8 @@
     - count inserts and updates and show result (also errors) after import
         - validating products-file must be done in the same manner as replacement-file which works
     - Delete products from replacement table
-* 220519.02 Let support-role import replacements
 ### ***Working on***
+* 220519.02 Let support-role import replacements
 
 ## Finished for next release
 * 220123.02 Import of replacement products
