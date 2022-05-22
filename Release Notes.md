@@ -21,11 +21,11 @@
 * 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 * 220125.01 Add quick search module for other modules on homepage
+### ***Working on***
 * 220519.01 Replacement products, updates:
     - count inserts and updates and show result (also errors) after import
         - validating products-file must be done in the same manner as replacement-file which works
     - Delete products from replacement table
-### ***Working on***
 
 ## Finished for next release
 * 220123.02 Import of replacement products
