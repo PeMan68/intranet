@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Support;
 
 use App\Http\Controllers\Controller;
 use App\Imports\ProductReplacementsImport;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\HeadingRowImport;
@@ -43,8 +43,15 @@ class ProductReplacementController extends Controller
          Storage::deleteDirectory($tmpDir);
          return redirect('/support/importreplacementproducts')->with('danger', 'Fel fil, kolumnrubrikerna stämmer inte. Använd mallen.');
       }
+      // Clear session-variable before import
+      Session::forget('missingItems');
+      
       Excel::import(new ProductReplacementsImport, $file);
       Storage::deleteDirectory($tmpDir);
-      return redirect('/products');
+      if (Session::has('missingItems')) {
+         dd(Session::get('missingItems'));
+      } else {
+         return redirect('/products');
+      }
    }
 }
