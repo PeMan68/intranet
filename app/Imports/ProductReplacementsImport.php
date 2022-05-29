@@ -16,17 +16,17 @@ class ProductReplacementsImport implements WithStartRow, OnEachRow, WithChunkRea
 
     use Importable;
 
-    
+
     public function startRow(): int
     {
         return 2;
     }
-    
+
     public function chunkSize(): int
     {
         return 1000;
     }
-    
+
     public function onRow(Row $row)
     {
         // TODO Get headers from the template file to make the app more generic
@@ -35,30 +35,32 @@ class ProductReplacementsImport implements WithStartRow, OnEachRow, WithChunkRea
         static $remarkFromFile = 'remark';
 
         $rowIndex = $row->getIndex();
-
         $row = $row->toArray();
+        $okToImport = true;
 
-        // Update comment if record exist, or create
+        // Search for item in the product-table
         $item = Product::where('item', $row[$itemFromFile])->first();
         // If product doesn't exist, add it to session array
         if (is_null($item)) {
             Session::push('missingItems', ['rad' => $rowIndex, 'item' => $row[$itemFromFile]]);
-            return;
+            $okToImport = false;
         }
+        // Search for item in the product-table
         $replacement = Product::where('item', $row[$replacementFromFile])->first();
         // If replacement product doesn't exist, add it to session array
         if (is_null($replacement)) {
             Session::push('missingItems', ['rad' => $rowIndex, 'replacement' => $row[$replacementFromFile]]);
-            return;
+            $okToImport = false;
         }
 
         // Products exist, upsert the replacement-table
-
-        // If replacement exist in replacement-table, update it
-        if ($item->replacements->contains($replacement)) {
-            $item->replacements()->updateExistingPivot($replacement, ['comment' => $row[$remarkFromFile]]);
-        } else {
-            $item->replacements()->attach($replacement, ['comment' => $row[$remarkFromFile]]);
+        if ($okToImport) {
+            // If replacement exist in replacement-table, update it
+            if ($item->replacements->contains($replacement)) {
+                $item->replacements()->updateExistingPivot($replacement, ['comment' => $row[$remarkFromFile]]);
+            } else {
+                $item->replacements()->attach($replacement, ['comment' => $row[$remarkFromFile]]);
+            }
         }
     }
 }
