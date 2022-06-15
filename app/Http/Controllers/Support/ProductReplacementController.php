@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Support;
 use App\Http\Controllers\Controller;
 use App\Imports\ProductReplacementsImport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
@@ -41,17 +42,24 @@ class ProductReplacementController extends Controller
       ) {
          // If validation of headers failed
          Storage::deleteDirectory($tmpDir);
-         return redirect('/support/importreplacementproducts')->with('danger', 'Fel fil, kolumnrubrikerna stämmer inte. Använd mallen.');
+         return redirect('/support/importreplacementproducts')->with('danger', 'FEL! Fel fil, kolumnrubrikerna stämmer inte. Använd mallen.');
       }
       // Clear session-variable before import
       Session::forget('missingItems');
       
       Excel::import(new ProductReplacementsImport, $file);
       Storage::deleteDirectory($tmpDir);
+      
+
+      // ! Funkar inte att skicka med data om vilka produkter som saknas!
       if (Session::has('missingItems')) {
-         dd(Session::get('missingItems'));
+         $missingItems = Session::get('missingItems');
+         Log::info('Importen hade missing items');
+         return redirect('/support/importreplacementproducts')
+         ->with('warning', 'VARNING! En del produkter kunde inte importeras. De måste importeras till Produkter först');
       } else {
-         return redirect('/products');
+         Log::info('Importen hade INGA missing items');
+         return redirect('/support/importreplacementproducts')->with('success', 'OK! Alla produkter uppdaterade');
       }
    }
 }

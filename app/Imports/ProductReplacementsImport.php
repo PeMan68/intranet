@@ -49,7 +49,7 @@ class ProductReplacementsImport implements WithStartRow, OnEachRow, WithChunkRea
         $replacement = Product::where('item', $row[$replacementFromFile])->first();
         // If replacement product doesn't exist, add it to session array
         if (is_null($replacement)) {
-            Session::push('missingItems', ['rad' => $rowIndex, 'replacement' => $row[$replacementFromFile]]);
+            Session::push('missingItems', ['rad' => $rowIndex, 'item' => $row[$replacementFromFile]]);
             $okToImport = false;
         }
 
