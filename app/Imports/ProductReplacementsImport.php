@@ -61,6 +61,7 @@ class ProductReplacementsImport implements WithStartRow, OnEachRow, WithChunkRea
             } else {
                 $item->replacements()->attach($replacement, ['comment' => $row[$remarkFromFile]]);
             }
+            Session::increment('importedItems');
         }
     }
 }

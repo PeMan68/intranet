@@ -4,21 +4,22 @@
     <div class='h1'>
         Uppdatera Ersättningsprodukter
     </div>
-    <div class="h4">
-        Filen ska innehålla kolumn för Produkt, Ersättningsprodukt och Anmärkning.
-    </div>
-    <p class="h5">
-    <ul>
-        <li>Både produkt och ersättningsprodukt måste ha exakt artikelnummer och existera i produktdatabasen</li>
-        <li>Om både produkt och ersättningsprodukt redan finns uppdateras Anmärkning</li>
-    </ul>
-    </p>
-    <p>
-    <div class="alert alert-info h4">
-        Ladda ned denna tomma fil för rätt format:
-        <a href="{{ asset('files/Ersättningsartiklar.xlsx') }}">Importfil</a>
+
+    <div class="alert alert-info h5">
+        <p>
+            Importera excelfil med kolumnerna <code>Item</code>, <code>Replacement</code> och <code>Remark</code>
         </p>
+            <strong>Regler</strong>
+        <ul>
+            <li>Både <code>Item</code> och <code>Replacement</code> måste ha exakt artikelnummer och existera i
+                produktdatabasen</li>
+            <li>Om både <code>Item</code> och <code>Replacement</code> redan finns uppdateras <code>Remark</code></li>
+        </ul>
     </div>
+    <p>
+        Ladda ned denna tomma fil för rätt format:
+        <a href="{{ asset('files/Ersättningsartiklar.xlsx') }}">Ersättningsartiklar.xlsx</a>
+    </p>
     <form action="{{ route('support.import') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="col-md-6">
@@ -27,11 +28,4 @@
         <br>
         <button class="btn btn-success">Importera</button>
     </form>
-
-    @if (session('missingItems'))
-        <p>Följande produkter finns inte i Produktdatabasen och raden importerades därför inte.</p>
-		@foreach (session('missingItems') as $item)
-			Rad: {{ $item['rad'] }}: {{ $item['item']}} <br>
-		@endforeach
-    @endif
 @endsection

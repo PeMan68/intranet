@@ -18,6 +18,11 @@ class ProductReplacementController extends Controller
       return view('support.productReplacements.import');
    }
 
+   public function importresult()
+   {
+      return view('support.productReplacements.result');
+   }
+
    public function importReplacement(Request $request)
    {
       $request->validate([
@@ -44,22 +49,19 @@ class ProductReplacementController extends Controller
          Storage::deleteDirectory($tmpDir);
          return redirect('/support/importreplacementproducts')->with('danger', 'FEL! Fel fil, kolumnrubrikerna stämmer inte. Använd mallen.');
       }
+
       // Clear session-variable before import
       Session::forget('missingItems');
-      
+      Session::forget('importedItems');
+
       Excel::import(new ProductReplacementsImport, $file);
       Storage::deleteDirectory($tmpDir);
-      
 
-      // ! Funkar inte att skicka med data om vilka produkter som saknas!
+      //! redirect till en ny sida med resultatet istället så att inte missingitems visas på importsidan.
       if (Session::has('missingItems')) {
-         $missingItems = Session::get('missingItems');
-         Log::info('Importen hade missing items');
-         return redirect('/support/importreplacementproducts')
-         ->with('warning', 'VARNING! En del produkter kunde inte importeras. De måste importeras till Produkter först');
+         return redirect('/support/importreplacementproductsresult');
       } else {
-         Log::info('Importen hade INGA missing items');
-         return redirect('/support/importreplacementproducts')->with('success', 'OK! Alla produkter uppdaterade');
+         return redirect('/support/importreplacementproductsresult')->with('success', 'OK! Alla produkter uppdaterade');
       }
    }
 }
