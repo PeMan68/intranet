@@ -39,6 +39,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 
 Route::namespace('Support')->prefix('support')->middleware('auth')->name('support.')->group(function(){
 	Route::get('/importreplacementproducts', 'ProductReplacementController@importReplacementForm')->name('importproducts');
+	Route::get('/importreplacementproductsresult', 'ProductReplacementController@importresult')->name('result');
 	Route::post('/import', 'ProductReplacementController@importReplacement')->name('import');
 });
 

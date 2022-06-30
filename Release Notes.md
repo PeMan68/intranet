@@ -21,19 +21,18 @@
 * 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
 * 220125.01 Add quick search module for other modules on homepage
-* 220519.01 Replacement products, updates:
-    - count inserts and updates and show result (also errors) after import
-        - validating products-file must be done in the same manner as replacement-file which works
-    - Delete products from replacement table
+* 220519.02 Validating products-file must be done in the same manner as replacement-file which works
+* 220615.01 Delete products from replacement table
 ### ***Working on***
-
 ## Finished for next release
+* 220519.01 Replacement products, updates:
+    + count inserts and updates and show result (also errors) after import
 * 220123.02 Import of replacement products
-+ Import from file
-    + Check column names work
-    + Import new rows with or without comment work
-    + If replacement exist, comment is updated
-* 220125.02 Access to view and add Dempoproducts must be available again, not only from productsearch.
+    + Import from file
+        + Check column names work
+        + Import new rows with or without comment work
+        + If replacement exist, comment is updated
+* 220125.02 Access to view and add Demoproducts must be available again, not only from productsearch.
 * 220519.02 Let support-role import replacements
 ## **Release 2.6.12 (2022-01-23)**
 * 211123.01 Change a label of left menu from "Posten Adresslappar" to "Adressetiketter"
