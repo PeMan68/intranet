@@ -2,6 +2,7 @@
 ## To-do
 *Bugs*
 * 210902.01 Adding visitors names doesnt work anymore
+* 220323.01 Products in dropdown for create demoproduct needs to be sorted alphabetically, or change input method
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
@@ -9,6 +10,7 @@
 * 210314.01 nextWorkingDateTime not correct when today is weekend but inside working hours (for example sunday 10.30 gives Monday 10.30, while Sunday 21.30 gives Monday 08.00)
 * 210822.01 Use the php helpers dateconversion for demoproducts instead of vue. (used in store demoproduct)
 * 210829.01 Do something with settings, "if calendar-module && holidays-module is used". To handle modules in the future.
+* 220517.01 Make admins upload excel-template file for products and replacement products to validate against. Now the template is already in asset('files/Ersättningsartiklar.xlsx')
 
 *Features*
 * 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails are not responded upon.
@@ -18,8 +20,21 @@
 * 210112-2  Save customer details for autofill
 * 210201.01 Handle Issues for sales. Every product range could be either support or sales related?
 * 210109-10 Ability to edit comments in Issues. Links in popover would be nice...
+* 220125.01 Add quick search module for other modules on homepage
+* 220519.02 Validating products-file must be done in the same manner as replacement-file which works
+* 220615.01 Delete products from replacement table
 ### ***Working on***
 ## Finished for next release
+## **Release 2.7.0 (2022-07-04)**
+* 220519.01 Replacement products, updates:
+    + count inserts and updates and show result (also errors) after import
+* 220123.02 Import of replacement products
+    + Import from file
+        + Check column names work
+        + Import new rows with or without comment work
+        + If replacement exist, comment is updated
+* 220125.02 Access to view and add Demoproducts must be available again, not only from productsearch.
+* 220519.02 Let support-role import replacements
 ## **Release 2.6.12 (2022-01-23)**
 * 211123.01 Change a label of left menu from "Posten Adresslappar" to "Adressetiketter"
 * 211221.01 Change label on open issue from "Öppna ärende" to "Checka ut ärende""

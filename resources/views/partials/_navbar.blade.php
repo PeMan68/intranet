@@ -31,6 +31,14 @@
 				</b-nav-item>
 				@endshowmodule
 
+				@showmodule('enable_demoproducts')
+				<b-nav-item href="{{ url('/demoproducts/') }}">Demoprodukter
+					@if (!setting('enable_demoproducts'))
+						<sup>beta</sup>
+					@endif
+				</b-nav-item>
+				@endshowmodule
+
 				@showmodule('enable_dokument')
 				<b-nav-item href="{{ url('/documents/') }}">Dokument
 					@if (!setting('enable_dokument'))
