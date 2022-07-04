@@ -27,6 +27,7 @@
 * 220615.01 Delete products from replacement table
 ### ***Working on***
 ## Finished for next release
+## **Release 2.7.0 (2022-07-04)**
 * 220519.01 Replacement products, updates:
     + count inserts and updates and show result (also errors) after import
 * 220123.02 Import of replacement products
