@@ -6,7 +6,7 @@
 // lagra de som matchar i en array
 // uppdatera endast de kolumner som är representerade i filen
 // Om priset ändrats, uppdatera datum-fältet för prisuppdateringen
-// Meddela vilka kolumner som importerats och hur många records som uppdaterats eller nya
+//! Meddela vilka kolumner som importerats och hur många records som uppdaterats eller nya
 
 namespace App\Imports;
 
