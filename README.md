@@ -9,9 +9,10 @@
     * Ersättningsprodukter kan uppdateras av rollerna 'support' eller 'admin'
     * En eller flera ersättningsprodukter inklusive kommentar anges för varje produkt.
 
-* **Demoprodukter**
+* **Startsidan**
     * Kan nås från huvudmenyn igen
-    
+    * Uppdaterad länk till Quarta
+
 ## Version 2.6.11 ##
 (2022-01-23)
 
