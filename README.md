@@ -1,5 +1,17 @@
 # intranet
 
+## Version 2.7.0 ##
+(2022-07-04)
+
+*Nyheter*
+* **Ersättningsprodukter**
+
+    * Ersättningsprodukter kan uppdateras av rollerna 'support' eller 'admin'
+    * En eller flera ersättningsprodukter inklusive kommentar anges för varje produkt.
+
+* **Demoprodukter**
+    * Kan nås från huvudmenyn igen
+    
 ## Version 2.6.11 ##
 (2022-01-23)
 
