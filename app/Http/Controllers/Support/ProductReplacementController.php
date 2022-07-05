@@ -15,12 +15,12 @@ class ProductReplacementController extends Controller
 {
    public function importReplacementForm()
    {
-      return view('support.productReplacements.import');
+      return view('support.productreplacements.import');
    }
 
    public function importresult()
    {
-      return view('support.productReplacements.result');
+      return view('support.productreplacements.result');
    }
 
    public function importReplacement(Request $request)
@@ -57,7 +57,6 @@ class ProductReplacementController extends Controller
       Excel::import(new ProductReplacementsImport, $file);
       Storage::deleteDirectory($tmpDir);
 
-      //! redirect till en ny sida med resultatet istället så att inte missingitems visas på importsidan.
       if (Session::has('missingItems')) {
          return redirect('/support/importreplacementproductsresult');
       } else {
