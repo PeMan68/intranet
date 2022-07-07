@@ -1,4 +1,4 @@
-<b-navbar toggleable="md" type="light" class="navbar-bg">
+<b-navbar toggleable="md" type="light" class="navbar-bg" fixed="top">
 	<b-navbar-brand href="{{ url('/') }}">{{ setting('app_name') }}</b-navbar-brand>
 		<b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 		<b-collapse id="nav-collapse" is-nav>

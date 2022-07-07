@@ -30,10 +30,10 @@
         @include('partials._navbar')
 
 
-        <main class="container-fluid">
+        <main class="container-fluid" style=" padding-top:55px;">
             <div class="row">
                 <div class="d-none d-sm-block col-md-3 col-sm-4 bg-dark">
-                    <nav class="nav flex-column" style="height:100vh; margin-top:-55px; padding-top:55px;">
+                    <nav class="nav flex-column" style="height:100vh; ">
                         @yield('nav-left')
                         @include('menues.main')
                         <div class="fixed-bottom text-light font-weight-lighter">
