@@ -3,6 +3,7 @@
 *Bugs*
 * 210902.01 Adding visitors names doesnt work anymore
 * 220323.01 Products in dropdown for create demoproduct needs to be sorted alphabetically, or change input method
+* 220701.01 Navbar hamnar "bakom" vänster meny, så objektet "Hem" blir inte klickbart, eller alla manyer som täcks av vänster meny.
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
