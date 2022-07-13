@@ -33,6 +33,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
     Route::post('/settings', 'SettingController@store')->name('settings.store');
 	Route::get('/products', 'ProductController@index');
 	Route::get('/products/export', 'ProductController@export');
+	Route::get('/products/template', 'ProductController@template');
 	Route::get('/importproducts', 'ProductController@importform')->name('importproducts');
 	Route::post('/import', 'ProductController@import')->name('import');
 	Route::resource('/productstatus', 'ProductStatusController');

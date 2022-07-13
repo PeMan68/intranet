@@ -30,6 +30,11 @@ class ProductController extends Controller
 
 	public function export()
 	{
+		return Excel::download(new ProductsExport(Product::all()), 'products.xlsx');
+	}
+	
+	public function template()
+	{
 		return Excel::download(new ProductsExport, 'products.xlsx');
 	}
 }

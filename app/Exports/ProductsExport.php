@@ -9,12 +9,18 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class ProductsExport implements FromCollection, ShouldAutoSize, WithHeadings
 {
+    protected $data;
+
+    public function __construct($data = null)
+    {
+        $this->data = $data;
+    }
     /**
      * @return \Illuminate\Support\Collection
      */
     public function collection()
     {
-        return Product::all();
+        return collect($this->data);
     }
 
     public function headings(): array

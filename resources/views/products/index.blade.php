@@ -29,6 +29,9 @@
         <p> 
 			<a href="admin/products/export">Ladda ned excelfil med alla produkter</a>
         </p>
+        <p> 
+			<a href="admin/products/template">Ladda ned mall för import av produkter</a>
+        </p>
         @endhasroles
 	</div>
 </div>
