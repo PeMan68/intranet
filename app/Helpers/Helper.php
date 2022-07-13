@@ -428,10 +428,13 @@ if (!function_exists('formatPrice')) {
 if (!function_exists('formatPriceDate')) {
 	function formatPriceDate($product)
 	{
+		// if ($product) {
 		if (is_null($product->price_date)) {
 			return date('Y-m-d', strtotime($product->updated_at));
 		} else {
 			return $product->price_date;
 		}
 	}
+	// return null;
+	// }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ProductsExport;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\Imports\ProductsImport;
@@ -25,5 +26,10 @@ class ProductController extends Controller
 		$file = request()->file('file');
 		Excel::import(new ProductsImport,$file);
 		return redirect('/products');
+	}
+
+	public function export()
+	{
+		return Excel::download(new ProductsExport, 'products.xlsx');
 	}
 }
