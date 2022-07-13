@@ -42,6 +42,7 @@ Route::namespace('Support')->prefix('support')->middleware('auth')->name('suppor
 	Route::get('/importreplacementproducts', 'ProductReplacementController@importReplacementForm')->name('importproducts');
 	Route::get('/importreplacementproductsresult', 'ProductReplacementController@importresult')->name('result');
 	Route::post('/import', 'ProductReplacementController@importReplacement')->name('import');
+	Route::get('/export', 'ProductReplacementController@export');
 });
 
 Route::get('/admin/impersonate/destroy', 'Admin\ImpersonateController@destroy')->name('admin.impersonate.destroy');
