@@ -22,10 +22,10 @@ class UsersExport implements FromCollection, ShouldAutoSize, WithHeadings
         return [
             'ID',
             'Aktiv',
-            '',
+            'Visa i kalender',
             'Förnamn',
             'Efternamn',
-            'mail',
+            'E-mail',
             '',
             'Skapad',
             'Uppdaterad',
