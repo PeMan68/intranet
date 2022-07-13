@@ -13,7 +13,6 @@
 * 210829.01 Do something with settings, "if calendar-module && holidays-module is used". To handle modules in the future.
 * 220517.01 Make admins upload excel-template file for products and replacement products to validate against. Now the template is already in asset('files/Ersättningsartiklar.xlsx')
     AND/OR Make headers of excelfiles for products and replacements editable via admin-settings 
-* 220701.01 Save not imported items from replacement-items as new excelfile(s), both replacementfile and productfile formatted.
 
 *Features*
 * 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails are not responded upon.
@@ -27,6 +26,7 @@
 * 220519.02 Validating products-file must be done in the same manner as replacement-file which works
 * 220615.01 Delete products from replacement table
 ### ***Working on***
+* 220701.01 Save not imported items from replacement-items as new excelfile(s), both replacementfile and productfile formatted.
 ## Finished for next release
 ## **Release 2.7.0 (2022-07-04)**
 * 220519.01 Replacement products, updates:
