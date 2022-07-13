@@ -5,7 +5,7 @@ namespace App\Exports;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class ReplacementProductsMissing implements FromCollection, WithHeadings
+class ReplacementProductsMissingExport implements FromCollection, WithHeadings
 {
     protected $data;
 

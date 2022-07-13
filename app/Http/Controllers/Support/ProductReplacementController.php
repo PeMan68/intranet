@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Support;
 
-use App\Exports\ReplacementProductsMissing;
+use App\Exports\ReplacementProductsMissingExport;
 use App\Http\Controllers\Controller;
 use App\Imports\ProductReplacementsImport;
 use Illuminate\Http\Request;
@@ -67,6 +67,6 @@ class ProductReplacementController extends Controller
 
    public function export()
    {
-       return Excel::download(new ReplacementProductsMissing(session('missingItems')), 'saknade.xlsx');
+       return Excel::download(new ReplacementProductsMissingExport(session('missingItems')), 'saknade.xlsx');
    }
 }
