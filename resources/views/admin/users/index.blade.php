@@ -5,6 +5,7 @@
 	<div class="card-header">Hantera användare</div>
 
 	<div class="card-body">
+		<a href="users/export">Ladda ned excelfil</a>
 		<table class="table">
 		  <thead>
 			<tr>
