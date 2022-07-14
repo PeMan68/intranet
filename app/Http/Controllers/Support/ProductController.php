@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Support;
 
 use App\Exports\ProductsExport;
 use App\Http\Controllers\Controller;
@@ -18,7 +18,7 @@ class ProductController extends Controller
 	
 	public function importform()
     {
-       return view('admin.products.import');
+       return view('support.products.import');
     }
       
     public function import() 

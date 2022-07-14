@@ -2,7 +2,7 @@
 
 @section('content')
     <div class='h1'>
-        Uppdatera Ersättningsprodukter
+        Uppdatera Produkter
     </div>
 
     <div class="alert alert-info h5">
@@ -12,12 +12,9 @@
         </p>
         <ul>
             <li>Filen kan innehålla en eller flera rader. </li>
-            <li>Kolumnerna <code>item</code> och <code>replacement</code> är obligatoriska, övriga fält är valfria.
-            <li>Om både <code>item</code> och <code>replacement</code> redan finns uppdateras <code>Remark</code></li>
-            <li>Både <code>item</code> och <code>replacement</code> måste ha exakt artikelnummer och existera i
-                produktdatabasen</li>
-            <li> Produkter som inte matchas mot produktdatabasen sparas i en fil som kan hämtas och redigeras efter importen
-            </li>
+            <li> Om produktnumret (<code>item</code>) redan finns i databasen kommer alla fält att uppdateras. Finns inte
+                produkten kommer den att läggas till.</li>
+            <li>Kolumnen <code>item</code> är obligatorisk, övriga fält är valfria.
         </ul>
         <p>
             <a href="{{ route('support.product.template') }}">Ladda ned fil för rätt format</a>

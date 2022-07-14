@@ -48,7 +48,7 @@ class ProductReplacementController extends Controller
       ) {
          // If validation of headers failed
          Storage::deleteDirectory($tmpDir);
-         return redirect('/support/importreplacementproducts')->with('danger', 'FEL! Fel fil, kolumnrubrikerna stämmer inte. Använd mallen.');
+         return redirect()->route('support.replacement.importform')->with('danger', 'FEL! Fel fil, kolumnrubrikerna stämmer inte. Använd mallen.');
       }
 
       // Clear session-variable before import
@@ -59,9 +59,9 @@ class ProductReplacementController extends Controller
       Storage::deleteDirectory($tmpDir);
 
       if (Session::has('missingItems')) {
-         return redirect('/support/importreplacementproductsresult');
+         return redirect()->route('support.replacement.result');
       } else {
-         return redirect('/support/importreplacementproductsresult')->with('success', 'OK! Alla produkter uppdaterade');
+         return redirect()->route('support.replacement.result')->with('success', 'OK! Alla produkter uppdaterade');
       }
    }
 

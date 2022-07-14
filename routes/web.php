@@ -32,19 +32,21 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
     Route::get('/settings', 'SettingController@index')->name('settings');
     Route::post('/settings', 'SettingController@store')->name('settings.store');
 	Route::get('/products', 'ProductController@index');
-	Route::get('/products/export', 'ProductController@export');
-	Route::get('/products/template', 'ProductController@template');
-	Route::get('/importproducts', 'ProductController@importform')->name('importproducts');
-	Route::post('/import', 'ProductController@import')->name('import');
 	Route::resource('/productstatus', 'ProductStatusController');
 	Route::get('users/export/', 'UserController@export');
 });
 
 Route::namespace('Support')->prefix('support')->middleware('auth')->name('support.')->group(function(){
-	Route::get('/importreplacementproducts', 'ProductReplacementController@importReplacementForm')->name('importproducts');
-	Route::get('/importreplacementproductsresult', 'ProductReplacementController@importresult')->name('result');
-	Route::post('/import', 'ProductReplacementController@importReplacement')->name('import');
-	Route::get('/export', 'ProductReplacementController@export');
+	Route::get('/productreplacements/import', 'ProductReplacementController@importReplacementForm')->name('replacement.importform');
+	Route::post('/productreplacements/import', 'ProductReplacementController@importReplacement')->name('replacement.import');
+	Route::get('/productreplacements/result', 'ProductReplacementController@importresult')->name('replacement.result');
+	Route::get('/productreplacements/export', 'ProductReplacementController@export')->name('replacement.export');
+	Route::get('/productreplacements/template', 'ProductReplacementController@template')->name('replacement.template');
+	Route::get('/products/export', 'ProductController@export')->name('product.export');
+	Route::get('/products/import', 'ProductController@importform')->name('product.importform');
+	Route::post('/products/import', 'ProductController@import')->name('product.import');
+	Route::get('/products/result', 'ProductController@importresult')->name('product.result');
+	Route::get('/products/template', 'ProductController@template')->name('product.template');
 });
 
 Route::get('/admin/impersonate/destroy', 'Admin\ImpersonateController@destroy')->name('admin.impersonate.destroy');
