@@ -25,12 +25,12 @@
                 <li>Del av benämning</li>
                 <li>E-nummer. E-numret ska vara komplett, inga mellanrum och inget "E" först.</li>
             </ul>
-        @hasroles(['admin'])
+        @hasroles(['support'])
         <p> 
-			<a href="admin/products/export">Ladda ned excelfil med alla produkter</a>
+			<a href="{{ route('support.product.export') }}">Ladda ned excelfil med alla produkter</a>
         </p>
         <p> 
-			<a href="admin/products/template">Ladda ned mall för import av produkter</a>
+			<a href="{{ route('support.product.template') }}">Ladda ned mall för import av produkter</a>
         </p>
         @endhasroles
 	</div>

@@ -3,39 +3,27 @@
 namespace App\Exports;
 
 use App\Product;
-use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class ProductsExport implements FromArray, ShouldAutoSize, WithHeadings, WithMapping
+class ProductsExport implements FromCollection, ShouldAutoSize, WithHeadings, WithMapping
 {
     protected $data;
 
-    // public function __construct($data = null)
-    // {
-    //     $this->data = $data;
-    // }
-    // /**
-    //  * @return \Illuminate\Support\Collection
-    //  */
-    // public function collection()
-    // {
-    //     return collect($this->data);
-    // }
-
-    public function __construct(array $data = null)
+    public function __construct($data = null)
     {
-
         $this->data = $data;
-        // dd($this->data);
+    }
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function collection()
+    {
+        return collect($this->data);
     }
 
-    public function array(): array
-    {
-        return $this->data;
-    }
 
     public function map($product) :array        
     {

@@ -77,9 +77,9 @@ class ProductReplacementController extends Controller
 
    public function create_product_file()
    {
-      // dd(session('productsToImport'));
+      // dd(collect(session('productsToImport')));
 
-      return Excel::download(new ProductsExport(session('productsToImport')), 'Produkter_att_importera.xlsx');
+      return Excel::download(new ProductsExport(collect(session('productsToImport'))), 'Produkter_att_importera.xlsx');
    }
 
    public function template()
