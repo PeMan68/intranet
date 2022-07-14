@@ -3,46 +3,59 @@
 namespace App\Exports;
 
 use App\Product;
+use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class ProductsExport implements FromCollection, ShouldAutoSize, WithHeadings, WithMapping
+class ProductsExport implements FromArray, ShouldAutoSize, WithHeadings, WithMapping
 {
     protected $data;
 
-    public function __construct($data = null)
+    // public function __construct($data = null)
+    // {
+    //     $this->data = $data;
+    // }
+    // /**
+    //  * @return \Illuminate\Support\Collection
+    //  */
+    // public function collection()
+    // {
+    //     return collect($this->data);
+    // }
+
+    public function __construct(array $data = null)
     {
+
         $this->data = $data;
+        // dd($this->data);
     }
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    public function collection()
+
+    public function array(): array
     {
-        return collect($this->data);
+        return $this->data;
     }
 
     public function map($product) :array        
     {
         return [
             $product->item,
-            $product->item_description_eng,
-            $product->item_description_swe,
-            $product->transferprice,
-            $product->currency,
-            $product->listprice,
-            $product->group,
-            $product->family,
-            $product->subfamily,
-            $product->safety,
-            $product->sourcing,
-            $product->status,
-            $product->abc,
-            $product->ean,
-            $product->enummer,
-            $product->price_date,   
+            $product->item_description_eng ?? null,
+            $product->item_description_swe ?? null,
+            $product->transferprice ?? null,
+            $product->currency ?? null,
+            $product->listprice ?? null,
+            $product->group ?? null,
+            $product->family ?? null,
+            $product->subfamily ?? null,
+            $product->safety ?? null,
+            $product->sourcing ?? null,
+            $product->status ?? null,
+            $product->abc ?? null,
+            $product->ean ?? null,
+            $product->enummer ?? null,
+            $product->price_date ?? null,
         ];
     }
 
