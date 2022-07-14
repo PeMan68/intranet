@@ -34,24 +34,51 @@ class ProductsImport implements WithStartRow, OnEachRow, WithChunkReading, WithH
         
         // Add recognized columns to array that will be updated/imported
         $fields=[];
-        if (!is_null($row['artikel_nr'] ?? null)){
-            $fields = Arr::add($fields,'item', $row['artikel_nr']) ;
+        if (!is_null($row['artikel_nr'] ?? $row['item'] ?? null)){
+            $fields = Arr::add($fields,'item', $row['artikel_nr'] ?? $row['item']) ;
         } else {
             // no item in file
-            return redirect('/admin/importproducts')->with('message','Kolumn med artikel ska heta Artikel nr');
+            return redirect('/admin/importproducts')->with('message','Kolumn med artikel ska heta Artikel nr eller item');
         }
-        if (!is_null($row['benamning'] ?? null)){
-            $fields = Arr::add($fields,'item_description_swe', $row['benamning']) ;
+        if (!is_null($row['item_description_eng'] ?? null)){
+            $fields = Arr::add($fields,'item_description_eng', $row['item_description_eng']) ;
+        }
+        if (!is_null($row['benamning'] ?? $row['item_description_swe'] ?? null)){
+            $fields = Arr::add($fields,'item_description_swe', $row['benamning'] ?? $row['item_description_swe']) ;
         }
         if (!is_null($row['transferprice'] ?? $row['TP'] ?? null)){
             $fields = Arr::add($fields, 'transferprice', $row['transferprice'] ?? $row['TP']) ;
         }
-        if (!is_null($row['pg'] ?? $row['prodgrp'] ?? null)){
-            $fields = Arr::add($fields, 'group',$row['pg'] ?? $row['prodgrp']) ;
+        if (!is_null($row['currency'] ?? null)){
+            $fields = Arr::add($fields,'currency', $row['currency']) ;
         }
-        if (!is_null($row['listpris'] ?? null)){
-            if(!$row['listpris'] == 0 ){
-                $fields = Arr::add($fields, 'listprice',$row['listpris'] ) ;
+        if (!is_null($row['pg'] ?? $row['prodgrp'] ?? $row['group'] ?? null)){
+            $fields = Arr::add($fields, 'group',$row['pg'] ?? $row['prodgrp'] ?? $row['group']) ;
+        }
+        if (!is_null($row['family'] ?? null)){
+            $fields = Arr::add($fields,'family', $row['family']) ;
+        }
+        if (!is_null($row['subfamily'] ?? null)){
+            $fields = Arr::add($fields,'subfamily', $row['subfamily']) ;
+        }
+        if (!is_null($row['safety'] ?? null)){
+            $fields = Arr::add($fields,'safety', $row['safety']) ;
+        }
+        if (!is_null($row['sourcing'] ?? null)){
+            $fields = Arr::add($fields,'sourcing', $row['sourcing']) ;
+        }
+        if (!is_null($row['status'] ?? null)){
+            $fields = Arr::add($fields,'status', $row['status']) ;
+        }
+        if (!is_null($row['abc'] ?? null)){
+            $fields = Arr::add($fields,'abc', $row['abc']) ;
+        }
+        if (!is_null($row['ean'] ?? null)){
+            $fields = Arr::add($fields,'ean', $row['ean']) ;
+        }
+        if (!is_null($row['listpris'] ?? $row['listprice'] ?? null)){
+            if(!(!is_null($row['listpris'] ?? $row['listprice'] ?? null)) == 0){
+                $fields = Arr::add($fields, 'listprice',$row['listpris'] ?? $row['listprice']) ;
                 $fields = Arr::add($fields, 'price_date',now() ) ;
             }
         }
@@ -60,7 +87,7 @@ class ProductsImport implements WithStartRow, OnEachRow, WithChunkReading, WithH
         }
 
         $product = Product::updateOrCreate([
-            'item' => $row['artikel_nr']
+            'item' => $row['artikel_nr'] ?? $row['item']
         ], $fields);
     }
 

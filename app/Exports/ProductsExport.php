@@ -6,8 +6,9 @@ use App\Product;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
 
-class ProductsExport implements FromCollection, ShouldAutoSize, WithHeadings
+class ProductsExport implements FromCollection, ShouldAutoSize, WithHeadings, WithMapping
 {
     protected $data;
 
@@ -23,12 +24,31 @@ class ProductsExport implements FromCollection, ShouldAutoSize, WithHeadings
         return collect($this->data);
     }
 
+    public function map($product) :array        
+    {
+        return [
+            $product->item,
+            $product->item_description_eng,
+            $product->item_description_swe,
+            $product->transferprice,
+            $product->currency,
+            $product->listprice,
+            $product->group,
+            $product->family,
+            $product->subfamily,
+            $product->safety,
+            $product->sourcing,
+            $product->status,
+            $product->abc,
+            $product->ean,
+            $product->enummer,
+            $product->price_date,   
+        ];
+    }
+
     public function headings(): array
     {
         return [
-            'id',
-            'created_at',
-            'updated_at',
             'item',
             'item_description_eng',
             'item_description_swe',
@@ -45,7 +65,6 @@ class ProductsExport implements FromCollection, ShouldAutoSize, WithHeadings
             'ean',
             'enummer',
             'price_date',
-
         ];
     }
 }
