@@ -9,7 +9,7 @@ class ReplacementProductsMissingExport implements FromCollection, WithHeadings
 {
     protected $data;
 
-    public function __construct($data)
+    public function __construct($data = null)
     {
         $this->data = $data;
     }
@@ -25,8 +25,9 @@ class ReplacementProductsMissingExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
-            'Rad',
-            'Artikel',
+            'item',
+            'replacement',
+            'remark',
         ];
     }
 }

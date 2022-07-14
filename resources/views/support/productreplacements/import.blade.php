@@ -20,7 +20,7 @@
             </li>
         </ul>
         <p>
-            <a href="{{ route('support.product.template') }}">Ladda ned fil för rätt format</a>
+            <a href="{{ route('support.replacement.template') }}">Ladda ned fil för rätt format</a>
         </p>
     </div>
     <form action="{{ route('support.replacement.import') }}" method="POST" enctype="multipart/form-data">

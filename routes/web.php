@@ -40,7 +40,8 @@ Route::namespace('Support')->prefix('support')->middleware('auth')->name('suppor
 	Route::get('/productreplacements/import', 'ProductReplacementController@importReplacementForm')->name('replacement.importform');
 	Route::post('/productreplacements/import', 'ProductReplacementController@importReplacement')->name('replacement.import');
 	Route::get('/productreplacements/result', 'ProductReplacementController@importresult')->name('replacement.result');
-	Route::get('/productreplacements/export', 'ProductReplacementController@export')->name('replacement.export');
+	Route::get('/productreplacements/export', 'ProductReplacementController@missing')->name('replacement.missing');
+	Route::get('/productreplacements/create-product-file', 'ProductReplacementController@create_product_file')->name('replacement.create');
 	Route::get('/productreplacements/template', 'ProductReplacementController@template')->name('replacement.template');
 	Route::get('/products/export', 'ProductController@export')->name('product.export');
 	Route::get('/products/import', 'ProductController@importform')->name('product.importform');
