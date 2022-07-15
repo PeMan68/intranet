@@ -21,7 +21,7 @@ class ProductsExport implements FromCollection, ShouldAutoSize, WithHeadings, Wi
      */
     public function collection()
     {
-        return collect($this->data);
+        return $this->data;
     }
 
 

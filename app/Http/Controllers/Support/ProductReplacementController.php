@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Support;
 
+use App\Exports\MissingProductsExport;
 use App\Exports\ProductsExport;
 use App\Exports\ReplacementProductsMissingExport;
 use App\Http\Controllers\Controller;
@@ -79,7 +80,7 @@ class ProductReplacementController extends Controller
    {
       // dd(collect(session('productsToImport')));
 
-      return Excel::download(new ProductsExport(collect(session('productsToImport'))), 'Produkter_att_importera.xlsx');
+      return Excel::download(new MissingProductsExport(session('productsToImport')), 'Produkter_att_importera.xlsx');
    }
 
    public function template()
