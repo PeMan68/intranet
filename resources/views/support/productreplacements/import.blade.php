@@ -6,21 +6,24 @@
     </div>
 
     <div class="alert alert-info h5">
+        <strong>Information</strong>
         <p>
-            Importera excelfil med kolumnerna <code>Item</code>, <code>Replacement</code> och <code>Remark</code>
+            Produktdatabasen uppdateras genom att importera en excelfil med produktdata.
         </p>
-            <strong>Regler</strong>
         <ul>
-            <li>Både <code>Item</code> och <code>Replacement</code> måste ha exakt artikelnummer och existera i
+            <li>Filen kan innehålla en eller flera rader. </li>
+            <li>Kolumnerna <code>item</code> och <code>replacement</code> är obligatoriska, övriga fält är valfria.
+            <li>Om både <code>item</code> och <code>replacement</code> redan finns uppdateras <code>Remark</code></li>
+            <li>Både <code>item</code> och <code>replacement</code> måste ha exakt artikelnummer och existera i
                 produktdatabasen</li>
-            <li>Om både <code>Item</code> och <code>Replacement</code> redan finns uppdateras <code>Remark</code></li>
+            <li> Produkter som inte matchas mot produktdatabasen sparas i en fil som kan hämtas och redigeras efter importen
+            </li>
         </ul>
+        <p>
+            <a href="{{ route('support.replacement.template') }}">Ladda ned fil för rätt format</a>
+        </p>
     </div>
-    <p>
-        Ladda ned denna tomma fil för rätt format:
-        <a href="{{ asset('files/Ersättningsartiklar.xlsx') }}">Ersättningsartiklar.xlsx</a>
-    </p>
-    <form action="{{ route('support.import') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('support.replacement.import') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="col-md-6">
             <input id="file" type="file" name="file" class="form-control">

@@ -25,9 +25,12 @@
                 <li>Del av benämning</li>
                 <li>E-nummer. E-numret ska vara komplett, inga mellanrum och inget "E" först.</li>
             </ul>
-        @hasroles(['admin'])
-        <p> Om du har rättighet, så kan du uppdatera produktinformationen genom att ladda upp en excelfil med information.
-            Om du ser denna text, så har du rättighet att göra det.
+        @hasroles(['support'])
+        <p> 
+			<a href="{{ route('support.product.export') }}">Ladda ned excelfil med alla produkter</a>
+        </p>
+        <p> 
+			<a href="{{ route('support.product.template') }}">Ladda ned mall för import av produkter</a>
         </p>
         @endhasroles
 	</div>

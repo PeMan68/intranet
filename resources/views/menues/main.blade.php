@@ -18,7 +18,8 @@
 <a href="{{ route('locations.index')}}">Hantera platser</a>
 @endshowmodule
 @hasrole('support')
-<a href="{{ route('support.importproducts')}}">Uppdatera ersättningsprodukter</a>
+<a href="{{ route('support.product.import')}}">Uppdatera produkter</a>
+<a href="{{ route('support.replacement.import')}}">Uppdatera ersättningsprodukter</a>
 @endhasrole
 @hasrole('admin')
 <span class="border-top mt-1"></span>
@@ -32,6 +33,4 @@
 <a href="{{ route('admin.users.index')}}">Hantera användare</a>
 <a href="{{ route('admin.images.create')}}">Lägg till fil till receptionsskärm</a>
 <a href="{{ route('admin.productstatus.index')}}">Hantera produktstatus</a>
-<a href="{{ route('admin.importproducts')}}">Uppdatera produktlista</a>
-<a href="{{ route('support.importproducts')}}">Uppdatera ersättningsprodukter</a>
 @endhasrole

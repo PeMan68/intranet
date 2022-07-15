@@ -7,8 +7,10 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Role;
 use App\Department;
+use App\Exports\UsersExport;
 use App\Task;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -113,4 +115,9 @@ class UserController extends Controller
 			
 		return redirect()->route('admin.users.index')->with('warning', 'Denna användaren kan inte raderas.');
 	}
+
+    public function export()
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
+    }
 }
