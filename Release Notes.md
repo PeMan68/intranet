@@ -26,8 +26,8 @@
 * 220519.02 Validating products-file must be done in the same manner as replacement-file which works
 * 220615.01 Delete products from replacement table
 ### ***Working on***
-* 220701.01 Save not imported items from replacement-items as new excelfile(s), both replacementfile and productfile formatted.
 ## Finished for next release
+* 220701.01 Save not imported items from replacement-items as new excelfile(s), both replacementfile and productfile formatted.
 ## **Release 2.7.0 (2022-07-04)**
 * 220519.01 Replacement products, updates:
     + count inserts and updates and show result (also errors) after import
