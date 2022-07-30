@@ -29,6 +29,7 @@
 * 220519.02 Validating products-file must be done in the same manner as replacement-file which works
 * 220615.01 Delete products from replacement table
 ### ***Working on***
+* 220730.05 hide 'Superadmin' from 'Admin'
 ## Finished for next release
 * 220701.01 Save not imported items from replacement-items as new excelfile(s), both replacementfile and productfile formatted.
 * 220730.01 Superadmin. remove RADERA user
