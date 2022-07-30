@@ -5,6 +5,7 @@
 * 220323.01 Products in dropdown for create demoproduct needs to be sorted alphabetically, or change input method
 * 220701.01 Navbar hamnar "bakom" vänster meny, så objektet "Hem" blir inte klickbart, eller alla manyer som täcks av vänster meny.
 * 220730.03 Menyn visas inte korrekt när man ändrar användare. Error i app.js (se F12 i chrome)...ser ingen skillnad i blade mot andra sidor...något med cache??
+* 220730.04 Addera fil till reception, men visas inte på sidan i development..??
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
