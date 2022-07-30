@@ -29,11 +29,11 @@
 * 220519.02 Validating products-file must be done in the same manner as replacement-file which works
 * 220615.01 Delete products from replacement table
 ### ***Working on***
-* 220730.05 hide 'Superadmin' from 'Admin'
 ## Finished for next release
 * 220701.01 Save not imported items from replacement-items as new excelfile(s), both replacementfile and productfile formatted.
 * 220730.01 Superadmin. remove RADERA user
 * 220730.02 Superadmin. Fix form "Lägga till fil till reception" - (not sure that actually adding a file makes it show, new bug 220730.04)
+* 220730.05 'Admin' can change all settings and users, except disable'Superadmin' role from other users. Bilder till receptionsskärm only visible to 'Superadmin'
 ## **Release 2.7.0 (2022-07-04)**
 * 220519.01 Replacement products, updates:
     + count inserts and updates and show result (also errors) after import
