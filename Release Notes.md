@@ -14,7 +14,6 @@
 * 210829.01 Do something with settings, "if calendar-module && holidays-module is used". To handle modules in the future.
 * 220517.01 Make admins upload excel-template file for products and replacement products to validate against. Now the template is already in asset('files/Ersättningsartiklar.xlsx')
     AND/OR Make headers of excelfiles for products and replacements editable via admin-settings
-* 220730.02 Superadmin. fix "Lägga ill fil till reception"
 
 
 *Features*
@@ -29,6 +28,7 @@
 * 220519.02 Validating products-file must be done in the same manner as replacement-file which works
 * 220615.01 Delete products from replacement table
 ### ***Working on***
+* 220730.02 Superadmin. fix "Lägga ill fil till reception"
 ## Finished for next release
 * 220701.01 Save not imported items from replacement-items as new excelfile(s), both replacementfile and productfile formatted.
 * 220730.01 Superadmin. remove RADERA user
