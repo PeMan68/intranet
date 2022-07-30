@@ -60,11 +60,6 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-		if ($request->has('delete')) {
-			$entry = User::find($id);
-			$entry->delete();
-			return redirect('admin/users');
-		}
         if ($request->has('reset')) {
 			return redirect('admin/users');
 		}
@@ -113,7 +108,7 @@ class UserController extends Controller
 			return redirect()->route('admin.users.index')->with('message', 'Användaren raderad.');
 		}
 			
-		return redirect()->route('admin.users.index')->with('warning', 'Denna användaren kan inte raderas.');
+		return redirect()->route('admin.users.index')->with('warning', 'Användaren finns inte.');
 	}
 
     public function export()
