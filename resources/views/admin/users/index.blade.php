@@ -32,8 +32,10 @@
                             <td>
                                 <b-button variant="primary" size="sm"
                                     href="{{ route('admin.users.edit', $user->id) }}">Ändra</b-button>
-                                <b-button variant="primary" size="sm"
-                                    href="{{ route('admin.impersonate', $user->id) }}">Agera som</b-button>
+                                @if (!$user->hasAnyRole('superadmin'))
+                                    <b-button variant="primary" size="sm"
+                                        href="{{ route('admin.impersonate', $user->id) }}">Agera som</b-button>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

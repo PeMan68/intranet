@@ -87,9 +87,9 @@
 								@csrf
 							</form>
 					@endimpersonate
-					@hasrole('superadmin')
+					@hasroles(['superadmin','admin'])
 						<b-dropdown-item href="{{ url('/admin/settings/')}}">Inställningar</b-dropdown-item>
-					@endhasrole
+					@endhasroles
 				</b-nav-item-dropdown>
 			@endguest
 			</b-navbar-nav>

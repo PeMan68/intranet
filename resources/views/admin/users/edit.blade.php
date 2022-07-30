@@ -23,8 +23,14 @@
                     @foreach ($roles as $role)
                         <div class="form-check">
                             <input id="roles" type="checkbox" name="roles[]" value="{{ $role->id }}"
-                                {{ $user->hasAnyRole($role->name) ? 'checked' : '' }}>
-                            <label>{{ $role->name }}</label>
+                                {{ $user->hasAnyRole($role->name) ? 'checked' : '' }}
+                                @if (!Auth::user()->hasAnyRole('superadmin') && $role->name == 'superadmin') disabled="disabled">
+                                @else
+                                > @endif
+                                @if ($user->hasAnyRole('superadmin') && $role->name == 'superadmin') 
+                                <input id="roles-hidden" type="hidden" name="roles[]" value="{{ $role->id }}">
+                                @endif
+                                <label>{{ $role->name }}</label>
                         </div>
                     @endforeach
                 </div>

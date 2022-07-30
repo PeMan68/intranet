@@ -69,6 +69,7 @@ class UserController extends Controller
 		$user->save();
 		
 		//update roles, departments and tasks responsibility
+        // dd($request->roles);
 		$user->roles()->sync($request->roles);
 		$user->departments()->sync($request->departments);
 		$tasks = $request->tasks;
