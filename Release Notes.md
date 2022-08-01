@@ -3,6 +3,9 @@
 *Bugs*
 * 210902.01 Adding visitors names doesnt work anymore
 * 220323.01 Products in dropdown for create demoproduct needs to be sorted alphabetically, or change input method
+* 220701.01 Navbar hamnar "bakom" vänster meny, så objektet "Hem" blir inte klickbart, eller alla manyer som täcks av vänster meny.
+* 220730.03 Menyn visas inte korrekt när man ändrar användare. Error i app.js (se F12 i chrome)...ser ingen skillnad i blade mot andra sidor...något med cache??
+* 220730.04 Addera fil till reception, men visas inte på sidan i development..??
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
@@ -11,6 +14,8 @@
 * 210822.01 Use the php helpers dateconversion for demoproducts instead of vue. (used in store demoproduct)
 * 210829.01 Do something with settings, "if calendar-module && holidays-module is used". To handle modules in the future.
 * 220517.01 Make admins upload excel-template file for products and replacement products to validate against. Now the template is already in asset('files/Ersättningsartiklar.xlsx')
+    AND/OR Make headers of excelfiles for products and replacements editable via admin-settings
+
 
 *Features*
 * 210109-7  Add jobs for email reminders according to the status if Issue to have them closed asap. Automatic closing if emails are not responded upon.
@@ -25,6 +30,11 @@
 * 220615.01 Delete products from replacement table
 ### ***Working on***
 ## Finished for next release
+* 220701.01 Save not imported items from replacement-items as new excelfile(s), both replacementfile and productfile formatted.
+* 220730.01 Superadmin. remove RADERA user
+* 220730.02 Superadmin. Fix form "Lägga till fil till reception" - (not sure that actually adding a file makes it show, new bug 220730.04)
+* 220730.05 'Admin' can change all settings and users, except disable'Superadmin' role from other users. Bilder till receptionsskärm only visible to 'Superadmin'
+* 220730.06 ''Superadmin' kan bara ändras av annan 'Superadmin'
 ## **Release 2.7.0 (2022-07-04)**
 * 220519.01 Replacement products, updates:
     + count inserts and updates and show result (also errors) after import

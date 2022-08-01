@@ -42,26 +42,45 @@ class ProductReplacementsImport implements WithStartRow, OnEachRow, WithChunkRea
         $item = Product::where('item', $row[$itemFromFile])->first();
         // If product doesn't exist, add it to session array
         if (is_null($item)) {
-            Session::push('missingItems', ['rad' => $rowIndex, 'item' => $row[$itemFromFile]]);
+            Session::push('missingItems', [
+                'rad' => $rowIndex,
+                'item' => $row[$itemFromFile],
+            ]);
+            Session::push('productsToImport', [
+                'item' => $row[$itemFromFile],
+            ]);
             $okToImport = false;
         }
         // Search for item in the product-table
         $replacement = Product::where('item', $row[$replacementFromFile])->first();
         // If replacement product doesn't exist, add it to session array
         if (is_null($replacement)) {
-            Session::push('missingItems', ['rad' => $rowIndex, 'item' => $row[$replacementFromFile]]);
+            Session::push('missingItems', [
+                'rad' => $rowIndex,
+                'item' => $row[$replacementFromFile],
+            ]);
+            Session::push('productsToImport', [
+                'item' => $row[$replacementFromFile],
+            ]);
             $okToImport = false;
         }
 
-        // Products exist, upsert the replacement-table
         if ($okToImport) {
-            // If replacement exist in replacement-table, update it
+            // Upsert replacement
             if ($item->replacements->contains($replacement)) {
                 $item->replacements()->updateExistingPivot($replacement, ['comment' => $row[$remarkFromFile]]);
             } else {
                 $item->replacements()->attach($replacement, ['comment' => $row[$remarkFromFile]]);
             }
-            Session::increment('importedItems');
+            Session::increment('numberOfImportedItems');
+        } else {
+            // Store missing products so they can be saved for another import 
+            // after products have been imported to product database
+            Session::push('replacementsToImport', [
+                'item' => $row[$itemFromFile],
+                'replacement' => $row[$replacementFromFile],
+                'remark' => $row[$remarkFromFile],
+            ]);
         }
     }
 }

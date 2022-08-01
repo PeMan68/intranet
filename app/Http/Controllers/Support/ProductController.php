@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Support;
 
+use App\Exports\ProductsExport;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\Imports\ProductsImport;
@@ -17,7 +18,7 @@ class ProductController extends Controller
 	
 	public function importform()
     {
-       return view('admin.products.import');
+       return view('support.products.import');
     }
       
     public function import() 
@@ -25,5 +26,15 @@ class ProductController extends Controller
 		$file = request()->file('file');
 		Excel::import(new ProductsImport,$file);
 		return redirect('/products');
+	}
+
+	public function export()
+	{
+		return Excel::download(new ProductsExport(Product::all()), 'Produkter_alla.xlsx');
+	}
+	
+	public function template()
+	{
+		return Excel::download(new ProductsExport, 'Produkter_mall.xlsx');
 	}
 }

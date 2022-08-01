@@ -7,8 +7,10 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Role;
 use App\Department;
+use App\Exports\UsersExport;
 use App\Task;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -58,11 +60,6 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-		if ($request->has('delete')) {
-			$entry = User::find($id);
-			$entry->delete();
-			return redirect('admin/users');
-		}
         if ($request->has('reset')) {
 			return redirect('admin/users');
 		}
@@ -72,7 +69,15 @@ class UserController extends Controller
 		$user->save();
 		
 		//update roles, departments and tasks responsibility
+
 		$user->roles()->sync($request->roles);
+        
+        // If the hidden field 'superadmin' exis in request, add this role to the user
+        // (the sync()-operation will remove it, since it is not included int the roles[] array)
+        if ($request->has('superadmin'))
+        {
+            $user->roles()->attach($request->superadmin);
+        }
 		$user->departments()->sync($request->departments);
 		$tasks = $request->tasks;
 		
@@ -111,6 +116,11 @@ class UserController extends Controller
 			return redirect()->route('admin.users.index')->with('message', 'Användaren raderad.');
 		}
 			
-		return redirect()->route('admin.users.index')->with('warning', 'Denna användaren kan inte raderas.');
+		return redirect()->route('admin.users.index')->with('warning', 'Användaren finns inte.');
 	}
+
+    public function export()
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
+    }
 }
