@@ -1,5 +1,14 @@
 # intranet
 
+## Version 2.7.5 ##
+(2022-08-01)
+
+*Nyheter*
+* **Ersättningsprodukter**
+    * Ersättningsprodukter som inte matchar existerande produkter sparas i 2 excel-format, dels en produktfil så att saknade produkter kan importeras till produktdatabasen som steg 1, dels som ersättningsprodukter, så de kan importeras igen i steg 2.
+
+* **Administration**
+    * Ett antal admin-funktioner har uppdaterats för att kunna underhålla siten enklare av en lokal admin.
 ## Version 2.7.0 ##
 (2022-07-04)
 
