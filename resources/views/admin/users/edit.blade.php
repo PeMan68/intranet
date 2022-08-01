@@ -18,80 +18,93 @@
                     @endforeach
                 </div>
                 <hr>
+                <!--
+                        Om Auth::user() == superadmin
+                            rollen superadmin för $user ska kunna ändras för andra, men inte om $user == Auth::user()
+                                (inte kunna avaktivera sig själv, måste finnas minst en superuser)
+                        Annars (Auth::user() == admin)
+                            gör checkrutan superuser disabled och lägg till hidden field med värdet för att det ska behållas
+                            
+                        -->
                 <p class="font-weight-bold h5">Ange roll för användaren</p>
                 <div class="form-group row">
                     @foreach ($roles as $role)
                         <div class="form-check">
                             <input id="roles" type="checkbox" name="roles[]" value="{{ $role->id }}"
                                 {{ $user->hasAnyRole($role->name) ? 'checked' : '' }}
-                                @if (!Auth::user()->hasAnyRole('superadmin') && $role->name == 'superadmin') disabled="disabled">
+                                @if (Auth::user()->hasAnyRole('superadmin') && Auth::user() != $user) 
+                                    >
                                 @else
-                                > @endif
-                                @if ($user->hasAnyRole('superadmin') && $role->name == 'superadmin') 
-                                <input id="roles-hidden" type="hidden" name="roles[]" value="{{ $role->id }}">
+                                    @if ($role->name == 'superadmin')
+                                        disabled="disabled">
+                                        @if ($user->hasAnyRole('superadmin'))
+                                            <input id="roles-hidden" type="hidden" name="superadmin" value="{{ $role->id }}"> 
+                                        @endif
+                                    @else
+                                        >
+                                    @endif
                                 @endif
-                                <label>{{ $role->name }}</label>
+                             <label>{{ $role->name }}</label>
                         </div>
                     @endforeach
                 </div>
-                <hr>
-                <p class="font-weight-bold h5">Ange ansvarsområden för användaren</p>
-                <p class="text">
-                    0=Inget |
-                    1=Sista hand |
-                    2=Andra hand |
-                    3=Första hand
-                </p>
-                @foreach ($tasks as $task)
-                    <fieldset class="form-group">
-                        <div class="row">
-                            <legend class="col-form-label col-sm-2 pt-0">{{ $task->area->area }}</legend>
-                            <legend class="col-form-label col-sm-2 pt-0">{{ '- ' . $task->name }}</legend>
-                            <input type="hidden" name="tasks[]" value="{{ $task->id }}">
-                            <div class="col-sm-8">
+        <hr>
+        <p class="font-weight-bold h5">Ange ansvarsområden för användaren</p>
+        <p class="text">
+            0=Inget |
+            1=Sista hand |
+            2=Andra hand |
+            3=Första hand
+        </p>
+        @foreach ($tasks as $task)
+            <fieldset class="form-group">
+                <div class="row">
+                    <legend class="col-form-label col-sm-2 pt-0">{{ $task->area->area }}</legend>
+                    <legend class="col-form-label col-sm-2 pt-0">{{ '- ' . $task->name }}</legend>
+                    <input type="hidden" name="tasks[]" value="{{ $task->id }}">
+                    <div class="col-sm-8">
 
-                                @for ($i = 0; $i < 4; $i++)
-                                    <div class="form-check form-check-inline position-static">
-                                        <input id="tasks" type="radio" name="levels[{{ $task->id }}]"
-                                            value="{{ $i }}"
-                                            {{ $x = $user->tasks()->find($task->id)->pivot->level ?? '0' }}
-                                            {{ $x == $i ? 'checked' : '' }}>
-                                        <label class="form-check-label">{{ $i }}</label>
-                                    </div>
-                                @endfor
+                        @for ($i = 0; $i < 4; $i++)
+                            <div class="form-check form-check-inline position-static">
+                                <input id="tasks" type="radio" name="levels[{{ $task->id }}]"
+                                    value="{{ $i }}"
+                                    {{ $x = $user->tasks()->find($task->id)->pivot->level ?? '0' }}
+                                    {{ $x == $i ? 'checked' : '' }}>
+                                <label class="form-check-label">{{ $i }}</label>
                             </div>
-                        </div>
-                    </fieldset>
-                @endforeach
-                <hr>
-                <div class="form-group row">
-                    <div class="form-check">
-                        <input id="active" type="checkbox" name="active" value="1"
-                            {{ $user->active ? 'checked' : '' }}>
-                        <label>Användare aktiv</label>
+                        @endfor
                     </div>
                 </div>
-                <hr>
-                <div class="form-group row">
-
-                    <div class="form-check">
-                        <input id="calendar" type="checkbox" name="calendar" value="1"
-                            {{ $user->calendar ? 'checked' : '' }}>
-                        <label>Användare visas i kalender</label>
-                    </div>
-                </div>
-                <div class="form-group row mb-0">
-                    <div class="col-md-8 offset-md-4">
-                        <button type="submit" class="btn btn-primary">
-                            Spara
-                        </button>
-                        <button class="btn btn-secondary" type="submit" name="reset" value="reset">
-                            Avbryt
-                        </button>
-                    </div>
-                </div>
-            </form>
+            </fieldset>
+        @endforeach
+        <hr>
+        <div class="form-group row">
+            <div class="form-check">
+                <input id="active" type="checkbox" name="active" value="1" {{ $user->active ? 'checked' : '' }}>
+                <label>Användare aktiv</label>
+            </div>
         </div>
+        <hr>
+        <div class="form-group row">
+
+            <div class="form-check">
+                <input id="calendar" type="checkbox" name="calendar" value="1"
+                    {{ $user->calendar ? 'checked' : '' }}>
+                <label>Användare visas i kalender</label>
+            </div>
+        </div>
+        <div class="form-group row mb-0">
+            <div class="col-md-8 offset-md-4">
+                <button type="submit" class="btn btn-primary">
+                    Spara
+                </button>
+                <button class="btn btn-secondary" type="submit" name="reset" value="reset">
+                    Avbryt
+                </button>
+            </div>
+        </div>
+        </form>
+    </div>
     </div>
     </div>
 @endsection

@@ -69,8 +69,15 @@ class UserController extends Controller
 		$user->save();
 		
 		//update roles, departments and tasks responsibility
-        // dd($request->roles);
+
 		$user->roles()->sync($request->roles);
+        
+        // If the hidden field 'superadmin' exis in request, add this role to the user
+        // (the sync()-operation will remove it, since it is not included int the roles[] array)
+        if ($request->has('superadmin'))
+        {
+            $user->roles()->attach($request->superadmin);
+        }
 		$user->departments()->sync($request->departments);
 		$tasks = $request->tasks;
 		
