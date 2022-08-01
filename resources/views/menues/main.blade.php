@@ -31,11 +31,11 @@
 @showmodule('enable_demoprodukter')
 <a href="{{ route('locations.index') }}">Hantera platser</a>
 @endshowmodule
-@hasrole('support')
+@hasroles(['support','superadmin'])
     <a href="{{ route('support.product.import') }}">Uppdatera produkter</a>
     <a href="{{ route('support.replacement.import') }}">Uppdatera ersättningsprodukter</a>
 @endhasrole
-@hasrole('admin')
+@hasroles(['admin','superadmin'])
     <span class="border-top mt-1"></span>
     <div class="text-light">Admin Hantera</div>
     <a href="{{ route('locations.create', '0') }}">Ny huvudplats</a>
