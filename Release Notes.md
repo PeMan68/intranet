@@ -6,7 +6,6 @@
 * 220701.01 Navbar hamnar "bakom" vänster meny, så objektet "Hem" blir inte klickbart, eller alla manyer som täcks av vänster meny.
 * 220730.03 Menyn visas inte korrekt när man ändrar användare. Error i app.js (se F12 i chrome)...ser ingen skillnad i blade mot andra sidor...något med cache??
 * 220730.04 Addera fil till reception, men visas inte på sidan i development..??
-* 220730.06 'Superadmin' kan inte ta bort 'Superadmin' från sig själv eller annan
 
 *Fixes*
 * 210109-2 The side-menu is not handled well when window height gets smaller
@@ -30,6 +29,7 @@
 * 220519.02 Validating products-file must be done in the same manner as replacement-file which works
 * 220615.01 Delete products from replacement table
 ### ***Working on***
+* 220730.06 'Superadmin' kan inte ta bort 'Superadmin' från sig själv eller annan
 ## Finished for next release
 * 220701.01 Save not imported items from replacement-items as new excelfile(s), both replacementfile and productfile formatted.
 * 220730.01 Superadmin. remove RADERA user
