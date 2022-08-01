@@ -1,6 +1,6 @@
 # intranet
 
-## Version 2.7.5 ##
+## Version 2.7.6 ##
 (2022-08-01)
 
 *Nyheter*
