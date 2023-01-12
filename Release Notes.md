@@ -32,6 +32,9 @@
 
 ### ***Working on***
 ## Finished for next release
+
+
+## **Release 2.7.8 (2023-01-12)**
 * 230108.01 Fixed download/upload of excel-file for products
 	+ Download of template, error when downloading exmpty file
 	+ Upload of products. to long descriptions (+50chars), changed field to 255 chars **run migration**
