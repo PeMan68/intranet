@@ -98,28 +98,28 @@ if (!function_exists('load_chart_data')) {
 	 */
 	function load_chart_data()
 	{
-		$chart = new BookBillBudPrev;
-		$chart->labels([
-			'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep',
-			'Okt', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'
-		]);
-		$file = config('imports.path_prevBilling') . '/' . config('imports.file_prevBilling');
-		$csv = explode(",", file_get_contents($file));
-		$chart->dataset('Föregående', 'bar', $csv)->options(['backgroundColor' => '#FFBB00']);
+		// $chart = new BookBillBudPrev;
+		// $chart->labels([
+		// 	'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep',
+		// 	'Okt', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'
+		// ]);
+		// $file = config('imports.path_prevBilling') . '/' . config('imports.file_prevBilling');
+		// $csv = explode(",", file_get_contents($file));
+		// $chart->dataset('Föregående', 'bar', $csv)->options(['backgroundColor' => '#FFBB00']);
 
-		$file = config('imports.path_budget') . '/' . config('imports.file_budget');
-		$csv = explode(",", file_get_contents($file));
-		$chart->dataset('Budget', 'bar', $csv)->options(['backgroundColor' => '#F65314']);
+		// $file = config('imports.path_budget') . '/' . config('imports.file_budget');
+		// $csv = explode(",", file_get_contents($file));
+		// $chart->dataset('Budget', 'bar', $csv)->options(['backgroundColor' => '#F65314']);
 
-		$file = config('imports.path_booking') . '/' . config('imports.file_booking');
-		$csv = explode(",", file_get_contents($file));
-		$chart->dataset('Booking', 'bar', $csv)->options(['backgroundColor' => '#7CBB00']);
+		// $file = config('imports.path_booking') . '/' . config('imports.file_booking');
+		// $csv = explode(",", file_get_contents($file));
+		// $chart->dataset('Booking', 'bar', $csv)->options(['backgroundColor' => '#7CBB00']);
 
-		$file = config('imports.path_billing') . '/' . config('imports.file_billing');
-		$csv = explode(",", file_get_contents($file));
-		$chart->dataset('Billing', 'bar', $csv)->options(['backgroundColor' => '#00A1F1']);
+		// $file = config('imports.path_billing') . '/' . config('imports.file_billing');
+		// $csv = explode(",", file_get_contents($file));
+		// $chart->dataset('Billing', 'bar', $csv)->options(['backgroundColor' => '#00A1F1']);
 
-		return $chart;
+		// return $chart;
 	}
 }
 

@@ -2,7 +2,6 @@
 
 namespace App\Exports;
 
-use App\Product;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -21,9 +20,8 @@ class ProductsExport implements FromCollection, ShouldAutoSize, WithHeadings, Wi
      */
     public function collection()
     {
-        return $this->data;
+        return collect($this->data);
     }
-
 
     public function map($product) :array        
     {
