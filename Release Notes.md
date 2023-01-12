@@ -13,7 +13,7 @@
 * 210314.01 nextWorkingDateTime not correct when today is weekend but inside working hours (for example sunday 10.30 gives Monday 10.30, while Sunday 21.30 gives Monday 08.00)
 * 210822.01 Use the php helpers dateconversion for demoproducts instead of vue. (used in store demoproduct)
 * 210829.01 Do something with settings, "if calendar-module && holidays-module is used". To handle modules in the future.
-* 220517.01 Make admins upload excel-template file for products and replacement products to validate against. Now the template is already in asset('files/Ersättningsartiklar.xlsx')
+* 220517.01 Make admins upload excel-template file for products and replacement products to validate against. 
     AND/OR Make headers of excelfiles for products and replacements editable via admin-settings
 
 
@@ -28,8 +28,13 @@
 * 220125.01 Add quick search module for other modules on homepage
 * 220519.02 Validating products-file must be done in the same manner as replacement-file which works
 * 220615.01 Delete products from replacement table
+* 230109.01 Add/Delete pictures to reception (önskemål från FO)
+
 ### ***Working on***
 ## Finished for next release
+* 230108.01 Fixed download/upload of excel-file for products
+	+ Download of template, error when downloading exmpty file
+	+ Upload of products. to long descriptions (+50chars), changed field to 255 chars **run migration**
 ## **Release 2.7.7 (2022-08-01)**
 * 220701.01 Save not imported items from replacement-items as new excelfile(s), both replacementfile and productfile formatted.
 * 220730.01 Superadmin. remove RADERA user
