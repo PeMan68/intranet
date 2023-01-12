@@ -1,5 +1,11 @@
 # intranet
 
+## Version 2.7.8 ##
+(2023-01-12)
+
+*Uppdatering*
+* **Produkter**
+	* Beskrivning av produkter kan nu vara 255 tecken långa.
 ## Version 2.7.7 ##
 (2022-08-01)
 
