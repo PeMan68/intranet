@@ -21,9 +21,8 @@ class ProductsExport implements FromCollection, ShouldAutoSize, WithHeadings, Wi
      */
     public function collection()
     {
-        return $this->data;
+        return collect($this->data);
     }
-
 
     public function map($product) :array        
     {
